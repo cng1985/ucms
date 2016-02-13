@@ -335,6 +335,7 @@
 		<module>iwan_rest</module>
 		<module>iwan_web</module>
 		<module>../../mvnspace/icore</module>
+		<module>iwan_app</module>
 	</modules>
 	
 	<build>

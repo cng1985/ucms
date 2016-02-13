@@ -1,4 +1,4 @@
-package org.iwan_rest;
+package org.iwan.app;
 
 /**
  * Hello world!
