@@ -12,7 +12,7 @@
 <body>
 	<div class="fakeloader"></div>
 
-    [@nav  5 /]
+    [@nav  3 /]
 	<!-- /.navbar -->
 
 	<div class="container">
@@ -25,15 +25,23 @@
 						data-toggle="offcanvas">Toggle nav</button>
 				</p>
 				<div class="row">
-					[#list photos as item]
-					<div class="col-xs-3" style="margin-bottom: 20px;">
-						<img class="img-responsive img-thumbnail" alt="Responsive image" src="${item.thumb}">
+					[#list questions as item]
+					<div class="row">
+					<div class="col-xs-12 col-lg-12">
+						<h2>${item.title!""}</h2>
+						<p>${item.contents!""}</p>
+						<p>
+							<a class="btn btn-default pull-right" href="${siteurl}question/view.htm?id=${item.id}" role="button">点击查看更多 &raquo;</a>
+						</p>
+						</div>
 					</div>
+					<hr>
 					[#else]
+					暂无数据
 				    [/#list]
 				    
 				    <div class="col-xs-12  text-center">
-				   [@pager page curpage "${siteurl}photo/catalog.htm?id=${id}" /]
+				   [@pager page curpage "${siteurl}question/catalog.htm?id=${id}" /]
 				   </div>
 				</div>
 				<hr>
@@ -46,9 +54,9 @@
 				     [#if catalogs??]
 				    [#list catalogs as item  ]
 				    [#if item.id =id]
-					<a href="${siteurl}photo/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a> 
+					<a href="${siteurl}question/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a> 
 					[#else]
-					<a href="${siteurl}photo/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a> 
+					<a href="${siteurl}question/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a> 
 					[/#if]
 					
 					[/#list]

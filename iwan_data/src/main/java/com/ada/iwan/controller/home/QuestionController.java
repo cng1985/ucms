@@ -55,14 +55,21 @@ public class QuestionController extends BaseController {
 	}
 	
 	
-	@RequestMapping(value = "/view_add", method = RequestMethod.GET)
+	@RequestMapping(value = "/view_add")
 	public String view_add( Model model) {
 		
 		model.addAttribute("catalogs", catalogService.findChild(1));
 		return getView("question/view_add");
 	}
 	
-	@RequestMapping(value = "/model_add", method = RequestMethod.GET)
+	@RequestMapping(value = "/view_view")
+	public String view_view( Model model,Long id) {
+		
+		model.addAttribute("question", questionService.findById(id));
+		return getView("question/view_view");
+	}
+	
+	@RequestMapping(value = "/model_add")
 	public String model_add( Model model,Question question) {
 		
 		questionService.save(question);
