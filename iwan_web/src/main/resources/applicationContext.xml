@@ -15,6 +15,7 @@
 	<import resource="context_article.xml" />
 	<import resource="context_user.xml" />
 	<import resource="context_album.xml" />
+	<import resource="context_question.xml" />
 
 	<context:annotation-config />
 	<!-- 对包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 需要更改 -->
@@ -55,6 +56,7 @@
 				<value>com.ada.user</value>
 				<value>com.ada.article</value>
 				<value>com.ada.album</value>
+				<value>com.ada.question</value>
 				<value>com.ada.iwan.data.entity</value>
 
 			</list>
