@@ -9,13 +9,13 @@ public class StockListBack extends Back {
 	 * 创建一个股票信息集合
 	 * 
 	 */
-	private List<Stock> rows;
+	private List<StockBack> rows;
 
-	public List<Stock> getRows() {
+	public List<StockBack> getRows() {
 		return rows;
 	}
 
-	public void setRows(List<Stock> rows) {
+	public void setRows(List<StockBack> rows) {
 		this.rows = rows;
 	}
 }

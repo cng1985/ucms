@@ -14,6 +14,9 @@ import com.openyelp.annotation.RestFul;
 public interface StockService {
 
 	public Stock findById(Long id);
+	
+	public int updates();
+
 
 	public Stock save(Stock bean);
 

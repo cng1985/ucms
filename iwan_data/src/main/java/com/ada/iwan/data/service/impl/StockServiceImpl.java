@@ -15,8 +15,10 @@ import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
+import com.ada.iwan.data.dao.StockCatalogDao;
 import com.ada.iwan.data.dao.StockDao;
 import com.ada.iwan.data.entity.Stock;
+import com.ada.iwan.data.entity.StockCatalog;
 import com.ada.iwan.data.page.StockPage;
 import com.ada.iwan.data.service.StockService;
 import com.ada.iwan.service.stock.apps.Pinyin4jUtil;
@@ -107,5 +109,35 @@ public class StockServiceImpl implements StockService {
 
 		return dao.findList(first, count, filters, orders);
 
+	}
+
+	@Autowired
+	StockCatalogDao catalogDao;
+	public int updates() {
+		StockPage result = null;
+		Finder finder = Finder.create();
+		finder.append("from Stock f ");
+		finder.append(" order by f.id desc  ");
+		Pagination<Stock> page = dao.find(finder, 1, 10000);
+		List<Stock> ss=page.getList();
+		if (ss!=null) {
+			for (Stock stock : ss) {
+				StockCatalog c=catalogDao.findBName(stock.getIndustry());
+				if (c==null) {
+					c=new StockCatalog();
+					StockCatalog parent=new StockCatalog();
+					parent.setId(1);
+					c.setParent(parent);
+					c.setName(stock.getIndustry());
+					catalogDao.save(c);
+					stock.setCatalog(c);
+				}else{
+					stock.setCatalog(c);
+				}
+			}
+		}
+		
+		
+		return 0;
 	}
 }

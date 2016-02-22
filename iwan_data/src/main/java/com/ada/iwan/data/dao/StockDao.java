@@ -10,6 +10,10 @@ public interface StockDao extends CriteriaDao<Stock, Long>{
 	public Pagination getPage(int pageNo, int pageSize);
 
 	public Stock findById(Long id);
+	
+	public Stock findByName(String name);
+
+	public Stock findByCode(String code);
 
 	public Stock save(Stock bean);
 
