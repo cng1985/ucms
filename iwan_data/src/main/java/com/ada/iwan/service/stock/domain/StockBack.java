@@ -1,45 +1,10 @@
-package com.ada.iwan.data.entity;
+package com.ada.iwan.service.stock.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+public class StockBack implements Serializable{
 
-import com.ada.data.entity.AbstractEntity;
-/**
- * 	"code":          代码
-	"name":          名称
-	"industry":      所属行业
-	"area":          地区
-	"pe":            市盈率
-	"outstanding":   流通股本
-	"totals":        总股本(万)
-	"totalassets":   总资产(万)
-	"liquidassets":  流动资产
-	"fixedassets":   固定资产
-	"reserved":      公积金
-	"reservedpershare":每股公积金
-	"eps":           每股收益
-	"bvps":          每股净资
-	"pb":			  市净率
-	"timetomarket":	  上市日期
- */
-@Entity
-@Table(name = "stock")
-public class Stock extends AbstractEntity {
-
-	
-	@ManyToOne
-	private StockCatalog catalog;
-	
-	
-	public StockCatalog getCatalog() {
-		return catalog;
-	}
-	public void setCatalog(StockCatalog catalog) {
-		this.catalog = catalog;
-	}
 	/**
 	 * 地区
 	 */
@@ -49,7 +14,24 @@ public class Stock extends AbstractEntity {
 	 */
 	private float bvps;
 	
-
+	/**
+	 * 	"code":          代码
+		"name":          名称
+		"industry":      所属行业
+		"area":          地区
+		"pe":            市盈率
+		"outstanding":   流通股本
+		"totals":        总股本(万)
+		"totalassets":   总资产(万)
+		"liquidassets":  流动资产
+		"fixedassets":   固定资产
+		"reserved":      公积金
+		"reservedpershare":每股公积金
+		"eps":           每股收益
+		"bvps":          每股净资
+		"pb":			  市净率
+		"timetomarket":	  上市日期
+	 */
 	/**
 	 * 代码
 	 */
@@ -236,7 +218,7 @@ public class Stock extends AbstractEntity {
 	}
 	@Override
 	public String toString() {
-		return "Stock [code=" + code + ", name=" + name + ", industry=" + industry + ", area=" + area + ", pe=" + pe
+		return "StockBack [code=" + code + ", name=" + name + ", industry=" + industry + ", area=" + area + ", pe=" + pe
 				+ ", outstanding=" + outstanding + ", totals=" + totals + ", totalassets=" + totalassets
 				+ ", liquidassets=" + liquidassets + ", fixedassets=" + fixedassets + ", reserved=" + reserved
 				+ ", reservedpershare=" + reservedpershare + ", eps=" + eps + ", bvps=" + bvps + ", pb=" + pb
@@ -244,6 +226,4 @@ public class Stock extends AbstractEntity {
 	}
 	
 	
-	
-
 }
