@@ -18,13 +18,27 @@ public class StockDetailApps {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		while (true) {
+			try {
+				updates();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	/**
+	 * 
+	 */
+	private static void updates() {
 		StockService service = ObjectFactory.get().getBean(StockService.class);
 		StockPage page = service.getPage(1, 3000);
 		List<Stock> ss = page.getList();
 		for (Stock stock : ss) {
 			s2(stock);
 		}
-
 	}
 
 	/**
