@@ -336,8 +336,9 @@
 		<module>iwan_web</module>
 		<module>../../mvnspace/icore</module>
 		<module>iwan_app</module>
+		<module>iwan_data_mongo</module>
 	</modules>
-	
+
 	<build>
 		<finalName>iwan</finalName>
 		<plugins>

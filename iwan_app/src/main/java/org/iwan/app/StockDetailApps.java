@@ -20,13 +20,21 @@ public class StockDetailApps {
 		// TODO Auto-generated method stub
 		while (true) {
 			try {
-				updates();
+				updates(1939l);
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 
+	}
+
+	private static void updates(long id) {
+		StockService service = ObjectFactory.get().getBean(StockService.class);
+
+		Stock stock=service.findById(id);
+		// TODO Auto-generated method stub
+		s2(stock);
 	}
 
 	/**
