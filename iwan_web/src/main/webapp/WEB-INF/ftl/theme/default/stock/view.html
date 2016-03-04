@@ -35,7 +35,23 @@ footer {
 				</p>
 				<div class="jumbotron">
 					<h1>${stock.name!''}</h1>
+					[#if detail??]
+					<h3>${detail.currentPrice!''}元</h3>
+					[/#if]
 				</div>
+			</div>
+			<div class="row"> 
+			            [#if detail??]
+						<div class="col-xs-3">开盘价格:${detail.openningPrice!""}元</div>
+						<div class="col-xs-3">收盘价格:${detail.closingPrice!""}元</div>
+						<div class="col-xs-3">最高价格:${detail.hPrice!""}元</div>
+						<div class="col-xs-3">最低价格:${detail.lPrice!""}元</div>
+						[/#if]
+						<div class="col-xs-3">代码:${stock.code!""}</div>
+						<div class="col-xs-3">行业:${stock.industry!""}</div>
+						<div class="col-xs-3">市盈率:${stock.pe!""}</div>
+						<div class="col-xs-3">市净率:${stock.pb!""}</div>
+						
 			</div>
 			<div class="col-xs-12 col-sm-12">
 			<div>
