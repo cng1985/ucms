@@ -8,6 +8,7 @@ import com.tongna.stock.domain.StockListBack;
 
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
+import jodd.util.StringUtil;
 
 public class StockListApiImpl implements StockListApi {
 
@@ -20,7 +21,8 @@ public class StockListApiImpl implements StockListApi {
 		request.query("rows", rows);
 
 		HttpResponse response = request.send();
-		String body = response.body();
+		String body = request.send().body();
+		body = StringUtil.convertCharset(body, "ISO-8859-1", "UTF-8");
 		JsonFactory jf = new JsonFactory();
 		Gson son = jf.gson();
 		StockListBack result = son.fromJson(body, StockListBack.class);

@@ -109,4 +109,18 @@ public class StockDetailServiceImpl implements StockDetailService {
 		return dao.findList(first, count, filters, orders);
 
 	}
+	
+	@Transactional(readOnly = true)
+	public StockDetail findByCode(String code) {
+		Finder finder = Finder.create();
+		finder.append("from StockDetail s where s.code =:code");
+		finder.setParam("code", code);
+		List<StockDetail> ss = dao.find(finder);
+
+		if (ss != null && ss.size() > 0) {
+			return ss.get(0);
+		} else {
+			return null;
+		}
+	}
 }

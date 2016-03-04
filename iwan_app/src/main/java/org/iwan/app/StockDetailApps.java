@@ -18,6 +18,10 @@ public class StockDetailApps {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		updates();
+	}
+
+	private static void xx() {
 		while (true) {
 			try {
 				updates(1939l);
@@ -26,7 +30,6 @@ public class StockDetailApps {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	private static void updates(long id) {
