@@ -34,3 +34,6 @@
 
 如果您的网站使用了 icore, 请在网站页面页脚处保留 icore相关版权信息链接
 
+### 网站地址
+http://www.yichisancun.com
+
