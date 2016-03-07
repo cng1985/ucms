@@ -19,6 +19,7 @@ import com.ada.iwan.data.dao.StockCatalogDao;
 import com.ada.iwan.data.dao.StockDao;
 import com.ada.iwan.data.entity.Stock;
 import com.ada.iwan.data.entity.StockCatalog;
+import com.ada.iwan.data.entity.StockDetail;
 import com.ada.iwan.data.page.StockPage;
 import com.ada.iwan.data.service.StockService;
 import com.ada.iwan.service.stock.apps.Pinyin4jUtil;
@@ -113,6 +114,8 @@ public class StockServiceImpl implements StockService {
 
 	@Autowired
 	StockCatalogDao catalogDao;
+	
+	@Transactional
 	public int updates() {
 		StockPage result = null;
 		Finder finder = Finder.create();
@@ -139,5 +142,19 @@ public class StockServiceImpl implements StockService {
 		
 		
 		return 0;
+	}
+
+	@Transactional(readOnly = true)
+	public Stock findByCode(String code) {
+		Finder finder = Finder.create();
+		finder.append("from Stock s where s.code =:code");
+		finder.setParam("code", code);
+		List<Stock> ss = dao.find(finder);
+
+		if (ss != null && ss.size() > 0) {
+			return ss.get(0);
+		} else {
+			return null;
+		}
 	}
 }

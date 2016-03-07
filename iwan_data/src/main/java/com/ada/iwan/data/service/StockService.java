@@ -10,29 +10,29 @@ import java.util.List;
 
 import com.openyelp.annotation.RestFul;
 
-@RestFul(api=StockService.class,value="StockService")
+@RestFul(api = StockService.class, value = "StockService")
 public interface StockService {
 
 	public Stock findById(Long id);
-	
-	public int updates();
 
+	public Stock findByCode(String code);
+
+	public int updates();
 
 	public Stock save(Stock bean);
 
 	public Stock update(Stock bean);
 
 	public Stock deleteById(Long id);
-	
+
 	public Stock[] deleteByIds(Long[] ids);
-	
+
 	public StockPage getPage(int pageNo, int pageSize);
-	
-	
+
 	public Page<Stock> findPage(Pageable pageable);
 
 	public long count(Filter... filters);
 
 	public List<Stock> findList(Integer first, Integer count, List<Filter> filters, List<Order> orders);
-	
+
 }

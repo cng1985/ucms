@@ -60,5 +60,23 @@ public class StockController extends BaseController {
 		}
 		return getView("stock/view");
 	}
-
+	@RequestMapping(value = "/code/{id}", method = RequestMethod.GET)
+	public String code(@PathVariable("id")String code, Model model) {
+		Stock stock=service.findByCode(code);
+		model.addAttribute("stock", stock);
+		if (stock!=null) {
+			try {
+				StockDetail bean = new StockDetail();
+				StockApi api = new StockListApiImpl();
+				StockDetailBack back = api.findByCode(stock.getCode());
+				BeanUtils.copyProperties(back, bean);
+				bean.setStock(stock);
+				stockDetailService.save(bean);
+				model.addAttribute("detail",bean);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return getView("stock/view");
+	}
 }
