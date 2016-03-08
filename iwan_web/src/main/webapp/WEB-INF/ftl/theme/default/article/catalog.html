@@ -32,7 +32,7 @@
 						<h2>${item.title!""}</h2>
 						<p>${item.introduction!""}</p>
 						<p>
-							<a class="btn btn-default pull-right" href="${siteurl}article/view.htm?id=${item.id}" role="button">点击查看更多 &raquo;</a>
+							<a class="btn btn-default pull-right" href="${siteurl}article/view/${item.id}.htm" role="button">点击查看更多 &raquo;</a>
 						</p>
 					</div>
 				</div>
@@ -63,10 +63,7 @@
 
 		<hr>
 
-		<footer>
-			<p>&copy; 爱玩社区 2015</p>
-		</footer>
-
+		[@footer /]
 	</div>
 	<!--/.container-->
 
