@@ -10,14 +10,17 @@
 	http://www.springframework.org/schema/cache   
     http://www.springframework.org/schema/cache/spring-cache.xsd"
 	default-lazy-init="true">
-
-	<import resource="context_admin.xml" />
-	<import resource="context_article.xml" />
-	<import resource="context_user.xml" />
-	<import resource="context_album.xml" />
-	<import resource="context_question.xml" />
-
 	<context:annotation-config />
+	<context:component-scan base-package="com.ada.admin" />
+	<context:component-scan base-package="com.ada.album" />
+	<context:component-scan base-package="com.ada.area" />
+	<context:component-scan base-package="com.ada.article" />
+	<context:component-scan base-package="com.ada.feed" />
+	<context:component-scan base-package="com.ada.question" />
+	<context:component-scan base-package="com.ada.user" />
+	<context:component-scan base-package="com.ada.plugin" />
+
+
 	<!-- 对包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 需要更改 -->
 	<context:component-scan base-package="com.ada.iwan" />
 	<bean id="propertyConfigurer"
@@ -60,7 +63,7 @@
 				<value>com.ada.album</value>
 				<value>com.ada.question</value>
 				<value>com.ada.iwan.data.entity</value>
-
+				<value>com.ada.plugin.entity</value>
 			</list>
 		</property>
 		<property name="entityInterceptor" ref="treeInterceptor">

@@ -149,6 +149,8 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 				//
 				if (storagePlugin instanceof FilePlugin) {
 					backpath = storagePlugin.getUrl(destPath);
+					
+					System.out.println(backpath);
 				}
 			}
 			FileUtils.deleteQuietly(tempFile);

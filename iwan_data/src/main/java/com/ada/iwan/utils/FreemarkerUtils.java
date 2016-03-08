@@ -123,7 +123,13 @@ public final class FreemarkerUtils {
 		Configuration configuration = null;
 		ApplicationContext applicationContext = SpringUtils.getApplicationContext();
 		if (applicationContext != null) {
-			FreeMarkerConfigurer freeMarkerConfigurer = SpringUtils.getBean("freeMarkerConfigurer", FreeMarkerConfigurer.class);
+			FreeMarkerConfigurer freeMarkerConfigurer=null;
+//			try {
+//				freeMarkerConfigurer = SpringUtils.getBean("freeMarkerConfigurer", FreeMarkerConfigurer.class);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			 
 			if (freeMarkerConfigurer != null) {
 				configuration = freeMarkerConfigurer.getConfiguration();
 			}

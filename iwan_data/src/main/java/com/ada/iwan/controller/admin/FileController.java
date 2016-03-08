@@ -35,6 +35,8 @@ import com.ada.plugin.vo.FileInfo.OrderType;
 @Controller("adminFileController")
 @RequestMapping("/admin/file")
 public class FileController extends BaseController {
+	
+	
 
 	@Resource(name = "fileServiceImpl")
 	private FileService fileService;

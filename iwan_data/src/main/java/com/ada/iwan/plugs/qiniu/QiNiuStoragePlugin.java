@@ -65,8 +65,8 @@ public class QiNiuStoragePlugin extends StoragePlugin {
 		return null;
 	}
 
-	String domain = "openyelp";
-	final String url = "http://7xiowm.com1.z0.glb.clouddn.com/";;
+	String domain = "iwan";
+	final String url = "http://7xrn5v.com1.z0.glb.clouddn.com/";;
 
 	@Override
 	public void upload(String path, File file, String contentType) {
@@ -89,9 +89,13 @@ public class QiNiuStoragePlugin extends StoragePlugin {
 
 	@Override
 	public String getUrl(String path) {
+		System.out.println(path);
 		MD5Utils md5 = new MD5Utils(path);
 		String key = md5.compute();
 		String murl = url + key;
+		
+		System.out.println(murl);
+
 		return murl;
 	}
 
