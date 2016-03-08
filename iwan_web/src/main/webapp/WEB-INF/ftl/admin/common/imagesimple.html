@@ -93,7 +93,7 @@ ${imageid}obj.on('fileQueued', function(file) {
 
 	${imageid}obj.on('uploadAccept', function(file, response) {
 
-		if (response.message.type == "success") {
+		if (response.message == "success") {
 			// 通过return false来告诉组件，此文件上传有错。
 			$("#${imagepath}").val(response.url);
 			//alert(response.url);

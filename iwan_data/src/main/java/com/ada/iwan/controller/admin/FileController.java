@@ -38,7 +38,7 @@ public class FileController extends BaseController {
 	
 	
 
-	@Resource(name = "fileServiceImpl")
+	@Resource(name = "fileServiceImpl2")
 	private FileService fileService;
 
 	/**
