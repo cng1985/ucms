@@ -24,7 +24,7 @@
 
 ### icore 包介绍：
 
-icore工程位置![icore](http://git.oschina.net/cng1985/icore)
+icore工程位置[icore](http://git.oschina.net/cng1985/icore)
 
 
 * com.ada.admin 后台管理功能
