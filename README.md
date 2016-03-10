@@ -48,3 +48,5 @@ icore工程位置[icore](http://git.oschina.net/cng1985/icore)
 ### 网站地址
 http://www.yichisancun.com
 
+![网站首页](http://7xrn5v.com1.z0.glb.clouddn.com/1f70b77ab169a848b87b5de845737e4f "在这里输入图片标题")
+
