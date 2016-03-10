@@ -14,7 +14,17 @@
 * 视图模板 freemarker 
 * 其它 Jsoup、gson
 
-### 包介绍：
+### iwan 工程介绍
+
+* iwan_api	api工程
+* iwan_app	本地测试工程
+* iwan_data	工程的controller，数据模块
+* iwan_web	视图工程，不放代码，使用freemarker作为视图
+
+
+### icore 包介绍：
+
+icore工程位置![icore](http://git.oschina.net/cng1985/icore)
 
 * com.ada.admin 后台管理功能
 * com.ada.album 相册功能
