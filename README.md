@@ -13,6 +13,7 @@
 * 缓存 Ehcache
 * 视图模板 freemarker 
 * 其它 Jsoup、gson
+* [icore](http://git.oschina.net/cng1985/icore)
 
 ### iwan 工程介绍
 
