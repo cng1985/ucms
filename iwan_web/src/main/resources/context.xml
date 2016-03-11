@@ -54,6 +54,7 @@
 	<bean id="shiro" class="com.jagregory.shiro.freemarker.ShiroTags"></bean>
 	<bean id="menuOpenDirective" class="com.ada.admin.freemaker.MenuOpenDirective"></bean>
 	<bean id="menusDirective" class="com.ada.admin.freemaker.MenusDirective"></bean>
+	<bean id="friendLinkDirective" class="com.ada.iwan.web.freemaker.FriendLinkDirective"></bean>
 
 	<!-- freemarker的配置 -->
 	<bean id="freemarkerConfigurer"
@@ -80,6 +81,7 @@
 				<entry key="shiro" value-ref="shiro" />
 				<entry key="menuopentag" value-ref="menuOpenDirective" />
 				<entry key="menustag" value-ref="menusDirective" />
+				<entry key="friendlink" value-ref="friendLinkDirective" />
 			</map>
 		</property>
 	</bean>
@@ -104,9 +106,9 @@
 			</props>
 		</property>
 	</bean>
-	
-		<import resource="applicationContext.xml" />
-	
+
+	<import resource="applicationContext.xml" />
+
 	<!-- <import resource="context-shiro.xml" /> -->
 
 
