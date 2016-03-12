@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ada.data.core.CriteriaDaoImpl;
+import com.ada.data.core.Finder;
 import com.ada.data.core.Pagination;
 import com.ada.iwan.data.dao.StockDayDao;
 import com.ada.iwan.data.entity.StockDay;
@@ -44,5 +45,15 @@ public class StockDayDaoImpl extends CriteriaDaoImpl<StockDay, Long> implements 
 	@Autowired
 	public void setSuperSessionFactory(SessionFactory sessionFactory){
 	    super.setSessionFactory(sessionFactory);
+	}
+
+	public StockDay findByCode(String code,String date) {
+		Finder finder=Finder.create();
+		finder.append("from StockDay d where d.code =:code");
+		finder.setParam("code", code);
+		finder.append("  and d.date =:date");
+		finder.setParam("date", date);
+		StockDay  stock=findOne(finder);
+		return stock;
 	}
 }

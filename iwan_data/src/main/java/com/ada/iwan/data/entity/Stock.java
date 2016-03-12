@@ -1,5 +1,6 @@
 package com.ada.iwan.data.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -37,6 +38,17 @@ public class Stock extends AbstractEntity {
 	 * 每股净资
 	 */
 	private float bvps;
+	
+	private BigDecimal price;// 27.34, //当前价格
+
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
 
 	/**
 	 * 代码

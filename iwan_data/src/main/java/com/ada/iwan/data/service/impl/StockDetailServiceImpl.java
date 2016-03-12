@@ -1,7 +1,9 @@
 package com.ada.iwan.data.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +16,10 @@ import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
 import com.ada.iwan.data.dao.StockDao;
+import com.ada.iwan.data.dao.StockDayDao;
 import com.ada.iwan.data.dao.StockDetailDao;
+import com.ada.iwan.data.entity.Stock;
+import com.ada.iwan.data.entity.StockDay;
 import com.ada.iwan.data.entity.StockDetail;
 import com.ada.iwan.data.page.StockDetailPage;
 import com.ada.iwan.data.service.StockDetailService;
@@ -25,6 +30,9 @@ public class StockDetailServiceImpl implements StockDetailService {
 
 	@Autowired
 	private StockDao stockDao;
+
+	@Autowired
+	private StockDayDao stockDayDao;
 
 	@Transactional(readOnly = true)
 	public StockDetail findById(Long id) {
@@ -47,6 +55,20 @@ public class StockDetailServiceImpl implements StockDetailService {
 			ss.get(0).setStock(bean.getStock());
 		} else {
 			dao.save(bean);
+		}
+		if (bean.getStock() != null) {
+			Stock stock = stockDao.findById(bean.getStock().getId());
+			if (stock != null) {
+				stock.setPrice(new BigDecimal(bean.getCurrentPrice()));
+			}
+		}
+		StockDay day = stockDayDao.findByCode(bean.getCode(), bean.getDate());
+		if (day==null) {
+			day=new StockDay();
+			BeanUtils.copyProperties(bean, day,"id");
+			stockDayDao.save(day);
+		}else{
+			BeanUtils.copyProperties(bean, day, "id");
 		}
 		return bean;
 	}
@@ -109,7 +131,7 @@ public class StockDetailServiceImpl implements StockDetailService {
 		return dao.findList(first, count, filters, orders);
 
 	}
-	
+
 	@Transactional(readOnly = true)
 	public StockDetail findByCode(String code) {
 		Finder finder = Finder.create();
