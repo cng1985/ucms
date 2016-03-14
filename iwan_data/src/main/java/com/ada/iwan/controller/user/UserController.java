@@ -32,6 +32,6 @@ public class UserController extends BaseController {
 			user=userInfoService.update(user);
 			UserUtil.setCurrentUser(user);
 		}
-		return getView("user/index");
+		return "redirect:/user/index.htm";
 	}
 }
