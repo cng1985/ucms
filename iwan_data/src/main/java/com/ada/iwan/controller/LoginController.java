@@ -100,7 +100,7 @@ public class LoginController extends BaseController {
 			return "admin/home";
 		} else {
 			if (SecurityUtils.getSubject().isAuthenticated()) {
-				return "redirect:/home/index.htm";
+				return "redirect:/user/index.htm";
 			} else {
 				return getView("login");
 			}

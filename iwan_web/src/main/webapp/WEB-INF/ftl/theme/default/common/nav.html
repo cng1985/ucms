@@ -19,6 +19,9 @@
 				<li [#if index==3] class="active" [/#if]><a href="${siteurl}question/index.htm">问答</a></li>
 				<li [#if index==6] class="active" [/#if]><a href="${siteurl}stock/index.htm">股票</a></li>
 				<li [#if index==4] class="active" [/#if]><a href="${siteurl}activity/index.htm">活动</a></li>
+				[@shiro.authenticated]
+				<li [#if index==7] class="active" [/#if]><a href="${siteurl}user/index.htm">个人主页</a></li>
+				[/@shiro.authenticated]
 			</ul>
 			[@shiro.guest]
 			<ul class="nav navbar-nav navbar-right">

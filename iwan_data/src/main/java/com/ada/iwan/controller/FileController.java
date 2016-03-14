@@ -36,11 +36,9 @@ import com.ada.plugin.vo.FileInfo.OrderType;
 @RequestMapping("files")
 public class FileController extends BaseController {
 
-	@Resource(name = "fileServiceImpl")
+	@Resource(name = "fileServiceImpl2")
 	private FileService fileService;
 
-	@Resource(name = "fileServiceImpl2")
-	private FileService fileService2;
 
 
 	/**

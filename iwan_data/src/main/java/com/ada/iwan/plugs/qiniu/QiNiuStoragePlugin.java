@@ -66,7 +66,7 @@ public class QiNiuStoragePlugin extends StoragePlugin {
 	}
 
 	String domain = "iwan";
-	final String url = "http://7xrn5v.com1.z0.glb.clouddn.com/";;
+	final String url = "http://image.yichisancun.com/";;
 
 	@Override
 	public void upload(String path, File file, String contentType) {
