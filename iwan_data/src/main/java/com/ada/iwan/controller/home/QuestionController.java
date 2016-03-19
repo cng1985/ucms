@@ -3,6 +3,7 @@ package com.ada.iwan.controller.home;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +55,6 @@ public class QuestionController extends BaseController {
 		return getView("question/catalog");
 	}
 	
-	
 	@RequestMapping(value = "/view_add")
 	public String view_add( Model model) {
 		
@@ -68,7 +68,12 @@ public class QuestionController extends BaseController {
 		model.addAttribute("question", questionService.findById(id));
 		return getView("question/view_view");
 	}
-	
+	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+	public String view(@PathVariable("id")Long id, Model model) {
+		model.addAttribute("question", questionService.findById(id));
+		model.addAttribute("catalogs", catalogService.findChild(1));
+		return getView("question/view_view");
+	}
 	@RequestMapping(value = "/model_add")
 	public String model_add( Model model,Question question) {
 		
