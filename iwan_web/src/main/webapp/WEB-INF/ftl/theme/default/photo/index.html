@@ -9,6 +9,8 @@
 [#include "/theme/default/common/nav.html" /]
 [#include "/theme/default/common/page.html" /]
 
+  <link rel="stylesheet" href="${siteurl}assets/plugs/wow/animate.css">
+ <script src="${siteurl}assets/plugs/wow/wow.js"></script>
 <body>
 	<div class="fakeloader"></div>
 
@@ -26,7 +28,7 @@
 				</p>
 				<div class="row">
 				[#list photos as item]
-					<div class="col-xs-3">
+					<div class="col-xs-3" class="wow fadeInDown">
 						<h2>${(item.category.name)!""}</h2>
 						<img class="img-responsive img-thumbnail" alt="Responsive image" src="${item.thumb}">
 					</div>

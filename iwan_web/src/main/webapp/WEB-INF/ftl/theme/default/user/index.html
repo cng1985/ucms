@@ -44,7 +44,7 @@
 
 					<form action="${siteurl}user/updateuser.htm" method="post">
 						<input type="hidden" name="id" value="${user.id}" >
-						<input type="hidden" name="headimg" value="${user.headimg}"  id="uploaderthumbpath">
+						<input type="hidden" name="headimg" value="${user.headimg!''}"  id="uploaderthumbpath">
 						<div class="form-group">
 							<label for="exampleInputEmail1">个人头像</label>
 							<div>
