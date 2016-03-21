@@ -2,8 +2,6 @@ package org.iwan.app;
 
 import java.util.List;
 
-import org.wltea.analyzer.sample.IKAnalzyerDemo;
-
 import com.ada.article.entity.Article;
 import com.ada.article.entity.ArticleCatalog;
 import com.ada.article.service.ArticleService;
