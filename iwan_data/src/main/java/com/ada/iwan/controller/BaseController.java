@@ -40,6 +40,9 @@ public class BaseController {
 	protected String getView(String view) {
 		return "/theme/default/" + view;
 	}
+	protected String redirect(String view) {
+		return "redirect:" + view;
+	}
 	
 	protected String routeView(String route, String group) {
 		String format = "/default" + route;

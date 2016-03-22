@@ -11,10 +11,10 @@ public class QuestionApps {
 		for (int i = 0; i < 100; i++) {
 			QuestionService service=RpcUtils.get(QuestionService.class);
 			Question bean=new Question();
-			bean.setTitle("这是测试数据");
+			bean.setTitle("这是测试数据"+i);
 			bean.setContents("这是测试内容数据");
 			QuestionCatalog catalog=new QuestionCatalog();
-			catalog.setId(2);
+			catalog.setId(3);
 			bean.setCatalog(catalog);
 			service.save(bean);
 		}
