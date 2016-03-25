@@ -3,9 +3,14 @@ package com.ada.iwan.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.sd4324530.fastweixin.handle.EventHandle;
@@ -30,6 +35,11 @@ public class WeixinController extends WeixinControllerSupport {
         @Override
         protected String getAppId() {
             return null;
+        }
+        @RequestMapping(method = RequestMethod.GET)
+        @ResponseBody
+        public void bind(HttpServletRequest request, HttpServletResponse response) {
+            bindServer(request, response);
         }
         //使用安全模式时设置：密钥
         //不再强制重写，有加密需要时自行重写该方法

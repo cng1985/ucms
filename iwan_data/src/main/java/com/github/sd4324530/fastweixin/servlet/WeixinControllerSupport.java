@@ -20,23 +20,6 @@ import java.io.PrintWriter;
 @Controller
 public abstract class WeixinControllerSupport extends WeixinSupport {
 	
-    /**
-     * 绑定微信服务器
-     *
-     * @param request 请求
-     * @return 响应内容
-     */
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    protected final String bind(HttpServletRequest request) {
-        if (isLegal(request)) {
-            //绑定微信服务器成功
-            return request.getParameter("echostr");
-        } else {
-            //绑定微信服务器失败
-            return "";
-        }
-    }
 
     /**
      * 微信消息交互处理
