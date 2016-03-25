@@ -32,7 +32,7 @@
 		</property>
 	</bean>
 	<bean id="siteHandlerInterceptor" class="com.ada.interceptor.SiteHandlerInterceptor">
-		<property name="url" value="http://www.yichisancun.com//"></property><!-- -->
+		<property name="url" value="http://www.yichisancun.com/"></property><!-- -->
 	</bean>
 
 
