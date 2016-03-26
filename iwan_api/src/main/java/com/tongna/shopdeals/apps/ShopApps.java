@@ -24,7 +24,7 @@ public class ShopApps {
 		Data2 data2 = back.getData();
 		List<ShopsAndDeals> shops=	data2.getShops();
 		for (ShopsAndDeals shops3 : shops) {
-			System.out.println(shops3.getDeals().size());
+			System.out.println(shops3);
 		}
 		System.out.println(data2.getShops().size());
 	}
