@@ -22,7 +22,7 @@ public class ArticleController extends BaseController {
 
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
 	public String view(@PathVariable("id")Long id, Model model) {
-		model.addAttribute("article", articleService.findById(id));
+		model.addAttribute("article", articleService.view(id));
 		model.addAttribute("catalogs", articleCatalogService.findChild(1));
 		return getView("article/view");
 	}

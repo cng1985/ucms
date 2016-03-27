@@ -24,15 +24,14 @@ public class ArticleManagerAction {
 
 	@Autowired
 	ArticleService knowledgeItemService;
-   @Autowired
-   ArticleCatalogService articleCatalogService;
+	@Autowired
+	ArticleCatalogService articleCatalogService;
+
 	@RequestMapping(value = "article/list", method = RequestMethod.GET)
-	public String list(
-			@RequestParam(value = "id", required = true, defaultValue = "1") int id,
+	public String list(@RequestParam(value = "id", required = true, defaultValue = "1") int id,
 			@RequestParam(value = "curpage", required = true, defaultValue = "1") int curpage,
 			@RequestParam(value = "pagesize", required = true, defaultValue = "20") int pagesize,
-			HttpServletRequest request, HttpServletResponse response,
-			Model model) {
+			HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		Pagination rs = knowledgeItemService.getPage(curpage, pagesize);
 
@@ -46,10 +45,16 @@ public class ArticleManagerAction {
 	}
 
 	@RequestMapping(value = "article/model_add", method = RequestMethod.POST)
-	public String model_add(Article article, HttpServletRequest request,
-			HttpServletResponse response, Model model) {
+	public String model_add(Article article, String tag, HttpServletRequest request, HttpServletResponse response,
+			Model model) {
 		try {
-			knowledgeItemService.save(article);
+			if (tag != null) {
+				knowledgeItemService.save(article,tag.split(","));
+			}else{
+				knowledgeItemService.save(article);
+
+			}
+
 			return "redirect:/admin/article/list.htm";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,8 +64,7 @@ public class ArticleManagerAction {
 	}
 
 	@RequestMapping(value = "article/model_update", method = RequestMethod.POST)
-	public String model_update(Article article, HttpServletRequest request,
-			HttpServletResponse response, Model model) {
+	public String model_update(Article article, HttpServletRequest request, HttpServletResponse response, Model model) {
 		try {
 			knowledgeItemService.update(article);
 			return "redirect:/admin/article/list.htm";
@@ -70,13 +74,11 @@ public class ArticleManagerAction {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "article/model_delete", method = RequestMethod.GET)
-	public String model_delete(
-			long id,
+	public String model_delete(long id,
 			@RequestParam(value = "curpage", required = true, defaultValue = "1") int curpage,
-			HttpServletRequest request, HttpServletResponse response,
-			Model model) {
+			HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		knowledgeItemService.deleteById(id);
 
@@ -84,21 +86,19 @@ public class ArticleManagerAction {
 	}
 
 	@RequestMapping(value = "article/view_add", method = RequestMethod.GET)
-	public String view_add(HttpServletRequest request,
-			HttpServletResponse response, Model model) {
-		
-		List<ArticleCatalog> cs=	articleCatalogService.findChild(1);
+	public String view_add(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		List<ArticleCatalog> cs = articleCatalogService.findChild(1);
 		model.addAttribute("list", cs);
 		return "/admin/article/article/view_add";
 	}
+
 	@RequestMapping(value = "article/view_update", method = RequestMethod.GET)
-	public String view_update(long id,HttpServletRequest request,
-			HttpServletResponse response, Model model) {
-		
-		Article article=knowledgeItemService.findById(id);
+	public String view_update(long id, HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		Article article = knowledgeItemService.findById(id);
 		model.addAttribute("article", article);
-		
-		
+
 		return "/admin/article/article/view_update";
 	}
 }
