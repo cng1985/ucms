@@ -37,22 +37,36 @@
 						${article.contents!""}
 					</article>
 
-					<div class="comments">
+					<div class="comments"  ng-app="myApp" ng-controller="customersCtrl">
 						<div class="comments-area">
 							<div class="comments-header">
+								[@shiro.authenticated]
+								<form action="${siteurl}user/updateuser.htm" method="post">
+
+									<div class="form-group">
+										<label>个性签名</label>
+										<textarea ng-model="contents" class="form-control" id="contents" name="introduction" rows="3">${user.introduction!''}</textarea>										
+							
+
+										
+									</div>
+									<button  ng-click="commentwork()" id="button" type="button" class="btn btn-default">
+											提交
+										</button>
+								</form>
+								[/@shiro.authenticated]
 								<h5>我来评几句</h5>
 								<div style="display:none;" class="alert comment-alert alert-error">
 									错误
 								</div>
-								<textarea style="resize: none;" placeholder="请输入评论内容..." id="comment-body" rows="5" cols="60"></textarea>
-								<span id="comment-submit" class="btn btn-medium btn-submit">登录后评论</span>
+								<span id="comment-submit" class="btn btn-medium btn-default">登录后评论</span>
 								<p style="margin-top: 5px;margin-left:10px;">
 									已发表评论数(<span class="comment_cnt">0</span>)
 								</p>
 							</div>
-							<div class="comments-list" ng-app="myApp" ng-controller="customersCtrl">
+							<div class="comments-list">
 								<div ng-repeat="item in names">
-								{{item.contents}}
+									{{item.contents}}
 								</div>
 								<div style="display:none;" class="empty-cmts alert alert-success">
 									没有更多评论了^^
@@ -66,7 +80,7 @@
 							</div>
 						</div>
 					</div>
-
+                    <!--comment end -->
 				</div>
 				<!--/.col-xs-12.col-sm-9-->
 
@@ -102,6 +116,7 @@
 					bgColor : "#2ecc71",
 					spinner : "spinner1"
 				});
+				
 			});
 		</script>
 
@@ -111,6 +126,18 @@
 				$http.get("${siteurl}articlecomment/page.htm?aid=${article.id}").success(function(response) {
 					$scope.names = response.list;
 				});
+				$scope.commentwork=function(){
+					var data={};
+					data.comment=$scope.contents;
+					data.aid=${article.id};
+					$.post("${siteurl}articlecomment/commit.htm",data,function(item){
+						//alert(item)
+						
+						$scope.names.unshift(item);
+						$scope.contents="";
+						
+					});
+				};
 			});
 		</script>
 	</body>
