@@ -44,9 +44,9 @@ icore工程位置[icore](http://git.oschina.net/cng1985/icore)
 
 ### 交流方式
 
-*QQ群:366362344
-*QQ:2601035599
-*微博：http://weibo.com/iwanspace
+* QQ群:366362344   [一尺三寸开源系统QQ群](http://jq.qq.com/?_wv=1027&k=2Kq3VgV)
+* QQ:2601035599
+* 微博：http://weibo.com/iwanspace
 
 ### 开源协议
 
