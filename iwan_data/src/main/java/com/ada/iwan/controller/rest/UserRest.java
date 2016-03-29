@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ada.user.dto.UserDto;
-import com.ada.user.rest.UserDtoApi;
+import com.ada.user.rest.api.UserDtoApi;
 
 @RestController
 public class UserRest {

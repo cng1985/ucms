@@ -42,6 +42,12 @@ icore工程位置[icore](http://git.oschina.net/cng1985/icore)
 * com.young.word 验证码生成
 * com.young.security 各种安全工具
 
+### 交流方式
+
+*QQ群:366362344
+*QQ:2601035599
+*微博：http://weibo.com/iwanspace
+
 ### 开源协议
 
 如果您的网站使用了 icore, 请在网站页面页脚处保留 icore相关版权信息链接
