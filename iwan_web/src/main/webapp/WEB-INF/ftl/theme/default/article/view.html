@@ -132,9 +132,11 @@
 					data.aid=${article.id};
 					$.post("${siteurl}articlecomment/commit.htm",data,function(item){
 						//alert(item)
+						if(item.id>0){
+							$scope.names.unshift(item);
+							$scope.contents="";
+						}
 						
-						$scope.names.unshift(item);
-						$scope.contents="";
 						
 					});
 				};
