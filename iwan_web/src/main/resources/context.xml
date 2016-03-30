@@ -86,6 +86,9 @@
 		</property>
 	</bean>
 
+	<bean id="rssViewer" class="com.ada.iwan.viewers.CustomRssViewer" />
+
+
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="viewClass"
