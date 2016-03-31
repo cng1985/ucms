@@ -27,6 +27,8 @@
 * iwan_app	本地测试工程
 * iwan_data	工程的controller，数据模块
 * iwan_web	视图工程，不放代码，使用freemarker作为视图
+* 工程数据库位置：sqls/iwandb.sql   登陆后台用户名admin  密码123456 启动工程到iwan目录，
+输入mvn tomcat7:run 数据库配置文件：iwan_web(工程)/resources/jdbc.properties
 
 
 ### icore 包介绍：

@@ -85,7 +85,8 @@
 			</map>
 		</property>
 	</bean>
-
+     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+     
 	<bean id="rssViewer" class="com.ada.iwan.viewers.CustomRssViewer" />
 
 

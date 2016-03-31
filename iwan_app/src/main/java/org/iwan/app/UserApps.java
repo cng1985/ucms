@@ -8,7 +8,7 @@ public class UserApps {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		UserInfoService user = ObjectFactory.get().getBean(UserInfoService.class);
-		user.reg("", "ada", "123456");
+		user.reg("", "admin", "123456");
 	}
 
 }
