@@ -28,7 +28,7 @@
 				</p>
 				<div class="row">
 				[#list photos as item]
-					<div class="col-xs-3 wow fadeInDown" >
+					<div  data-wow-delay="${0.5*item_index}s" class="col-xs-3 wow fadeInDown" >
 						<h2>${(item.category.name)!""}</h2>
 						<img class="img-responsive img-thumbnail" alt="Responsive image" src="${item.thumb}">
 					</div>
