@@ -32,7 +32,7 @@
 
 									<div class="form-group">
 										<label>个性签名</label>
-										<textarea ng-model="contents" class="form-control"
+										<textarea required="required" maxlength="2000"  class="form-control"
 										id="contents" name="introduction" rows="3">${user.introduction!''}</textarea>																																																		
 
 
@@ -129,6 +129,11 @@
 				$("#button").click(function() {
 					var data = {};
 					data.comment = $("#contents").val();
+					if(data.comment==""){
+						return;
+					}
+					
+					
 
 					data.qid = ${question.id};
 					$.post("${siteurl}answer/answer.htm", data, function(item) {
@@ -137,6 +142,7 @@
 							var template = $.templates("#theTmpl");
 							var htmlOutput = template.render(item);
 							$("#questions").prepend(htmlOutput);
+							$("#contents").val("");
 						} else {
 							console.log("评论失败");
 						}
@@ -144,23 +150,23 @@
 					});
 				});
 				
-			$(window).scroll(function(){
-					var scrollTop=$(this).scrollTop();//滚动条已经滚动的距离（高度）
-					var windowHeight=$(this).height();//window窗口的高度
-					var documentHeight=$(document).height();//文档对象的高度
-					if((scrollTop+windowHeight)>=documentHeight){
-					     $.get("${siteurl}answer/page.htm?questionid=${question.id}&pageno="+pageno, function(data) {
-							if (data.code == 0&& data.totalPage<=pageno) {
-								var template = $.templates("#theTmpl");
-								var htmlOutput = template.render(data.list);
-								$("#questions").append(htmlOutput);
-							};
-						});
-                        pageno++;
-						
-					//此处调用加载数据的函数
-					}
-			});
+				$(window).scroll(function(){
+						var scrollTop=$(this).scrollTop();//滚动条已经滚动的距离（高度）
+						var windowHeight=$(this).height();//window窗口的高度
+						var documentHeight=$(document).height();//文档对象的高度
+						if((scrollTop+windowHeight)>=documentHeight){
+						     $.get("${siteurl}answer/page.htm?questionid=${question.id}&pageno="+pageno, function(data) {
+								if (data.code == 0&& data.totalPage<=pageno) {
+									var template = $.templates("#theTmpl");
+									var htmlOutput = template.render(data.list);
+									$("#questions").append(htmlOutput);
+								};
+							});
+	                        pageno++;
+							
+						//此处调用加载数据的函数
+						}
+				});
 
 			});
 		</script>
