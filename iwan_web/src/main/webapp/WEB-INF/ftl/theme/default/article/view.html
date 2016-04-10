@@ -1,148 +1,133 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-	[#include "/theme/default/common/nav.html" /]
-	[#include "/theme/default/common/head.html" /]
-	[#include "/theme/default/common/footer.html" /]
-	<head>
-		[@head "${article.title!''}" /]
+[#include "/theme/default/common/nav.html" /] 
+[#include "/theme/default/common/head.html" /]
+ [#include "/theme/default/common/footer.html" /]
+<head>
+[@head "${article.title!''}" /] 
+[@script "assets/js/angular.min.js" /]
+</head>
+<body>
+	<div class="fakeloader"></div>
 
-		[@script "assets/js/angular.min.js" /]
-	</head>
-	<body>
-		<div class="fakeloader"></div>
+	[@nav 2 /]
+	<!-- /.navbar -->
 
-		[@nav  2 /]
-		<!-- /.navbar -->
+	<div class="container">
 
-		<div class="container">
+		<div class="row">
 
-			<div class="row">
+			<div class="col-xs-12 col-sm-9">
 
-				<div class="col-xs-12 col-sm-9">
+				<h1>${article.title!""}</h1>
+				<hr />
+				<div>时间 :${article.addDate!""}</div>
+				[#if article.tags??]
+				<div>[#list article.tags as item] ${item.name!""} [/#list]</div>
+				[/#if]
+				<hr />
+				<article>${article.contents!""}</article>
 
-					<h1>${article.title!""}</h1>
-					<hr/>
-					<div>
-						时间 :${article.addDate!""}
-					</div>
-					[#if article.tags??]
-					<div>
-						[#list article.tags as item]
-						${item.name!""}
-						[/#list]
-					</div>
-					[/#if]
-					<hr/>
-					<article>
-						${article.contents!""}
-					</article>
+				<div class="comments" ng-app="myApp" ng-controller="customersCtrl">
+					<div class="comments-area">
+						<div class="comments-header">
+							[@shiro.authenticated]
+							<form action="${siteurl}user/updateuser.htm" method="post">
 
-					<div class="comments"  ng-app="myApp" ng-controller="customersCtrl">
-						<div class="comments-area">
-							<div class="comments-header">
-								[@shiro.authenticated]
-								<form action="${siteurl}user/updateuser.htm" method="post">
+								<div class="form-group">
+									<label>个性签名</label>
+									<textarea ng-model="contents" class="form-control"
+										id="contents" name="introduction" rows="3">${user.introduction!''}</textarea>
 
-									<div class="form-group">
-										<label>个性签名</label>
-										<textarea ng-model="contents" class="form-control" id="contents" name="introduction" rows="3">${user.introduction!''}</textarea>										
-							
 
-										
-									</div>
-									<button  ng-click="commentwork()" id="button" type="button" class="btn btn-default">
-											提交
-										</button>
-								</form>
-								[/@shiro.authenticated]
-								<h5>我来评几句</h5>
-								<div style="display:none;" class="alert comment-alert alert-error">
-									错误
+
 								</div>
-								<span id="comment-submit" class="btn btn-medium btn-default">登录后评论</span>
-								<p style="margin-top: 5px;margin-left:10px;">
-									已发表评论数(<span class="comment_cnt">0</span>)
-								</p>
-							</div>
-							<div class="comments-list">
-								<div ng-repeat="item in names">
-									{{item.contents}}
-								</div>
-								<div style="display:none;" class="empty-cmts alert alert-success">
-									没有更多评论了^^
-								</div>
-							</div>
-							<div style="display:none;" class="more-comments">
-								<a href="">更多评论</a>
-							</div>
-							<div style="display:none;" class="load-fail">
-								评论加载失败，<a href="javascript:reload_comments('yaA7VvN',1,0,-1);">重新加载</a>
-							</div>
+								<button ng-click="commentwork()" id="button" type="button"
+									class="btn btn-default">提交</button>
+							</form>
+							[/@shiro.authenticated]
+							<h5>我来评几句</h5>
+							<div style="display: none;"
+								class="alert comment-alert alert-error">错误</div>
+							<span id="comment-submit" class="btn btn-medium btn-default">登录后评论</span>
+							<p style="margin-top: 5px; margin-left: 10px;">
+								已发表评论数(<span class="comment_cnt">0</span>)
+							</p>
+						</div>
+						<div class="comments-list">
+							<div ng-repeat="item in names">{{item.contents}}</div>
+							<div style="display: none;"
+								class="empty-cmts alert alert-success">没有更多评论了^^</div>
+						</div>
+						<div style="display: none;" class="more-comments">
+							<a href="">更多评论</a>
+						</div>
+						<div style="display: none;" class="load-fail">
+							评论加载失败，<a href="javascript:reload_comments('yaA7VvN',1,0,-1);">重新加载</a>
 						</div>
 					</div>
-                    <!--comment end -->
 				</div>
-				<!--/.col-xs-12.col-sm-9-->
-
-				<div class="col-xs-6 col-sm-3" id="sidebar">
-					<div class="list-group">
-						[#if catalogs?? && article.catalog??]
-						[#list catalogs as item  ]
-						[#if item.id =article.catalog.id]
-						<a href="${siteurl}article/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a>
-						[#else]
-						<a href="${siteurl}article/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a>
-						[/#if]
-
-						[/#list]
-						[/#if]
-					</div>
-				</div>
-				<!--/.sidebar-offcanvas-->
+				<!--comment end -->
 			</div>
-			<!--/row-->
+			<!--/.col-xs-12.col-sm-9-->
 
-			<hr>
-
-			[@footer /]
-
+			<div class="col-xs-6 col-sm-3" id="sidebar">
+				<div class="list-group">
+					[#if catalogs?? && article.catalog??] [#list catalogs as item ]
+					[#if item.id =article.catalog.id] <a
+						href="${siteurl}article/catalog.htm?id=${item.id}"
+						class="list-group-item active">${item.name!""}
+						(${item.nums!"0"})</a> [#else] <a
+						href="${siteurl}article/catalog.htm?id=${item.id}"
+						class="list-group-item ">${item.name!""} (${item.nums!"0"})</a>
+					[/#if] [/#list] [/#if]
+				</div>
+			</div>
+			<!--/.sidebar-offcanvas-->
 		</div>
-		<!--/.container-->
+		<!--/row-->
 
-		<script>
-			$(document).ready(function() {
-				$(".fakeloader").fakeLoader({
-					timeToHide : 1200,
-					bgColor : "#2ecc71",
-					spinner : "spinner1"
-				});
-				
+		<hr>
+
+		[@footer /]
+
+	</div>
+	<!--/.container-->
+
+	<script>
+		$(document).ready(function() {
+			$(".fakeloader").fakeLoader({
+				timeToHide : 1200,
+				bgColor : "#2ecc71",
+				spinner : "spinner1"
 			});
-		</script>
 
-		<script>
-			var app = angular.module('myApp', []);
-			app.controller('customersCtrl', function($scope, $http) {
-				$http.get("${siteurl}articlecomment/page.htm?aid=${article.id}").success(function(response) {
-					$scope.names = response.list;
-				});
-				$scope.commentwork=function(){
-					var data={};
-					data.comment=$scope.contents;
-					data.aid=${article.id};
-					$.post("${siteurl}articlecomment/commit.htm",data,function(item){
-						//alert(item)
-						if(item.id>0){
-							$scope.names.unshift(item);
-							$scope.contents="";
-						}else{
-							console.log("评论失败");
-						}
-						
-						
+		});
+	</script>
+
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('customersCtrl', function($scope, $http) {
+			$http.get("${siteurl}articlecomment/page.htm?aid=${article.id}")
+					.success(function(response) {
+						$scope.names = response.list;
 					});
-				};
-			});
-		</script>
-	</body>
+			$scope.commentwork = function() {
+			    var data={};
+				data.comment=$scope.contents;
+				data.aid=${article.id};
+				$.post("${siteurl}articlecomment/commit.htm", data, function(item) {
+					//alert(item)
+					if (item.id > 0) {
+						$scope.names.unshift(item);
+						$scope.contents = "";
+					} else {
+						console.log("评论失败");
+					}
+
+				});
+			};
+		});
+	</script>
+</body>
 </html>

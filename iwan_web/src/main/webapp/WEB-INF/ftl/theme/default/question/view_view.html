@@ -1,64 +1,168 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-[#include "/theme/default/common/nav.html" /]
-[#include "/theme/default/common/head.html" /]
-[#include "/theme/default/common/footer.html" /]
-<head>
-[@head "${question.title!''}" /]
-</head>
-<body>
-	<div class="fakeloader"></div>
+	[#include "/theme/default/common/nav.html" /]
+	[#include "/theme/default/common/head.html" /]
+	[#include "/theme/default/common/footer.html" /]
+	<head>
+		[@head "${question.title!''}" /]
+		[@js "jsrender.min.js" /]
+	</head>
+	<body>
+		<div class="fakeloader"></div>
 
-    [@nav  3 /]
-	<!-- /.navbar -->
+		[@nav  3 /]
+		<!-- /.navbar -->
 
-	<div class="container">
+		<div class="container">
 
-		<div class="row">
+			<div class="row">
 
-			<div class="col-xs-12 col-sm-9">
-					
+				<div class="col-xs-12 col-sm-9">
+
 					<h1>${question.title!""}</h1>
-					<div>${question.contents!""}</div>
-			
-			</div>
-			<!--/.col-xs-12.col-sm-9-->
+					<div>
+						${question.contents!""}
+					</div>
 
-			<div class="col-xs-6 col-sm-3" id="sidebar">
-				<div class="list-group">
-				     [#if catalogs?? && question.catalog??]
-				    [#list catalogs as item  ]
-				    [#if item.id =question.catalog.id]
-					<a href="${siteurl}question/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a> 
-					[#else]
-					<a href="${siteurl}question/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a> 
-					[/#if]
-					
-					[/#list]
-					[/#if]
+					<div class="comments" >
+						<div class="comments-area">
+							<div class="comments-header">
+								[@shiro.authenticated]
+								<form action="${siteurl}user/updateuser.htm" method="post">
+
+									<div class="form-group">
+										<label>个性签名</label>
+										<textarea ng-model="contents" class="form-control"
+										id="contents" name="introduction" rows="3">${user.introduction!''}</textarea>																																																		
+
+
+
+
+
+
+
+
+									</div>
+									<button  id="button" type="button"
+									class="btn btn-default">
+										提交
+									</button>
+								</form>
+								[/@shiro.authenticated]
+								<h5>我来评几句</h5>
+								<div style="display: none;"
+								class="alert comment-alert alert-error">
+									错误
+								</div>
+								<span id="comment-submit" class="btn btn-medium btn-default">登录后评论</span>
+								<p style="margin-top: 5px; margin-left: 10px;">
+									已发表评论数(<span class="comment_cnt">0</span>)
+								</p>
+							</div>
+							<div id="questions" class="comments-list">
+								<div style="display: none;"
+								class="empty-cmts alert alert-success">
+									没有更多评论了^^
+								</div>
+							</div>
+							<div style="display: none;" class="more-comments">
+								<a href="">更多评论</a>
+							</div>
+							<div style="display: none;" class="load-fail">
+								评论加载失败，<a href="javascript:reload_comments('yaA7VvN',1,0,-1);">重新加载</a>
+							</div>
+						</div>
+					</div>
+					<!--comment end -->
+
 				</div>
+				<!--/.col-xs-12.col-sm-9-->
+
+				<div class="col-xs-6 col-sm-3" id="sidebar">
+					<div class="list-group">
+						[#if catalogs?? && question.catalog??]
+						[#list catalogs as item  ]
+						[#if item.id =question.catalog.id]
+						<a href="${siteurl}question/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a>
+						[#else]
+						<a href="${siteurl}question/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a>
+						[/#if]
+
+						[/#list]
+						[/#if]
+					</div>
+				</div>
+				<!--/.sidebar-offcanvas-->
 			</div>
-			<!--/.sidebar-offcanvas-->
+			<!--/row-->
+
+			<hr>
+
+			[@footer /]
+
 		</div>
-		<!--/row-->
 
-		<hr>
+		<script id="theTmpl" type="text/x-jsrender">
+			<div>
+			{{:contents}}
+			<hr/>
+			</div>
+		</script>
+		<!--/.container-->
 
-		[@footer /]
+		<script>
+		    var pageno=2;
+			$(document).ready(function() {
+				$(".fakeloader").fakeLoader({
+					timeToHide : 1200,
+					bgColor : "#2ecc71",
+					spinner : "spinner1"
+				});
+				$.get("${siteurl}answer/page.htm?questionid=${question.id}", function(data) {
+					if (data.code == 0) {
+						var template = $.templates("#theTmpl");
+						var htmlOutput = template.render(data.list);
+						$("#questions").append(htmlOutput);
+					};
+				});
 
-	</div>
-	<!--/.container-->
+				$("#button").click(function() {
+					var data = {};
+					data.comment = $("#contents").val();
 
+					data.qid = ${question.id};
+					$.post("${siteurl}answer/answer.htm", data, function(item) {
+						//alert(item)
+						if (item.id > 0) {
+							var template = $.templates("#theTmpl");
+							var htmlOutput = template.render(item);
+							$("#questions").prepend(htmlOutput);
+						} else {
+							console.log("评论失败");
+						}
 
-
-	<script>
-		$(document).ready(function() {
-			$(".fakeloader").fakeLoader({
-				timeToHide : 1200,
-				bgColor : "#2ecc71",
-				spinner : "spinner1"
+					});
+				});
+				
+			$(window).scroll(function(){
+					var scrollTop=$(this).scrollTop();//滚动条已经滚动的距离（高度）
+					var windowHeight=$(this).height();//window窗口的高度
+					var documentHeight=$(document).height();//文档对象的高度
+					if((scrollTop+windowHeight)>=documentHeight){
+					     $.get("${siteurl}answer/page.htm?questionid=${question.id}&pageno="+pageno, function(data) {
+							if (data.code == 0&& data.totalPage<=pageno) {
+								var template = $.templates("#theTmpl");
+								var htmlOutput = template.render(data.list);
+								$("#questions").append(htmlOutput);
+							};
+						});
+                        pageno++;
+						
+					//此处调用加载数据的函数
+					}
 			});
-		});
-	</script>
-</body>
+
+			});
+		</script>
+	</body>
 </html>
