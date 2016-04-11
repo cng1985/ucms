@@ -6,6 +6,7 @@
 	<head>
 		[@head "${question.title!''}" /]
 		[@js "jsrender.min.js" /]
+		[@style "question.css" /]
 	</head>
 	<body>
 		<div class="fakeloader"></div>
@@ -25,7 +26,6 @@
 					</div>
 
 					<div class="comments" >
-						<div class="comments-area">
 							<div class="comments-header">
 								[@shiro.authenticated]
 								<form action="${siteurl}user/updateuser.htm" method="post">
@@ -49,29 +49,15 @@
 									</button>
 								</form>
 								[/@shiro.authenticated]
-								<h5>我来评几句</h5>
-								<div style="display: none;"
-								class="alert comment-alert alert-error">
-									错误
-								</div>
-								<span id="comment-submit" class="btn btn-medium btn-default">登录后评论</span>
-								<p style="margin-top: 5px; margin-left: 10px;">
-									已发表评论数(<span class="comment_cnt">0</span>)
-								</p>
 							</div>
-							<div id="questions" class="comments-list">
+					
+					</div>
+					
+					<div id="questions" class="comments-list">
 								<div style="display: none;"
 								class="empty-cmts alert alert-success">
 									没有更多评论了^^
 								</div>
-							</div>
-							<div style="display: none;" class="more-comments">
-								<a href="">更多评论</a>
-							</div>
-							<div style="display: none;" class="load-fail">
-								评论加载失败，<a href="javascript:reload_comments('yaA7VvN',1,0,-1);">重新加载</a>
-							</div>
-						</div>
 					</div>
 					<!--comment end -->
 
@@ -103,10 +89,55 @@
 		</div>
 
 		<script id="theTmpl" type="text/x-jsrender">
-			<div>
-			{{:contents}}
-			<hr/>
+			<div class="row">
+			<div class="col-sm-1">
+				<div id="voting_2" class="qa-voting qa-voting-net">
+											<div class="qa-vote-buttons qa-vote-buttons-net">
+												<input type="submit" disabled="disabled" class="qa-vote-first-button qa-vote-up-disabled" value="" title="你无法给自己的问题投票！"> 
+												<input type="submit" disabled="disabled" class="qa-vote-second-button qa-vote-down-disabled" value="" title="你无法给自己的问题投票！"> 
+											</div>
+											<div title="" class="qa-vote-count qa-vote-count-net">
+												<span class="qa-netvote-count">
+													<span class="qa-netvote-count-data">
+														{{if ups<999}}{{:ups}}{{else}}999{{/if}}
+														<span class="votes-up">
+															<span title="0" class="value-title">
+																
+															</span>
+															</span>
+															<span class="votes-down">
+																<span title="0" class="value-title">
+																	
+																</span>
+																</span>
+																</span>
+																<span class="qa-netvote-count-pad"> 投票</span>
+												</span>
+											</div>
+											<div class="qa-vote-clear">
+											</div>
+				</div>
+			</div>	
+			<div class="col-sm-11">
+				<div class="row">
+				    <div class="col-sm-12">
+					{{:contents}}
+					</div>
+				</div>
+                <div class="row user">
+				    <div class="col-sm-12">
+					<span title="2016-03-22T13:11:29+0000" class="value-title">3月 22</span>
+					<span>	用户: admin (260 分) </span>
+					</div>
+				</div>		
+                  <div class="row others">
+				    <div class="col-sm-12">
+					<a class="item">举报</a><a  class="item">提出相关问题</a>
+					</div>
+				</div>											
 			</div>
+			</div>
+			<hr/>
 		</script>
 		<!--/.container-->
 
@@ -154,7 +185,7 @@
 						var scrollTop=$(this).scrollTop();//滚动条已经滚动的距离（高度）
 						var windowHeight=$(this).height();//window窗口的高度
 						var documentHeight=$(document).height();//文档对象的高度
-						if((scrollTop+windowHeight)>=documentHeight){
+						if((scrollTop+windowHeight)>=documentHeight-120){
 						     $.get("${siteurl}answer/page.htm?questionid=${question.id}&pageno="+pageno, function(data) {
 								if (data.code == 0&& data.totalPage<=pageno) {
 									var template = $.templates("#theTmpl");

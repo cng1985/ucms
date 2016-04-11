@@ -55,6 +55,7 @@
 	<bean id="menuOpenDirective" class="com.ada.admin.freemaker.MenuOpenDirective"></bean>
 	<bean id="menusDirective" class="com.ada.admin.freemaker.MenusDirective"></bean>
 	<bean id="friendLinkDirective" class="com.ada.iwan.web.freemaker.FriendLinkDirective"></bean>
+	<bean id="articleDirective" class="com.ada.freemaker.ArticleDirective"></bean>
 
 	<!-- freemarker的配置 -->
 	<bean id="freemarkerConfigurer"
@@ -82,11 +83,12 @@
 				<entry key="menuopentag" value-ref="menuOpenDirective" />
 				<entry key="menustag" value-ref="menusDirective" />
 				<entry key="friendlink" value-ref="friendLinkDirective" />
+				<entry key="article" value-ref="articleDirective" />
 			</map>
 		</property>
 	</bean>
-     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-     
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+
 	<bean id="rssViewer" class="com.ada.iwan.viewers.CustomRssViewer" />
 
 
