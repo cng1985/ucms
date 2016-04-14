@@ -1,6 +1,13 @@
+[#macro  searchitem name value]
+[#if page.searchProperty??]
+<li val="${name}" [#if page.searchProperty==name]class="active"[/#if]><a href="#">${value}</a></li>
+[#else]
+<li val="${name}" ><a href="#">${value}</a></li>
+[/#if]
+[/#macro]
 [#macro pager page ]
 <input type="hidden" id="pageSize" name="pageSize" value="${page.pageSize}" />
-<input type="hidden" id="searchProperty" name="searchProperty" value="${(page.searchProperty)!}" />
+<input type="hidden" id="searchProperty" name="searchProperty" value="${(page.searchProperty)!'name'}" />
 <input type="hidden" id="orderProperty" name="orderProperty" value="${(page.orderProperty)!}" />
 <input type="hidden" id="orderDirection" name="orderDirection" value="${(page.orderDirection)!}" />
 <div>

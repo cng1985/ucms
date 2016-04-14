@@ -47,7 +47,7 @@ background: #E19487 !important;
 			<!-- .nav-list -->
 			[#include "/admin/common/commonmenu.html"]
 			<ul class="nav nav-list">[@menustag id=1] [#list list as item]
-				[@menu item "1,53,70"] [/@menu] [/#list] [/@menustag]
+				[@menu item "1,71,72"] [/@menu] [/#list] [/@menustag]
 			</ul>
 			<!-- /.nav-list -->
 
@@ -107,7 +107,7 @@ background: #E19487 !important;
 				[#include "/admin/common/page2.html"] [#include
 				"/admin/common/settings.html"]
 				<form id="listForm"
-					action="${siteurl}admin/userinfo/view_list.htm" method="post">
+					action="${siteurl}admin/activity/view_list.htm" method="get">
 					<div class="row">
 
 						<div class="col-xs-12">
@@ -117,8 +117,8 @@ background: #E19487 !important;
 								<div class="widget-body">
 									<div class="widget-main">
 										<div class="row">
-											<div class="col-md-2">
-												<a class="btn btn-primary btn-sm" href="${siteurl}/admin/userinfo/view_add.htm">
+											<div class="col-xs-3">
+												<a class="btn btn-primary btn-sm" href="${siteurl}/admin/activity/view_add.htm">
 														<i class="ace-icon fa fa-pencil align-top bigger-125"></i>
 														添加
 												</a> <a class="disabled" id="deleteButton" href="#">
@@ -128,7 +128,7 @@ background: #E19487 !important;
 													</button>
 												</a>
 											</div>
-											<div class="col-md-10 form-inline">
+											<div class="col-xs-12 col-sm-6 form-inline">
 												<div class="input-group">
 													<div class="btn-group">
 														<button class="btn btn-primary btn-white dropdown-toggle"
@@ -138,14 +138,13 @@ background: #E19487 !important;
 														</button>
 
 														<ul id="searchPropertyOption" class="dropdown-menu ">
-															[@searchitem name="username" value ="用户名"/]
-															[@searchitem name="name" value ="姓名"/]
+														    [@searchitem name="name" value ="活动名"/]
 														</ul>
 													</div>
 												</div>
 												<div class="input-group">
 
-													<input type="text" name="searchValue" value="${(page.searchValue)!''}" placeholder="关键词"
+													<input type="text" name="searchValue"  value="${(page.searchValue)!''}" placeholder="关键词"
 														class="form-control search-query"> <span
 														class="input-group-btn">
 														<button class="btn btn-purple btn-sm" type="submit">
@@ -167,10 +166,9 @@ background: #E19487 !important;
 								<table id="listTable" class="table table-striped table-bordered table-hover">
 									<tr>
 										<td><input type="checkbox" id="selectAll"></td>
-										<td class="col-xs-4">用户名</td>
-										<td class="col-xs-2">姓名</td>
-										<td class="col-xs-2 text-center">最后登陆时间</td>
-										<td class="col-xs-2 text-center">登陆次数</td>
+										<td class="col-xs-3">活动名称</td>
+										<td class="col-xs-5 text-center">描述</td>
+										<td class="col-xs-2 text-center">添加时间</td>
 										<td class="col-xs-2 text-center">操作</td>
 									</tr>
 									[#if list??] 
@@ -178,20 +176,17 @@ background: #E19487 !important;
 									<tr id="trr${item.id!''}">
 										<td><input type="checkbox" value="${item.id}" name="ids">
 										</td>
-										<td>${item.username!""}</td>
 										<td>${item.name!""}</td>
-										<td class="text-center">${item.lastDate!""}</td>
-										<td class="text-center">${item.logintimes!"0"}</td>
-										
-
+										<td class="text-left">${item.description!""}</td>
+										<td>${item.addDate!""}</td>
 										<td class="text-center">
 											<div style="display: inline-block;">
 
 												<a  class="btn btn-xs btn-info"
-													href="${siteurl}admin/userinfo/view_edit.htm?id=${item.id!''}">
+													href="${siteurl}admin/activity/view_edit.htm?id=${item.id!''}">
 														<i class="icon-trash bigger-120">更新</i>
 												</a> <a class="btn btn-xs btn-danger" onclick="return confirm('删除后无法恢复,确定要删除吗')"
-													href="${siteurl}admin/userinfo/model_delete.htm?id=${item.id!''}&pageNumber=${page.pageNumber}">
+													href="${siteurl}admin/activity/model_delete.htm?id=${item.id!''}&pageNumber=${page.pageNumber}">
 														<i class="icon-trash bigger-120">删除</i>
 												</a>
 											</div>
