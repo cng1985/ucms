@@ -43,6 +43,9 @@
 	alert("${msg}");
 	[/#if]
 	</script>
+		<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101303927" data-redirecturi="${siteurl}qqlogin.htm" charset="utf-8"></script>
+	
+	
 </head>
 
 <body class="login-layout blur-login">
@@ -102,7 +105,15 @@
 												<div class="space-4"></div>
 											</fieldset>
 										</form>
-
+                                         <div class="social-or-login center">
+											<span class="bigger-110">使用第三方登陆</span>
+										</div>
+						
+										<div class="space-6"></div>
+						
+										<div class="social-login center">
+											<span id="qqLoginBtn"></span>
+										</div>
 
 									</div>
 									<!-- /.widget-main -->
@@ -155,6 +166,9 @@
 												</div>
 											</fieldset>
 										</form>
+										
+										
+										
 									</div>
 									<!-- /.widget-main -->
 
@@ -217,6 +231,9 @@
 												</div>
 											</fieldset>
 										</form>
+										
+										
+										
 									</div>
 
 									<div class="toolbar center">
@@ -307,5 +324,33 @@
 
 	});
 </script>
+
+
+		<script type="text/javascript">
+			var cbLoginFun = function(oInfo, oOpts) {
+				if (QC.Login.check()) {//如果已登录
+					QC.Login.getMe(function(openId, accessToken) {
+						window.location.replace("${siteurl}qqlogin2.htm?access_token="+accessToken+"&openid="+openId);
+						QC.Login.signOut()
+					});
+					//这里可以调用自己的保存接口
+					//...
+				}
+			};
+			QC.Login({
+				btnId : "qqLoginBtn"
+			},cbLoginFun);
+			
+			
+			if (QC.Login.check()) {//如果已登录
+					QC.Login.getMe(function(openId, accessToken) {
+						//alert(["当前登录用户的", "openId为：" + openId, "accessToken为：" + accessToken].join("\n"));
+						window.location.replace("${siteurl}qqlogin2.htm?access_token="+accessToken+"&openid="+openId);
+						QC.Login.signOut()
+					});
+					//这里可以调用自己的保存接口
+					//...
+			}
+		</script>
 </body>
 </html>

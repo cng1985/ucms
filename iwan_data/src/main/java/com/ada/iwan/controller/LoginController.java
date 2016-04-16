@@ -19,6 +19,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ada.iwan.controller.home.Views;
+import com.ada.shiro.filter.UsernamePasswordCaptchaToken;
+import com.ada.user.entity.UserInfo;
+import com.ada.user.entity.UserQQ;
 import com.ada.user.service.UserInfoService;
+import com.ada.user.service.UserQQService;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.young.http.Connection;
+import com.young.http.HttpConnection;
 
 /**
  * 登录页
@@ -52,9 +61,8 @@ public class LoginController extends BaseController {
 	UserInfoService userInfoService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(String email, String username, String password,
-			HttpServletRequest request, HttpServletResponse response,
-			Model model) {
+	public String register(String email, String username, String password, HttpServletRequest request,
+			HttpServletResponse response, Model model) {
 
 		int state = userInfoService.register(email, username, password);
 		if (state > 0) {
@@ -76,6 +84,48 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String view() {
 		return getView(Views.LOGIN);
+	}
+
+	@RequestMapping(value = "qqlogin")
+	public String qqlogin(HttpServletRequest request, HttpServletResponse response, Model model) {
+		return getView("qqlogin");
+	}
+
+	@Autowired
+	UserQQService qqService;
+
+	@Autowired
+	UserInfoService userService;
+
+	@RequestMapping(value = "qqlogin2")
+	public String qqlogin2(String access_token, String openid, HttpServletRequest request, HttpServletResponse response,
+			Model model) {
+		try {
+
+			UserQQ qq = qqService.login(access_token, openid, "101303927");
+			if (qq != null) {
+				Subject subject = SecurityUtils.getSubject();
+				if (!subject.isAuthenticated()) {
+					UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
+					token.setUsername(openid);
+					token.setPassword("123456".toCharArray());
+					try {
+						subject.login(token);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+					if (subject.isAuthenticated()) {
+						return "redirect:" + "/index.htm";
+					} else {
+						return "login";
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return getView("qqlogin");
 	}
 
 	/**
@@ -124,8 +174,7 @@ public class LoginController extends BaseController {
 			return ret;
 		}
 
-		AuthenticationToken token = new UsernamePasswordToken(username,
-				password);
+		AuthenticationToken token = new UsernamePasswordToken(username, password);
 		if (token == null) {
 			model.put("message", "用户名或密码错误");
 			return ret;
