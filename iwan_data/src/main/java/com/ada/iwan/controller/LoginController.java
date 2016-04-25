@@ -33,6 +33,10 @@ import com.ada.user.entity.UserInfo;
 import com.ada.user.entity.UserQQ;
 import com.ada.user.service.UserInfoService;
 import com.ada.user.service.UserQQService;
+import com.github.scribejava.apis.GitHubApi;
+import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.oauth.OAuth10aService;
+import com.github.scribejava.core.oauth.OAuth20Service;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.young.http.Connection;
@@ -90,7 +94,16 @@ public class LoginController extends BaseController {
 	public String qqlogin(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return getView("qqlogin");
 	}
-
+	@RequestMapping(value = "qqlogin")
+	public String githublogin(HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+		final  OAuth20Service service = new ServiceBuilder()
+                .apiKey("66e9bc9545ab3bcec49b")
+                .apiSecret("a273f21ef3088dc4487dc90474c26c62d3a7b35f")
+                .build(GitHubApi.instance());
+		
+		return getView("qqlogin");
+	}
 	@Autowired
 	UserQQService qqService;
 
