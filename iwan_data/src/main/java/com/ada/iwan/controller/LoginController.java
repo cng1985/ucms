@@ -29,18 +29,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ada.iwan.controller.home.Views;
 import com.ada.shiro.filter.UsernamePasswordCaptchaToken;
-import com.ada.user.entity.UserInfo;
+import com.ada.user.entity.UserGitHub;
+import com.ada.user.entity.UserOschina;
 import com.ada.user.entity.UserQQ;
+import com.ada.user.service.UserGitHubService;
 import com.ada.user.service.UserInfoService;
+import com.ada.user.service.UserOschinaService;
 import com.ada.user.service.UserQQService;
 import com.github.scribejava.apis.GitHubApi;
+import com.github.scribejava.apis.OschinaApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
-import com.github.scribejava.core.oauth.OAuth10aService;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.young.http.Connection;
-import com.young.http.HttpConnection;
 
 /**
  * 登录页
@@ -64,6 +64,12 @@ public class LoginController extends BaseController {
 	@Autowired
 	UserInfoService userInfoService;
 
+	@Autowired
+	UserOschinaService userOschinaService;
+	
+	@Autowired
+	UserGitHubService userGitHubService;
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(String email, String username, String password, HttpServletRequest request,
 			HttpServletResponse response, Model model) {
@@ -80,13 +86,31 @@ public class LoginController extends BaseController {
 
 	}
 
+	final OAuth20Service github;
+	final OAuth20Service oschina;
+
+	public LoginController() {
+		github = new ServiceBuilder().apiKey("66e9bc9545ab3bcec49b")
+				.apiSecret("a273f21ef3088dc4487dc90474c26c62d3a7b35f")
+				.callback("http://www.yichisancun.com/githublogin.htm").scope("user,public_repo")
+				.build(GitHubApi.instance());
+
+		oschina = new ServiceBuilder().apiKey("CTJlkYcnBaZCsi4GGgUk").grantType("authorization_code")
+				.apiSecret("TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF").callback("http://www.yichisancun.com/oschinalogin.htm")
+				.responseType("code").build(OschinaApi.instance());
+	}
+
 	/**
 	 * 跳转登录页
 	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String view() {
+	public String view(Model model) {
+
+		model.addAttribute("githuburl", github.getAuthorizationUrl());
+		model.addAttribute("oschinaurl", oschina.getAuthorizationUrl());
+
 		return getView(Views.LOGIN);
 	}
 
@@ -94,16 +118,73 @@ public class LoginController extends BaseController {
 	public String qqlogin(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return getView("qqlogin");
 	}
-	@RequestMapping(value = "qqlogin")
-	public String githublogin(HttpServletRequest request, HttpServletResponse response, Model model) {
-		
-		final  OAuth20Service service = new ServiceBuilder()
-                .apiKey("66e9bc9545ab3bcec49b")
-                .apiSecret("a273f21ef3088dc4487dc90474c26c62d3a7b35f")
-                .build(GitHubApi.instance());
-		
+
+	@RequestMapping(value = "githublogin")
+	public String githublogin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		OAuth2AccessToken tokenx = github.getAccessToken(code);
+		try {
+			UserGitHub oschina = userGitHubService.login(tokenx.getAccessToken());
+			if (oschina != null) {
+				Subject subject = SecurityUtils.getSubject();
+				if (!subject.isAuthenticated()) {
+					UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
+					token.setUsername("github_" + oschina.getId());
+					token.setPassword("123456".toCharArray());
+					try {
+						subject.login(token);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+					if (subject.isAuthenticated()) {
+						return "redirect:" + "/index.htm";
+					} else {
+						return "login";
+					}
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		//token.get
+
 		return getView("qqlogin");
 	}
+
+	@RequestMapping(value = "oschinalogin")
+	public String oschinalogin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		try {
+			String redirect_uri = "http://www.yichisancun.com/oschinalogin.htm";
+			String grant_type = "authorization_code";
+			String client_secret = "TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF";
+			String client_id = "CTJlkYcnBaZCsi4GGgUk";
+			UserOschina oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
+			if (oschina != null) {
+				Subject subject = SecurityUtils.getSubject();
+				if (!subject.isAuthenticated()) {
+					UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
+					token.setUsername("oschina_" + oschina.getId());
+					token.setPassword("123456".toCharArray());
+					try {
+						subject.login(token);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+					if (subject.isAuthenticated()) {
+						return "redirect:" + "/index.htm";
+					} else {
+						return "login";
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return getView("qqlogin");
+	}
+
 	@Autowired
 	UserQQService qqService;
 
