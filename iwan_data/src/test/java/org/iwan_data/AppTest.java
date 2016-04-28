@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.github.scribejava.apis.GitHubApi;
 import com.github.scribejava.apis.OschinaApi;
+import com.github.scribejava.apis.SinaWeiboApi20;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
@@ -44,7 +45,15 @@ public class AppTest extends TestCase {
 
 	public static void main(String[] args) {
 
-		x();
+		final OAuth20Service service = new ServiceBuilder().apiKey("2320531559")
+				.apiSecret("bc4440c86d5be467f954b8e221ef6553")
+				.callback("http://www.yichisancun.com/weibologin.htm")
+				.build(SinaWeiboApi20.instance());
+		System.out.println(service.getAuthorizationUrl());
+
+		OAuth2AccessToken token = service.getAccessToken("d75900573c5bc6a0e85f3f1f81d6b6b8");
+
+		System.out.println(token);
 
 	}
 

@@ -30,14 +30,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ada.iwan.controller.home.Views;
 import com.ada.shiro.filter.UsernamePasswordCaptchaToken;
 import com.ada.user.entity.UserGitHub;
+import com.ada.user.entity.UserInfo;
 import com.ada.user.entity.UserOschina;
 import com.ada.user.entity.UserQQ;
 import com.ada.user.service.UserGitHubService;
 import com.ada.user.service.UserInfoService;
+import com.ada.user.service.UserOauthWeiboService;
 import com.ada.user.service.UserOschinaService;
 import com.ada.user.service.UserQQService;
 import com.github.scribejava.apis.GitHubApi;
 import com.github.scribejava.apis.OschinaApi;
+import com.github.scribejava.apis.SinaWeiboApi20;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
@@ -66,9 +69,12 @@ public class LoginController extends BaseController {
 
 	@Autowired
 	UserOschinaService userOschinaService;
-	
+
 	@Autowired
 	UserGitHubService userGitHubService;
+
+	@Autowired
+	UserOauthWeiboService weiboService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(String email, String username, String password, HttpServletRequest request,
@@ -88,6 +94,7 @@ public class LoginController extends BaseController {
 
 	final OAuth20Service github;
 	final OAuth20Service oschina;
+	final OAuth20Service weibo;
 
 	public LoginController() {
 		github = new ServiceBuilder().apiKey("66e9bc9545ab3bcec49b")
@@ -98,6 +105,9 @@ public class LoginController extends BaseController {
 		oschina = new ServiceBuilder().apiKey("CTJlkYcnBaZCsi4GGgUk").grantType("authorization_code")
 				.apiSecret("TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF").callback("http://www.yichisancun.com/oschinalogin.htm")
 				.responseType("code").build(OschinaApi.instance());
+
+		weibo = new ServiceBuilder().apiKey("2320531559").apiSecret("bc4440c86d5be467f954b8e221ef6553")
+				.callback("http://www.yichisancun.com/weibologin.htm").build(SinaWeiboApi20.instance());
 	}
 
 	/**
@@ -110,6 +120,7 @@ public class LoginController extends BaseController {
 
 		model.addAttribute("githuburl", github.getAuthorizationUrl());
 		model.addAttribute("oschinaurl", oschina.getAuthorizationUrl());
+		model.addAttribute("weibourl", weibo.getAuthorizationUrl());
 
 		return getView(Views.LOGIN);
 	}
@@ -117,6 +128,33 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "qqlogin")
 	public String qqlogin(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return getView("qqlogin");
+	}
+
+	@RequestMapping(value = "weibologin")
+	public String weibologin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		OAuth2AccessToken tokenx = weibo.getAccessToken("d75900573c5bc6a0e85f3f1f81d6b6b8");
+		UserInfo user = weiboService.login(tokenx.getAccessToken());
+		if (user != null) {
+			Subject subject = SecurityUtils.getSubject();
+			if (!subject.isAuthenticated()) {
+				UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
+				token.setUsername(user.getUsername());
+				token.setPassword("123456".toCharArray());
+				try {
+					subject.login(token);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+				if (subject.isAuthenticated()) {
+					return "redirect:" + "/index.htm";
+				} else {
+					return "login";
+				}
+			}
+		}
+		return getView(Views.LOGIN);
+
 	}
 
 	@RequestMapping(value = "githublogin")
@@ -146,9 +184,9 @@ public class LoginController extends BaseController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		//token.get
+		// token.get
 
-		return getView("qqlogin");
+		return getView(Views.LOGIN);
 	}
 
 	@RequestMapping(value = "oschinalogin")
@@ -182,7 +220,7 @@ public class LoginController extends BaseController {
 			e.printStackTrace();
 		}
 
-		return getView("qqlogin");
+		return getView(Views.LOGIN);
 	}
 
 	@Autowired
