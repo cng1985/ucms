@@ -133,7 +133,7 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "weibologin")
 	public String weibologin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
 
-		OAuth2AccessToken tokenx = weibo.getAccessToken("d75900573c5bc6a0e85f3f1f81d6b6b8");
+		OAuth2AccessToken tokenx = weibo.getAccessToken(code);
 		UserInfo user = weiboService.login(tokenx.getAccessToken());
 		if (user != null) {
 			Subject subject = SecurityUtils.getSubject();
