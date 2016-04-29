@@ -144,11 +144,6 @@
 		<script>
 		    var pageno=2;
 			$(document).ready(function() {
-				$(".fakeloader").fakeLoader({
-					timeToHide : 1200,
-					bgColor : "#2ecc71",
-					spinner : "spinner1"
-				});
 				$.get("${siteurl}answer/page.htm?questionid=${question.id}", function(data) {
 					if (data.code == 0) {
 						var template = $.templates("#theTmpl");

@@ -197,12 +197,12 @@ public class LoginController extends BaseController {
 			String grant_type = "authorization_code";
 			String client_secret = "TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF";
 			String client_id = "CTJlkYcnBaZCsi4GGgUk";
-			UserOschina oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
-			if (oschina != null) {
+			UserInfo oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
+			if (oschina != null&&oschina.getId()!=null) {
 				Subject subject = SecurityUtils.getSubject();
 				if (!subject.isAuthenticated()) {
 					UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
-					token.setUsername("oschina_" + oschina.getId());
+					token.setUsername(oschina.getUsername());
 					token.setPassword("123456".toCharArray());
 					try {
 						subject.login(token);

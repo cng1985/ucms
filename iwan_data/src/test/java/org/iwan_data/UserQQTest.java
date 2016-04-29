@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ada.user.entity.UserInfo;
 import com.ada.user.entity.UserOschina;
 import com.ada.user.service.UserOschinaService;
 import com.ada.user.service.UserQQService;
@@ -32,7 +33,7 @@ public class UserQQTest {
 			String client_secret = "TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF";
 			String client_id = "CTJlkYcnBaZCsi4GGgUk";
 			String code="8bdNF7";
-			UserOschina oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
+			UserInfo oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
 			} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
