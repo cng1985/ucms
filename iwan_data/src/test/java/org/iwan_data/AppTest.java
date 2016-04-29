@@ -45,6 +45,11 @@ public class AppTest extends TestCase {
 
 	public static void main(String[] args) {
 
+		x();
+
+	}
+
+	private static void weibo() {
 		final OAuth20Service service = new ServiceBuilder().apiKey("2320531559")
 				.apiSecret("bc4440c86d5be467f954b8e221ef6553")
 				.callback("http://www.yichisancun.com/weibologin.htm")
@@ -54,7 +59,6 @@ public class AppTest extends TestCase {
 		OAuth2AccessToken token = service.getAccessToken("d75900573c5bc6a0e85f3f1f81d6b6b8");
 
 		System.out.println(token);
-
 	}
 
 	private static void xxx() {

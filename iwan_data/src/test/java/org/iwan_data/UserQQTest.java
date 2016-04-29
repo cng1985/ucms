@@ -28,13 +28,16 @@ public class UserQQTest {
 	@Test
 	public void testLogin(){
 		try {
-			String redirect_uri = "http://www.yichisancun.com/oschinalogin.htm";
+			String redirect_uri = "http://www.yichisancun.com/oschinalogin1.htm";
 			String grant_type = "authorization_code";
 			String client_secret = "TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF";
 			String client_id = "CTJlkYcnBaZCsi4GGgUk";
-			String code="bINJLy";
+			String code="ePW2ni";
 			UserInfo oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
-			} catch (Exception e) {
+			System.out.println(oschina.getUsername());
+			System.out.println(oschina.getId());
+
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
