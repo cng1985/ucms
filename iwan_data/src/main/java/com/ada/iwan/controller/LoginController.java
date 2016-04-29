@@ -118,9 +118,7 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String view(Model model) {
 
-		model.addAttribute("githuburl", github.getAuthorizationUrl());
-		model.addAttribute("oschinaurl", oschina.getAuthorizationUrl());
-		model.addAttribute("weibourl", weibo.getAuthorizationUrl());
+		initurls(model);
 
 		return getView(Views.LOGIN);
 	}
@@ -132,7 +130,7 @@ public class LoginController extends BaseController {
 
 	@RequestMapping(value = "weibologin")
 	public String weibologin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
-
+		initurls(model);
 		OAuth2AccessToken tokenx = weibo.getAccessToken(code);
 		UserInfo user = weiboService.login(tokenx.getAccessToken());
 		if (user != null) {
@@ -157,9 +155,15 @@ public class LoginController extends BaseController {
 
 	}
 
+	private void initurls(Model model) {
+		model.addAttribute("githuburl", github.getAuthorizationUrl());
+		model.addAttribute("oschinaurl", oschina.getAuthorizationUrl());
+		model.addAttribute("weibourl", weibo.getAuthorizationUrl());
+	}
+
 	@RequestMapping(value = "githublogin")
 	public String githublogin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
-
+		initurls(model);
 		OAuth2AccessToken tokenx = github.getAccessToken(code);
 		try {
 			UserGitHub oschina = userGitHubService.login(tokenx.getAccessToken());
@@ -191,7 +195,7 @@ public class LoginController extends BaseController {
 
 	@RequestMapping(value = "oschinalogin")
 	public String oschinalogin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
-
+		initurls(model);
 		try {
 			String redirect_uri = "http://www.yichisancun.com/oschinalogin.htm";
 			String grant_type = "authorization_code";

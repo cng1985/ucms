@@ -32,7 +32,7 @@ public class UserQQTest {
 			String grant_type = "authorization_code";
 			String client_secret = "TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF";
 			String client_id = "CTJlkYcnBaZCsi4GGgUk";
-			String code="8bdNF7";
+			String code="bINJLy";
 			UserInfo oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
 			} catch (Exception e) {
 			// TODO Auto-generated catch block
