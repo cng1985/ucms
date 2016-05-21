@@ -2,12 +2,10 @@ package com.ada.iwan.data.template;
 
 import java.io.File;
 
+import com.ada.article.entity.SensitiveCategory;
+import com.ada.article.entity.SensitiveWord;
+import com.ada.data.entity.CatalogEntity;
 import com.ada.imake.ChainMake;
-import com.ada.user.entity.UserGitHub;
-import com.ada.user.entity.UserOauthToken;
-import com.ada.user.entity.UserOauthWeibo;
-import com.ada.user.entity.UserOschina;
-import com.ada.user.entity.UserQQ;
 
 public class ChainApps {
 
@@ -21,10 +19,17 @@ public class ChainApps {
 		make.setService(false);
 		make.setAction(true);
 		make.setView(true);
-        //UserOauthToken.
-		make.make(UserOauthToken.class);
-		//make.makes(UserOschina.class,UserOauthWeibo.class,UserQQ.class,UserGitHub.class);
+		// UserOauthToken.
+		 make.makes(SensitiveCategory.class,SensitiveWord.class);
+		// make.makes(UserOschina.class,UserOauthWeibo.class,UserQQ.class,UserGitHub.class);
 		// new ChainMake().makes("com.ada.imakedemo.data.entity");
+
+		Class<?> c = SensitiveCategory.class;
+		Class<?> b = CatalogEntity.class;
+		if (c.getSuperclass().equals(b)) {
+			System.out.println("h");
+		}
+
 
 	}
 
