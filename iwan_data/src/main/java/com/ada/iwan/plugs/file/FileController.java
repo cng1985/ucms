@@ -1,8 +1,3 @@
-/*
- * 
- * 
- * 
- */
 package com.ada.iwan.plugs.file;
 
 import javax.annotation.Resource;

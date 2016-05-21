@@ -53,7 +53,6 @@
 				hibernate.format_sql=true
 				hibernate.query.substitutions=true 1, false 0
 				hibernate.jdbc.batch_size=20
-				hibernate.hbm2ddl.auto=update
 			</value>
 		</property>
 		<property name="packagesToScan">
