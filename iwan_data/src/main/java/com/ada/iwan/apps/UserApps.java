@@ -1,5 +1,7 @@
 package com.ada.iwan.apps;
 
+import org.springframework.dao.DataIntegrityViolationException;
+
 import com.ada.user.entity.UserInfo;
 import com.ada.user.service.UserInfoService;
 
@@ -12,7 +14,7 @@ public class UserApps {
 		try {
 			UserInfo user = service.deleteById(1l);
 			System.out.println(user);
-		} catch (Exception e) {
+		} catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
 			System.out.println(e.getClass().getName());
 		}
