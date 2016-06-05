@@ -1,8 +1,9 @@
 package org.iwan.app;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
 
 import com.ada.iwan.apps.ObjectFactory;
 import com.ada.iwan.data.entity.Stock;
@@ -23,7 +24,13 @@ public class StockListApiApps {
 		List<Stocklist> ss = back.getRows();
 		for (Stocklist stocklist : ss) {
 			Stock bean=new Stock();
-			BeanUtils.copyProperties(stocklist, bean);
+			try {
+				BeanUtils.copyProperties( bean,stocklist);
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}
 			service.save(bean);
 		}
 	}

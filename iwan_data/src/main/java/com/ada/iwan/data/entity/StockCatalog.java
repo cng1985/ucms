@@ -7,6 +7,12 @@ import javax.persistence.Table;
 
 import com.ada.data.entity.CatalogEntity;
 
+/**
+ * 股票分类
+ * 
+ * @author cng19
+ *
+ */
 @Entity
 @Table(name = "stock_catalog")
 public class StockCatalog extends CatalogEntity {
