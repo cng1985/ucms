@@ -1,9 +1,11 @@
 package com.ada.iwan.data.service.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,7 @@ import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
+import com.ada.iwan.data.convers.BigDecimalConverter;
 import com.ada.iwan.data.dao.StockDao;
 import com.ada.iwan.data.dao.StockDayDao;
 import com.ada.iwan.data.dao.StockDetailDao;
@@ -65,10 +68,20 @@ public class StockDetailServiceImpl implements StockDetailService {
 		StockDay day = stockDayDao.findByCode(bean.getCode(), bean.getDate());
 		if (day==null) {
 			day=new StockDay();
-			BeanUtils.copyProperties(bean, day,"id");
-			stockDayDao.save(day);
+			
+			try {
+				ConvertUtils.register(new BigDecimalConverter(), BigDecimal.class);
+				BeanUtils.copyProperties(day, bean);
+				day.setId(null);
+				stockDayDao.save(day);
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else{
-			BeanUtils.copyProperties(bean, day, "id");
 		}
 		return bean;
 	}

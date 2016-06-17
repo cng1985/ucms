@@ -6,15 +6,18 @@ import javax.persistence.Table;
 
 import com.ada.data.entity.AbstractEntity;
 
-
+/**
+ * 股票记录
+ * 
+ * @author cng19
+ *
+ */
 @Entity
 @Table(name = "stock_record")
-public class StockRecord extends AbstractEntity{
+public class StockRecord extends AbstractEntity {
 
 	@ManyToOne
 	private Stock stock;
-	
-	
 
 	/**
 	 * 每股净资
@@ -25,49 +28,47 @@ public class StockRecord extends AbstractEntity{
 	 * 每股收益
 	 */
 	private float eps;
-	
+
 	/**
 	 * 固定资产
 	 */
 	private float fixedassets;
-	
+
 	/**
 	 * 流动资产
 	 */
 	private float liquidassets;
-	
+
 	/**
 	 * 流通股本
 	 */
 	private float outstanding;
-	
+
 	/**
 	 * 市净率
 	 */
 	private float pb;
-	
+
 	/**
 	 * 市盈率
 	 */
 	private float pe;
-	
-	
+
 	/**
 	 * 公积金
 	 */
 	private float reserved;
-	
+
 	/**
 	 * 每股公积金
 	 */
 	private float reservedpershare;
-	
-	
+
 	/**
 	 * 总资产(万)
 	 */
 	private float totalassets;
-	
+
 	/**
 	 * 总股本(万)
 	 */
@@ -168,6 +169,5 @@ public class StockRecord extends AbstractEntity{
 	public void setTotals(float totals) {
 		this.totals = totals;
 	}
-	
-	
+
 }

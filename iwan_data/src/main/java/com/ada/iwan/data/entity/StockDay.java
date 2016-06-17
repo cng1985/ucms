@@ -1,11 +1,19 @@
 package com.ada.iwan.data.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.ada.data.entity.AbstractEntity;
 
+/**
+ * 股票每天多次记录
+ * 
+ * @author cng19
+ *
+ */
 @Entity
 @Table(name = "stock_day")
 public class StockDay extends AbstractEntity {
@@ -16,239 +24,308 @@ public class StockDay extends AbstractEntity {
 	private String code;// : "sz002230", //股票代码，SZ指在深圳交易的股票
 	private String date;// : "2014-09-22", //当前显示股票信息的日期
 	private String time;// : "09:26:11", //具体时间
-	private float OpenningPrice;// : 27.34, //今日开盘价
-	private float closingPrice;// 27.34, //昨日收盘价
-	private float currentPrice;// 27.34, //当前价格
-	private float hPrice;// 27.34, //今日最高价
-	private float lPrice;// 27.34, //今日最低价
-	private float competitivePrice;// 27.30, //买一报价
-	private float auctionPrice;// 27.34, //卖一报价
-	private float totalNumber;// 47800, //成交的股票数
-	private float turnover;// 1306852.00, //成交额，以元为单位
-	private float buyOne;// 6100, //买一
-	private float buyOnePrice;// 27.30, //买一价格
-	private float buyTwo;// 7500, //买二
-	private float buyTwoPrice;// 27.29, //买二价格
-	private float buyThree;// 2000, //买三
-	private float buyThreePrice;// 27.27, //买三价格
-	private float buyFour;// 100, //买四
-	private float buyFourPrice;// 27.25, //买四价格
-	private float buyFive;// 5700, //买五
-	private float buyFivePrice;// 27.22, //买五价格
-	private float sellOne;// 10150, //卖一
-	private float sellOnePrice;// 27.34, //卖一价格
-	private float sellTwo;// 15200, //卖二
-	private float sellTwoPrice;// 27.35, //卖二价格
-	private float sellThree;// 5914, //卖三
-	private float sellThreePrice;// 27.36, //卖三价格
-	private float sellFour;// 400, //卖四
-	private float sellFourPrice;// 27.37, //卖四价格
-	private float sellFive;// 3000, //卖五
-	private float sellFivePrice;// 27.38 //卖五价格
+	private BigDecimal OpenningPrice;// : 27.34, //今日开盘价
+	private BigDecimal closingPrice;// 27.34, //昨日收盘价
+	private BigDecimal currentPrice;// 27.34, //当前价格
+	private BigDecimal hPrice;// 27.34, //今日最高价
+	private BigDecimal lPrice;// 27.34, //今日最低价
+	private BigDecimal competitivePrice;// 27.30, //买一报价
+	private BigDecimal auctionPrice;// 27.34, //卖一报价
+	private BigDecimal totalNumber;// 47800, //成交的股票数
+	private BigDecimal turnover;// 1306852.00, //成交额，以元为单位
+	private BigDecimal buyOne;// 6100, //买一
+	private BigDecimal buyOnePrice;// 27.30, //买一价格
+	private BigDecimal buyTwo;// 7500, //买二
+	private BigDecimal buyTwoPrice;// 27.29, //买二价格
+	private BigDecimal buyThree;// 2000, //买三
+	private BigDecimal buyThreePrice;// 27.27, //买三价格
+	private BigDecimal buyFour;// 100, //买四
+	private BigDecimal buyFourPrice;// 27.25, //买四价格
+	private BigDecimal buyFive;// 5700, //买五
+	private BigDecimal buyFivePrice;// 27.22, //买五价格
+	private BigDecimal sellOne;// 10150, //卖一
+	private BigDecimal sellOnePrice;// 27.34, //卖一价格
+	private BigDecimal sellTwo;// 15200, //卖二
+	private BigDecimal sellTwoPrice;// 27.35, //卖二价格
+	private BigDecimal sellThree;// 5914, //卖三
+	private BigDecimal sellThreePrice;// 27.36, //卖三价格
+	private BigDecimal sellFour;// 400, //卖四
+	private BigDecimal sellFourPrice;// 27.37, //卖四价格
+	private BigDecimal sellFive;// 3000, //卖五
+	private BigDecimal sellFivePrice;// 27.38 //卖五价格
+
 	public Stock getStock() {
 		return stock;
 	}
+
 	public void setStock(Stock stock) {
 		this.stock = stock;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getCode() {
 		return code;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
+
 	public String getDate() {
 		return date;
 	}
+
 	public void setDate(String date) {
 		this.date = date;
 	}
+
 	public String getTime() {
 		return time;
 	}
+
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public float getOpenningPrice() {
+
+	public BigDecimal getOpenningPrice() {
 		return OpenningPrice;
 	}
-	public void setOpenningPrice(float openningPrice) {
+
+	public void setOpenningPrice(BigDecimal openningPrice) {
 		OpenningPrice = openningPrice;
 	}
-	public float getClosingPrice() {
+
+	public BigDecimal getClosingPrice() {
 		return closingPrice;
 	}
-	public void setClosingPrice(float closingPrice) {
+
+	public void setClosingPrice(BigDecimal closingPrice) {
 		this.closingPrice = closingPrice;
 	}
-	public float getCurrentPrice() {
+
+	public BigDecimal getCurrentPrice() {
 		return currentPrice;
 	}
-	public void setCurrentPrice(float currentPrice) {
+
+	public void setCurrentPrice(BigDecimal currentPrice) {
 		this.currentPrice = currentPrice;
 	}
-	public float gethPrice() {
+
+	public BigDecimal gethPrice() {
 		return hPrice;
 	}
-	public void sethPrice(float hPrice) {
+
+	public void sethPrice(BigDecimal hPrice) {
 		this.hPrice = hPrice;
 	}
-	public float getlPrice() {
+
+	public BigDecimal getlPrice() {
 		return lPrice;
 	}
-	public void setlPrice(float lPrice) {
+
+	public void setlPrice(BigDecimal lPrice) {
 		this.lPrice = lPrice;
 	}
-	public float getCompetitivePrice() {
+
+	public BigDecimal getCompetitivePrice() {
 		return competitivePrice;
 	}
-	public void setCompetitivePrice(float competitivePrice) {
+
+	public void setCompetitivePrice(BigDecimal competitivePrice) {
 		this.competitivePrice = competitivePrice;
 	}
-	public float getAuctionPrice() {
+
+	public BigDecimal getAuctionPrice() {
 		return auctionPrice;
 	}
-	public void setAuctionPrice(float auctionPrice) {
+
+	public void setAuctionPrice(BigDecimal auctionPrice) {
 		this.auctionPrice = auctionPrice;
 	}
-	public float getTotalNumber() {
+
+	public BigDecimal getTotalNumber() {
 		return totalNumber;
 	}
-	public void setTotalNumber(float totalNumber) {
+
+	public void setTotalNumber(BigDecimal totalNumber) {
 		this.totalNumber = totalNumber;
 	}
-	public float getTurnover() {
+
+	public BigDecimal getTurnover() {
 		return turnover;
 	}
-	public void setTurnover(float turnover) {
+
+	public void setTurnover(BigDecimal turnover) {
 		this.turnover = turnover;
 	}
-	public float getBuyOne() {
+
+	public BigDecimal getBuyOne() {
 		return buyOne;
 	}
-	public void setBuyOne(float buyOne) {
+
+	public void setBuyOne(BigDecimal buyOne) {
 		this.buyOne = buyOne;
 	}
-	public float getBuyOnePrice() {
+
+	public BigDecimal getBuyOnePrice() {
 		return buyOnePrice;
 	}
-	public void setBuyOnePrice(float buyOnePrice) {
+
+	public void setBuyOnePrice(BigDecimal buyOnePrice) {
 		this.buyOnePrice = buyOnePrice;
 	}
-	public float getBuyTwo() {
+
+	public BigDecimal getBuyTwo() {
 		return buyTwo;
 	}
-	public void setBuyTwo(float buyTwo) {
+
+	public void setBuyTwo(BigDecimal buyTwo) {
 		this.buyTwo = buyTwo;
 	}
-	public float getBuyTwoPrice() {
+
+	public BigDecimal getBuyTwoPrice() {
 		return buyTwoPrice;
 	}
-	public void setBuyTwoPrice(float buyTwoPrice) {
+
+	public void setBuyTwoPrice(BigDecimal buyTwoPrice) {
 		this.buyTwoPrice = buyTwoPrice;
 	}
-	public float getBuyThree() {
+
+	public BigDecimal getBuyThree() {
 		return buyThree;
 	}
-	public void setBuyThree(float buyThree) {
+
+	public void setBuyThree(BigDecimal buyThree) {
 		this.buyThree = buyThree;
 	}
-	public float getBuyThreePrice() {
+
+	public BigDecimal getBuyThreePrice() {
 		return buyThreePrice;
 	}
-	public void setBuyThreePrice(float buyThreePrice) {
+
+	public void setBuyThreePrice(BigDecimal buyThreePrice) {
 		this.buyThreePrice = buyThreePrice;
 	}
-	public float getBuyFour() {
+
+	public BigDecimal getBuyFour() {
 		return buyFour;
 	}
-	public void setBuyFour(float buyFour) {
+
+	public void setBuyFour(BigDecimal buyFour) {
 		this.buyFour = buyFour;
 	}
-	public float getBuyFourPrice() {
+
+	public BigDecimal getBuyFourPrice() {
 		return buyFourPrice;
 	}
-	public void setBuyFourPrice(float buyFourPrice) {
+
+	public void setBuyFourPrice(BigDecimal buyFourPrice) {
 		this.buyFourPrice = buyFourPrice;
 	}
-	public float getBuyFive() {
+
+	public BigDecimal getBuyFive() {
 		return buyFive;
 	}
-	public void setBuyFive(float buyFive) {
+
+	public void setBuyFive(BigDecimal buyFive) {
 		this.buyFive = buyFive;
 	}
-	public float getBuyFivePrice() {
+
+	public BigDecimal getBuyFivePrice() {
 		return buyFivePrice;
 	}
-	public void setBuyFivePrice(float buyFivePrice) {
+
+	public void setBuyFivePrice(BigDecimal buyFivePrice) {
 		this.buyFivePrice = buyFivePrice;
 	}
-	public float getSellOne() {
+
+	public BigDecimal getSellOne() {
 		return sellOne;
 	}
-	public void setSellOne(float sellOne) {
+
+	public void setSellOne(BigDecimal sellOne) {
 		this.sellOne = sellOne;
 	}
-	public float getSellOnePrice() {
+
+	public BigDecimal getSellOnePrice() {
 		return sellOnePrice;
 	}
-	public void setSellOnePrice(float sellOnePrice) {
+
+	public void setSellOnePrice(BigDecimal sellOnePrice) {
 		this.sellOnePrice = sellOnePrice;
 	}
-	public float getSellTwo() {
+
+	public BigDecimal getSellTwo() {
 		return sellTwo;
 	}
-	public void setSellTwo(float sellTwo) {
+
+	public void setSellTwo(BigDecimal sellTwo) {
 		this.sellTwo = sellTwo;
 	}
-	public float getSellTwoPrice() {
+
+	public BigDecimal getSellTwoPrice() {
 		return sellTwoPrice;
 	}
-	public void setSellTwoPrice(float sellTwoPrice) {
+
+	public void setSellTwoPrice(BigDecimal sellTwoPrice) {
 		this.sellTwoPrice = sellTwoPrice;
 	}
-	public float getSellThree() {
+
+	public BigDecimal getSellThree() {
 		return sellThree;
 	}
-	public void setSellThree(float sellThree) {
+
+	public void setSellThree(BigDecimal sellThree) {
 		this.sellThree = sellThree;
 	}
-	public float getSellThreePrice() {
+
+	public BigDecimal getSellThreePrice() {
 		return sellThreePrice;
 	}
-	public void setSellThreePrice(float sellThreePrice) {
+
+	public void setSellThreePrice(BigDecimal sellThreePrice) {
 		this.sellThreePrice = sellThreePrice;
 	}
-	public float getSellFour() {
+
+	public BigDecimal getSellFour() {
 		return sellFour;
 	}
-	public void setSellFour(float sellFour) {
+
+	public void setSellFour(BigDecimal sellFour) {
 		this.sellFour = sellFour;
 	}
-	public float getSellFourPrice() {
+
+	public BigDecimal getSellFourPrice() {
 		return sellFourPrice;
 	}
-	public void setSellFourPrice(float sellFourPrice) {
+
+	public void setSellFourPrice(BigDecimal sellFourPrice) {
 		this.sellFourPrice = sellFourPrice;
 	}
-	public float getSellFive() {
+
+	public BigDecimal getSellFive() {
 		return sellFive;
 	}
-	public void setSellFive(float sellFive) {
+
+	public void setSellFive(BigDecimal sellFive) {
 		this.sellFive = sellFive;
 	}
-	public float getSellFivePrice() {
+
+	public BigDecimal getSellFivePrice() {
 		return sellFivePrice;
 	}
-	public void setSellFivePrice(float sellFivePrice) {
+
+	public void setSellFivePrice(BigDecimal sellFivePrice) {
 		this.sellFivePrice = sellFivePrice;
 	}
+
 	@Override
 	public String toString() {
 		return "StockDetail [stock=" + stock + ", name=" + name + ", code=" + code + ", date=" + date + ", time=" + time
@@ -263,6 +340,5 @@ public class StockDay extends AbstractEntity {
 				+ sellFour + ", sellFourPrice=" + sellFourPrice + ", sellFive=" + sellFive + ", sellFivePrice="
 				+ sellFivePrice + "]";
 	}
-	
-	
+
 }
