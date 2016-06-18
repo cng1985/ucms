@@ -5,8 +5,9 @@
     <table id="listTable" class="table table-striped table-bordered table-hover">
         <tr>
             <td><input type="checkbox" id="selectAll"></td>
-            <td class="col-xs-4">敏感词</td>
+            <td class="col-xs-2">敏感词</td>
             <td class="col-xs-2">替换词</td>
+             <td class="col-xs-2">分类</td>
             <td class="col-xs-2 text-center">添加时间</td>
             <td class="col-xs-2 text-center">更新时间</td>
             <td class="col-xs-2 text-center">操作</td>
@@ -20,6 +21,9 @@
             </td>
              <td>
                 ${item.replace!""}
+            </td>
+             <td>
+                ${(item.category.name)!""}
             </td>
             <td class="text-center">
                 ${item.addDate!""}

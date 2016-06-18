@@ -2,6 +2,9 @@ package com.ada.iwan.controller.admin;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +19,16 @@ import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
 import  com.ada.article.entity.SensitiveWord;
+import com.ada.article.service.SensitiveCategoryService;
 import com.ada.article.service.SensitiveWordService;
 
 @Controller
 public class SensitiveWordAction {
 	private static final Logger log = LoggerFactory.getLogger(SensitiveWordAction.class);
 
+	@Autowired
+	private SensitiveCategoryService categoryService;
+	
 	@RequestMapping("/admin/sensitiveword/view_list")
 	public String list(Pageable pageable, HttpServletRequest request, ModelMap model) {
 	
@@ -39,6 +46,9 @@ public class SensitiveWordAction {
 
 	@RequestMapping("/admin/sensitiveword/view_add")
 	public String add(ModelMap model) {
+		List<Order> orders=new ArrayList<Order>();
+		orders.add(Order.asc("lft"));
+		model.addAttribute("catalogs", categoryService.findList(0, 100, null, orders));
 		return "/admin/sensitiveword/add";
 	}
 
@@ -47,6 +57,11 @@ public class SensitiveWordAction {
 		model.addAttribute("model", manager.findById(id));
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("page", pageable);
+		
+		List<Order> orders=new ArrayList<Order>();
+		orders.add(Order.asc("lft"));
+		model.addAttribute("catalogs", categoryService.findList(0, 100, null, orders));
+		
 		return "/admin/sensitiveword/edit";
 	}
 
