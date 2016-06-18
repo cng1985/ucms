@@ -86,16 +86,7 @@
 					</ul>
 					<!-- /.breadcrumb -->
 
-					<div class="nav-search" id="nav-search">
-						<form class="form-search">
-							<span class="input-icon">
-								<input type="text"
-								placeholder="Search ..." class="nav-search-input"
-								id="nav-search-input" autocomplete="off" />
-								<i
-								class="ace-icon fa fa-search nav-search-icon"></i> </span>
-						</form>
-					</div>
+					
 					<!-- /.nav-search -->
 				</div>
 
@@ -137,7 +128,7 @@
 												<div class="col-xs-12 col-sm-12 ">
 													<div class="form-group">
 														<label for="control-label no-padding-right">分类</label>
-														<input type="text" name="name" placeholder="分类 "
+														<input required="required" type="text" name="name" placeholder="分类 "
 														class="form-control search-query">
 
 													</div>
@@ -145,7 +136,7 @@
 													<div class ="form-group" >
 
 														<label for="control-label no-padding-right">url</label>
-														<input class="form-control"
+														<input  class="form-control"
 														type="text" placeholder="url" name="path" id="path">
 													</div>
 													<div class ="form-group" >
@@ -191,14 +182,16 @@
 									<tr>
 										<td class="col-xs-2">菜单标题</td>
 										<td class="col-xs-1 text-center">图标</td>
-										<td class="col-xs-7 text-center">url</td>
-										<td class="col-xs-2 text-center">操作</td>
+										<td class="col-xs-5 text-center">url</td>
+										<td class="col-xs-1 text-center">菜单号</td>
+										<td class="col-xs-3 text-center">操作</td>
 									</tr>
 									[#list list as item]
 									<tr id="trr${item.id}">
 										<td>${item.name!""}</td>
 										<td class="text-center"><i class="${item.icon!''}"></i></td>
 										<td class="col-xs-2">${item.path!""}</td>
+										<td class="col-xs-2 text-center">${item.ids!""}</td>
 										<td class="text-center">
 										<div
 										class="visible-md visible-lg hidden-sm hidden-xs btn-group">

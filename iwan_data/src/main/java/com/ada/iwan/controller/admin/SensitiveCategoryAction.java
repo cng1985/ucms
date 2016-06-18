@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +19,10 @@ import  com.ada.article.entity.SensitiveCategory;
 import com.ada.article.service.SensitiveCategoryService;
 
 @Controller
-@RequestMapping(value = "admin")
 public class SensitiveCategoryAction {
 	private static final Logger log = LoggerFactory.getLogger(SensitiveCategoryAction.class);
 
-	@RequestMapping("/sensitivecategory/view_list")
+	@RequestMapping("/admin/sensitivecategory/view_list")
 	public String list(Pageable pageable, HttpServletRequest request, ModelMap model) {
 	
 		if (pageable==null) {
@@ -37,12 +37,12 @@ public class SensitiveCategoryAction {
 		return "/admin/sensitivecategory/list";
 	}
 
-	@RequestMapping("/sensitivecategory/view_add")
+	@RequestMapping("/admin/sensitivecategory/view_add")
 	public String add(ModelMap model) {
 		return "/admin/sensitivecategory/add";
 	}
 
-	@RequestMapping("/sensitivecategory/view_edit")
+	@RequestMapping("/admin/sensitivecategory/view_edit")
 	public String edit(Pageable pageable,Integer id, Integer pageNo, HttpServletRequest request, ModelMap model) {
 		model.addAttribute("model", manager.findById(id));
 		model.addAttribute("pageNo", pageNo);
@@ -50,7 +50,13 @@ public class SensitiveCategoryAction {
 		return "/admin/sensitivecategory/edit";
 	}
 
-	@RequestMapping("/sensitivecategory/model_save")
+	@RequestMapping("/admin/sensitivecategory/view_view")
+	public String view(Integer id,HttpServletRequest request, ModelMap model) {
+		model.addAttribute("model", manager.findById(id));
+		return "/admin/sensitivecategory/view";
+	}
+
+	@RequestMapping("/admin/sensitivecategory/model_save")
 	public String save(SensitiveCategory bean, HttpServletRequest request, ModelMap model) {
 	
 	    String view="redirect:view_list.htm";
@@ -65,7 +71,7 @@ public class SensitiveCategoryAction {
 		return view;
 	}
 
-	@RequestMapping("/sensitivecategory/model_update")
+	@RequestMapping("/admin/sensitivecategory/model_update")
 	public String update(Pageable pageable, SensitiveCategory bean,HttpServletRequest request, ModelMap model) {
 		
 		String view="redirect:/admin/sensitivecategory/view_list.htm?pageNumber="+pageable.getPageNumber();
@@ -81,19 +87,26 @@ public class SensitiveCategoryAction {
 		return view;
 	}
 
-	@RequestMapping("/sensitivecategory/model_delete")
+	@RequestMapping("/admin/sensitivecategory/model_delete")
 	public String delete(Pageable pageable, Integer id, HttpServletRequest request, ModelMap model) {
 			 
-				manager.deleteById(id);
-			 
-		return "redirect:/admin/sensitivecategory/view_list.htm?pageNumber="+pageable.getPageNumber();
+		try {
+			manager.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			model.addAttribute("erro", "该条数据不能删除，请先删除和他相关的类容!");
+		}
+					 
+		return list(pageable, request, model);
 	}
-	@RequestMapping("/sensitivecategory/model_deletes")
+	@RequestMapping("/admin/sensitivecategory/model_deletes")
 	public String deletes(Pageable pageable, Integer[] ids, HttpServletRequest request, ModelMap model) {
 			 
-				manager.deleteByIds(ids);
-			 
-		return "redirect:/admin/sensitivecategory/view_list.htm?pageNumber="+pageable.getPageNumber();
+	  try{
+			manager.deleteByIds(ids);
+		} catch (DataIntegrityViolationException e) {
+			model.addAttribute("erro", "该条数据不能删除，请先删除和他相关的类容!");
+		}
+		return list(pageable, request, model);
 	}
 	@Autowired
 	private SensitiveCategoryService manager;

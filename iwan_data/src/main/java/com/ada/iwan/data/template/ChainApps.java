@@ -11,12 +11,12 @@ public class ChainApps {
 
 	public static void main(String[] args) {
 
-		File file = new File("D:\\workspace\\iwan\\iwan_web\\src\\main\\webapp\\WEB-INF\\ftl\\admin");
+		File file = new File("D:\\mvnspace\\iwan\\iwan_web\\src\\main\\webapp\\WEB-INF\\ftl\\admin");
 		ChainMake make = new ChainMake();
 		make.setAction("com.ada.iwan.controller.admin");
 		make.setView(file);
-		make.setDao(false);
-		make.setService(false);
+		make.setDao(true);
+		make.setService(true);
 		make.setAction(true);
 		make.setView(true);
 		// UserOauthToken.
