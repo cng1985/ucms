@@ -3,12 +3,12 @@ package org.iwan_data;
 import java.io.IOException;
 
 import com.github.scribejava.apis.GitHubApi;
-import com.github.scribejava.apis.OschinaApi;
 import com.github.scribejava.apis.SinaWeiboApi20;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import com.github.scribejava.core.utils.OAuthEncoder;
+import com.scribejava.apis.OschinaApi;
 import com.young.http.HttpConnection;
 
 import junit.framework.Test;
@@ -43,16 +43,15 @@ public class AppTest extends TestCase {
 		assertTrue(true);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		x();
 
 	}
 
-	private static void weibo() {
+	private static void weibo() throws IOException {
 		final OAuth20Service service = new ServiceBuilder().apiKey("2320531559")
-				.apiSecret("bc4440c86d5be467f954b8e221ef6553")
-				.callback("http://www.yichisancun.com/weibologin.htm")
+				.apiSecret("bc4440c86d5be467f954b8e221ef6553").callback("http://www.yichisancun.com/weibologin.htm")
 				.build(SinaWeiboApi20.instance());
 		System.out.println(service.getAuthorizationUrl());
 
@@ -75,7 +74,7 @@ public class AppTest extends TestCase {
 		}
 	}
 
-	private static void x() {
+	private static void x() throws IOException {
 		System.out.println(OAuthEncoder.encode("Q7kSBl"));
 		final OAuth20Service service = new ServiceBuilder().apiKey("66e9bc9545ab3bcec49b")
 				.apiSecret("a273f21ef3088dc4487dc90474c26c62d3a7b35f")
@@ -83,16 +82,17 @@ public class AppTest extends TestCase {
 				.build(GitHubApi.instance());
 		System.out.println(service.getAuthorizationUrl());
 		final OAuth20Service service2 = new ServiceBuilder().apiKey("CTJlkYcnBaZCsi4GGgUk")
-				.grantType("authorization_code").apiSecret("TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF")
-				.callback("http://www.yichisancun.com/oschinalogin.htm").responseType("code").build(OschinaApi.instance());
+				.apiSecret("TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF").callback("http://www.yichisancun.com/oschinalogin.htm")
+				.responseType("code").build(OschinaApi.instance());
 		System.out.println(service2.getAuthorizationUrl());
 
-		System.out.println(service2.getOauth2TokenUrl("vvYTJp"));
+		//System.out.println(service2.getOauth2TokenUrl("vvYTJp"));
 		OAuth2AccessToken token = service.getAccessToken("d7a6f143663b6e91dcf2");
 		System.out.println(token.getAccessToken());
-//		final OAuthRequest request = new OAuthRequest(Verb.GET, "https://api.github.com/user", service);
-//		service.signRequest(token, request); // the access token from step 4
-//		final Response response = request.send();
-//		System.out.println(response.getBody());
+		// final OAuthRequest request = new OAuthRequest(Verb.GET,
+		// "https://api.github.com/user", service);
+		// service.signRequest(token, request); // the access token from step 4
+		// final Response response = request.send();
+		// System.out.println(response.getBody());
 	}
 }

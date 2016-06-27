@@ -9,6 +9,8 @@
  */
 package com.ada.iwan.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,7 +33,6 @@ import com.ada.iwan.controller.home.Views;
 import com.ada.shiro.filter.UsernamePasswordCaptchaToken;
 import com.ada.user.entity.UserGitHub;
 import com.ada.user.entity.UserInfo;
-import com.ada.user.entity.UserOschina;
 import com.ada.user.entity.UserQQ;
 import com.ada.user.service.UserGitHubService;
 import com.ada.user.service.UserInfoService;
@@ -39,11 +40,11 @@ import com.ada.user.service.UserOauthWeiboService;
 import com.ada.user.service.UserOschinaService;
 import com.ada.user.service.UserQQService;
 import com.github.scribejava.apis.GitHubApi;
-import com.github.scribejava.apis.OschinaApi;
 import com.github.scribejava.apis.SinaWeiboApi20;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import com.scribejava.apis.OschinaApi;
 
 /**
  * 登录页
@@ -102,9 +103,9 @@ public class LoginController extends BaseController {
 				.callback("http://www.yichisancun.com/githublogin.htm").scope("user,public_repo")
 				.build(GitHubApi.instance());
 
-		oschina = new ServiceBuilder().apiKey("CTJlkYcnBaZCsi4GGgUk").grantType("authorization_code")
-				.apiSecret("TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF").callback("http://www.yichisancun.com/oschinalogin.htm")
-				.responseType("code").build(OschinaApi.instance());
+		oschina = new ServiceBuilder().apiKey("CTJlkYcnBaZCsi4GGgUk").apiSecret("TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF")
+				.callback("http://www.yichisancun.com/oschinalogin.htm").responseType("code")
+				.build(OschinaApi.instance());
 
 		weibo = new ServiceBuilder().apiKey("2320531559").apiSecret("bc4440c86d5be467f954b8e221ef6553")
 				.callback("http://www.yichisancun.com/weibologin.htm").build(SinaWeiboApi20.instance());
@@ -131,26 +132,33 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "weibologin")
 	public String weibologin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
 		initurls(model);
-		OAuth2AccessToken tokenx = weibo.getAccessToken(code);
-		UserInfo user = weiboService.login(tokenx.getAccessToken());
-		if (user != null) {
-			Subject subject = SecurityUtils.getSubject();
-			if (!subject.isAuthenticated()) {
-				UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
-				token.setUsername(user.getUsername());
-				token.setPassword("123456".toCharArray());
-				try {
-					subject.login(token);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-				if (subject.isAuthenticated()) {
-					return "redirect:" + "/index.htm";
-				} else {
-					return "login";
+		OAuth2AccessToken tokenx;
+		try {
+			tokenx = weibo.getAccessToken(code);
+			UserInfo user = weiboService.login(tokenx.getAccessToken());
+			if (user != null) {
+				Subject subject = SecurityUtils.getSubject();
+				if (!subject.isAuthenticated()) {
+					UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
+					token.setUsername(user.getUsername());
+					token.setPassword("123456".toCharArray());
+					try {
+						subject.login(token);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+					if (subject.isAuthenticated()) {
+						return "redirect:" + "/index.htm";
+					} else {
+						return "login";
+					}
 				}
 			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
 		return getView(Views.LOGIN);
 
 	}
@@ -164,8 +172,8 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "githublogin")
 	public String githublogin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
 		initurls(model);
-		OAuth2AccessToken tokenx = github.getAccessToken(code);
 		try {
+			OAuth2AccessToken tokenx = github.getAccessToken(code);
 			UserGitHub oschina = userGitHubService.login(tokenx.getAccessToken());
 			if (oschina != null) {
 				Subject subject = SecurityUtils.getSubject();
@@ -202,7 +210,7 @@ public class LoginController extends BaseController {
 			String client_secret = "TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF";
 			String client_id = "CTJlkYcnBaZCsi4GGgUk";
 			UserInfo oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
-			if (oschina != null&&oschina.getId()!=null) {
+			if (oschina != null && oschina.getId() != null) {
 				Subject subject = SecurityUtils.getSubject();
 				if (!subject.isAuthenticated()) {
 					UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
