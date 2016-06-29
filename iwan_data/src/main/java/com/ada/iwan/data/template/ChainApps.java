@@ -6,6 +6,7 @@ import com.ada.article.entity.SensitiveCategory;
 import com.ada.article.entity.SensitiveWord;
 import com.ada.data.entity.CatalogEntity;
 import com.ada.imake.ChainMake;
+import com.ada.iwan.data.entity.Note;
 
 public class ChainApps {
 
@@ -20,7 +21,7 @@ public class ChainApps {
 		make.setAction(true);
 		make.setView(true);
 		// UserOauthToken.
-		 make.makes(SensitiveCategory.class,SensitiveWord.class);
+		 make.makes(Note.class);
 		// make.makes(UserOschina.class,UserOauthWeibo.class,UserQQ.class,UserGitHub.class);
 		// new ChainMake().makes("com.ada.imakedemo.data.entity");
 
