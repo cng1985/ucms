@@ -3,9 +3,9 @@ package com.ada.iwan.data.template;
 import java.io.File;
 
 import com.ada.article.entity.SensitiveCategory;
-import com.ada.article.entity.SensitiveWord;
 import com.ada.data.entity.CatalogEntity;
 import com.ada.imake.ChainMake;
+import com.ada.iwan.data.entity.Note;
 import com.ada.site.entity.SystemVersion;
 
 public class ChainApps {
@@ -22,6 +22,7 @@ public class ChainApps {
 		make.setView(true);
 		// UserOauthToken.
 		 make.makes(SystemVersion.class);
+		 make.makes(Note.class);
 		// make.makes(UserOschina.class,UserOauthWeibo.class,UserQQ.class,UserGitHub.class);
 		// new ChainMake().makes("com.ada.imakedemo.data.entity");
 
