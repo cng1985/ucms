@@ -12,7 +12,7 @@ import com.ada.user.entity.UserInfo;
 /**
  * 用户笔记
  * 
- * @author cng19
+ * @author ada
  *
  */
 @Entity
@@ -46,5 +46,13 @@ public class Note extends VersionEntity {
 	private String title;
 
 	private String note;
+
+	public UserInfo getUser() {
+		return user;
+	}
+
+	public void setUser(UserInfo user) {
+		this.user = user;
+	}
 
 }

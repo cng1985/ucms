@@ -1,5 +1,5 @@
 [#include "/admin/common/layout_add.html"]
-[@layout menus="1,27,28" title="添加"/]
+[@layout menus="1,85,86" title="添加"/]
 [#macro form]
 <form role="form" method="post" class="form-horizontal"
 	  action="${siteurl}admin/note/model_update.htm">
@@ -10,7 +10,7 @@
 			   class="col-sm-3 control-label no-padding-right"> 姓名</label>
 
 		<div class="col-sm-9">
-			<input required="required"  type="text" value="${(model.name)!''}" name="name" class="col-xs-10 col-sm-10"
+			<input required="required"  type="text" value="${(model.title)!''}" name="title" class="col-xs-10 col-sm-10"
 				   placeholder=" 姓名" id="form-field-1">
 		</div>
 	</div>

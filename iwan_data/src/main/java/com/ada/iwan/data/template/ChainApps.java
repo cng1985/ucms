@@ -7,6 +7,7 @@ import com.ada.data.entity.CatalogEntity;
 import com.ada.imake.ChainMake;
 import com.ada.iwan.data.entity.Note;
 import com.ada.site.entity.SystemVersion;
+import com.ada.user.entity.UserRole;
 
 public class ChainApps {
 
@@ -16,13 +17,12 @@ public class ChainApps {
 		ChainMake make = new ChainMake();
 		make.setAction("com.ada.iwan.controller.admin");
 		make.setView(file);
-		make.setDao(true);
-		make.setService(true);
+		make.setDao(false);
+		make.setService(false);
 		make.setAction(true);
-		make.setView(true);
+		make.setView(false);
 		// UserOauthToken.
-		 make.makes(SystemVersion.class);
-		 make.makes(Note.class);
+		 make.makes(UserRole.class);
 		// make.makes(UserOschina.class,UserOauthWeibo.class,UserQQ.class,UserGitHub.class);
 		// new ChainMake().makes("com.ada.imakedemo.data.entity");
 
