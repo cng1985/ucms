@@ -2,12 +2,10 @@ package com.ada.iwan.data.template;
 
 import java.io.File;
 
+import com.ada.article.entity.Article;
 import com.ada.article.entity.SensitiveCategory;
 import com.ada.data.entity.CatalogEntity;
 import com.ada.imake.ChainMake;
-import com.ada.iwan.data.entity.Note;
-import com.ada.site.entity.SystemVersion;
-import com.ada.user.entity.UserRole;
 
 public class ChainApps {
 
@@ -19,10 +17,10 @@ public class ChainApps {
 		make.setView(file);
 		make.setDao(false);
 		make.setService(false);
-		make.setAction(true);
-		make.setView(false);
+		make.setAction(false);
+		make.setView(true);
 		// UserOauthToken.
-		 make.makes(UserRole.class);
+		 make.makes(Article.class);
 		// make.makes(UserOschina.class,UserOauthWeibo.class,UserQQ.class,UserGitHub.class);
 		// new ChainMake().makes("com.ada.imakedemo.data.entity");
 
