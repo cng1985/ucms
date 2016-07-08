@@ -1,13 +1,15 @@
-[#macro layout menus title]
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
-    <title>${title!""}</title>
     [#include "/admin/common/commonurl.html"]
     [#include "/admin/common/scripts.html"]
+    [#macro layout menus title]
+    <title>${title!""}</title>
+
     [@links /]
+   
 </head>
 
 <body class="no-skin">

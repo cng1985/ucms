@@ -15,6 +15,9 @@
 <![endif]-->
 <script type="text/javascript">
 	if('ontouchstart' in document.documentElement) document.write("<script src='${siteurl}assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
 </script>
 <script src="${siteurl}assets/js/bootstrap.min.js"></script>
 
@@ -24,3 +27,5 @@
 <script src="${siteurl}assets/js/ace-elements.min.js"></script>
 <script src="${siteurl}assets/js/ace.min.js"></script>
 <script src="${siteurl}assets/js/list.js"></script>
+
+<script src="${siteurl}assets/plugs/bootstrapvalidator/validator.min.js"></script>

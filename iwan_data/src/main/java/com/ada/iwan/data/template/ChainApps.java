@@ -17,7 +17,7 @@ public class ChainApps {
 		make.setView(file);
 		make.setDao(false);
 		make.setService(false);
-		make.setAction(false);
+		make.setAction(true);
 		make.setView(true);
 		// UserOauthToken.
 		 make.makes(Article.class);
