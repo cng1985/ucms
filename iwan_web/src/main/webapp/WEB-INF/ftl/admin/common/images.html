@@ -9,7 +9,7 @@
 			<div style="max-width: 100px;" id="${name}list" class="uploader-list">
 			[#if image?? && image?length>1 ]
 				<div id="WU_FILE_0" class="file-item thumbnail upload-state-done">
-						<img src="${siteurl}${image}">
+						<img src="${image}">
 				</div>
 			[/#if]
 			
@@ -106,7 +106,7 @@ ${name}filepickerobj.on('fileQueued', function(file) {
 
 	${name}filepickerobj.on('uploadAccept', function(file, response) {
 
-		if (response.message.type == "success") {
+		if (response.message == "success") {
 			// 通过return false来告诉组件，此文件上传有错。
 			$("#${name}id").val(response.url);
 			//alert(response.url);
