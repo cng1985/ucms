@@ -295,7 +295,7 @@ public class LoginController extends BaseController {
 
 		if (SecurityUtils.getSubject().isAuthenticated()) {
 			if (user.getCatalog() == 1) {
-				return "admin/home";
+				return "/admin/home";
 			} else {
 				return "redirect:/user/index.htm";
 			}
