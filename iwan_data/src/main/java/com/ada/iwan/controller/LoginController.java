@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ada.iwan.controller.home.Views;
 import com.ada.shiro.filter.UsernamePasswordCaptchaToken;
+import com.ada.shiro.utils.UserUtil;
 import com.ada.user.entity.UserGitHub;
 import com.ada.user.entity.UserInfo;
 import com.ada.user.entity.UserQQ;
@@ -59,8 +60,8 @@ public class LoginController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/logout")
-	public String logout() {
+	@RequestMapping("/signout")
+	public String signout() {
 		SecurityUtils.getSubject().logout();
 		return "redirect:/login.htm";
 	}
@@ -290,14 +291,16 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "/loginok", method = RequestMethod.GET)
 	public String loginok() {
 
-		if (SecurityUtils.getSubject().hasRole("admin")) {
-			return "admin/home";
-		} else {
-			if (SecurityUtils.getSubject().isAuthenticated()) {
-				return "redirect:/user/index.htm";
+		UserInfo user = UserUtil.getCurrentUser();
+
+		if (SecurityUtils.getSubject().isAuthenticated()) {
+			if (user.getCatalog() == 1) {
+				return "admin/home";
 			} else {
-				return getView("login");
+				return "redirect:/user/index.htm";
 			}
+		} else {
+			return getView("login");
 		}
 
 	}

@@ -26,20 +26,8 @@
 	</div>
 
 	<div class="main-container" id="main-container">
-		<script type="text/javascript">
-			try {
-				ace.settings.check('main-container', 'fixed')
-			} catch (e) {
-			}
-		</script>
 
 		<div id="sidebar" class="sidebar                  responsive">
-			<script type="text/javascript">
-				try {
-					ace.settings.check('sidebar', 'fixed')
-				} catch (e) {
-				}
-			</script>
 			[#include "/admin/common/shortcuts.html"]
 			<!-- /.sidebar-shortcuts -->
 
@@ -61,19 +49,6 @@
 					data-icon2="ace-icon fa fa-angle-double-right"></i>
 			</div>
 
-			<script type="text/javascript">
-				try {
-					ace.settings.check('sidebar', 'collapsed')
-				} catch (e) {
-				}
-
-				function updatering() {
-					$("#processinfos").slideDown();
-					$.get("${siteurl}ring/downring.htm", function() {
-						$("#processinfos").slideUp();
-					});
-				}
-			</script>
 		</div>
 
 		<div class="main-content">
@@ -131,8 +106,7 @@
 									class="col-sm-3 control-label no-padding-right"> 账号</label>
 
 								<div class="col-sm-9">
-									<input readonly="readonly"  type="text" value="${(model.username)!''}" name="name" class="col-xs-10 col-sm-10"
-										placeholder="账号" id="form-field-1">
+									${(model.username)!''}
 								</div>
 							</div>
 							<div class="clearfix form-actions">

@@ -56,12 +56,13 @@ public class AdminAction {
 	}
 
 	@RequestMapping("/admin/admin/model_save")
-	public String save(UserInfo bean, HttpServletRequest request, ModelMap model) {
+	public String save(UserInfo bean,Long roleid, HttpServletRequest request, ModelMap model) {
 
 		String view = "redirect:view_list.htm";
 		try {
 			bean.setPlainPassword(bean.getPassword());
 			bean = manager.reg(bean);
+			manager.addRole(bean.getId(), roleid);
 			log.info("save object id={}", bean.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,6 +78,7 @@ public class AdminAction {
 		String view = "redirect:/admin/admin/view_list.htm?pageNumber=" + pageable.getPageNumber();
 		try {
 			bean.setPlainPassword(bean.getPassword());
+			bean.setRoles(null);
 			bean = manager.update(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
