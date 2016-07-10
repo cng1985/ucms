@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
+import com.ada.shiro.utils.UserUtil;
 import com.ada.article.entity.Article;
 import com.ada.article.entity.ArticleCatalog;
 import com.ada.article.service.ArticleCatalogService;
@@ -72,6 +73,7 @@ public class ArticleAction {
 
 		String view = "redirect:view_list.htm";
 		try {
+			bean.setUser(UserUtil.getCurrentUser());
 			if (tag != null) {
 				manager.save(bean,tag.split(","));
 			}else{

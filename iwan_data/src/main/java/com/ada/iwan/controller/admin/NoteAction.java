@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
@@ -30,6 +31,9 @@ public class NoteAction {
 		if (pageable.getOrders() == null || pageable.getOrders().size() == 0) {
 			pageable.getOrders().add(Order.desc("id"));
 		}
+		pageable.getFilters().add(Filter.ne("state", 3));
+		pageable.getFilters().add(Filter.eq("user.id", UserUtil.getCurrentUser().getId()));
+
 		Page<Note> pagination = manager.findPage(pageable);
 		model.addAttribute("list", pagination.getContent());
 		model.addAttribute("page", pagination);
