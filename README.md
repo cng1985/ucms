@@ -14,12 +14,14 @@
 * 视图模板 freemarker 
 * 其它 Jsoup、gson
 * [icore](http://git.oschina.net/cng1985/icore)
-
+* [imake](http://git.oschina.net/yichisancun/imake)
 * **网站前端**
 
 * angularjs
 * bootstrap
 * WOW
+
+
 
 ### iwan 工程介绍
 
@@ -29,11 +31,10 @@
 * iwan_web	视图工程，不放代码，使用freemarker作为视图
 * 工程数据库位置：sqls/iwandb.sql   登陆后台用户名admin  密码123456 启动工程到iwan目录，
 输入mvn tomcat7:run 数据库配置文件：iwan_web(工程)/resources/jdbc.properties
-
+icore工程位置[icore](http://git.oschina.net/cng1985/icore)
+imake工程位置[imake](http://git.oschina.net/yichisancun/imake)
 
 ### icore 包介绍：
-
-icore工程位置[icore](http://git.oschina.net/cng1985/icore)
 
 
 * com.ada.admin 后台管理功能
@@ -62,6 +63,14 @@ icore工程位置[icore](http://git.oschina.net/cng1985/icore)
 
 ### 网站地址
 http://www.yichisancun.com
+
+测试账号
+
+运维：账号yunwei密码123456
+
+文案：账号wenan密码123456
+
+股票：账号stock密码123456
 
 ![网站首页](http://7xrn5v.com1.z0.glb.clouddn.com/1f70b77ab169a848b87b5de845737e4f "在这里输入图片标题")
 
