@@ -3,6 +3,13 @@ package com.ada.iwan.apps;
 import java.security.Key;
 
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.util.StringUtils;
+import org.springframework.web.util.CookieGenerator;
+import org.springframework.web.util.WebUtils;
 
 import com.young.security.utils.Base64;
 
@@ -33,6 +40,21 @@ public class JwrApps {
 		} catch (InvalidClaimException ice) {
 			ice.printStackTrace();
 		}
+		
+		String token="";
+		HttpServletRequest request=null;
+		Cookie cookie = WebUtils.getCookie(request, "clientid");
+		if (cookie != null) {
+			String value = cookie.getValue();
+			if (StringUtils.hasText(value)) {
+				token = value;
+			}
+		}
+		
+		CookieGenerator generator=new CookieGenerator();
+		HttpServletResponse response = null;
+		generator.addCookie(response, "");
+
 	}
 
 }
