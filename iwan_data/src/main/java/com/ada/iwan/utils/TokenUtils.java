@@ -104,7 +104,7 @@ public class TokenUtils {
 				CookieGenerator generator = new CookieGenerator();
 				generator.setCookieName(CLIENTID);
 				generator.setCookieHttpOnly(true);
-				generator.setCookieMaxAge(3600);
+				generator.setCookieMaxAge(-1);
 				generator.addCookie(response, s);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -131,7 +131,7 @@ public class TokenUtils {
 		CookieGenerator generator = new CookieGenerator();
 		generator.setCookieName(CLIENTID);
 		generator.setCookieHttpOnly(true);
-		generator.setCookieMaxAge(3600);
+		generator.setCookieMaxAge(-1);
 		generator.addCookie(response, token);
 	}
 
