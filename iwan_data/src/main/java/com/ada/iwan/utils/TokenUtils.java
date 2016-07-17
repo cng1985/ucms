@@ -80,8 +80,7 @@ public class TokenUtils {
 
 	public static void visit(HttpServletRequest request, HttpServletResponse response) {
 		String token = TokenUtils.getToken(request);
-		if (token != null && token.length() >5) {
-			
+		if (token != null && token.length() > 5) {
 
 			try {
 				Jws<Claims> c = Jwts.parser().setSigningKey(base64).parseClaimsJws(token);
@@ -95,13 +94,12 @@ public class TokenUtils {
 				visit++;
 				String id = c.getBody().getSubject();
 				Calendar calendar = Calendar.getInstance();
-				calendar.add(Calendar.HOUR_OF_DAY, 1);
+				calendar.add(Calendar.YEAR, 1);
 				Key key = MacProvider.generateKey();
 				Key key1 = new SecretKeySpec(Base64.decode(base64), key.getFormat());
-				
-				String s = Jwts.builder().claim("visit", visit).setSubject(id)
-						.signWith(SignatureAlgorithm.HS512, key1).setExpiration(calendar.getTime())
-						.compressWith(CompressionCodecs.GZIP).compact();
+
+				String s = Jwts.builder().claim("visit", visit).setSubject(id).signWith(SignatureAlgorithm.HS512, key1)
+						.setExpiration(calendar.getTime()).compressWith(CompressionCodecs.GZIP).compact();
 
 				CookieGenerator generator = new CookieGenerator();
 				generator.setCookieName(CLIENTID);
@@ -124,7 +122,7 @@ public class TokenUtils {
 
 		String id = UUID.randomUUID().toString();
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.HOUR_OF_DAY, 1);
+		calendar.add(Calendar.YEAR, 1);
 		Key key = MacProvider.generateKey();
 		Key key1 = new SecretKeySpec(Base64.decode(base64), key.getFormat());
 		String token = Jwts.builder().setSubject(id).claim("visit", 1).signWith(SignatureAlgorithm.HS512, key1)
@@ -139,7 +137,7 @@ public class TokenUtils {
 
 	public static void setToken(HttpServletResponse response, String id) {
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.HOUR_OF_DAY, 1);
+		calendar.add(Calendar.YEAR, 1);
 		Key key = MacProvider.generateKey();
 		Key key1 = new SecretKeySpec(Base64.decode(base64), key.getFormat());
 		String s = Jwts.builder().setSubject(id).signWith(SignatureAlgorithm.HS512, key1)
