@@ -111,7 +111,7 @@
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
-				<prop key="org.apache.shiro.authz.UnauthorizedException">/theme/default/login.html</prop>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">/theme/default/403</prop>
 			</props>
 		</property>
 	</bean>
@@ -122,7 +122,7 @@
 
 
 	<bean name="openSessionInViewInterceptor"
-		class="org.springframework.orm.hibernate4.support.OpenSessionInViewInterceptor">
+		class="org.springframework.orm.hibernate5.support.OpenSessionInViewInterceptor">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

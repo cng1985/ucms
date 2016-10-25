@@ -117,37 +117,37 @@ margin-right: 10px;
 							action="${siteurl}admin/userrole/model_update.htm">
 							<input type="hidden" name="id" value="${model.id}" />
 							<div class="form-group">
-								<label for="form-field-1"
+								<label
 									class="col-sm-1 control-label no-padding-right">角色名</label>
 
 								<div class="col-sm-11">
 									<input required="required"  type="text" value="${(model.name)!''}" name="name" class="col-xs-3 col-sm-3"
-										placeholder="角色名" id="form-field-1">
+										placeholder="角色名" >
 								</div>
 							</div>
 							
 					       <div class="form-group">
-								<label for="form-field-1"
+								<label
 									class="col-sm-1 control-label no-padding-right"> 别名</label>
 
 								<div class="col-sm-11">
 									<input value="${(model.alias)!''}"   type="text" name="alias" class="col-xs-3 col-sm-3"
-										placeholder="别名" id="form-field-1">
+										placeholder="别名" >
 								</div>
 							</div>								
 							
 							<div class="form-group">
-								<label for="form-field-1"
+								<label
 									class="col-sm-1 control-label no-padding-right"> 描述</label>
 
 								<div class="col-sm-11">
 									<input value="${(model.description)!''}"  type="text" name="description" class="col-xs-3 col-sm-3"
-										placeholder="描述" id="form-field-1">
+										placeholder="描述" >
 								</div>
 							</div>
 							[#list menus as item]
 							<div class="form-group">
-								<label for="form-field-1"
+								<label
 									class="col-sm-1 control-label no-padding-right"> ${item.name}
 									</label>
 
@@ -157,7 +157,7 @@ margin-right: 10px;
 									    [@menuchilds id=item.id]
 									    [#list list as childitem]
 										<label>
-											<input type="checkbox" [#if model.authorities?seq_contains("${childitem.id}")] checked="checked"[/#if]  value="${childitem.id}" name="authorities">${childitem.name}
+											<input type="checkbox" [#if model.authorities?seq_contains("${childitem.permission}")] checked="checked"[/#if]  value="${childitem.permission}" name="authorities">${childitem.name}
 										</label>
 										[/#list]
 										[/@menuchilds]

@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.ada</groupId>
         <artifactId>iwan</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.1</version>
     </parent>
     <artifactId>iwan_data</artifactId>
     <name>iwan_data</name>
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.tongna</groupId>
             <artifactId>discover_hibernate</artifactId>
-            <version>1.0.9</version>
+            <version>1.1.5</version>
         </dependency>
 
         <dependency>
@@ -52,12 +52,6 @@
             <version>2.0.1</version>
         </dependency>
         <dependency>
-            <groupId>com.openyelp</groupId>
-            <artifactId>jsonrpc</artifactId>
-            <version>1.04</version>
-        </dependency>
-
-        <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.2</version>
@@ -87,7 +81,6 @@
             <artifactId>bson</artifactId>
             <version>3.0.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
@@ -98,11 +91,6 @@
             <artifactId>cglib-nodep</artifactId>
             <version>2.2</version>
             <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.openyelp</groupId>
-            <artifactId>baidulbsyun</artifactId>
-            <version>1.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.lucene</groupId>
@@ -170,6 +158,11 @@
             <groupId>org.jdbi</groupId>
             <artifactId>jdbi</artifactId>
             <version>2.73</version>
+        </dependency>
+        <dependency>
+            <groupId>com.openyelp</groupId>
+            <artifactId>jsonrpc</artifactId>
+            <version>1.04</version>
         </dependency>
     </dependencies>
 </project>

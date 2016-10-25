@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.ada</groupId>
 		<artifactId>iwan</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.1</version>
 	</parent>
 	<artifactId>iwan_web</artifactId>
 	<packaging>war</packaging>
@@ -15,19 +15,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.ada</groupId>
-			<artifactId>iwan_api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ada</groupId>
 			<artifactId>iwan_data</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.ada</groupId>
-			<artifactId>iwan_rest</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -35,6 +24,11 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>1.7.7</version>
 		</dependency>
 	</dependencies>
 	<build>
