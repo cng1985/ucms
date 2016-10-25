@@ -9,7 +9,12 @@
 
 	<name>iwan</name>
 	<url>http://maven.apache.org</url>
-
+    <repositories>
+        <repository>
+            <id>releases</id>
+            <url>http://192.168.0.199:8081/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
 	<properties>
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<lucene.version>5.3.0</lucene.version>

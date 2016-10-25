@@ -1,2 +1,8 @@
 /target/
 /.idea
+/iwan_api/*.iml
+/iwan_app/*.iml
+/iwan_data/*.iml
+/iwan_data_mongo/*.iml
+/iwan_rest/*.iml
+/iwan_web/*.iml
