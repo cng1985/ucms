@@ -22,43 +22,27 @@ public class Stock extends AbstractEntity {
 	@ManyToOne
 	private StockCatalog catalog;
 
-	public StockCatalog getCatalog() {
-		return catalog;
-	}
-
-	public void setCatalog(StockCatalog catalog) {
-		this.catalog = catalog;
-	}
-
 	/**
 	 * 地区
 	 */
 	private String area;
+
 	/**
 	 * 每股净资
 	 */
 	private float bvps;
-	
+
 	private BigDecimal price;// 27.34, //当前价格
-
-
-	public BigDecimal getPrice() {
-		return price;
-	}
-
-	public void setPrice(BigDecimal price) {
-		this.price = price;
-	}
-
 	/**
 	 * 代码
 	 */
 	private String code;
-
+	
 	/**
 	 * 每股收益
 	 */
 	private float eps;
+
 
 	/**
 	 * 固定资产
@@ -124,24 +108,16 @@ public class Stock extends AbstractEntity {
 	 */
 	private float totals;
 
-	public String getGif() {
-
-		if (code.startsWith("6")) {
-			return "sh" + code;
-		} else if (code.startsWith("3")) {
-			return "sz" + code;
-		} else if (code.startsWith("0")) {
-			return "sz" + code;
-		}
-		return "sz" + code;
-	}
-
 	public String getArea() {
 		return area;
 	}
 
 	public float getBvps() {
 		return bvps;
+	}
+
+	public StockCatalog getCatalog() {
+		return catalog;
 	}
 
 	public String getCode() {
@@ -154,6 +130,18 @@ public class Stock extends AbstractEntity {
 
 	public float getFixedassets() {
 		return fixedassets;
+	}
+
+	public String getGif() {
+
+		if (code.startsWith("6")) {
+			return "sh" + code;
+		} else if (code.startsWith("3")) {
+			return "sz" + code;
+		} else if (code.startsWith("0")) {
+			return "sz" + code;
+		}
+		return "sz" + code;
 	}
 
 	public String getIndustry() {
@@ -176,14 +164,6 @@ public class Stock extends AbstractEntity {
 		return pb;
 	}
 
-	public void setPinyin(String pinyin) {
-		this.pinyin = pinyin;
-	}
-
-	public void setPinyinHead(String pinyinHead) {
-		this.pinyinHead = pinyinHead;
-	}
-
 	public float getPe() {
 		return pe;
 	}
@@ -194,6 +174,10 @@ public class Stock extends AbstractEntity {
 
 	public String getPinyinHead() {
 		return pinyinHead;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
 	}
 
 	public float getReserved() {
@@ -222,6 +206,10 @@ public class Stock extends AbstractEntity {
 
 	public void setBvps(float bvps) {
 		this.bvps = bvps;
+	}
+
+	public void setCatalog(StockCatalog catalog) {
+		this.catalog = catalog;
 	}
 
 	public void setCode(String code) {
@@ -258,6 +246,18 @@ public class Stock extends AbstractEntity {
 
 	public void setPe(float pe) {
 		this.pe = pe;
+	}
+
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
+	}
+
+	public void setPinyinHead(String pinyinHead) {
+		this.pinyinHead = pinyinHead;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 	public void setReserved(float reserved) {

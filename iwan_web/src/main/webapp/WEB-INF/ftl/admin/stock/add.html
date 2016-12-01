@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="utf-8" />
-<title>添加</title> [#include
-"/admin/common/commonurl.html"]
+<title>添加</title> 
+[#include "/admin/common/commonurl.html"]
 
 
 
@@ -103,22 +103,53 @@
 
 
 			<div class="page-content">
-				[#include "/admin/common/page.html"] [#include
-				"/admin/common/settings.html"]
+				[#include "/admin/common/page.html"]
+				 [#include "/admin/common/settings.html"]
 				<div class="row">
 					<div class="col-xs-12">
 
 						<form role="form" method="post" class="form-horizontal"
 							action="${siteurl}admin/stock/model_save.htm">
-							<div class="form-group">
-								<label for="form-field-1"
-									class="col-sm-3 control-label no-padding-right"> 名称</label>
-
-								<div class="col-sm-9">
-									<input required="required"  type="text" name="name" class="col-xs-10 col-sm-10"
-										placeholder="名称" id="form-field-1">
+						  <div class="form-group">
+								<label class="col-sm-2 control-label">股票名称</label>
+								<div class="col-sm-4">
+									<input required="required"  type="text"  name="name"  class="form-control"
+										   placeholder="股票名称" >
 								</div>
+								<label class="col-sm-2 control-label">股票代码</label>
+								<div class="col-sm-4">
+									<input required="required"  type="text" name="code"  class="form-control"
+										   placeholder="股票代码" >
+								</div>		
 							</div>
+						  <div class="form-group">
+								<label class="col-sm-2 control-label">当前价格</label>
+								<div class="col-sm-4">
+									<input required="required"  type="text"  name="price"  class="form-control"
+										   placeholder="当前价格" >
+								</div>
+								<label class="col-sm-2 control-label">市盈率</label>
+								<div class="col-sm-4">
+									<input required="required"  type="text" name="pe"  class="form-control"
+										   placeholder="市盈率" >
+								</div>		
+						  </div>
+							
+						  <div class="form-group">
+								<label class="col-sm-2 control-label">地区</label>
+								<div class="col-sm-4">
+									<input   type="text"  name="area"  class="form-control"
+										   placeholder="地区" >
+								</div>
+								<label class="col-sm-2 control-label">行业</label>
+								<div class="col-sm-4">
+									<input type="text" name="industry"  class="form-control"
+										   placeholder="行业" >
+								</div>		
+							</div>							
+							
+							
+														
 							<div class="clearfix form-actions">
 								<div class="col-md-offset-3 col-md-9">
 									<button type="submit" class="btn btn-info">

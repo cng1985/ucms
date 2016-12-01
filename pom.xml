@@ -9,12 +9,6 @@
 
 	<name>iwan</name>
 	<url>http://maven.apache.org</url>
-    <repositories>
-        <repository>
-            <id>releases</id>
-            <url>http://192.168.0.199:8081/nexus/content/groups/public/</url>
-        </repository>
-    </repositories>
 	<modules>
 		<module>iwan_data</module>
 		<module>iwan_api</module>
