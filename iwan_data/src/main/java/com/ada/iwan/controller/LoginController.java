@@ -120,9 +120,13 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String view(Model model) {
 
-		initurls(model);
-
-		return getView(Views.LOGIN);
+		Subject subject = SecurityUtils.getSubject();
+		if(subject.isAuthenticated()){
+			return "redirect:" + "/index.htm";
+		}else{
+			initurls(model);
+			return getView(Views.LOGIN);
+		}
 	}
 
 	@RequestMapping(value = "qqlogin")
