@@ -87,6 +87,8 @@
 				<entry key="menuchilds" value-ref="menuChildsDirective" />
 				<entry key="friendlink" value-ref="friendLinkDirective" />
 				<entry key="article" value-ref="articleDirective" />
+				<entry key="siteurl" value="#{servletContext.contextPath}/"/>
+				<entry key="sitename" value="一尺三寸"/>
 			</map>
 		</property>
 	</bean>
