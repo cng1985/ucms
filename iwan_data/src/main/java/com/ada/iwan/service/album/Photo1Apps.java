@@ -1,9 +1,5 @@
 package com.ada.iwan.service.album;
 
-import java.util.List;
-
-import jodd.http.HttpRequest;
-
 import com.ada.album.entity.Category;
 import com.ada.album.entity.Photo;
 import com.ada.album.entity.Tag;
@@ -11,16 +7,16 @@ import com.ada.album.page.CategoryPage;
 import com.ada.album.service.CategoryService;
 import com.ada.album.service.PhotoService;
 import com.ada.album.service.TagService;
-import com.ada.iwan.apps.ObjectFactory;
-import com.ada.iwan.utils.RpcUtils;
 import com.google.gson.Gson;
+import jodd.http.HttpRequest;
+
+import java.util.List;
 
 public class Photo1Apps {
 
 	
 	public static void main(String[] args) {
-		CategoryService service = RpcUtils.get(
-				CategoryService.class);
+		CategoryService service = null;
 		CategoryPage page = service.getPage(1, 100);
 		List<Category> cs = page.getList();
 		if (cs != null) {
@@ -50,8 +46,8 @@ public class Photo1Apps {
 	}
 
 	private static void add(int start, String cata) {
-		PhotoService service = RpcUtils.get(PhotoService.class);
-		TagService tagservice =RpcUtils.get(TagService.class);
+		PhotoService service = null;
+		TagService tagservice =null;
 
 		HttpRequest request = HttpRequest
 				.get("http://service.picasso.adesk.com/v1/wallpaper/category/"

@@ -1,14 +1,13 @@
 package com.ada.iwan.service.stock.apps;
 
-import java.util.List;
-
 import com.ada.iwan.data.service.StockService;
 import com.ada.iwan.service.stock.api.StockApi;
 import com.ada.iwan.service.stock.api.impl.StockListApiImpl;
 import com.ada.iwan.service.stock.domain.StockBack;
 import com.ada.iwan.service.stock.domain.StockDetailBack;
 import com.ada.iwan.service.stock.domain.StockListBack;
-import com.ada.iwan.utils.RpcUtils;
+
+import java.util.List;
 
 public class StockApiApps {
 
@@ -39,7 +38,7 @@ public class StockApiApps {
 	 */
 	private static StockService getService() {
 		// StockService service=ObjectFactory.get().getBean(StockService.class);
-		StockService service = RpcUtils.get(StockService.class);
+		StockService service = null;
 		return service;
 	}
 

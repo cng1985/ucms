@@ -1,20 +1,17 @@
 package com.ada.iwan.service.album;
 
-import java.util.List;
-
-import jodd.http.HttpRequest;
-
 import com.ada.album.entity.Category;
 import com.ada.album.service.CategoryService;
-import com.ada.iwan.apps.ObjectFactory;
-import com.ada.iwan.utils.RpcUtils;
 import com.google.gson.Gson;
+import jodd.http.HttpRequest;
+
+import java.util.List;
 
 public class PhotoApps {
 
 	public static void main(String[] args) {
 
-		CategoryService service = RpcUtils.get(CategoryService.class);
+		CategoryService service = null;
 		
 		
 		HttpRequest request = HttpRequest

@@ -1,18 +1,16 @@
 package com.ada.iwan.service.article;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import com.ada.article.entity.Article;
+import com.ada.article.entity.ArticleCatalog;
+import com.ada.article.service.ArticleService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.ada.article.entity.Article;
-import com.ada.article.entity.ArticleCatalog;
-import com.ada.article.service.ArticleService;
-import com.ada.iwan.utils.RpcUtils;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Apps {
 
@@ -62,7 +60,7 @@ public class Apps {
 			article.setContents(note);
 			System.out.println(article);
 
-			ArticleService articleService = RpcUtils.get(ArticleService.class);
+			ArticleService articleService = null;
 			String[] tags = new String[size];
 			Elements ess = docx.select(".new-label");
 			int i = 0;

@@ -1,16 +1,14 @@
 package com.ada.iwan.data.service;
 
-import com.ada.iwan.data.entity.StockRecord;
-import com.ada.iwan.data.page.StockRecordPage;
 import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
+import com.ada.iwan.data.entity.StockRecord;
+import com.ada.iwan.data.page.StockRecordPage;
+
 import java.util.List;
 
-import com.openyelp.annotation.RestFul;
-
-@RestFul(api=StockRecordService.class,value="StockRecordService")
 public interface StockRecordService {
 
 	public StockRecord findById(Long id);

@@ -1,7 +1,5 @@
 package com.ada.iwan.utils;
 
-import com.openyelp.client.RestFulClient;
-
 public class RpcUtils {
 
 	//http://yelp.tiger.mopaasapp.com/
@@ -14,8 +12,4 @@ public class RpcUtils {
 		
 	}
 
-	public static <T> T get(Class<T> classx) {
-		T s = RestFulClient.getService(url, classx);
-		return s;
-	}
 }

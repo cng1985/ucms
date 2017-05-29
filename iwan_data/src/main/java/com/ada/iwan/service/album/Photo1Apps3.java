@@ -1,17 +1,15 @@
 package com.ada.iwan.service.album;
 
-import java.util.List;
-
 import com.ada.album.entity.Category;
 import com.ada.album.entity.Photo;
 import com.ada.album.entity.Tag;
 import com.ada.album.service.CategoryService;
 import com.ada.album.service.PhotoService;
 import com.ada.album.service.TagService;
-import com.ada.iwan.utils.RpcUtils;
 import com.google.gson.Gson;
-
 import jodd.http.HttpRequest;
+
+import java.util.List;
 
 public class Photo1Apps3 {
 
@@ -19,8 +17,7 @@ public class Photo1Apps3 {
 	public static void main(String[] args) {
 		
 	 
-				CategoryService service = RpcUtils.get(
-						CategoryService.class);
+				CategoryService service = null;
 				// TODO Auto-generated method stub
 				Category category=service.findById("4e4d610cdf714d2966000000");;
 				int max = downc(category);
@@ -42,8 +39,8 @@ public class Photo1Apps3 {
 	}
 
 	private static void add(int start, String cata) {
-		PhotoService service = RpcUtils.get(PhotoService.class);
-		TagService tagservice =RpcUtils.get(TagService.class);
+		PhotoService service = null;
+		TagService tagservice =null;
 
 		HttpRequest request = HttpRequest
 				.get("http://service.picasso.adesk.com/v1/wallpaper/category/"

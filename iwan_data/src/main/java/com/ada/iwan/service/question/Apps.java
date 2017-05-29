@@ -1,18 +1,16 @@
 package com.ada.iwan.service.question;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import com.ada.question.entity.Question;
+import com.ada.question.entity.QuestionCatalog;
+import com.ada.question.service.QuestionService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.ada.iwan.utils.RpcUtils;
-import com.ada.question.entity.Question;
-import com.ada.question.entity.QuestionCatalog;
-import com.ada.question.service.QuestionService;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Apps {
 
@@ -61,7 +59,7 @@ public class Apps {
 			question.setContents(note);
 			System.out.println(question);
 
-			QuestionService articleService = RpcUtils.get(QuestionService.class);
+			QuestionService articleService = null;
 			String[] tags = new String[size];
 			Elements ess = docx.select(".new-label");
 			int i = 0;

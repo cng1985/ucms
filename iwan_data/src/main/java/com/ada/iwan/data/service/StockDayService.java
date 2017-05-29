@@ -1,16 +1,15 @@
 package com.ada.iwan.data.service;
 
-import com.ada.iwan.data.entity.StockDay;
-import com.ada.iwan.data.page.StockDayPage;
 import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
+import com.ada.iwan.data.entity.StockDay;
+import com.ada.iwan.data.page.StockDayPage;
+
 import java.util.List;
 
-import com.openyelp.annotation.RestFul;
 
-@RestFul(api=StockDayService.class,value="StockDayService")
 public interface StockDayService {
 
 	public StockDay findById(Long id);
