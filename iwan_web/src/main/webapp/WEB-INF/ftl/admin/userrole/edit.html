@@ -18,12 +18,6 @@ margin-right: 10px;
 
 <body class="no-skin">
 	<div id="navbar" class="navbar navbar-default">
-		<script type="text/javascript">
-			try {
-				ace.settings.check('navbar', 'fixed')
-			} catch (e) {
-			}
-		</script>
 
 		[#include "/admin/common/navbar.html"]
 
@@ -31,20 +25,8 @@ margin-right: 10px;
 	</div>
 
 	<div class="main-container" id="main-container">
-		<script type="text/javascript">
-			try {
-				ace.settings.check('main-container', 'fixed')
-			} catch (e) {
-			}
-		</script>
 
 		<div id="sidebar" class="sidebar                  responsive">
-			<script type="text/javascript">
-				try {
-					ace.settings.check('sidebar', 'fixed')
-				} catch (e) {
-				}
-			</script>
 			<!-- [#include "/admin/common/shortcuts.html"] -->
 			<!-- /.sidebar-shortcuts -->
 
@@ -61,19 +43,6 @@ margin-right: 10px;
 					data-icon2="ace-icon fa fa-angle-double-right"></i>
 			</div>
 
-			<script type="text/javascript">
-				try {
-					ace.settings.check('sidebar', 'collapsed')
-				} catch (e) {
-				}
-
-				function updatering() {
-					$("#processinfos").slideDown();
-					$.get("${siteurl}ring/downring.htm", function() {
-						$("#processinfos").slideUp();
-					});
-				}
-			</script>
 		</div>
 
 		<div class="main-content">
