@@ -5,6 +5,7 @@ import com.ada.data.utils.FilterUtils;
 import javax.servlet.http.HttpServletRequest;
 
 import com.ada.iwan.data.so.ArticleSo;
+import com.ada.shiro.utils.UserUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,7 @@ public class ArticleAction {
 	public String edit(Pageable pageable,Long id, HttpServletRequest request, ModelMap model) {
 		model.addAttribute(MODEL, manager.findById(id));
 		model.addAttribute("page", pageable);
+		model.addAttribute("catalogs",catalogService.findChilds(1));
 		return "/admin/article/edit";
 	}
 
@@ -81,6 +83,7 @@ public class ArticleAction {
 	
 	    String view="redirect:view_list.htm";
 		try {
+			bean.setUser(UserUtil.getCurrentUser());
 			manager.save(bean);
 			log.info("save object id={}", bean.getId());
 		} catch (Exception e) {

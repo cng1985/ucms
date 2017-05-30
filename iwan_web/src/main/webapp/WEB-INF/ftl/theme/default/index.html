@@ -3,6 +3,12 @@
 [#include "/theme/default/common/nav.html" /]
 [#include "/theme/default/common/head.html" /]
 [#include "/theme/default/common/footer.html" /]
+<style type="text/css">
+	a{
+		color: black !important;
+		text-underline: none;
+	}
+</style>
 <head>
 [@head "一尺三寸" /]
  <meta property="qc:admins" content="771506651761130131635663757" /> 
@@ -30,7 +36,7 @@
 				[#list articles as item]
 				<div class="row">
 					<div class="col-xs-12 col-lg-12">
-						<h2>${item.title!""}</h2>
+						<h2><a  href="${siteurl}article/view/${item.id}.htm" >${item.title!""}</a></h2>
 						<p>${item.introduction!""}</p>
 						<p>
 							<a class="btn btn-default pull-right" href="${siteurl}article/view/${item.id}.htm" role="button">点击查看更多 &raquo;</a>

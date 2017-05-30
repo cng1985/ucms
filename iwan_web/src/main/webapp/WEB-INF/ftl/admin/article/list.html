@@ -114,7 +114,8 @@ background: #E19487 !important;
 									<tr>
 										<td><input type="checkbox" id="selectAll"></td>
 										<td class="col-xs-3">文章标题</td>
-										<td class="col-xs-7 text-center">描述</td>
+										<td class="col-xs-6 text-center">描述</td>
+										<td class="col-xs-1 text-center">作者</td>
 										<td class="col-xs-2 text-center">操作</td>
 									</tr>
 									[#if list??] 
@@ -125,6 +126,7 @@ background: #E19487 !important;
 											</td>
 											<td>${item.title!""}</td>
 											<td class="text-left">${item.introduction!""}</td>
+											<td>${(item.user.name)!""}</td>
 											<td class="text-center">
 												<div style="display: inline-block;">
 													<a class="btn btn-xs btn-info" href="${siteurl}admin/article/view_edit.htm?id=${item.id!''}&pageNumber=${page.pageNumber}">
