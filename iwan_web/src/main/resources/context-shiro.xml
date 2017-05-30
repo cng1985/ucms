@@ -7,7 +7,7 @@
 
 	<description>Shiro安全配置</description>
 
-	<bean id="userRealm" class="com.ada.shiro.realm.UserRealm"></bean>
+	<bean id="userRealm" class="com.ada.shiro.realm.AccountRealm"></bean>
 
 	<!-- Shiro的主要业务层对象基于web的应用程序 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">

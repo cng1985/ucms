@@ -14,6 +14,10 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ada.user.entity.UserAccount;
+import com.ada.user.enums.AccountType;
+import com.ada.user.service.*;
+import com.ada.user.vo.UserAccountVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -35,11 +39,6 @@ import com.ada.shiro.utils.UserUtil;
 import com.ada.user.entity.UserGitHub;
 import com.ada.user.entity.UserInfo;
 import com.ada.user.entity.UserQQ;
-import com.ada.user.service.UserGitHubService;
-import com.ada.user.service.UserInfoService;
-import com.ada.user.service.UserOauthWeiboService;
-import com.ada.user.service.UserOschinaService;
-import com.ada.user.service.UserQQService;
 import com.github.scribejava.apis.GitHubApi;
 import com.github.scribejava.apis.SinaWeiboApi20;
 import com.github.scribejava.core.builder.ServiceBuilder;
@@ -70,6 +69,9 @@ public class LoginController extends BaseController {
 	UserInfoService userInfoService;
 
 	@Autowired
+	UserAccountService accountService;
+
+	@Autowired
 	UserOschinaService userOschinaService;
 
 	@Autowired
@@ -82,8 +84,12 @@ public class LoginController extends BaseController {
 	public String register(String email, String username, String password, HttpServletRequest request,
 			HttpServletResponse response, Model model) {
 
-		int state = userInfoService.register(email, username, password);
-		if (state > 0) {
+		UserAccount account=new UserAccount();
+		account.setAccountType(AccountType.Account);
+		account.setUsername(username);
+		account.setPassword(password);
+		UserAccountVo state = accountService.reg(account);
+		if (state.getCode()== 0) {
 			model.addAttribute("msg", "注册成功");
 			return "redirect:/login.htm";
 		} else {
