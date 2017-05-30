@@ -357,21 +357,5 @@ public class LoginController extends BaseController {
 		return ret;
 	}
 
-	// private void pushBadgesCount() {
-	// new Thread(() -> {
-	//
-	// try {
-	// Thread.sleep(1 * Consts.TIME_MIN);
-	// } catch (InterruptedException e) {
-	// }
-	//
-	// AccountSubject subject = (AccountSubject) SecurityUtils.getSubject();
-	//
-	// BadgesCount count = new BadgesCount();
-	// count.setNotifies(notifyService.unread4Me(subject.getProfile().getId()));
-	// session.setAttribute("badgesCount", count);
-	//
-	// }).start();
-	// }
 
 }

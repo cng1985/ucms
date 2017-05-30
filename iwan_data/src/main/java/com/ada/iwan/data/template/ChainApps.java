@@ -1,16 +1,13 @@
 package com.ada.iwan.data.template;
 
-import java.io.File;
-
-import com.ada.activity.entity.ActivityCatalog;
 import com.ada.article.entity.Article;
-import com.ada.article.entity.ArticleCatalog;
 import com.ada.article.entity.SensitiveCategory;
 import com.ada.data.entity.CatalogEntity;
 import com.ada.imake.ChainMake;
 import com.ada.imake.template.hibernate.TemplateHibernateDir;
-import com.ada.imake.templates.ace.TemplateAceDir;
 import com.ada.imake.templates.simple.TemplateSimpleDir;
+
+import java.io.File;
 
 public class ChainApps {
 
@@ -24,9 +21,9 @@ public class ChainApps {
 		make.setService(false);
 		make.setAction(true);
 		make.setView(true);
-		make.setMenus("1,49,51");
+		make.setMenus("1,49,50");
 		// UserOauthToken.
-		 make.makes(ArticleCatalog.class);
+		 make.makes(Article.class);
 		// make.makes(UserOschina.class,UserOauthWeibo.class,UserQQ.class,UserGitHub.class);
 		// new ChainMake().makes("com.ada.imakedemo.data.entity");
 

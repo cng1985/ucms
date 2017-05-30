@@ -29,7 +29,6 @@ public class UserInfoAction {
 		if (pageable.getOrders() == null || pageable.getOrders().size() == 0) {
 			pageable.getOrders().add(Order.desc("id"));
 		}
-		pageable.getFilters().add(Filter.ne("catalog", 1));
 		Page<UserInfo> pagination = manager.findPage(pageable);
 		model.addAttribute("list", pagination.getContent());
 		model.addAttribute("page", pagination);
