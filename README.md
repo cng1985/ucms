@@ -13,7 +13,7 @@
 * 缓存 Ehcache
 * 视图模板 freemarker 
 * 其它 Jsoup、gson
-* [icore](http://git.oschina.net/cng1985/icore)
+* [disconver_hibernate](https://git.oschina.net/yichisancun/disconver)
 * [imake](http://git.oschina.net/yichisancun/imake)
 
 ### 网站前端
