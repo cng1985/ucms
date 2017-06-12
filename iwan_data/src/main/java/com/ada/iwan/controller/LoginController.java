@@ -10,10 +10,12 @@
 package com.ada.iwan.controller;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ada.shiro.realm.UserInfoToken;
 import com.ada.user.entity.UserAccount;
 import com.ada.user.enums.AccountType;
 import com.ada.user.service.*;
@@ -147,31 +149,40 @@ public class LoginController extends BaseController {
 		try {
 			tokenx = weibo.getAccessToken(code);
 			UserInfo user = weiboService.login(tokenx.getAccessToken());
-			if (user != null) {
-				Subject subject = SecurityUtils.getSubject();
-				if (!subject.isAuthenticated()) {
-					UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
-					token.setUsername(user.getUsername());
-					token.setPassword("123456".toCharArray());
-					try {
-						subject.login(token);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
-					if (subject.isAuthenticated()) {
-						return "redirect:" + "/index.htm";
-					} else {
-						return "login";
-					}
-				}
-			}
+			String result = login(user);
+			if (result != null) return result;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
 
 		return getView(Views.LOGIN);
 
+	}
+
+	private String login(UserInfo user) {
+		if (user != null) {
+            Subject subject = SecurityUtils.getSubject();
+            if (!subject.isAuthenticated()) {
+                UserInfoToken token = new UserInfoToken(user.getId());
+                token.setRememberMe(true);
+                try {
+                    subject.login(token);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                if (subject.isAuthenticated()) {
+                    return "redirect:" + "/index.htm";
+                } else {
+                    return getView("login");
+                }
+            }
+        }
+		return null;
 	}
 
 	private void initurls(Model model) {
@@ -187,22 +198,8 @@ public class LoginController extends BaseController {
 			OAuth2AccessToken tokenx = github.getAccessToken(code);
 			UserGitHub oschina = userGitHubService.login(tokenx.getAccessToken());
 			if (oschina != null) {
-				Subject subject = SecurityUtils.getSubject();
-				if (!subject.isAuthenticated()) {
-					UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
-					token.setUsername("github_" + oschina.getId());
-					token.setPassword("123456".toCharArray());
-					try {
-						subject.login(token);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
-					if (subject.isAuthenticated()) {
-						return "redirect:" + "/index.htm";
-					} else {
-						return "login";
-					}
-				}
+				String result = login(oschina.getUser());
+				if (result != null) return result;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -224,19 +221,8 @@ public class LoginController extends BaseController {
 			if (oschina != null && oschina.getId() != null) {
 				Subject subject = SecurityUtils.getSubject();
 				if (!subject.isAuthenticated()) {
-					UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
-					token.setUsername(oschina.getUsername());
-					token.setPassword("123456".toCharArray());
-					try {
-						subject.login(token);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
-					if (subject.isAuthenticated()) {
-						return "redirect:" + "/index.htm";
-					} else {
-						return "login";
-					}
+					String result = login(oschina);
+					if (result != null) return result;
 				}
 			}
 		} catch (Exception e) {
