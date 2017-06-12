@@ -1,6 +1,7 @@
 package org.iwan_data;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 import com.github.scribejava.apis.GitHubApi;
 import com.github.scribejava.apis.SinaWeiboApi20;
@@ -55,7 +56,14 @@ public class AppTest extends TestCase {
 				.build(SinaWeiboApi20.instance());
 		System.out.println(service.getAuthorizationUrl());
 
-		OAuth2AccessToken token = service.getAccessToken("d75900573c5bc6a0e85f3f1f81d6b6b8");
+		OAuth2AccessToken token = null;
+		try {
+			token = service.getAccessToken("d75900573c5bc6a0e85f3f1f81d6b6b8");
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 
 		System.out.println(token);
 	}
@@ -87,7 +95,14 @@ public class AppTest extends TestCase {
 		System.out.println(service2.getAuthorizationUrl());
 
 		//System.out.println(service2.getOauth2TokenUrl("vvYTJp"));
-		OAuth2AccessToken token = service.getAccessToken("d7a6f143663b6e91dcf2");
+		OAuth2AccessToken token = null;
+		try {
+			token = service.getAccessToken("d7a6f143663b6e91dcf2");
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 		System.out.println(token.getAccessToken());
 		// final OAuthRequest request = new OAuthRequest(Verb.GET,
 		// "https://api.github.com/user", service);
