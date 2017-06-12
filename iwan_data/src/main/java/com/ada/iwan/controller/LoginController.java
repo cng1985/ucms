@@ -235,7 +235,7 @@ public class LoginController extends BaseController {
 					if (subject.isAuthenticated()) {
 						return "redirect:" + "/index.htm";
 					} else {
-						return "login";
+						return getView(Views.LOGIN);
 					}
 				}
 			}
