@@ -221,24 +221,8 @@ public class LoginController extends BaseController {
 			if (oschina != null && oschina.getId() != null) {
 				Subject subject = SecurityUtils.getSubject();
 				if (!subject.isAuthenticated()) {
-<<<<<<< HEAD
-					UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
-					token.setUsername(oschina.getUsername());
-					token.setPassword("123456".toCharArray());
-					try {
-						subject.login(token);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
-					if (subject.isAuthenticated()) {
-						return "redirect:" + "/index.htm";
-					} else {
-						return getView(Views.LOGIN);
-					}
-=======
 					String result = login(oschina);
 					if (result != null) return result;
->>>>>>> 7f41519273d7217f7719641a547a65aa3fe05d0d
 				}
 			}
 		} catch (Exception e) {

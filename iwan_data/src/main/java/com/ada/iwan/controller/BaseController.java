@@ -38,14 +38,18 @@ public class BaseController {
 	}
 
 	protected String getView(String view) {
-		return "/theme/default/" + view;
+		//adminlte  default
+
+		return "/theme/adminlte/" + view;
 	}
 	protected String redirect(String view) {
 		return "redirect:" + view;
 	}
 	
 	protected String routeView(String route, String group) {
-		String format = "/default" + route;
+
+		//adminlte  default
+		String format = "/adminlte" + route;
 		return String.format(format, group);
 	}
 
