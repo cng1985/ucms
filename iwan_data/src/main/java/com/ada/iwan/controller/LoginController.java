@@ -293,7 +293,7 @@ public class LoginController extends BaseController {
 			if (user.getCatalog() == 1) {
 				return "/admin/home";
 			} else {
-				return "redirect:/user/index.htm";
+				return "redirect:/member/index.htm";
 			}
 		} else {
 			return getView("login");

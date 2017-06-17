@@ -1,43 +1,36 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-[#include "/theme/default/common/nav.html" /]
-[#include "/theme/default/common/head.html" /]
-[#include "/theme/default/common/footer.html" /]
+<html>
 <head>
-[@head "首页" /]
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>一尺三寸</title>
+	[#include "/theme/adminlte/common/sites.html" /]
+	[@header /]
 </head>
-<body>
-	<div class="fakeloader"></div>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
 
-    [@nav  1 /]
-	<!-- /.navbar -->
+	<header class="main-header">
+		[@nav  1 /]
+	</header>
+	<!-- Full Width Column -->
+	<div class="content-wrapper">
+		<div class="container">
+			<!-- Main content -->
+			<section class="content">
 
-	<div class="container">
-
-		<div class="row">
-
-		    
-			<!--/.sidebar-offcanvas-->
+			</section>
+			<!-- /.content -->
 		</div>
-		<!--/row-->
-
-		<hr>
-        [@footer /]
-		
-
+		<!-- /.container -->
 	</div>
-	<!--/.container-->
+	<!-- /.content-wrapper -->
 
+	[@footer /]
+</div>
+<!-- ./wrapper -->
 
-
-	<script>
-		$(document).ready(function() {
-			$(".fakeloader").fakeLoader({
-				timeToHide : 1200,
-				bgColor : "#2ecc71",
-				spinner : "spinner1"
-			});
-		});
-	</script>
+[@scripts /]
 </body>
 </html>

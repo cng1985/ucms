@@ -114,6 +114,7 @@
 		<property name="exceptionMappings">
 			<props>
 				<prop key="org.apache.shiro.authz.UnauthorizedException">/theme/default/403</prop>
+				<prop key="org.apache.shiro.authz.AuthorizationException">/theme/default/login</prop>
 			</props>
 		</property>
 	</bean>

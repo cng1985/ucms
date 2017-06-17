@@ -6,6 +6,7 @@ import com.ada.data.entity.CatalogEntity;
 import com.ada.imake.ChainMake;
 import com.ada.imake.template.hibernate.TemplateHibernateDir;
 import com.ada.imake.templates.simple.TemplateSimpleDir;
+import com.ada.iwan.data.entity.Member;
 
 import java.io.File;
 
@@ -17,13 +18,13 @@ public class ChainApps {
 		ChainMake make = new ChainMake(TemplateSimpleDir.class, TemplateHibernateDir.class);
 		make.setAction("com.ada.iwan.controller.admin");
 		make.setView(file);
-		make.setDao(false);
-		make.setService(false);
+		make.setDao(true);
+		make.setService(true);
 		make.setAction(true);
 		make.setView(true);
-		make.setMenus("1,49,50");
+		make.setMenus("1,53,70");
 		// UserOauthToken.
-		 make.makes(Article.class);
+		 make.makes(Member.class);
 		// make.makes(UserOschina.class,UserOauthWeibo.class,UserQQ.class,UserGitHub.class);
 		// new ChainMake().makes("com.ada.imakedemo.data.entity");
 

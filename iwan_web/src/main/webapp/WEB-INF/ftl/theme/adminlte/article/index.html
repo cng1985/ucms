@@ -1,67 +1,36 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-[#include "/theme/default/common/nav.html" /]
-[#include "/theme/default/common/head.html" /]
-[#include "/theme/default/common/footer.html" /]
+<html>
 <head>
-[@head "首页" /]
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>文章</title>
+	[#include "/theme/adminlte/common/sites.html" /]
+	[@header /]
 </head>
-<body>
-	<div class="fakeloader"></div>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
 
-    [@nav  2 /]
-	<!-- /.navbar -->
+	<header class="main-header">
+		[@nav  2 /]
+	</header>
+	<!-- Full Width Column -->
+	<div class="content-wrapper">
+		<div class="container">
+			<!-- Main content -->
+			<section class="content">
 
-	<div class="container">
-
-		<div class="row">
-
-			<div class="col-xs-12 col-sm-9">
-				<p class="pull-right visible-xs">
-					<button type="button" class="btn btn-primary btn-xs"
-						data-toggle="offcanvas">Toggle nav</button>
-				</p>
-				<div class="jumbotron">
-					<h1>爱玩社区</h1>
-					<p>爱玩社区是一个提供大家交流的地方，全部代码开源。我为人人，人人为我！塑造一种开源骑士精神！</p>
-				</div>
-				[#if articles??]
-				[#list articles as item]
-				<div class="row">
-					<div class="col-xs-12 col-lg-12">
-						<h2>${item.title!""}</h2>
-						<p>${item.introduction!""}</p>
-						<p>
-							<a class="btn btn-default pull-right" href="${siteurl}article/view/${item.id}.htm" role="button">点击查看更多 &raquo;</a>
-						</p>
-					</div>
-				</div>
-				<hr>
-				[/#list]
-				[/#if]
-				<!--/row-->
-			</div>
-			<!--/.col-xs-12.col-sm-9-->
-
-			<div class="col-xs-6 col-sm-3" id="sidebar">
-				<div class="list-group">
-					 [#if catalogs??]
-				    [#list catalogs as item  ]
-					<a href="${siteurl}article/catalog.htm?id=${item.id}" class="list-group-item">${item.name!""}</a> 
-					[/#list]
-					[/#if]
-				</div>
-			</div>
-			<!--/.sidebar-offcanvas-->
+			</section>
+			<!-- /.content -->
 		</div>
-		<!--/row-->
-
-		<hr>
-
-		 [@footer /]
-
+		<!-- /.container -->
 	</div>
-	<!--/.container-->
+	<!-- /.content-wrapper -->
 
+	[@footer /]
+</div>
+<!-- ./wrapper -->
+
+[@scripts /]
 </body>
 </html>
