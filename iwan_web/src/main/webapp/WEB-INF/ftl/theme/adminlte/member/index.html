@@ -79,10 +79,10 @@
 							<label >性別</label>
 							<div>
 								<label class="radio-inline">
-									<input type="radio" [#if user?? && user.sex="男"] checked="checked"[/#if] name="sex" id="inlineRadio1" value="男">
+									<input type="radio" [#if user?? && user.sex?? && user.sex="男"] checked="checked"[/#if] name="sex" id="inlineRadio1" value="男">
 									男 </label>
 								<label class="radio-inline">
-									<input type="radio" [#if user?? && user.sex="女"] checked="checked"[/#if]  name="sex" id="inlineRadio2" value="女">
+									<input type="radio" [#if user?? && user.sex?? && user.sex="女"] checked="checked"[/#if]  name="sex" id="inlineRadio2" value="女">
 									女 </label>
 							</div>
 						</div>

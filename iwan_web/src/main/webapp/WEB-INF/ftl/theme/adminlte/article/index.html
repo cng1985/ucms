@@ -19,7 +19,34 @@
 		<div class="container">
 			<!-- Main content -->
 			<section class="content">
-
+				<div class="row">
+					<section class="col-lg-4">
+						<div class="list-group">
+							[#if catalogs??]
+							[#list catalogs as item  ]
+							<a href="${siteurl}article/catalog.htm?id=${item.id}" class="list-group-item">${item.name!""}</a>
+							[/#list]
+							[/#if]
+						</div>
+					</section>
+					<section class="col-lg-8">
+						[#if articles??]
+							[#list articles as item]
+							<div class="box box-widget">
+								<div class="box-header with-border">
+									<div class="user-block">
+										<img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="User Image">
+										<span class="username"><a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a></span>
+										<span class="description">${item.lastDate!""}</span>
+									</div>
+									<!-- /.user-block -->
+								</div>
+								<!-- /.box-header -->
+							</div>
+							[/#list]
+						[/#if]
+					</section>
+				</div>
 			</section>
 			<!-- /.content -->
 		</div>

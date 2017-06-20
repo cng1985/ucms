@@ -1,119 +1,152 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-[#include "/theme/default/common/nav.html" /] 
-[#include "/theme/default/common/head.html" /]
- [#include "/theme/default/common/footer.html" /]
+<html>
 <head>
-[@head "${article.title!''}" /] 
-[@js "jsrender.min.js" /]
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>${article.title!''}</title>
+	[#include "/theme/adminlte/common/sites.html" /]
+	[@header /]
 </head>
-<body>
-	<div class="fakeloader"></div>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
 
-	[@nav 2 /]
-	<!-- /.navbar -->
-
-	<div class="container">
-
-		<div class="row">
-
-			<div class="col-xs-12 col-sm-9">
-
-				<h1>${article.title!""}</h1>
-				<hr />
-				<div>时间 :${article.addDate!""}</div>
-				[#if article.tags??]
-				<div>[#list article.tags as item] ${item.name!""} [/#list]</div>
-				[/#if]
-				<hr />
-				<article>${article.contents!""}</article>
-
-				<div class="comments" ng-app="myApp" ng-controller="customersCtrl">
-					<div class="comments-area">
-						<div class="comments-header">
-							[@shiro.authenticated]
-							<form action="${siteurl}user/updateuser.htm" method="post">
-
-								<div class="form-group">
-									<label>个性签名</label>
-									<textarea ng-model="contents" class="form-control"
-										id="contents" name="introduction" rows="3">${user.introduction!''}</textarea>
-
-
-
+	<header class="main-header">
+		[@nav  2 /]
+	</header>
+	<!-- Full Width Column -->
+	<div class="content-wrapper">
+		<div class="container">
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<section class="col-lg-8">
+						<div class="box box-widget">
+							<div class="box-header with-border">
+								<div class="user-block">
+									<img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="头像">
+									<span class="username"><a href="#">${article.title!""}</a></span>
+									<span class="description">${(article.lastDate?string("yyyy年MM月dd日"))!""}</span>
 								</div>
-								<button ng-click="commentwork()" id="button" type="button"
-									class="btn btn-default">提交</button>
-							</form>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<div class="pad">${article.contents!""}</div>
+								<button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+								<button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+								<span class="pull-right text-muted">127 likes - 3 comments</span>
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer box-comments">
+
+								<div class="box-comment">
+									<!-- User image -->
+									<img class="img-circle img-sm" src="${siteurl}dist/img/user3-128x128.jpg" alt="User Image">
+
+									<div class="comment-text">
+									  <span class="username">
+										Maria Gonzales
+										<span class="text-muted pull-right">8:03 PM Today</span>
+									  </span><!-- /.username -->
+										It is a long established fact that a reader will be distracted
+										by the readable content of a page when looking at its layout.
+									</div>
+									<!-- /.comment-text -->
+								</div>
+								<!-- /.box-comment -->
+							</div>
+							<!-- /.box-footer -->
+							[@shiro.authenticated]
+							<div class="box-footer">
+								<form action="#" method="post">
+									<img class="img-responsive img-circle img-sm" src="${siteurl}dist/img/user4-128x128.jpg" alt="Alt Text">
+									<!-- .img-push is used to add margin to elements next to floating images -->
+									<div class="img-push">
+										<input class="form-control input-sm" placeholder="Press enter to post comment" type="text">
+									</div>
+								</form>
+							</div>
 							[/@shiro.authenticated]
-							<h5>我来评几句</h5>
-							<div style="display: none;"
-								class="alert comment-alert alert-error">错误</div>
-							<span id="comment-submit" class="btn btn-medium btn-default">登录后评论</span>
-							<p style="margin-top: 5px; margin-left: 10px;">
-								已发表评论数(<span class="comment_cnt">0</span>)
-							</p>
+							<!-- /.box-footer -->
 						</div>
-						<div class="comments-list">
-							<div ng-repeat="item in names">{{item.contents}}</div>
-							<div style="display: none;"
-								class="empty-cmts alert alert-success">没有更多评论了^^</div>
-						</div>
-						<div style="display: none;" class="more-comments">
-							<a href="">更多评论</a>
-						</div>
-						<div style="display: none;" class="load-fail">
-							评论加载失败，<a href="javascript:reload_comments('yaA7VvN',1,0,-1);">重新加载</a>
-						</div>
-					</div>
-				</div>
-				<!--comment end -->
-			</div>
-			<!--/.col-xs-12.col-sm-9-->
+					</section>
+					<section class="col-lg-4">
+						<div class="box box-primary">
+							<div class="box-body box-profile">
+								<img class="profile-user-img img-responsive img-circle" src="${siteurl}dist/img/user4-128x128.jpg" alt="User profile picture">
 
-			<div class="col-xs-6 col-sm-3" id="sidebar">
-				<div class="list-group">
-					[#if catalogs?? && article.catalog??] [#list catalogs as item ]
-					[#if item.id =article.catalog.id] <a
-						href="${siteurl}article/catalog.htm?id=${item.id}"
-						class="list-group-item active">${item.name!""}
-						(${item.nums!"0"})</a> [#else] <a
-						href="${siteurl}article/catalog.htm?id=${item.id}"
-						class="list-group-item ">${item.name!""} (${item.nums!"0"})</a>
-					[/#if] [/#list] [/#if]
+								<h3 class="profile-username text-center">Nina Mcintire</h3>
+
+								<p class="text-muted text-center">Software Engineer</p>
+
+								<ul class="list-group list-group-unbordered">
+									<li class="list-group-item">
+										<b>Followers</b> <a class="pull-right">1,322</a>
+									</li>
+									<li class="list-group-item">
+										<b>Following</b> <a class="pull-right">543</a>
+									</li>
+									<li class="list-group-item">
+										<b>Friends</b> <a class="pull-right">13,287</a>
+									</li>
+								</ul>
+
+								<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">About Me</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+								<p class="text-muted">
+									B.S. in Computer Science from the University of Tennessee at Knoxville
+								</p>
+
+								<hr>
+
+								<strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+								<p class="text-muted">Malibu, California</p>
+
+								<hr>
+
+								<strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+								<p>
+									<span class="label label-danger">UI Design</span>
+									<span class="label label-success">Coding</span>
+									<span class="label label-info">Javascript</span>
+									<span class="label label-warning">PHP</span>
+									<span class="label label-primary">Node.js</span>
+								</p>
+
+								<hr>
+
+								<strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</section>
 				</div>
-			</div>
-			<!--/.sidebar-offcanvas-->
+
+			</section>
+			<!-- /.content -->
 		</div>
-		<!--/row-->
-
-		<hr>
-
-		[@footer /]
-
+		<!-- /.container -->
 	</div>
-	<!--/.container-->
-<script id="theTmpl" type="text/x-jsrender">	
-<div class="media">
-      <a href="#" class="media-left">
-        <img alt="64x64" data-src="holder.js/64x64" class="media-object" style="width: 64px; height: 64px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEzLjQxNjY2NjAzMDg4Mzc4OSIgeT0iMzIiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj42NHg2NDwvdGV4dD48L2c+PC9zdmc+" data-holder-rendered="true">
-      </a>
-      <div class="media-body">
-        <h4 class="media-heading">Media heading</h4>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-      </div>
-    </div>
-</script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$.get("${siteurl}articlecomment/page.htm?aid=${article.id}", function(data) {
-			if (data.code == 0) {
-				var template = $.templates("#theTmpl");
-				var htmlOutput = template.render(data.list);
-				$("#comments-list").append(htmlOutput);
-			};
-		});
-	});	
-	</script>
+	<!-- /.content-wrapper -->
+
+	[@footer /]
+</div>
+<!-- ./wrapper -->
+
+[@scripts /]
 </body>
 </html>

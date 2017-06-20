@@ -52,13 +52,14 @@
               </div>
             </div>
             <!-- /.nav-tabs-custom -->
-            [#list 1..5 as item]
+            [#if articles??]
+            [#list articles as item]
             <div class="box box-widget">
               <div class="box-header with-border">
                 <div class="user-block">
                   <img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="User Image">
-                  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                  <span class="description">Shared publicly - 7:30 PM Today</span>
+                  <span class="username"><a href="#">${(item.user.name)!""}</a></span>
+                  <span class="description">${item.lastDate!""}</span>
                 </div>
                 <!-- /.user-block -->
               </div>
@@ -69,11 +70,10 @@
                   <img class="attachment-img" src="${siteurl}dist/img/photo1.png" alt="Attachment Image">
 
                   <div class="attachment-pushed">
-                    <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
+                    <h4 class="attachment-heading"><a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a></h4>
 
                     <div class="attachment-text">
-                      Description about the attachment can be placed here.
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry... <a href="#">more</a>
+                      ${item.introduction!""}
                     </div>
                     <!-- /.attachment-text -->
                   </div>
@@ -89,6 +89,7 @@
               <!-- /.box-body -->
             </div>
             [/#list]
+            [/#if]
 
           </section>
           <!-- /.Left col -->
