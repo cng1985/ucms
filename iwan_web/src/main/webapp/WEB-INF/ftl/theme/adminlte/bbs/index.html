@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>论坛-一尺三寸</title>
+    [#include "/theme/adminlte/common/sites.html" /]
+    [@header /]
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+    <header class="main-header">
+        [@nav  5 /]
+    </header>
+    <!-- Full Width Column -->
+    <div class="content-wrapper">
+        <div class="container">
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <section class="col-lg-3">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">所有模块</h3>
+                            </div>
+                            <div class="box-body no-padding">
+                                <ul class="nav nav-pills nav-stacked">
+                                    [@forum id=1 size=20]
+                                    [#list list as item]
+                                    <li><a href="${siteurl}bbs/forum/${item.id}.htm"><i class="fa  fa-comment-o"></i> ${item.name!""}</a></li>
+                                    [/#list]
+                                    [/@forum]
+                                </ul>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </section>
+                    <section class="col-lg-9">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <i class="fa fa-text-width"></i>
+                                <h3 class="box-title">Block Quotes Pulled Right</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body clearfix">
+                                [@simpleforum size=20]
+                                [#list list as item]
+                                <div class=" info-box bg-aqua">
+                                    <span class="info-box-icon"><i class="fa fa-comment"></i></span>
+
+                                    <div class="info-box-content" >
+                                        <h3><a href="#" style="color: white">${item.name!''}</a></h3>
+                                      </span>
+
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                                [/#list]
+                                [/@simpleforum]
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </section>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    [@footer /]
+</div>
+<!-- ./wrapper -->
+
+[@scripts /]
+</body>
+</html>

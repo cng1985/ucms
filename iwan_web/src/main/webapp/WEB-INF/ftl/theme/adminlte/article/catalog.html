@@ -1,84 +1,75 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-	[#include "/theme/default/common/nav.html" /]
-	[#include "/theme/default/common/head.html" /]
-	[#include "/theme/default/common/footer.html" /]
-	[#include "/theme/default/common/page.html" /]
-	
-	<head>
-		[@head "文章分类" /]
-	</head>
-	<body>
-		<div class="fakeloader"></div>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>文章分类</title>
+	[#include "/theme/adminlte/common/sites.html" /]
+	[@header /]
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
 
+	<header class="main-header">
 		[@nav  2 /]
-		<!-- /.navbar -->
-
+	</header>
+	<!-- Full Width Column -->
+	<div class="content-wrapper">
 		<div class="container">
-
-			<div class="row">
-
-				<div class="col-xs-12 col-sm-9">
-					<p class="pull-right visible-xs">
-						<button type="button" class="btn btn-primary btn-xs"
-						data-toggle="offcanvas">
-							Toggle nav
-						</button>
-					</p>
-					<div class="jumbotron">
-						<h1>爱玩社区</h1>
-						<p>
-							爱玩社区是一个提供大家交流的地方，全部代码开源。我为人人，人人为我！塑造一种开源骑士精神！
-						</p>
-					</div>
-
-					<div class="row">
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<section class="col-lg-3 col-sm-4">
+						<div class="box box-solid">
+							<div class="box-header with-border">
+								<h3 class="box-title">文章分类</h3>
+							</div>
+							<div class="box-body no-padding">
+							<ul class="nav nav-pills nav-stacked">
+							[#if catalogs??]
+							[#list catalogs as item  ]
+									[#if item.id =id]
+								<li class="active"><a href="${siteurl}article/catalog.htm?id=${item.id}"><i class="fa fa-circle-o text-blue"></i> ${item.name!""}(${item.nums!"0"})</a></li>
+									[#else]
+								<li><a href="${siteurl}article/catalog.htm?id=${item.id}"><i class="fa fa-circle-o text-blue"></i> ${item.name!""}(${item.nums!"0"})</a></li>
+									[/#if]
+							[/#list]
+							[/#if]
+							</ul>
+							</div>
+						</div>
+					</section>
+					<section class="col-lg-9  col-sm-8">
 						[#if articles??]
 						[#list articles as item]
-						<div class="col-xs-12 col-lg-12">
-							<h2>${item.title!""}</h2>
-							<p>
-								${item.introduction!""}
-							</p>
-							<p>
-								<a class="btn btn-default pull-right" href="${siteurl}article/view/${item.id}.htm" role="button">点击查看更多 &raquo;</a>
-							</p>
+						<div class="box box-widget">
+							<div class="box-header with-border">
+								<div class="user-block">
+									<img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="User Image">
+									<span class="username"><a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a></span>
+									<span class="description">${item.lastDate!""}</span>
+								</div>
+								<!-- /.user-block -->
+							</div>
+							<!-- /.box-header -->
 						</div>
 						[/#list]
 						[/#if]
-						<div class="col-xs-12  text-center">
-							[@pager page curpage "${siteurl}article/catalog.htm?id=${id}" /]
-						</div>
-					</div>
-					<hr>
-
-					<!--/row-->
+					</section>
 				</div>
-				<!--/.col-xs-12.col-sm-9-->
 
-				<div class="col-xs-6 col-sm-3" id="sidebar">
-					<div class="list-group">
-						[#if catalogs??]
-						[#list catalogs as item  ]
-						[#if item.id =id]
-						<a href="${siteurl}article/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a>
-						[#else]
-						<a href="${siteurl}article/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a>
-						[/#if]
-
-						[/#list]
-						[/#if]
-					</div>
-				</div>
-				<!--/.sidebar-offcanvas-->
-			</div>
-			<!--/row-->
-
-			<hr>
-
-			[@footer /]
+			</section>
+			<!-- /.content -->
 		</div>
-		<!--/.container-->
+		<!-- /.container -->
+	</div>
+	<!-- /.content-wrapper -->
 
-	</body>
+	[@footer /]
+</div>
+<!-- ./wrapper -->
+
+[@scripts /]
+</body>
 </html>

@@ -6,6 +6,11 @@
 	<title>文章</title>
 	[#include "/theme/adminlte/common/sites.html" /]
 	[@header /]
+	<style>
+		.list-group a{
+			color: black;
+		}
+	</style>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -21,12 +26,20 @@
 			<section class="content">
 				<div class="row">
 					<section class="col-lg-4">
-						<div class="list-group">
-							[#if catalogs??]
-							[#list catalogs as item  ]
-							<a href="${siteurl}article/catalog.htm?id=${item.id}" class="list-group-item">${item.name!""}</a>
-							[/#list]
-							[/#if]
+						<div class="box box-solid">
+							<div class="box-header with-border">
+								<h3 class="box-title">文章分类</h3>
+							</div>
+							<div class="box-body no-padding">
+								<ul class="nav nav-pills nav-stacked">
+									[#if catalogs??]
+									[#list catalogs as item  ]
+										<li><a href="${siteurl}article/catalog.htm?id=${item.id}"><i class="fa fa-circle-o text-blue"></i> ${item.name!""}(${item.nums!"0"})</a></li>
+									[/#list]
+									[/#if]
+								</ul>
+							</div>
+							<!-- /.box-body -->
 						</div>
 					</section>
 					<section class="col-lg-8">

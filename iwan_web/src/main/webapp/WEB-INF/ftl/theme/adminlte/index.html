@@ -6,6 +6,7 @@
   <title>一尺三寸</title>
   [#include "/theme/adminlte/common/sites.html" /]
   [@header /]
+
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -57,8 +58,8 @@
             <div class="box box-widget">
               <div class="box-header with-border">
                 <div class="user-block">
-                  <img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="User Image">
-                  <span class="username"><a href="#">${(item.user.name)!""}</a></span>
+                  <a href="${siteurl}space/${(item.user.id)!'0'}.htm"> <img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="User Image"></a>
+                  <span class="username"><a href="${siteurl}space/${(item.user.id)!'0'}.htm">${(item.user.name)!""}</a></span>
                   <span class="description">${item.lastDate!""}</span>
                 </div>
                 <!-- /.user-block -->
@@ -143,46 +144,14 @@
               <!-- /.box-header -->
               <div class="box-body no-padding">
                 <ul class="users-list clearfix">
+                  [@newuser size=12]
+                  [#list list as item]
                   <li>
-                    <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                    <a class="users-list-name" href="#">Alexander Pierce</a>
-                    <span class="users-list-date">Today</span>
+                    <a  href="${siteurl}space/${item.id}.htm"><img src="dist/img/user1-128x128.jpg" alt="User Image"></a>
+                    <a class="users-list-name" href="${siteurl}space/${item.id}.htm">${item.name!''}</a>
                   </li>
-                  <li>
-                    <img src="dist/img/user8-128x128.jpg" alt="User Image">
-                    <a class="users-list-name" href="#">Norman</a>
-                    <span class="users-list-date">Yesterday</span>
-                  </li>
-                  <li>
-                    <img src="dist/img/user7-128x128.jpg" alt="User Image">
-                    <a class="users-list-name" href="#">Jane</a>
-                    <span class="users-list-date">12 Jan</span>
-                  </li>
-                  <li>
-                    <img src="dist/img/user6-128x128.jpg" alt="User Image">
-                    <a class="users-list-name" href="#">John</a>
-                    <span class="users-list-date">12 Jan</span>
-                  </li>
-                  <li>
-                    <img src="dist/img/user2-160x160.jpg" alt="User Image">
-                    <a class="users-list-name" href="#">Alexander</a>
-                    <span class="users-list-date">13 Jan</span>
-                  </li>
-                  <li>
-                    <img src="dist/img/user5-128x128.jpg" alt="User Image">
-                    <a class="users-list-name" href="#">Sarah</a>
-                    <span class="users-list-date">14 Jan</span>
-                  </li>
-                  <li>
-                    <img src="dist/img/user4-128x128.jpg" alt="User Image">
-                    <a class="users-list-name" href="#">Nora</a>
-                    <span class="users-list-date">15 Jan</span>
-                  </li>
-                  <li>
-                    <img src="dist/img/user3-128x128.jpg" alt="User Image">
-                    <a class="users-list-name" href="#">Nadia</a>
-                    <span class="users-list-date">15 Jan</span>
-                  </li>
+                  [/#list]
+                  [/@newuser]
                 </ul>
                 <!-- /.users-list -->
               </div>

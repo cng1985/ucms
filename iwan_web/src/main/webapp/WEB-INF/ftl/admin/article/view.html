@@ -56,18 +56,10 @@
 				[#include "/admin/common/settings.html"]
 				<div class="row">
 					<div class="col-xs-12">
-						<form role="form" method="post" class="form-horizontal"
-							action="${siteurl}admin/article/model_save.htm">
-							<div class="form-group">
-								<label for="form-field-1"
-									class="col-sm-3 control-label no-padding-right"> 名称</label>
-								<div class="col-sm-9">
-									<input required="required"  type="text" name="name" class="col-xs-10 col-sm-10" placeholder="名称" id="form-field-1">
-								</div>
-							</div>
-
-							<div class="hr hr-24"></div>
-						</form>
+						<h3>${model.title!""}</h3>
+						<div>
+							${model.contents!""}
+						</div>
 					</div>
 				</div>
 

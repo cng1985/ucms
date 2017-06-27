@@ -14,7 +14,21 @@
 [/#macro]
 
 
+[#macro css src]
+<link rel="stylesheet" href="${siteurl}${src}">
+[/#macro]
 
+[#macro style src]
+<link rel="stylesheet" href="${siteurl}assets/css/${src}">
+[/#macro]
+
+[#macro script src]
+<script src="${siteurl}${src}"></script>
+[/#macro]
+
+[#macro js src]
+<script src="${siteurl}assets/js/${src}"></script>
+[/#macro]
 
 [#macro nav index]
 <nav class="navbar navbar-static-top">
@@ -36,7 +50,7 @@
                 <a href="${siteurl}article/index.htm">文章</a>
                 </li>
                 <li [#if index==5] class="active" [/#if]>
-                <a href="${siteurl}photo/index.htm">相片</a>
+                <a href="${siteurl}bbs/index.htm">论坛</a>
                 </li>
                 <li [#if index==3] class="active" [/#if]>
                 <a href="${siteurl}question/type/new.htm">问答</a>
@@ -130,9 +144,9 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="${siteurl}dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                        <img src="${user.avatar!''}" class="user-image" alt="头像">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs">${user.name!""}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
@@ -162,10 +176,10 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="${siteurl}member/index.htm" class="btn btn-default btn-flat">个人资料</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="${siteurl}signout.htm" class="btn btn-default btn-flat">退出</a>
                             </div>
                         </li>
                     </ul>
@@ -253,4 +267,27 @@
 <script src="${siteurl}plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="${siteurl}dist/js/adminlte.min.js"></script>
+[/#macro]
+
+
+
+[#macro pager pagination curpage url]
+[#if pagination?? && pagination.pageTotal gt 1]
+
+<ul class="pagination">
+    [#if curpage>pagination.firstNo]
+    <li><a href="${url}&curpage=${pagination.prePage}">上一页</a></li>
+    [/#if]
+    [#list pagination.firstNo..pagination.endNo as item]
+    [#if curpage?number==item]
+    <li class="active"><a href="${url}">${item}</a></li>
+    [#else]
+    <li ><a href="${url}&curpage=${item}">${item}</a></li>
+    [/#if]
+    [/#list]
+    [#if curpage lt  pagination.endNo]
+    <li><a href="${url}&curpage=${pagination.nextPage}">下一页</a></li>
+    [/#if]
+</ul>
+[/#if]
 [/#macro]

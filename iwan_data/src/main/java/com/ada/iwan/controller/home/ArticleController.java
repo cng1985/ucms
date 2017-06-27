@@ -37,6 +37,9 @@ public class ArticleController extends BaseController {
 		return getView("article/index");
 	}
 
+
+
+
 	@RequestMapping(value = "/catalog", method = RequestMethod.GET)
 	public String catalog(@RequestParam(value = "id", required = true, defaultValue = "1") int id,
 			@RequestParam(value = "curpage", required = true, defaultValue = "1") int curpage,
