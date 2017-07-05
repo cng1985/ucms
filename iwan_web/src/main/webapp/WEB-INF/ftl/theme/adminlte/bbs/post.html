@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>论坛-一尺三寸</title>
+    [#include "/theme/adminlte/common/sites.html" /]
+    [@header /]
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+    <header class="main-header">
+        [@nav  5 /]
+    </header>
+    <!-- Full Width Column -->
+    <div class="content-wrapper">
+        <div class="container">
+            <!-- Main content -->
+            <section class="content">
+                    <section class="col-lg-12">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <i class="fa fa-text-width"></i>
+                                <h3 class="box-title">${model.name!""}</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body clearfix">
+                                <div class="table-responsive mailbox-messages">
+                                    ${model.note!""}
+                                    <!-- /.table -->
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </section>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    [@footer /]
+</div>
+<!-- ./wrapper -->
+
+[@scripts /]
+</body>
+</html>

@@ -21,17 +21,13 @@
             <section class="content">
                 <div class="row">
                     <section class="col-lg-3">
+                        <a href="${siteurl}bbs/writePost.htm?forum=${id!'1'}" class="btn btn-primary btn-block margin-bottom">发帖</a>
                         <div class="box box-solid">
                             <div class="box-header with-border">
                                 <h3 class="box-title">所有模块</h3>
                             </div>
                             <div class="box-body no-padding">
                                 <ul class="nav nav-pills nav-stacked">
-                                    [@forum id=1 size=20]
-                                    [#list list as item]
-                                    <li><a href="${siteurl}bbs/forum/${item.id}.htm"><i class="fa  fa-comment-o"></i> ${item.name!""}</a></li>
-                                    [/#list]
-                                    [/@forum]
                                 </ul>
                             </div>
                             <!-- /.box-body -->
@@ -45,20 +41,25 @@
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body clearfix">
-                                [@simpleforum size=20]
-                                [#list list as item]
-                                <div class=" info-box bg-aqua">
-                                    <span class="info-box-icon"><i class="fa fa-comment"></i></span>
-
-                                    <div class="info-box-content" >
-                                        <h3><a href="${siteurl}bbs/threads/${item.id}.htm" style="color: white">${item.name!''}</a></h3>
-                                      </span>
-
-                                    </div>
-                                    <!-- /.info-box-content -->
+                                <div class="table-responsive mailbox-messages">
+                                    <table class="table table-hover table-striped">
+                                        <tbody>
+                                        [#if list??]
+                                        [#list list as item]
+                                        <tr>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                            <td class="mailbox-name"><a href="${siteurl}space/${item.user.id}.htm">${(item.user.name)!""}</a></td>
+                                            <td class="mailbox-subject" style="min-width: 500px;"><a href="${siteurl}bbs/post/${item.id}.htm">${item.name!""}</a>
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">${item.addDate!""}</td>
+                                        </tr>
+                                        [/#list]
+                                        [/#if]
+                                        </tbody>
+                                    </table>
+                                    <!-- /.table -->
                                 </div>
-                                [/#list]
-                                [/@simpleforum]
                             </div>
                             <!-- /.box-body -->
                         </div>

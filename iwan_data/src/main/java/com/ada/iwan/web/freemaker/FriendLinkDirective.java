@@ -32,7 +32,7 @@ public class FriendLinkDirective implements TemplateDirectiveModel {
 		Pageable pageable = new Pageable();
 		pageable.setPageSize(size);
 		pageable.setOrderDirection(Direction.asc);
-		pageable.setOrderProperty("sortnum");
+		pageable.setOrderProperty("sortNum");
 		Page<FriendLink> links = linkService.findPage(pageable);
 		Map<String, TemplateModel> paramWrap = new HashMap<String, TemplateModel>(params);
 		if (links.getContent() != null) {
