@@ -2,7 +2,9 @@ package com.ada.iwan.controller.home;
 
 import com.ada.bbs.data.entity.ForumPost;
 import com.ada.bbs.data.entity.ForumPostLike;
+import com.ada.bbs.data.entity.ForumPostText;
 import com.ada.bbs.data.service.ForumPostService;
+import com.ada.bbs.data.service.ForumPostTextService;
 import com.ada.bbs.data.service.ForumService;
 import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
@@ -10,6 +12,7 @@ import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
 import com.ada.iwan.controller.BaseController;
 import com.ada.shiro.utils.UserUtil;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -33,6 +36,9 @@ public class BbsController extends BaseController {
     @Autowired
     ForumPostService postService;
 
+    @Autowired
+    ForumPostTextService textService;
+
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
 
@@ -48,7 +54,7 @@ public class BbsController extends BaseController {
     @RequestMapping(value = "/threads/{id}")
     public String threads(Model model, Pageable pageable, @PathVariable("id") Integer id) {
 
-        pageable.getFilters().add(Filter.eq("forum.id",id));
+        pageable.getFilters().add(Filter.eq("forum.id", id));
         pageable.getOrders().add(Order.desc("id"));
         Page<ForumPost> page = postService.page(pageable);
         model.addAttribute("model", forumService.findById(id));
@@ -65,17 +71,25 @@ public class BbsController extends BaseController {
         return getView("bbs/post");
     }
 
+    @RequiresUser
     @RequestMapping(value = "/writePost")
-    public String writePost(Model model,Integer forum) {
-        model.addAttribute("forum",forum);
+    public String writePost(Model model, Integer forum) {
+        model.addAttribute("forum", forum);
         return getView("bbs/writePost");
     }
 
+    @RequiresUser
     @RequestMapping(value = "/postAdd")
-    public String postAdd( ForumPost post) {
+    public String postAdd(ForumPost post, String note) {
         post.setUser(UserUtil.getCurrentUser());
         postService.save(post);
-        return redirect("/bbs/threads/"+post.getForum().getId()+".htm");
+
+        ForumPostText postText = new ForumPostText();
+        postText.setPost(post);
+        postText.setNote(note);
+        textService.save(postText);
+
+        return redirect("/bbs/threads/" + post.getForum().getId() + ".htm");
     }
 
 }

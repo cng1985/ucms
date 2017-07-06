@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "sys_user_info")
+@Table(name = "user_info")
 public class Member extends AbstractEntity {
 
 
