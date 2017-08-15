@@ -24,16 +24,7 @@
 
     <bean
             class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
-        <property name="interceptors">
-            <list>
-                <ref bean="siteHandlerInterceptor"/>
-            </list>
-        </property>
     </bean>
-    <bean id="siteHandlerInterceptor" class="com.ada.interceptor.SiteHandlerInterceptor">
-        <property name="url" value="http://www.yichisancun.com/"></property><!-- -->
-    </bean>
-
 
     <bean
             class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
@@ -48,12 +39,12 @@
 
 
     <bean id="shiro" class="com.jagregory.shiro.freemarker.ShiroTags"></bean>
-    <bean id="menuOpenDirective" class="com.ada.admin.freemaker.MenuOpenDirective"></bean>
-    <bean id="menusDirective" class="com.ada.admin.freemaker.MenusDirective"></bean>
-    <bean id="menuChildsDirective" class="com.ada.admin.freemaker.MenuChildsDirective"></bean>
+    <bean id="menuOpenDirective" class="com.ada.user.freemaker.MenuOpenDirective"></bean>
+    <bean id="menusDirective" class="com.ada.user.freemaker.MenusDirective"></bean>
+    <bean id="menuChildsDirective" class="com.ada.user.freemaker.MenuChildsDirective"></bean>
 
     <bean id="friendLinkDirective" class="com.ada.iwan.web.freemaker.FriendLinkDirective"></bean>
-    <bean id="articleDirective" class="com.ada.freemaker.ArticleDirective"></bean>
+    <bean id="articleDirective" class="com.ada.article.freemarker.ArticleDirective"></bean>
     <bean id="forumDirective" class="com.ada.bbs.freemaker.ForumDirective"></bean>
     <bean id="simpleForumDirective" class="com.ada.bbs.freemaker.SimpleForumDirective"></bean>
 
@@ -137,7 +128,6 @@
     <mvc:annotation-driven
             ignore-default-model-on-redirect="true"></mvc:annotation-driven>
     <mvc:interceptors>
-        <ref bean="siteHandlerInterceptor"/>
         <ref bean="openSessionInViewInterceptor"/>
     </mvc:interceptors>
 

@@ -11,14 +11,11 @@
     http://www.springframework.org/schema/cache/spring-cache.xsd"
 	default-lazy-init="true">
 	<context:annotation-config />
-	<context:component-scan base-package="com.ada.admin" />
 	<context:component-scan base-package="com.ada.album" />
-	<context:component-scan base-package="com.ada.area" />
 	<context:component-scan base-package="com.ada.article" />
-	<context:component-scan base-package="com.ada.feed" />
 	<context:component-scan base-package="com.ada.question" />
 	<context:component-scan base-package="com.ada.user" />
-	<context:component-scan base-package="com.ada.plugin" />
+	<context:component-scan base-package="com.ada.plug" />
 	<context:component-scan base-package="com.ada.activity" />
 	<context:component-scan base-package="com.ada.site" />
 	<context:component-scan base-package="com.ada.bbs" />
@@ -84,15 +81,14 @@
 		</property>
 		<property name="packagesToScan">
 			<list>
-				<value>com.ada.admin</value>
-				<value>com.ada.user</value>
-				<value>com.ada.article</value>
-				<value>com.ada.album</value>
-				<value>com.ada.question</value>
+				<value>com.ada.user.data.entity</value>
+				<value>com.ada.article.data.entity</value>
+				<value>com.ada.album.data.entity</value>
+				<value>com.ada.question.data.entity</value>
 				<value>com.ada.iwan.data.entity</value>
-				<value>com.ada.plugin.entity</value>
-				<value>com.ada.activity.entity</value>
-				<value>com.ada.site</value>
+				<value>com.ada.plug.data.entity</value>
+				<value>com.ada.activity.data.entity</value>
+				<value>com.ada.site.data.entity</value>
 				<value>com.ada.bbs.data.entity</value>
 			</list>
 		</property>

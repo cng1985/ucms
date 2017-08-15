@@ -1,6 +1,7 @@
 package com.ada.iwan.controller.home;
 
 import com.ada.data.page.Filter;
+import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
 import com.ada.question.data.entity.Question;
@@ -52,7 +53,7 @@ public class QuestionController extends BaseController {
     }
 
     private List<QuestionCatalog> catalogs() {
-        return catalogService.list(0, 1000, ListUtils.list(Filter.eq("", 1)), null);
+        return catalogService.list(0, 1000, ListUtils.list(Filter.eq("parent.id", 1)), null);
     }
 
     @RequestMapping(value = "/type/{catalog}", method = RequestMethod.GET)
@@ -68,10 +69,26 @@ public class QuestionController extends BaseController {
         if ("my".equals(catalog)) {
             pager.getFilters().add(Filter.eq("user.id", UserUtil.getCurrentUser().getId()));
             //pageByUser UserUtil.getCurrentUser().getId(), curpage, pagesize
-
         } else {
             //pageByType
-            pager.getFilters().add(Filter.eq("catalog.id",catalog));
+            if ("new".equals(catalog)) {
+                pager.getOrders().add(Order.desc("id"));
+            } else if ("hot".equals(catalog)) {
+                pager.getOrders().add(Order.desc("views"));
+            } else if ("vote".equals(catalog)) {
+                pager.getOrders().add(Order.desc("votes"));
+            } else if ("answer".equals(catalog)) {
+                pager.getOrders().add(Order.desc("answers"));
+            } else if ("views".equals(catalog)) {
+                pager.getOrders().add(Order.desc("views"));
+            }else if ("unanswer".equals(catalog)) {
+                pager.getFilters().add(Filter.ne("state",1));
+                pager.getOrders().add(Order.desc("id"));
+
+            } else {
+                pager.getOrders().add(Order.desc("id"));
+
+            }
         }
         page = questionService.page(pager);
 
