@@ -20,8 +20,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.util.Assert;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
-import com.ada.vo.CommonAttributes;
-import com.ada.vo.EnumConverter;
 
 import freemarker.core.Environment;
 import freemarker.template.Configuration;
@@ -42,68 +40,6 @@ import freemarker.template.utility.DeepUnwrap;
 public final class FreemarkerUtils {
 
 	/** ConvertUtilsBean */
-	private static final ConvertUtilsBean convertUtils;
-
-	static {
-		convertUtils = new ConvertUtilsBean() {
-			@Override
-			public String convert(Object value) {
-				if (value != null) {
-					Class<?> type = value.getClass();
-					if (type.isEnum() && super.lookup(type) == null) {
-						super.register(new EnumConverter(type), type);
-					} else if (type.isArray() && type.getComponentType().isEnum()) {
-						if (super.lookup(type) == null) {
-							ArrayConverter arrayConverter = new ArrayConverter(type, new EnumConverter(type.getComponentType()), 0);
-							arrayConverter.setOnlyFirstToString(false);
-							super.register(arrayConverter, type);
-						}
-						Converter converter = super.lookup(type);
-						return converter.convert(String.class, value);
-					}
-				}
-				return super.convert(value);
-			}
-
-			@SuppressWarnings("rawtypes")
-			@Override
-			public Object convert(String value, Class clazz) {
-				if (clazz.isEnum() && super.lookup(clazz) == null) {
-					super.register(new EnumConverter(clazz), clazz);
-				}
-				return super.convert(value, clazz);
-			}
-
-			@SuppressWarnings("rawtypes")
-			@Override
-			public Object convert(String[] values, Class clazz) {
-				if (clazz.isArray() && clazz.getComponentType().isEnum() && super.lookup(clazz.getComponentType()) == null) {
-					super.register(new EnumConverter(clazz.getComponentType()), clazz.getComponentType());
-				}
-				return super.convert(values, clazz);
-			}
-
-			@SuppressWarnings("rawtypes")
-			@Override
-			public Object convert(Object value, Class targetType) {
-				if (super.lookup(targetType) == null) {
-					if (targetType.isEnum()) {
-						super.register(new EnumConverter(targetType), targetType);
-					} else if (targetType.isArray() && targetType.getComponentType().isEnum()) {
-						ArrayConverter arrayConverter = new ArrayConverter(targetType, new EnumConverter(targetType.getComponentType()), 0);
-						arrayConverter.setOnlyFirstToString(false);
-						super.register(arrayConverter, targetType);
-					}
-				}
-				return super.convert(value, targetType);
-			}
-		};
-
-		DateConverter dateConverter = new DateConverter();
-		dateConverter.setPatterns(CommonAttributes.DATE_PATTERNS);
-		convertUtils.register(dateConverter, Date.class);
-	}
-
 	/**
 	 * 不可实例化
 	 */
@@ -160,28 +96,6 @@ public final class FreemarkerUtils {
 		return out.toString();
 	}
 
-	/**
-	 * 获取参数
-	 * 
-	 * @param name
-	 *            名称
-	 * @param type
-	 *            类型
-	 * @param params
-	 *            参数
-	 * @return 参数,若不存在则返回null
-	 */
-	public static <T> T getParameter(String name, Class<T> type, Map<String, TemplateModel> params) throws TemplateModelException {
-		Assert.hasText(name);
-		Assert.notNull(type);
-		Assert.notNull(params);
-		TemplateModel templateModel = params.get(name);
-		if (templateModel == null) {
-			return null;
-		}
-		Object value = DeepUnwrap.unwrap(templateModel);
-		return (T) convertUtils.convert(value, type);
-	}
 
 	/**
 	 * 获取变量

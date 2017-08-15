@@ -1,7 +1,7 @@
 package com.ada.iwan.service.album;
 
-import com.ada.album.entity.Category;
-import com.ada.album.service.CategoryService;
+import com.ada.album.data.entity.Category;
+import com.ada.album.data.service.CategoryService;
 import com.google.gson.Gson;
 import jodd.http.HttpRequest;
 

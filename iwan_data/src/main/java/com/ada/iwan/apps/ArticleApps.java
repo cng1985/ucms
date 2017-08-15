@@ -1,9 +1,11 @@
 package com.ada.iwan.apps;
 
-import com.ada.article.entity.Article;
-import com.ada.article.entity.ArticleCatalog;
-import com.ada.article.service.ArticleService;
+import com.ada.article.data.entity.Article;
+import com.ada.article.data.entity.ArticleCatalog;
+import com.ada.article.data.service.ArticleService;
 import com.ada.data.core.Pagination;
+import com.ada.data.page.Page;
+import com.ada.data.page.Pageable;
 
 import java.util.List;
 
@@ -12,8 +14,9 @@ public class ArticleApps {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArticleService service = ObjectFactory.get().getBean(ArticleService.class);
-		Pagination<Article>	a=service.getPage(1, 100);
-		List<Article> as=	a.getList();
+		Pageable pager=new Pageable();
+		Page<Article> a=service.page(pager);
+		List<Article> as=	a.getContent();
 	}
 
 	private static void add() {

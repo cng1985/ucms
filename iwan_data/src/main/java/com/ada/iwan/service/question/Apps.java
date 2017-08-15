@@ -1,8 +1,8 @@
 package com.ada.iwan.service.question;
 
-import com.ada.question.entity.Question;
-import com.ada.question.entity.QuestionCatalog;
-import com.ada.question.service.QuestionService;
+import com.ada.question.data.entity.Question;
+import com.ada.question.data.entity.QuestionCatalog;
+import com.ada.question.data.service.QuestionService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

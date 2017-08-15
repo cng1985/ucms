@@ -7,11 +7,9 @@ package com.ada.iwan.service.file;
 
 import java.util.List;
 
+import com.ada.plug.data.vo.FileInfo;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ada.plugin.vo.FileInfo;
-import com.ada.plugin.vo.FileInfo.FileType;
-import com.ada.plugin.vo.FileInfo.OrderType;
 
 /**
  * Service - 文件
@@ -30,7 +28,7 @@ public interface FileService {
 	 *            上传文件
 	 * @return 文件验证是否通过
 	 */
-	boolean isValid(FileType fileType, MultipartFile multipartFile);
+	boolean isValid(FileInfo.FileType fileType, MultipartFile multipartFile);
 
 	/**
 	 * 文件上传
@@ -43,7 +41,7 @@ public interface FileService {
 	 *            是否异步
 	 * @return 访问URL
 	 */
-	String upload(FileType fileType, MultipartFile multipartFile, boolean async);
+	String upload(FileInfo.FileType fileType, MultipartFile multipartFile, boolean async);
 
 	/**
 	 * 文件上传(异步)
@@ -54,7 +52,7 @@ public interface FileService {
 	 *            上传文件
 	 * @return 访问URL
 	 */
-	String upload(FileType fileType, MultipartFile multipartFile);
+	String upload(FileInfo.FileType fileType, MultipartFile multipartFile);
 
 	/**
 	 * 文件上传至本地
@@ -65,7 +63,7 @@ public interface FileService {
 	 *            上传文件
 	 * @return 路径
 	 */
-	String uploadLocal(FileType fileType, MultipartFile multipartFile);
+	String uploadLocal(FileInfo.FileType fileType, MultipartFile multipartFile);
 
 	/**
 	 * 文件浏览
@@ -78,6 +76,6 @@ public interface FileService {
 	 *            排序类型
 	 * @return 文件信息
 	 */
-	List<FileInfo> browser(String path, FileType fileType, OrderType orderType);
+	List<FileInfo> browser(String path, FileInfo.FileType fileType, FileInfo.OrderType orderType);
 
 }

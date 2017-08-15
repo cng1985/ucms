@@ -13,12 +13,12 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.ada.plug.api.StoragePlugin;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.springframework.stereotype.Service;
 
 import com.ada.iwan.service.file.PluginFileService;
-import com.ada.plugin.api.StoragePlugin;
 
 /**
  * Service - 插件

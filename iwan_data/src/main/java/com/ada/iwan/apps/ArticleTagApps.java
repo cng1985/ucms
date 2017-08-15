@@ -1,8 +1,10 @@
 package com.ada.iwan.apps;
 
-import com.ada.article.entity.Article;
-import com.ada.article.service.ArticleService;
+import com.ada.article.data.entity.Article;
+import com.ada.article.data.service.ArticleService;
 import com.ada.data.core.Pagination;
+import com.ada.data.page.Page;
+import com.ada.data.page.Pageable;
 
 import java.util.List;
 
@@ -12,8 +14,9 @@ public class ArticleTagApps {
 		// TODO Auto-generated method stub
 		ArticleService service = ObjectFactory.get().getBean(ArticleService.class);
 
-		Pagination<Article> ss = service.getPage(0, 10);
-		List<Article> as = ss.getList();
+		Pageable pager=new Pageable();
+		Page<Article> ss = service.page(pager);
+		List<Article> as = ss.getContent();
 		for (Article article : as) {
 		}
 	}

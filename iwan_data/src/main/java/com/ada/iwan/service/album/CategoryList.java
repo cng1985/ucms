@@ -1,8 +1,9 @@
 package com.ada.iwan.service.album;
 
+import com.ada.album.data.entity.Category;
+
 import java.util.List;
 
-import com.ada.album.entity.Category;
 
 public class CategoryList {
 

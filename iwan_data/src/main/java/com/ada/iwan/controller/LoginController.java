@@ -16,10 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ada.shiro.realm.UserInfoToken;
-import com.ada.user.entity.UserAccount;
+import com.ada.user.data.entity.UserAccount;
+import com.ada.user.data.entity.UserInfo;
+import com.ada.user.data.service.UserAccountService;
+import com.ada.user.data.service.UserInfoService;
+import com.ada.user.data.vo.UserAccountVo;
 import com.ada.user.enums.AccountType;
-import com.ada.user.service.*;
-import com.ada.user.vo.UserAccountVo;
+import com.ada.user.oauth.domain.UserQQ;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -38,9 +41,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ada.iwan.controller.home.Views;
 import com.ada.shiro.filter.UsernamePasswordCaptchaToken;
 import com.ada.shiro.utils.UserUtil;
-import com.ada.user.entity.UserGitHub;
-import com.ada.user.entity.UserInfo;
-import com.ada.user.entity.UserQQ;
 import com.github.scribejava.apis.GitHubApi;
 import com.github.scribejava.apis.SinaWeiboApi20;
 import com.github.scribejava.core.builder.ServiceBuilder;
@@ -73,14 +73,6 @@ public class LoginController extends BaseController {
 	@Autowired
 	UserAccountService accountService;
 
-	@Autowired
-	UserOschinaService userOschinaService;
-
-	@Autowired
-	UserGitHubService userGitHubService;
-
-	@Autowired
-	UserOauthWeiboService weiboService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(String email, String username, String password, HttpServletRequest request,
@@ -148,7 +140,8 @@ public class LoginController extends BaseController {
 		OAuth2AccessToken tokenx;
 		try {
 			tokenx = weibo.getAccessToken(code);
-			UserInfo user = weiboService.login(tokenx.getAccessToken());
+			//UserInfo user = weiboService.login(tokenx.getAccessToken());
+			UserInfo user=null;
 			String result = login(user);
 			if (result != null) return result;
 		} catch (IOException e) {
@@ -196,9 +189,9 @@ public class LoginController extends BaseController {
 		initurls(model);
 		try {
 			OAuth2AccessToken tokenx = github.getAccessToken(code);
-			UserGitHub oschina = userGitHubService.login(tokenx.getAccessToken());
 			if (oschina != null) {
-				String result = login(oschina.getUser());
+				UserInfo user=null;
+				String result = login(user);
 				if (result != null) return result;
 			}
 		} catch (Exception e) {
@@ -217,7 +210,8 @@ public class LoginController extends BaseController {
 			String grant_type = "authorization_code";
 			String client_secret = "TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF";
 			String client_id = "CTJlkYcnBaZCsi4GGgUk";
-			UserInfo oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
+			//UserInfo oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
+			UserInfo oschina=null;
 			if (oschina != null && oschina.getId() != null) {
 				Subject subject = SecurityUtils.getSubject();
 				if (!subject.isAuthenticated()) {
@@ -232,8 +226,6 @@ public class LoginController extends BaseController {
 		return getView(Views.LOGIN);
 	}
 
-	@Autowired
-	UserQQService qqService;
 
 	@Autowired
 	UserInfoService userService;
@@ -243,7 +235,8 @@ public class LoginController extends BaseController {
 			Model model) {
 		try {
 
-			UserQQ qq = qqService.login(access_token, openid, "101303927");
+			//UserQQ qq = qqService.login(access_token, openid, "101303927");
+			UserQQ qq=null;
 			if (qq != null) {
 				Subject subject = SecurityUtils.getSubject();
 				if (!subject.isAuthenticated()) {

@@ -17,6 +17,8 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 
+import com.ada.plug.api.StoragePlugin;
+import com.ada.plug.data.vo.FileInfo;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -31,10 +33,6 @@ import com.ada.iwan.plugs.file.FilePlugin;
 import com.ada.iwan.service.file.FileService;
 import com.ada.iwan.service.file.PluginFileService;
 import com.ada.iwan.utils.FreemarkerUtils;
-import com.ada.plugin.api.StoragePlugin;
-import com.ada.plugin.vo.FileInfo;
-import com.ada.plugin.vo.FileInfo.FileType;
-import com.ada.plugin.vo.FileInfo.OrderType;
 
 /**
  * Service - 文件
@@ -71,7 +69,7 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 	 *            文件类型
 	 */
 	private void addTask(final StoragePlugin storagePlugin, final String path, final File tempFile,
-			final String contentType) {
+						 final String contentType) {
 		taskExecutor.execute(new Runnable() {
 			public void run() {
 				try {
@@ -83,7 +81,7 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 		});
 	}
 
-	public boolean isValid(FileType fileType, MultipartFile multipartFile) {
+	public boolean isValid(FileInfo.FileType fileType, MultipartFile multipartFile) {
 		if (multipartFile == null) {
 			return false;
 		}
@@ -94,11 +92,11 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 		// return false;
 		// }
 		String[] uploadExtensions = null;
-		if (fileType == FileType.flash) {
+		if (fileType == FileInfo.FileType.flash) {
 			uploadExtensions = "swf,flv".split(",");
-		} else if (fileType == FileType.media) {
+		} else if (fileType == FileInfo.FileType.media) {
 			uploadExtensions = "swf,flv,mp3,wav,avi,rm,rmvb".split(",");
-		} else if (fileType == FileType.file) {
+		} else if (fileType == FileInfo.FileType.file) {
 			uploadExtensions = "zip,rar,7z,doc,docx,xls,xlsx,ppt,pptx".split(",");
 		} else {
 			uploadExtensions = "jpg,jpeg,bmp,gif,png".split(",");
@@ -109,16 +107,16 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 		return false;
 	}
 
-	public String upload(FileType fileType, MultipartFile multipartFile, boolean async) {
+	public String upload(FileInfo.FileType fileType, MultipartFile multipartFile, boolean async) {
 		if (multipartFile == null) {
 			return null;
 		}
 		String uploadPath;
-		if (fileType == FileType.flash) {
+		if (fileType == FileInfo.FileType.flash) {
 			uploadPath = "/flash/${.now?string('yyyyMM')}/";
-		} else if (fileType == FileType.media) {
+		} else if (fileType == FileInfo.FileType.media) {
 			uploadPath = "/media/${.now?string('yyyyMM')}/";
-		} else if (fileType == FileType.file) {
+		} else if (fileType == FileInfo.FileType.file) {
 			uploadPath = "/file/${.now?string('yyyyMM')}/";
 		} else {
 			uploadPath = "/images/${.now?string('yyyyMM')}/";
@@ -160,20 +158,20 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 		return backpath;
 	}
 
-	public String upload(FileType fileType, MultipartFile multipartFile) {
+	public String upload(FileInfo.FileType fileType, MultipartFile multipartFile) {
 		return upload(fileType, multipartFile, false);
 	}
 
-	public String uploadLocal(FileType fileType, MultipartFile multipartFile) {
+	public String uploadLocal(FileInfo.FileType fileType, MultipartFile multipartFile) {
 		if (multipartFile == null) {
 			return null;
 		}
 		String uploadPath;
-		if (fileType == FileType.flash) {
+		if (fileType == FileInfo.FileType.flash) {
 			uploadPath = "flash";
-		} else if (fileType == FileType.media) {
+		} else if (fileType == FileInfo.FileType.media) {
 			uploadPath = "media";
-		} else if (fileType == FileType.file) {
+		} else if (fileType == FileInfo.FileType.file) {
 			uploadPath = "file";
 		} else {
 			uploadPath = "images";
@@ -196,7 +194,7 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 		return null;
 	}
 
-	public List<FileInfo> browser(String path, FileType fileType, OrderType orderType) {
+	public List<FileInfo> browser(String path, FileInfo.FileType fileType, FileInfo.OrderType orderType) {
 		if (path != null) {
 			if (!path.startsWith("/")) {
 				path = "/" + path;
@@ -208,11 +206,11 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 			path = "/";
 		}
 		String uploadPath;
-		if (fileType == FileType.flash) {
+		if (fileType == FileInfo.FileType.flash) {
 			uploadPath = "flash";
-		} else if (fileType == FileType.media) {
+		} else if (fileType == FileInfo.FileType.media) {
 			uploadPath = "media";
-		} else if (fileType == FileType.file) {
+		} else if (fileType == FileInfo.FileType.file) {
 			uploadPath = "file";
 		} else {
 			uploadPath = "images";
@@ -228,9 +226,9 @@ public class FileServiceImpl implements FileService, ServletContextAware {
 			fileInfos = storagePlugin.browser(browsePath);
 			break;
 		}
-		if (orderType == OrderType.size) {
+		if (orderType == FileInfo.OrderType.size) {
 			Collections.sort(fileInfos, new SizeComparator());
-		} else if (orderType == OrderType.type) {
+		} else if (orderType == FileInfo.OrderType.type) {
 			Collections.sort(fileInfos, new TypeComparator());
 		} else {
 			Collections.sort(fileInfos, new NameComparator());

@@ -1,9 +1,9 @@
 package com.ada.iwan.apps;
 
+import com.ada.user.data.entity.UserInfo;
+import com.ada.user.data.service.UserInfoService;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import com.ada.user.entity.UserInfo;
-import com.ada.user.service.UserInfoService;
 
 public class UserApps {
 

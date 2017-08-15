@@ -1,7 +1,7 @@
 package com.ada.iwan.service.album;
 
-import com.ada.album.entity.PhotoFeed;
-import com.ada.album.service.PhotoFeedService;
+import com.ada.album.data.entity.PhotoFeed;
+import com.ada.album.data.service.PhotoFeedService;
 import com.ada.iwan.apps.ObjectFactory;
 
 public class PhotoFeedApps {

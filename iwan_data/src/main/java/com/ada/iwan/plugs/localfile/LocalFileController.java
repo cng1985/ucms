@@ -7,6 +7,8 @@ package com.ada.iwan.plugs.localfile;
 
 import javax.annotation.Resource;
 
+import com.ada.plug.data.entity.PluginConfig;
+import com.ada.plug.data.service.PluginConfigService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ada.iwan.controller.BaseController;
-import com.ada.plugin.entity.PluginConfig;
-import com.ada.plugin.service.PluginConfigService;
 
 /**
  * Controller - localfile
@@ -79,7 +79,7 @@ public class LocalFileController extends BaseController {
 		pluginConfig.setAttribute("diskpath", diskpath);
 		pluginConfig.setAttribute("urlPrefix", StringUtils.removeEnd(urlPrefix, "/"));
 		pluginConfig.setIsEnabled(isEnabled);
-		pluginConfig.setSortnum(order);
+		pluginConfig.setSortNum(order);
 		pluginConfigService.update(pluginConfig);
 		//addFlashMessage(redirectAttributes, SUCCESS_MESSAGE);
 		return "redirect:/admin/storage_plugin/list.htm";

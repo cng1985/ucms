@@ -1,7 +1,6 @@
 package com.ada.iwan.data.template;
 
-import com.ada.article.entity.Article;
-import com.ada.article.entity.SensitiveCategory;
+import com.ada.article.data.entity.SensitiveCategory;
 import com.ada.bbs.data.entity.Forum;
 import com.ada.data.entity.CatalogEntity;
 import com.ada.imake.ChainMake;

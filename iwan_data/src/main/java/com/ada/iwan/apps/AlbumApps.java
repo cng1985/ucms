@@ -1,7 +1,5 @@
 package com.ada.iwan.apps;
 
-import com.ada.album.entity.Album;
-import com.ada.album.service.AlbumService;
 
 public class AlbumApps {
 

@@ -1,17 +1,16 @@
 package com.ada.iwan.controller.user;
 
+import com.ada.iwan.controller.BaseController;
 import com.ada.iwan.data.entity.Member;
 import com.ada.iwan.data.service.MemberService;
-import com.ada.user.entity.UserInfo;
+import com.ada.shiro.utils.UserUtil;
+import com.ada.user.data.entity.UserInfo;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.ada.iwan.controller.BaseController;
-import com.ada.shiro.utils.UserUtil;
 
 @Controller
 @RequestMapping(value = "member")

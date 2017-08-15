@@ -1,5 +1,7 @@
 package com.ada.iwan.controller.home;
 
+import com.ada.user.data.entity.UserInfo;
+import com.ada.user.data.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ada.iwan.controller.BaseController;
-import com.ada.user.entity.UserInfo;
-import com.ada.user.service.UserInfoService;
 
 @Controller
 @RequestMapping(value = "userdetails")

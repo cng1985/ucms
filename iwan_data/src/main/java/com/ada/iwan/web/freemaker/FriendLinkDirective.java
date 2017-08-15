@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.ada.common.utils.DirectiveUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ada.data.page.Order.Direction;
@@ -13,7 +14,6 @@ import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
 import com.ada.iwan.data.entity.FriendLink;
 import com.ada.iwan.data.service.FriendLinkService;
-import com.young.web.utils.DirectiveUtils;
 
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;

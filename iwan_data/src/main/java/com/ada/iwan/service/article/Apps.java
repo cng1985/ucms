@@ -1,8 +1,8 @@
 package com.ada.iwan.service.article;
 
-import com.ada.article.entity.Article;
-import com.ada.article.entity.ArticleCatalog;
-import com.ada.article.service.ArticleService;
+import com.ada.article.data.entity.Article;
+import com.ada.article.data.entity.ArticleCatalog;
+import com.ada.article.data.service.ArticleService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -71,7 +71,7 @@ public class Apps {
 			ArticleCatalog catalog = new ArticleCatalog();
 			catalog.setId(catalogid);
 			article.setCatalog(catalog);
-			articleService.save(article, tags);
+			//articleService.save(article, tags);
 		}
 	}
 

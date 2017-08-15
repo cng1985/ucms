@@ -2,6 +2,9 @@ package com.ada.iwan.controller.admin;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.ada.user.data.entity.UserInfo;
+import com.ada.user.data.service.UserInfoService;
+import com.ada.user.data.service.UserRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +16,6 @@ import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
-import com.ada.user.entity.UserInfo;
-import com.ada.user.service.UserInfoService;
-import com.ada.user.service.UserRoleService;
 
 @Controller
 public class AdminAction {
@@ -34,7 +34,7 @@ public class AdminAction {
 			pageable.getOrders().add(Order.desc("id"));
 		}
 		pageable.getFilters().add(Filter.eq("catalog", 1));
-		Page<UserInfo> pagination = manager.findPage(pageable);
+		Page<UserInfo> pagination = manager.page(pageable);
 		model.addAttribute("list", pagination.getContent());
 		model.addAttribute("page", pagination);
 		return "admin/admin/list";
@@ -42,35 +42,19 @@ public class AdminAction {
 
 	@RequestMapping("/admin/admin/view_add")
 	public String add(ModelMap model) {
-		model.addAttribute("roles", roleService.findList(0, 1000, null, null));
+		model.addAttribute("roles", roleService.list(0, 1000, null, null));
 		return "admin/admin/add";
 	}
 
 	@RequestMapping("/admin/admin/view_edit")
 	public String edit(Pageable pageable, Long id, Integer pageNo, HttpServletRequest request, ModelMap model) {
-		model.addAttribute("roles", roleService.findList(0, 1000, null, null));
+		model.addAttribute("roles", roleService.list(0, 1000, null, null));
 		model.addAttribute("model", manager.findById(id));
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("page", pageable);
 		return "admin/admin/edit";
 	}
 
-	@RequestMapping("/admin/admin/model_save")
-	public String save(UserInfo bean,Long roleid, HttpServletRequest request, ModelMap model) {
-
-		String view = "redirect:view_list.htm";
-		try {
-			bean.setPlainPassword(bean.getPassword());
-			bean = manager.reg(bean);
-			manager.addRole(bean.getId(), roleid);
-			log.info("save object id={}", bean.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("erro", e.getMessage());
-			view = "admin/admin/add";
-		}
-		return view;
-	}
 
 	@RequestMapping("/admin/admin/model_update")
 	public String update(Pageable pageable, UserInfo bean, HttpServletRequest request, ModelMap model) {

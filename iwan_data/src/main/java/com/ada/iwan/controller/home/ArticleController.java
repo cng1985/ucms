@@ -1,5 +1,12 @@
 package com.ada.iwan.controller.home;
 
+import com.ada.article.data.entity.Article;
+import com.ada.article.data.service.ArticleCatalogService;
+import com.ada.article.data.service.ArticleService;
+import com.ada.data.page.Filter;
+import com.ada.data.page.Page;
+import com.ada.data.page.Pageable;
+import com.ada.user.utils.ListUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ada.article.page.ArticlePage;
-import com.ada.article.service.ArticleCatalogService;
-import com.ada.article.service.ArticleService;
 import com.ada.iwan.controller.BaseController;
 
 @Controller
@@ -22,8 +26,10 @@ public class ArticleController extends BaseController {
 
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
 	public String view(@PathVariable("id")Long id, Model model) {
-		model.addAttribute("article", articleService.view(id));
-		model.addAttribute("catalogs", articleCatalogService.findChild(1));
+		model.addAttribute("article", articleService.findById(id));
+
+
+		model.addAttribute("catalogs", articleCatalogService.list(0,1000, ListUtils.list(Filter.eq("parent.id",1)),null));
 		return getView("article/view");
 	}
 
@@ -32,8 +38,13 @@ public class ArticleController extends BaseController {
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model) {
-		model.addAttribute("articles", articleService.getPage(1, 10).getList());
-		model.addAttribute("catalogs", articleCatalogService.findChild(1));
+
+
+		Pageable pager=new Pageable();
+		Page<Article> page = articleService.page(pager);
+
+		model.addAttribute("articles",page.getContent());
+		model.addAttribute("catalogs", articleCatalogService.list(0,1000, ListUtils.list(Filter.eq("parent.id",1)),null));
 		return getView("article/index");
 	}
 
@@ -44,10 +55,14 @@ public class ArticleController extends BaseController {
 	public String catalog(@RequestParam(value = "id", required = true, defaultValue = "1") int id,
 			@RequestParam(value = "curpage", required = true, defaultValue = "1") int curpage,
 			@RequestParam(value = "pagesize", required = true, defaultValue = "20") int pagesize, Model model) {
-		
-		ArticlePage page = articleService.pageByCatalog(id,curpage, pagesize);
-		model.addAttribute("articles", page.getList());
-		model.addAttribute("catalogs", articleCatalogService.findChild(1));
+
+		Pageable pager=new Pageable();
+		pager.setPageNumber(curpage);
+		pager.setPageSize(pagesize);
+		pager.getFilters().add(Filter.eq("catalog.id",id));
+		Page<Article> page = articleService.page(pager);
+		model.addAttribute("articles", page.getContent());
+		model.addAttribute("catalogs", articleCatalogService.list(0,1000, ListUtils.list(Filter.eq("parent.id",1)),null));
 		model.addAttribute("page", page);
 		model.addAttribute("id", id);
 		model.addAttribute("curpage", curpage);

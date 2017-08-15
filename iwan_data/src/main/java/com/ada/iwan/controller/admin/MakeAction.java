@@ -1,7 +1,7 @@
 package com.ada.iwan.controller.admin;
 
-import com.ada.article.service.ArticleCatalogService;
-import com.ada.article.service.ArticleService;
+import com.ada.article.data.service.ArticleCatalogService;
+import com.ada.article.data.service.ArticleService;
 import com.ada.data.page.Pageable;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -57,8 +57,9 @@ public class MakeAction implements ServletContextAware {
 
         Writer out = null;
         try {
-            model.addAttribute("articles", articleService.getPage(1, 10).getList());
-            model.addAttribute("catalogs", articleCatalogService.findChild(1));
+            Pageable pager=new Pageable();
+            model.addAttribute("articles", articleService.page(pager).getContent());
+           // model.addAttribute("catalogs", articleCatalogService.findChild(1));
             conf = configurer.getConfiguration();
             File f;
             f = new File(get("index.html"));

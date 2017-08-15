@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ada.plug.data.vo.FileInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ada.iwan.service.file.FileService;
 import com.ada.iwan.utils.JsonUtils;
-import com.ada.plugin.vo.FileInfo;
-import com.ada.plugin.vo.FileInfo.FileType;
-import com.ada.plugin.vo.FileInfo.OrderType;
 
 /**
  * Controller - 文件处理
@@ -45,7 +43,7 @@ public class FileController extends BaseController {
 	 * 上传
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
-	public void upload(FileType fileType, MultipartFile file, HttpServletResponse response) {
+	public void upload(FileInfo.FileType fileType, MultipartFile file, HttpServletResponse response) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		if (!fileService.isValid(fileType, file)) {
 			data.put("message", "");
@@ -71,7 +69,7 @@ public class FileController extends BaseController {
 	 * 浏览
 	 */
 	@RequestMapping(value = "/browser", method = RequestMethod.GET)
-	public @ResponseBody List<FileInfo> browser(String path, FileType fileType, OrderType orderType) {
+	public @ResponseBody List<FileInfo> browser(String path, FileInfo.FileType fileType, FileInfo.OrderType orderType) {
 		return fileService.browser(path, fileType, orderType);
 	}
 

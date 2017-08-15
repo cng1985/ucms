@@ -1,11 +1,11 @@
 package com.ada.iwan.service.album;
 
-import com.ada.album.entity.Category;
-import com.ada.album.entity.Photo;
-import com.ada.album.entity.Tag;
-import com.ada.album.service.CategoryService;
-import com.ada.album.service.PhotoService;
-import com.ada.album.service.TagService;
+import com.ada.album.data.entity.Category;
+import com.ada.album.data.entity.Photo;
+import com.ada.album.data.entity.Tag;
+import com.ada.album.data.service.CategoryService;
+import com.ada.album.data.service.PhotoService;
+import com.ada.album.data.service.TagService;
 import com.google.gson.Gson;
 import jodd.http.HttpRequest;
 

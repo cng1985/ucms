@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ada.admin.entity.Menu;
 import com.ada.data.core.Finder;
 import com.ada.data.core.Pagination;
 import com.ada.data.core.Updater;
@@ -38,10 +37,10 @@ public class StockCatalogServiceImpl implements StockCatalogService {
 		if (bean.getParentId() != null) {
 			StockCatalog parent = dao.findById(bean.getParentId());
 			if (parent != null) {
-				if (parent.getLevelinfo() != null) {
-					bean.setLevelinfo(parent.getLevelinfo() + 1);
+				if (parent.getLevelInfo() != null) {
+					bean.setLevelInfo(parent.getLevelInfo() + 1);
 				} else {
-					bean.setLevelinfo(2);
+					bean.setLevelInfo(2);
 				}
 				if (parent.getIds()!=null) {
 					bean.setIds(parent.getIds()+","+bean.getId());
@@ -51,11 +50,11 @@ public class StockCatalogServiceImpl implements StockCatalogService {
 				}
 				
 			} else {
-				bean.setLevelinfo(1);
+				bean.setLevelInfo(1);
 				bean.setIds(""+bean.getId());
 			}
 		} else {
-			bean.setLevelinfo(1);
+			bean.setLevelInfo(1);
 			bean.setIds(""+bean.getId());
 		}
 		return bean;

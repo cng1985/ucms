@@ -1,5 +1,12 @@
 package com.ada.iwan.controller.home;
 
+import com.ada.activity.data.entity.Activity;
+import com.ada.activity.data.service.ActivityCatalogService;
+import com.ada.activity.data.service.ActivityService;
+import com.ada.data.page.Filter;
+import com.ada.data.page.Page;
+import com.ada.data.page.Pageable;
+import com.ada.user.utils.ListUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ada.activity.page.ActivityPage;
-import com.ada.activity.service.ActivityCatalogService;
-import com.ada.activity.service.ActivityService;
 import com.ada.iwan.controller.BaseController;
 
 
@@ -24,7 +28,7 @@ public class ActivityController extends BaseController{
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
 	public String view(@PathVariable("id")Long id, Model model) {
 		model.addAttribute("activity", activityService.findById(id));
-		model.addAttribute("catalogs", articleCatalogService.findChild(1));
+		model.addAttribute("catalogs", articleCatalogService.list(0,1000, ListUtils.list(Filter.eq("parent.id",1)),null));
 		return getView("activity/view");
 	}
 
@@ -33,8 +37,9 @@ public class ActivityController extends BaseController{
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model) {
-		model.addAttribute("activitys", activityService.getPage(1, 10).getList());
-		model.addAttribute("catalogs", articleCatalogService.findChild(1));
+		Pageable pager=new Pageable();
+		model.addAttribute("activitys", activityService.page(pager).getContent());
+		model.addAttribute("catalogs", articleCatalogService.list(0,1000, ListUtils.list(Filter.eq("parent.id",1)),null));
 		return getView("activity/index");
 	}
 
@@ -42,10 +47,13 @@ public class ActivityController extends BaseController{
 	public String catalog(@RequestParam(value = "id", required = true, defaultValue = "1") int id,
 			@RequestParam(value = "curpage", required = true, defaultValue = "1") int curpage,
 			@RequestParam(value = "pagesize", required = true, defaultValue = "20") int pagesize, Model model) {
-		
-		ActivityPage page = activityService.pageByCatalog(id,curpage, pagesize);
-		model.addAttribute("activitys", page.getList());
-		model.addAttribute("catalogs", articleCatalogService.findChild(1));
+		Pageable pager=new Pageable();
+		pager.setPageNumber(curpage);
+		pager.setPageSize(pagesize);
+		pager.getFilters().add(Filter.eq("catalog.id",id));
+		Page<Activity> page = activityService.page(pager);
+		model.addAttribute("activitys", page.getContent());
+		model.addAttribute("catalogs", articleCatalogService.list(0,1000, ListUtils.list(Filter.eq("parent.id",1)),null));
 		model.addAttribute("page", page);
 		model.addAttribute("id", id);
 		model.addAttribute("curpage", curpage);

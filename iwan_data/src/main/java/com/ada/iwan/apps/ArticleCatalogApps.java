@@ -1,7 +1,8 @@
 package com.ada.iwan.apps;
 
-import com.ada.article.entity.ArticleCatalog;
-import com.ada.article.service.ArticleCatalogService;
+
+import com.ada.article.data.entity.ArticleCatalog;
+import com.ada.article.data.service.ArticleCatalogService;
 
 public class ArticleCatalogApps {
 

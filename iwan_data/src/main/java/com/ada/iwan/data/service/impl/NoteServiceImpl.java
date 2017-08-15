@@ -2,6 +2,7 @@ package com.ada.iwan.data.service.impl;
 
 import java.util.List;
 
+import com.ada.site.data.dao.SystemVersionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +15,6 @@ import com.ada.data.page.Pageable;
 import com.ada.iwan.data.dao.NoteDao;
 import com.ada.iwan.data.entity.Note;
 import com.ada.iwan.data.service.NoteService;
-import com.ada.site.dao.SystemVersionDao;
 
 @Service
 @Transactional

@@ -2,15 +2,16 @@ package com.ada.iwan.service.album;
 
 import java.util.List;
 
+import com.ada.album.data.entity.Category;
+import com.ada.album.data.entity.Photo;
+import com.ada.album.data.entity.Tag;
+import com.ada.album.data.service.CategoryService;
+import com.ada.album.data.service.PhotoService;
+import com.ada.album.data.service.TagService;
+import com.ada.data.page.Page;
+import com.ada.data.page.Pageable;
 import jodd.http.HttpRequest;
 
-import com.ada.album.entity.Category;
-import com.ada.album.entity.Photo;
-import com.ada.album.entity.Tag;
-import com.ada.album.page.CategoryPage;
-import com.ada.album.service.CategoryService;
-import com.ada.album.service.PhotoService;
-import com.ada.album.service.TagService;
 import com.ada.iwan.apps.ObjectFactory;
 import com.ada.iwan.utils.RpcUtils;
 import com.google.gson.Gson;
@@ -20,8 +21,9 @@ public class Photo1Apps2 {
 	
 	public static void main(String[] args) {
 		CategoryService service = ObjectFactory.get().getBean(CategoryService.class);
-		CategoryPage page = service.getPage(1, 100);
-		List<Category> cs = page.getList();
+		Pageable pager=new Pageable();
+		Page<Category> page = service.page(pager);
+		List<Category> cs = page.getContent();
 		if (cs != null) {
 			for (Category category : cs) {
 				int max = category.getCount() / 30;

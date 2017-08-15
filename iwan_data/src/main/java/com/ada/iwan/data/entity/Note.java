@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.ada.data.entity.VersionEntity;
-import com.ada.user.entity.UserInfo;
+import com.ada.user.data.entity.UserInfo;
 
 /**
  * 用户笔记
