@@ -1,41 +1,37 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-	[#include "/theme/default/common/nav.html" /]
-	[#include "/theme/default/common/head.html" /]
-	[#include "/theme/default/common/footer.html" /]
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>个人资料</title>
+	[#include "/theme/adminlte/common/sites.html" /]
+	[@header /]
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
 
-	<style type="text/css" media="screen">
-		.border {
+<div class="fakeloader"></div>
 
-			border: 1px solid #ddd;
-			border-radius: 6px;
-			padding-bottom: 20px;
-		}
+<div class="wrapper">
 
-	</style>
-	<head>
-		[@head "个人资料" /]
-		[#include "/theme/default/common/imagesimple.html" /]
-	</head>
-	<body>
-		<div class="fakeloader"></div>
-
+	<header class="main-header">
 		[@nav  7 /]
-		<!-- /.navbar -->
-
+	</header>
+	<!-- Full Width Column -->
+	<div class="content-wrapper">
 		<div class="container">
 
-			<div class="row">
+			<div class="row" style="margin-top: 30px;">
 
 				<div class="col-xs-3 col-sm-3" id="sidebar">
 					<div class="list-group">
 						<a href="#" class="list-group-item active">个人资料</a>
 						<a href="#"
-						class="list-group-item">密码</a>
+						   class="list-group-item">密码</a>
 						<a href="#" class="list-group-item">朋友</a>
 						<a href="#"
-						class="list-group-item">我的股票</a><a href="#"
-						class="list-group-item">隐私设置</a>
+						   class="list-group-item">我的股票</a><a href="#"
+															  class="list-group-item">隐私设置</a>
 					</div>
 				</div>
 				<div class="col-xs-9 col-sm-9 border">
@@ -48,7 +44,7 @@
 							<label for="avatar">个人头像</label>
 							<div>
 								<div style="max-width: 100px;" id="avatar" class="uploader-list">
-									 [#if user.avatar??]
+									[#if user.avatar??]
 									<div class="file-item thumbnail upload-state-done" id="WU_FILE_0">
 										<img src="${user.avatar!''}"><div class="info"></div>
 									</div>
@@ -99,8 +95,19 @@
 			[@footer /]
 
 		</div>
-		<!--/.container-->
 
-		[@imagesimple "uploaderthumb" "fileListuploaderthumb" "uploaderthumbpath"][/@imagesimple]
-	</body>
+		<!-- /.container -->
+	</div>
+
+	[@imagesimple "uploaderthumb" "fileListuploaderthumb" "uploaderthumbpath"][/@imagesimple]
+
+	<!-- /.content-wrapper -->
+
+	[@footer /]
+</div>
+<!-- ./wrapper -->
+
+[@scripts /]
+</body>
 </html>
+
