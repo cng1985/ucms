@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.ada</groupId>
-	<artifactId>iwan</artifactId>
+	<artifactId>ucms</artifactId>
 	<version>1.0.1</version>
 	<packaging>pom</packaging>
 
@@ -17,12 +17,9 @@
 	<name>iwan</name>
 	<url>http://maven.apache.org</url>
 	<modules>
-		<module>iwan_data</module>
-		<module>iwan_api</module>
-		<module>iwan_rest</module>
-		<module>iwan_web</module>
-		<module>iwan_app</module>
-		<module>iwan_data_mongo</module>
+		<module>api</module>
+		<module>data</module>
+		<module>web</module>
 	</modules>
 
 	<build>
@@ -57,6 +54,20 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.4.7.v20170914</version>
+				<configuration>
+					<webApp>
+						<contextPath>/web/</contextPath>
+						<descriptor>${project.basedir}/src/main/webapp/WEB_INF/web.xml</descriptor>
+					</webApp>
+					<httpConnector>
+						<port>9900</port>
+					</httpConnector>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -1,0 +1,20 @@
+<link rel="stylesheet"	href="${siteurl}assets/plugs/kindeditor/themes/default/default.css" />
+<script charset="utf-8"	src="${siteurl}assets/plugs/kindeditor/kindeditor-all-min.js"></script>
+<script charset="utf-8"	src="${siteurl}assets/plugs/kindeditor/lang/zh_CN.js"></script>
+
+[#macro textarea name text  extra...]
+<textarea id="${name}" type="text" name="${name}" style="height: 500px;"
+		  [#list extra as attrName, attrVal]
+		  ${attrName}="${attrVal}"
+		  [/#list]
+>${text}</textarea>
+<script type="text/javascript">
+	var editor = KindEditor.create('textarea[name="${name}"]', {
+		themeType : 'simple',
+		minWidth : '680px',
+		uploadJson : '${siteurl}image/upmendaoimgwork.htm',
+		fileManagerJson : '${siteurl}image/listimages.htm',
+		allowFileManager : true
+	});
+</script>
+[/#macro]
