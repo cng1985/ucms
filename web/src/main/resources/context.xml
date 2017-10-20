@@ -14,8 +14,8 @@
 
 
     <!--COOKIE登录 -->
-    <context:component-scan base-package="com.ada.iwan.controller"/>
-    <context:component-scan base-package="com.ada.iwan"/>
+    <context:component-scan base-package="com.ada.ucms.controller"/>
+    <context:component-scan base-package="com.ada.ucms"/>
 
 
     <bean id="multipartResolver"
@@ -89,7 +89,7 @@
     </bean>
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
 
-    <bean id="rssViewer" class="com.ada.iwan.viewers.CustomRssViewer"/>
+    <bean id="rssViewer" class="com.ada.ucms.viewers.CustomRssViewer"/>
 
 
     <bean id="viewResolver"

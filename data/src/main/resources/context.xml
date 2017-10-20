@@ -13,8 +13,8 @@
 
 
 	<!--COOKIE登录 -->
-	<context:component-scan base-package="com.ada.iwan.controller" />
-	<context:component-scan base-package="com.ada.iwan" />
+	<context:component-scan base-package="com.ada.ucms.controller" />
+	<context:component-scan base-package="com.ada.ucms" />
 
 
 
@@ -54,7 +54,7 @@
 	<bean id="shiro" class="com.jagregory.shiro.freemarker.ShiroTags"></bean>
 	<bean id="menuOpenDirective" class="com.ada.admin.freemaker.MenuOpenDirective"></bean>
 	<bean id="menusDirective" class="com.ada.admin.freemaker.MenusDirective"></bean>
-	<bean id="friendLinkDirective" class="com.ada.iwan.web.freemaker.FriendLinkDirective"></bean>
+	<bean id="friendLinkDirective" class="com.ada.ucms.web.freemaker.FriendLinkDirective"></bean>
 	<bean id="articleDirective" class="com.ada.freemaker.ArticleDirective"></bean>
 
 	<!-- freemarker的配置 -->
@@ -91,7 +91,7 @@
 	</bean>
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
 
-	<bean id="rssViewer" class="com.ada.iwan.viewers.CustomRssViewer" />
+	<bean id="rssViewer" class="com.ada.ucms.viewers.CustomRssViewer" />
 
 
 	<bean id="viewResolver"
