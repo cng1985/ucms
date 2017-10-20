@@ -24,7 +24,7 @@ public class PhotoApps {
         List<Category> cs=     back.getRes().getCategory();
         for (Category category : cs) {
 			System.out.println(category);
-			service.save(category);
+			//service.save(category);
 		}
 	}
 

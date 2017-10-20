@@ -1,10 +1,10 @@
 package com.ada.iwan.data;
 
+import com.ada.article.data.entity.SensitiveWord;
+import com.ada.article.data.service.SensitiveWordService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ada.article.entity.SensitiveWord;
-import com.ada.article.service.SensitiveWordService;
 
 public class SensitiveWordTest extends SpringTest {
 

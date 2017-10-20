@@ -2,17 +2,11 @@ package org.iwan_data;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.ada.user.entity.UserInfo;
-import com.ada.user.entity.UserOschina;
-import com.ada.user.service.UserOschinaService;
-import com.ada.user.service.UserQQService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -22,9 +16,6 @@ import com.ada.user.service.UserQQService;
 @Rollback(value = false)
 public class UserQQTest {
 
-	@Autowired
-	UserOschinaService userOschinaService;
-	
 	@Test
 	public void testLogin(){
 		try {
@@ -33,10 +24,6 @@ public class UserQQTest {
 			String client_secret = "TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF";
 			String client_id = "CTJlkYcnBaZCsi4GGgUk";
 			String code="ePW2ni";
-			UserInfo oschina = userOschinaService.login(client_id, client_secret, grant_type, redirect_uri, code);
-			System.out.println(oschina.getUsername());
-			System.out.println(oschina.getId());
-
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

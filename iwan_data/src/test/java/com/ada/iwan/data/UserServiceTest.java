@@ -1,6 +1,6 @@
 package com.ada.iwan.data;
 
-import com.ada.user.service.UserInfoService;
+import com.ada.user.data.service.UserInfoService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +14,6 @@ public class UserServiceTest extends SpringTest {
 
     @Test
     public  void testReg(){
-        userInfoService.reg("ada@ada.com","admin","123456");
+       // userInfoService.reg("ada@ada.com","admin","123456");
     }
 }
