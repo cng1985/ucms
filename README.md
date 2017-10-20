@@ -1,6 +1,6 @@
-﻿## 一尺三寸
+﻿## umcs
 
-> 一尺三寸 是自由自在的网站，你可以提问，投稿，了解股票信息，参加社区活动，全部代码开源。
+> umcs 是自由自在的网站，你可以提问，投稿，了解股票信息，参加社区活动，全部代码开源。
 
 
 ### 技术选型：
@@ -13,54 +13,34 @@
 * 缓存 Ehcache
 * 视图模板 freemarker 
 * 其它 Jsoup、gson
-* [disconver_hibernate](https://git.oschina.net/yichisancun/disconver)
-* [imake](http://git.oschina.net/yichisancun/imake)
+* [disconver](https://git.oschina.net/yichisancun/disconver)
 
 ### 网站前端
 
-* angularjs
 * bootstrap
 * WOW
 
 
 
-### iwan 工程介绍
+### ucms 工程介绍
 
-* iwan_api	api工程
-* iwan_app	本地测试工程
-* iwan_data	工程的controller，数据模块
-* iwan_web	视图工程，不放代码，使用freemarker作为视图
-* 工程数据库位置：sqls/iwandb.sql   登陆后台用户名admin  密码123456 启动工程到iwan目录，
+* api	api工程
+* data	工程的controller，数据模块
+* web	视图工程，不放代码，使用freemarker作为视图
+* 工程数据库位置：sqls/init.sql   登陆后台用户名admin  密码123456 
 输入mvn tomcat7:run 数据库配置文件：iwan_web(工程)/resources/jdbc.properties
-* icore工程位置[icore](http://git.oschina.net/cng1985/icore)
-* imake工程位置[imake](http://git.oschina.net/yichisancun/imake)
-
-### icore 包介绍：
 
 
-* com.ada.admin 后台管理功能
-* com.ada.album 相册功能
-* com.ada.area  地区功能
-* com.ada.article 文章功能
-* com.ada.data hibernate公共包
-* com.ada.feed 动态功能
-* com.ada.plugin 插件功能
-* com.ada.question 问答功能
-* com.ada.shiro shiro权限功能依赖用户模块
-* com.ada.template* 各种代码生成工具
-* com.ada.user 用户模块
-* com.young.word 验证码生成
-* com.young.security 各种安全工具
 
 ### 交流方式
 
-* QQ群:366362344   [一尺三寸开源系统QQ群](http://jq.qq.com/?_wv=1027&k=2Kq3VgV)
+* QQ群:366362344   [ucms开源系统QQ群](http://jq.qq.com/?_wv=1027&k=2Kq3VgV)
 * QQ:2601035599
 * 微博：http://weibo.com/iwanspace
 
 ### 开源协议
 
-如果您的网站使用了 icore, 请在网站页面页脚处保留 icore相关版权信息链接
+如果您的网站使用了 ucms, 请在网站页面页脚处保留 ucms相关版权信息链接
 
 ### 网站地址
 http://www.yichisancun.com
