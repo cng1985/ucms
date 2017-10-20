@@ -5,11 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ada</groupId>
-        <artifactId>iwan</artifactId>
+        <artifactId>ucms</artifactId>
         <version>1.0.1</version>
     </parent>
-    <artifactId>iwan_api</artifactId>
-    <name>iwan_api</name>
+    <groupId>com.ada.ucms</groupId>
+    <artifactId>api</artifactId>
+    <name>api</name>
     <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
