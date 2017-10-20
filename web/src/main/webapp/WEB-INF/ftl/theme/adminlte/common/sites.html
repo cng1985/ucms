@@ -55,9 +55,6 @@
                 <li [#if index==3] class="active" [/#if]>
                 <a href="${siteurl}question/type/new.htm">问答</a>
                 </li>
-                <li [#if index==6] class="active" [/#if]>
-                <a href="${siteurl}stock/index.htm">股票</a>
-                </li>
                 <li [#if index==4] class="active" [/#if]>
                 <a href="${siteurl}activity/index.htm">活动</a>
                 </li>
@@ -208,13 +205,13 @@
                 <ul class="list-unstyled">
                     <li><h4>友情链接</h4></li>
 
-                    [@friendlink size=36]
+                    [@link  id=2 size=20]
                     [#if list??]
                         [#list list as item]
                             <li><a href="${item.url!''}" target="_blank">${item.name!''}</a></li>
                         [/#list]
                     [/#if]
-                    [/@friendlink]
+                    [/@link]
                 </ul>
             </div><!-- /.col -->
             <div class="col-sm-3">
@@ -272,7 +269,7 @@
 
 
 [#macro pager pagination curpage url]
-[#if pagination?? && pagination.pageTotal gt 1]
+[#if pagination?? && pagination.pageTotal?? && pagination.pageTotal gt 1]
 
 <ul class="pagination">
     [#if curpage>pagination.firstNo]
