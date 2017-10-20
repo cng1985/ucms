@@ -65,7 +65,7 @@
 						<descriptor>${project.basedir}/src/main/webapp/WEB_INF/web.xml</descriptor>
 					</webApp>
 					<httpConnector>
-						<port>9900</port>
+						<port>8080</port>
 					</httpConnector>
 				</configuration>
 			</plugin>
