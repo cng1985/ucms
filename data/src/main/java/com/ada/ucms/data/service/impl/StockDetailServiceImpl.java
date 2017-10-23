@@ -24,7 +24,6 @@ import com.ada.ucms.data.dao.StockDetailDao;
 import com.ada.ucms.data.entity.Stock;
 import com.ada.ucms.data.entity.StockDay;
 import com.ada.ucms.data.entity.StockDetail;
-import com.ada.ucms.data.page.StockDetailPage;
 import com.ada.ucms.data.service.StockDetailService;
 
 @Service
@@ -115,16 +114,6 @@ public class StockDetailServiceImpl implements StockDetailService {
 		this.dao = dao;
 	}
 
-	@Transactional(readOnly = true)
-	public StockDetailPage getPage(int pageNo, int pageSize) {
-		StockDetailPage result = null;
-		Finder finder = Finder.create();
-		finder.append("from StockDetail f ");
-		finder.append(" order by f.id desc  ");
-		Pagination<StockDetail> page = dao.find(finder, pageNo, pageSize);
-		result = new StockDetailPage(page);
-		return result;
-	}
 
 	@Transactional(readOnly = true)
 	public Page<StockDetail> findPage(Pageable pageable) {

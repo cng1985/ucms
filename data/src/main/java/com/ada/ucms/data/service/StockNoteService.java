@@ -5,7 +5,6 @@ import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
 import com.ada.ucms.data.entity.StockNote;
-import com.ada.ucms.data.page.StockNotePage;
 
 import java.util.List;
 
@@ -21,9 +20,7 @@ public interface StockNoteService {
 	
 	public StockNote[] deleteByIds(Long[] ids);
 	
-	public StockNotePage getPage(int pageNo, int pageSize);
-	
-	
+
 	public Page<StockNote> findPage(Pageable pageable);
 
 	public long count(Filter... filters);

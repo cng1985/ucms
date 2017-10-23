@@ -61,7 +61,7 @@ public class AdminAction {
 
 		String view = "redirect:/admin/admin/view_list.htm?pageNumber=" + pageable.getPageNumber();
 		try {
-			bean.setPlainPassword(bean.getPassword());
+			//bean.setPlainPassword(bean.getPassword());
 			bean.setRoles(null);
 			bean = manager.update(bean);
 		} catch (Exception e) {

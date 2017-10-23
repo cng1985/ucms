@@ -10,7 +10,6 @@ import com.ada.data.core.Updater;
 import com.ada.ucms.data.dao.StockNoteDao;
 import com.ada.ucms.data.entity.StockNote;
 import com.ada.ucms.data.service.StockNoteService;
-import com.ada.ucms.data.page.StockNotePage;
 
 import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
@@ -65,17 +64,7 @@ public class StockNoteServiceImpl implements StockNoteService {
 		this.dao = dao;
 	}
 	
-	@Transactional(readOnly = true)
-	public StockNotePage getPage(int pageNo, int pageSize) {
-	    StockNotePage result = null;
-		Finder finder=Finder.create();
-		finder.append("from StockNote f ");
-		finder.append(" order by f.id desc  ");
-		Pagination<StockNote> page = dao.find(finder,pageNo, pageSize);
-		result = new StockNotePage(page);
-		return result;
-	}
-	
+
 	
 	@Transactional(readOnly = true)
 	public Page<StockNote> findPage(Pageable pageable){

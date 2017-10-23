@@ -10,7 +10,6 @@ import com.ada.data.core.Updater;
 import com.ada.ucms.data.dao.StockLikeDao;
 import com.ada.ucms.data.entity.StockLike;
 import com.ada.ucms.data.service.StockLikeService;
-import com.ada.ucms.data.page.StockLikePage;
 
 import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
@@ -65,18 +64,7 @@ public class StockLikeServiceImpl implements StockLikeService {
 		this.dao = dao;
 	}
 	
-	@Transactional(readOnly = true)
-	public StockLikePage getPage(int pageNo, int pageSize) {
-	    StockLikePage result = null;
-		Finder finder=Finder.create();
-		finder.append("from StockLike f ");
-		finder.append(" order by f.id desc  ");
-		Pagination<StockLike> page = dao.find(finder,pageNo, pageSize);
-		result = new StockLikePage(page);
-		return result;
-	}
-	
-	
+
 	@Transactional(readOnly = true)
 	public Page<StockLike> findPage(Pageable pageable){
 	     return dao.findPage(pageable);

@@ -5,7 +5,6 @@ import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
 import com.ada.ucms.data.entity.StockCatalog;
-import com.ada.ucms.data.page.StockCatalogPage;
 
 import java.util.List;
 
@@ -21,9 +20,7 @@ public interface StockCatalogService {
 	
 	public StockCatalog[] deleteByIds(Integer[] ids);
 	
-	public StockCatalogPage getPage(int pageNo, int pageSize);
-	
-	
+
 	public Page<StockCatalog> findPage(Pageable pageable);
 
 	public long count(Filter... filters);

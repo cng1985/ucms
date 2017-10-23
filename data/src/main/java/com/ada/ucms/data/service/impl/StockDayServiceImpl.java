@@ -10,7 +10,6 @@ import com.ada.data.core.Updater;
 import com.ada.ucms.data.dao.StockDayDao;
 import com.ada.ucms.data.entity.StockDay;
 import com.ada.ucms.data.service.StockDayService;
-import com.ada.ucms.data.page.StockDayPage;
 
 import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
@@ -65,17 +64,7 @@ public class StockDayServiceImpl implements StockDayService {
 		this.dao = dao;
 	}
 	
-	@Transactional(readOnly = true)
-	public StockDayPage getPage(int pageNo, int pageSize) {
-	    StockDayPage result = null;
-		Finder finder=Finder.create();
-		finder.append("from StockDay f ");
-		finder.append(" order by f.id desc  ");
-		Pagination<StockDay> page = dao.find(finder,pageNo, pageSize);
-		result = new StockDayPage(page);
-		return result;
-	}
-	
+
 	
 	@Transactional(readOnly = true)
 	public Page<StockDay> findPage(Pageable pageable){

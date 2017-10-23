@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ada.ucms.controller.BaseController;
 import com.ada.ucms.data.entity.Stock;
 import com.ada.ucms.data.entity.StockDetail;
-import com.ada.ucms.data.page.StockPage;
 import com.ada.ucms.data.service.StockDetailService;
 import com.ada.ucms.data.service.StockService;
 import com.ada.ucms.service.stock.api.StockApi;
@@ -32,10 +31,6 @@ public class StockController extends BaseController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(@RequestParam(value = "curpage", required = true, defaultValue = "1") int curpage,
 			@RequestParam(value = "pagesize", required = true, defaultValue = "10") int pagesize, Model model) {
-		StockPage page = service.getPage(curpage, pagesize);
-		model.addAttribute("page", page);
-		model.addAttribute("curpage", curpage);
-		model.addAttribute("stocks", page.getList());
 		return getView("stock/index");
 
 	}

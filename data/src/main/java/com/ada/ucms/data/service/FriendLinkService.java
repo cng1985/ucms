@@ -5,7 +5,6 @@ import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
 import com.ada.ucms.data.entity.FriendLink;
-import com.ada.ucms.data.page.FriendLinkPage;
 
 import java.util.List;
 
@@ -21,9 +20,7 @@ public interface FriendLinkService {
 	
 	public FriendLink[] deleteByIds(Long[] ids);
 	
-	public FriendLinkPage getPage(int pageNo, int pageSize);
-	
-	
+
 	public Page<FriendLink> findPage(Pageable pageable);
 
 	public long count(Filter... filters);

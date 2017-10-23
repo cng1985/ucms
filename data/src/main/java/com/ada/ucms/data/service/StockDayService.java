@@ -5,7 +5,6 @@ import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
 import com.ada.ucms.data.entity.StockDay;
-import com.ada.ucms.data.page.StockDayPage;
 
 import java.util.List;
 
@@ -22,8 +21,7 @@ public interface StockDayService {
 	
 	public StockDay[] deleteByIds(Long[] ids);
 	
-	public StockDayPage getPage(int pageNo, int pageSize);
-	
+
 	
 	public Page<StockDay> findPage(Pageable pageable);
 

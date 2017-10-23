@@ -10,7 +10,6 @@ import com.ada.data.core.Updater;
 import com.ada.ucms.data.dao.FriendLinkDao;
 import com.ada.ucms.data.entity.FriendLink;
 import com.ada.ucms.data.service.FriendLinkService;
-import com.ada.ucms.data.page.FriendLinkPage;
 
 import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
@@ -65,17 +64,7 @@ public class FriendLinkServiceImpl implements FriendLinkService {
 		this.dao = dao;
 	}
 	
-	@Transactional(readOnly = true)
-	public FriendLinkPage getPage(int pageNo, int pageSize) {
-	    FriendLinkPage result = null;
-		Finder finder=Finder.create();
-		finder.append("from FriendLink f ");
-		finder.append(" order by f.id desc  ");
-		Pagination<FriendLink> page = dao.find(finder,pageNo, pageSize);
-		result = new FriendLinkPage(page);
-		return result;
-	}
-	
+
 	
 	public Page<FriendLink> findPage(Pageable pageable){
 	     return dao.findPage(pageable);

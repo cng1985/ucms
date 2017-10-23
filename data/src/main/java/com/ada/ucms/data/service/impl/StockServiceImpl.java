@@ -19,7 +19,6 @@ import com.ada.ucms.data.dao.StockCatalogDao;
 import com.ada.ucms.data.dao.StockDao;
 import com.ada.ucms.data.entity.Stock;
 import com.ada.ucms.data.entity.StockCatalog;
-import com.ada.ucms.data.page.StockPage;
 import com.ada.ucms.data.service.StockService;
 import com.ada.ucms.service.stock.apps.Pinyin4jUtil;
 
@@ -81,16 +80,6 @@ public class StockServiceImpl implements StockService {
 		this.dao = dao;
 	}
 
-	@Transactional(readOnly = true)
-	public StockPage getPage(int pageNo, int pageSize) {
-		StockPage result = null;
-		Finder finder = Finder.create();
-		finder.append("from Stock f ");
-		finder.append(" order by f.id desc  ");
-		Pagination<Stock> page = dao.find(finder, pageNo, pageSize);
-		result = new StockPage(page);
-		return result;
-	}
 
 	@Transactional(readOnly = true)
 	public Page<Stock> findPage(Pageable pageable) {
@@ -116,7 +105,6 @@ public class StockServiceImpl implements StockService {
 	
 	@Transactional
 	public int updates() {
-		StockPage result = null;
 		Finder finder = Finder.create();
 		finder.append("from Stock f ");
 		finder.append(" order by f.id desc  ");
