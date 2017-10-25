@@ -14,13 +14,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ada.plug.data.vo.FileInfo;
+import com.ada.web.controller.front.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ada.ucms.controller.BaseController;
 import com.ada.ucms.service.file.FileService;
 import com.ada.ucms.utils.JsonUtils;
 

@@ -1,4 +1,4 @@
-package com.ada.ucms.controller;
+package com.ada.ucms.controller.front;
 
 import java.util.ArrayList;
 import java.util.List;

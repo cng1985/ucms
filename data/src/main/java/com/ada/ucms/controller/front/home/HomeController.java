@@ -1,17 +1,16 @@
-package com.ada.ucms.controller.home;
+package com.ada.ucms.controller.front.home;
 
+import com.ada.web.controller.front.BaseController;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ada.ucms.controller.BaseController;
-
 
 @Controller
 @RequestMapping(value = "home")
-public class HomeController extends BaseController{
+public class HomeController extends BaseController {
 
 	@RequiresAuthentication
 	@RequiresUser

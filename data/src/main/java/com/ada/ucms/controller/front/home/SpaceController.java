@@ -1,8 +1,8 @@
-package com.ada.ucms.controller.home;
+package com.ada.ucms.controller.front.home;
 
-import com.ada.ucms.controller.BaseController;
 import com.ada.ucms.data.entity.Member;
 import com.ada.ucms.data.service.MemberService;
+import com.ada.web.controller.front.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;

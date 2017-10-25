@@ -7,7 +7,7 @@
 |
 +---------------------------------------------------------------------------
  */
-package com.ada.ucms.controller;
+package com.ada.ucms.controller.front;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -23,6 +23,7 @@ import com.ada.user.data.service.UserInfoService;
 import com.ada.user.data.vo.UserAccountVo;
 import com.ada.user.enums.AccountType;
 import com.ada.user.oauth.domain.UserQQ;
+import com.ada.web.controller.front.BaseController;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -38,7 +39,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ada.ucms.controller.home.Views;
 import com.ada.shiro.filter.UsernamePasswordCaptchaToken;
 import com.ada.shiro.utils.UserUtil;
 import com.github.scribejava.apis.GitHubApi;

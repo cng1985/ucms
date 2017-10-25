@@ -7,7 +7,7 @@
 |
 +---------------------------------------------------------------------------
 */
-package com.ada.ucms.controller.home;
+package com.ada.ucms.controller.front;
 
 /**
  * 

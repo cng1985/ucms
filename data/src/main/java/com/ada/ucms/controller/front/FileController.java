@@ -3,7 +3,7 @@
  * 
  * 
  */
-package com.ada.ucms.controller;
+package com.ada.ucms.controller.front;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ada.plug.data.vo.FileInfo;
+import com.ada.web.controller.front.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

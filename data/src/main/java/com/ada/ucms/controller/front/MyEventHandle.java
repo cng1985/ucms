@@ -1,4 +1,4 @@
-package com.ada.ucms.controller;
+package com.ada.ucms.controller.front;
 
 import com.github.sd4324530.fastweixin.handle.EventHandle;
 import com.github.sd4324530.fastweixin.message.BaseMsg;

@@ -1,4 +1,4 @@
-package com.ada.ucms.controller;
+package com.ada.ucms.controller.front;
 
 import com.ada.data.rest.domain.AbstractVo;
 import org.apache.shiro.authz.AuthorizationException;

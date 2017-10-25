@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import com.ada.plug.data.entity.PluginConfig;
 import com.ada.plug.data.service.PluginConfigService;
+import com.ada.web.controller.front.BaseController;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.ada.ucms.controller.BaseController;
 
 /**
  * Controller - localfile

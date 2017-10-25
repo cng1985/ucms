@@ -1,4 +1,4 @@
-package com.ada.ucms.controller.home;
+package com.ada.ucms.controller.front.home;
 
 import com.ada.bbs.data.entity.ForumPost;
 import com.ada.bbs.data.entity.ForumPostText;
@@ -9,8 +9,8 @@ import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
-import com.ada.ucms.controller.BaseController;
 import com.ada.shiro.utils.UserUtil;
+import com.ada.web.controller.front.BaseController;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

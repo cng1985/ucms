@@ -1,10 +1,10 @@
-package com.ada.ucms.controller.user;
+package com.ada.ucms.controller.front.user;
 
-import com.ada.ucms.controller.BaseController;
 import com.ada.ucms.data.entity.Member;
 import com.ada.ucms.data.service.MemberService;
 import com.ada.shiro.utils.UserUtil;
 import com.ada.user.data.entity.UserInfo;
+import com.ada.web.controller.front.BaseController;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

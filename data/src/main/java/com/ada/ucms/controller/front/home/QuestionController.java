@@ -1,4 +1,4 @@
-package com.ada.ucms.controller.home;
+package com.ada.ucms.controller.front.home;
 
 import com.ada.data.page.Filter;
 import com.ada.data.page.Order;
@@ -9,6 +9,7 @@ import com.ada.question.data.entity.QuestionCatalog;
 import com.ada.question.data.service.QuestionCatalogService;
 import com.ada.question.data.service.QuestionService;
 import com.ada.user.utils.ListUtils;
+import com.ada.web.controller.front.BaseController;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ada.ucms.controller.BaseController;
 import com.ada.shiro.utils.UserUtil;
 
 import java.util.List;

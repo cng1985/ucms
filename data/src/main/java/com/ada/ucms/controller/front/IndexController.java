@@ -1,4 +1,4 @@
-package com.ada.ucms.controller;
+package com.ada.ucms.controller.front;
 
 import com.ada.article.data.entity.ArticleCatalog;
 import com.ada.article.data.service.ArticleCatalogService;
@@ -6,6 +6,7 @@ import com.ada.article.data.service.ArticleService;
 import com.ada.data.page.Filter;
 import com.ada.data.page.Pageable;
 import com.ada.user.utils.ListUtils;
+import com.ada.web.controller.front.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
