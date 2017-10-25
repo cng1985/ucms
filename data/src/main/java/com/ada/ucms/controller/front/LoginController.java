@@ -47,6 +47,7 @@ import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import com.scribejava.apis.OschinaApi;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 登录页
@@ -297,44 +298,12 @@ public class LoginController extends BaseController {
 	/**
 	 * 提交登录
 	 * 
-	 * @param username
-	 * @param password
-	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String username, String password, ModelMap model) {
-		String ret = getView(Views.LOGIN);
-
-		if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
-			return ret;
-		}
-
-		AuthenticationToken token = new UsernamePasswordToken(username, password);
-		if (token == null) {
-			model.put("message", "用户名或密码错误");
-			return ret;
-		}
-
-		try {
-			SecurityUtils.getSubject().login(token);
-
-			ret = Views.REDIRECT_HOME;
-
-			// 更新消息数量
-			// pushBadgesCount();
-		} catch (AuthenticationException e) {
-			if (e instanceof UnknownAccountException) {
-				model.put("message", "用户不存在");
-			} else if (e instanceof LockedAccountException) {
-				model.put("message", "用户被禁用");
-			} else {
-				model.put("message", "用户认证失败");
-			}
-		}
-
-		return ret;
+	public String login(RedirectAttributes attributes) {
+		attributes.addFlashAttribute("msg","密码错误");
+		return  "redirect:login.htm";
 	}
-
 
 }
