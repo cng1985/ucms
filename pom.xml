@@ -14,7 +14,7 @@
 		</repository>
 	</repositories>
 
-	<name>iwan</name>
+	<name>ucms</name>
 	<url>http://maven.apache.org</url>
 	<modules>
 		<module>api</module>
@@ -65,7 +65,7 @@
 						<descriptor>${project.basedir}/src/main/webapp/WEB_INF/web.xml</descriptor>
 					</webApp>
 					<httpConnector>
-						<port>8080</port>
+						<port>9090</port>
 					</httpConnector>
 				</configuration>
 			</plugin>

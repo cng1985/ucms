@@ -11,7 +11,7 @@
 	<groupId>com.ada.ucms</groupId>
 	<artifactId>web</artifactId>
 	<packaging>war</packaging>
-	<name>iwan_web Maven Webapp</name>
+	<name>web</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
