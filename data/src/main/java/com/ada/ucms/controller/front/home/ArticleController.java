@@ -4,6 +4,7 @@ import com.ada.article.data.entity.Article;
 import com.ada.article.data.service.ArticleCatalogService;
 import com.ada.article.data.service.ArticleService;
 import com.ada.data.page.Filter;
+import com.ada.data.page.Order;
 import com.ada.data.page.Page;
 import com.ada.data.page.Pageable;
 import com.ada.user.utils.ListUtils;
@@ -40,6 +41,7 @@ public class ArticleController extends BaseController {
 
 
 		Pageable pager=new Pageable();
+		pager.getOrders().add(Order.desc("id"));
 		Page<Article> page = articleService.page(pager);
 
 		model.addAttribute("articles",page.getContent());

@@ -4,6 +4,7 @@ import com.ada.article.data.entity.ArticleCatalog;
 import com.ada.article.data.service.ArticleCatalogService;
 import com.ada.article.data.service.ArticleService;
 import com.ada.data.page.Filter;
+import com.ada.data.page.Order;
 import com.ada.data.page.Pageable;
 import com.ada.user.utils.ListUtils;
 import com.ada.web.controller.front.BaseController;
@@ -32,6 +33,7 @@ public class IndexController extends BaseController {
 
 
         Pageable pager = new Pageable();
+        pager.getOrders().add(Order.desc("id"));
         model.addAttribute("articles", articleService.page(pager).getContent());
         List<ArticleCatalog> catalogs = articleCatalogService.list(0, 1000, ListUtils.list(Filter.eq("parent.id", 1)), null);
         model.addAttribute("catalogs", catalogs);
