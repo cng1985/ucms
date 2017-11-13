@@ -13,8 +13,8 @@
 
 
 	<!--COOKIE登录 -->
-	<context:component-scan base-package="com.ada.ucms.controller" />
-	<context:component-scan base-package="com.ada.ucms" />
+	<context:component-scan base-package="com.quhaodian.ucms.controller" />
+	<context:component-scan base-package="com.quhaodian.ucms" />
 
 
 
@@ -31,7 +31,7 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="siteHandlerInterceptor" class="com.ada.interceptor.SiteHandlerInterceptor">
+	<bean id="siteHandlerInterceptor" class="com.quhaodian.interceptor.SiteHandlerInterceptor">
 		<property name="url" value="http://www.yichisancun.com/"></property><!-- -->
 	</bean>
 
@@ -52,10 +52,10 @@
 
 
 	<bean id="shiro" class="com.jagregory.shiro.freemarker.ShiroTags"></bean>
-	<bean id="menuOpenDirective" class="com.ada.admin.freemaker.MenuOpenDirective"></bean>
-	<bean id="menusDirective" class="com.ada.admin.freemaker.MenusDirective"></bean>
-	<bean id="friendLinkDirective" class="com.ada.ucms.web.freemaker.FriendLinkDirective"></bean>
-	<bean id="articleDirective" class="com.ada.freemaker.ArticleDirective"></bean>
+	<bean id="menuOpenDirective" class="com.quhaodian.admin.freemaker.MenuOpenDirective"></bean>
+	<bean id="menusDirective" class="com.quhaodian.admin.freemaker.MenusDirective"></bean>
+	<bean id="friendLinkDirective" class="com.quhaodian.ucms.web.freemaker.FriendLinkDirective"></bean>
+	<bean id="articleDirective" class="com.quhaodian.freemaker.ArticleDirective"></bean>
 
 	<!-- freemarker的配置 -->
 	<bean id="freemarkerConfigurer"
@@ -91,7 +91,7 @@
 	</bean>
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
 
-	<bean id="rssViewer" class="com.ada.ucms.viewers.CustomRssViewer" />
+	<bean id="rssViewer" class="com.quhaodian.ucms.viewers.CustomRssViewer" />
 
 
 	<bean id="viewResolver"

@@ -4,11 +4,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.ada</groupId>
+        <groupId>com.quhaodian</groupId>
         <artifactId>ucms</artifactId>
         <version>1.0.1</version>
     </parent>
-    <groupId>com.ada.ucms</groupId>
+    <groupId>com.quhaodian.ucms</groupId>
     <artifactId>api</artifactId>
     <name>api</name>
     <url>http://maven.apache.org</url>

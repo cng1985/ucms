@@ -4,11 +4,11 @@
         xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.ada</groupId>
+        <groupId>com.quhaodian</groupId>
         <artifactId>ucms</artifactId>
         <version>1.0.1</version>
     </parent>
-    <groupId>com.ada.ucms</groupId>
+    <groupId>com.quhaodian.ucms</groupId>
     <artifactId>data</artifactId>
     <url>http://maven.apache.org</url>
     <properties>
@@ -16,53 +16,53 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.ada.discover</groupId>
-            <artifactId>discover_user_hibernate</artifactId>
-            <version>1.5.0</version>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>user_hibernate</artifactId>
+            <version>1.5.3</version>
         </dependency>
         <dependency>
-            <groupId>com.ada.web</groupId>
-            <artifactId>discover_website</artifactId>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>website</artifactId>
             <version>1.2.0</version>
         </dependency>
         <dependency>
-            <artifactId>discover_bbs</artifactId>
-            <groupId>com.ada</groupId>
+            <artifactId>bbs</artifactId>
+            <groupId>com.quhaodian</groupId>
             <version>1.1.3</version>
         </dependency>
         <dependency>
-            <groupId>com.ada.activity</groupId>
-            <artifactId>discover_activity</artifactId>
-            <version>1.1.8</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ada.album</groupId>
-            <artifactId>discover_album</artifactId>
-            <version>1.1.8</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ada.article</groupId>
-            <artifactId>discover_article</artifactId>
-            <version>1.1.8</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ada.question</groupId>
-            <artifactId>discover_question</artifactId>
-            <version>1.1.8</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ada.plug</groupId>
-            <artifactId>discover_plug</artifactId>
-            <version>1.1.8</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ada.discover</groupId>
-            <artifactId>discover_site_hibernate</artifactId>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>activity</artifactId>
             <version>1.1.9</version>
         </dependency>
         <dependency>
-            <groupId>com.ada.security</groupId>
-            <artifactId>discover_security</artifactId>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>album</artifactId>
+            <version>1.1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>article</artifactId>
+            <version>1.1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>question</artifactId>
+            <version>1.1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>plug</artifactId>
+            <version>1.1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>site_hibernate</artifactId>
+            <version>1.1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>security</artifactId>
             <version>1.1.8</version>
         </dependency>
         <dependency>
@@ -186,6 +186,13 @@
             <groupId>org.jdbi</groupId>
             <artifactId>jdbi</artifactId>
             <version>2.73</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.11.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

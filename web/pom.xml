@@ -4,7 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.ada</groupId>
+		<groupId>com.quhaodian</groupId>
 		<artifactId>ucms</artifactId>
 		<version>1.0.1</version>
 	</parent>
@@ -15,14 +15,14 @@
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
-			<groupId>com.ada.ucms</groupId>
+			<groupId>com.quhaodian.ucms</groupId>
 			<artifactId>data</artifactId>
 			<version>1.0.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.ada</groupId>
+			<groupId>com.quhaodian</groupId>
 			<artifactId>freemaker</artifactId>
-			<version>1.0.6</version>
+			<version>1.0.7</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
