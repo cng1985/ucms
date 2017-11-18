@@ -190,13 +190,12 @@ public class LoginController extends BaseController {
 		initurls(model);
 		try {
 			OAuth2AccessToken tokenx = github.getAccessToken(code);
-			if (oschina != null) {
+			if (tokenx != null) {
 				UserInfo user=null;
 				String result = login(user);
 				if (result != null) return result;
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		// token.get
 
