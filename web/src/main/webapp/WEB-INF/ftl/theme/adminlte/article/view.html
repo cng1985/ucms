@@ -31,7 +31,14 @@
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
-								<div class="pad">${article.contents!""}</div>
+								<div class="pad">
+									<div>${article.contents!""}</div>
+									<div>
+										[#include "/theme/adminlte/article/ads.html"]
+										[@ad /]
+									</div>
+								</div>
+
 								<button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
 								<button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
 								<span class="pull-right text-muted">127 likes - 3 comments</span>

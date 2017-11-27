@@ -301,7 +301,7 @@ public class LoginController extends BaseController {
         UserInfo user = UserUtil.getCurrentUser();
 
         if (SecurityUtils.getSubject().isAuthenticated()) {
-            if (user.getCatalog() == 1) {
+            if (SecurityUtils.getSubject().hasRole("管理员")) {
                 return "/admin/home";
             } else {
                 return "redirect:/member/index.htm";
