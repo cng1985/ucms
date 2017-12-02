@@ -269,22 +269,25 @@
 
 
 [#macro pager pagination curpage url]
-[#if pagination?? && pagination.pageTotal?? && pagination.pageTotal gt 1]
+[#if pagination?? ]
 
 <ul class="pagination">
-    [#if curpage>pagination.firstNo]
-    <li><a href="${url}&curpage=${pagination.prePage}">上一页</a></li>
+    [#if pagination.pageNumber gt 1]
+    <li><a href="${url}&pageNumber=${pagination.pageNumber-1}">上一页</a></li>
     [/#if]
     [#list pagination.firstNo..pagination.endNo as item]
-    [#if curpage?number==item]
+    [#if pagination.pageNumber==item]
     <li class="active"><a href="${url}">${item}</a></li>
     [#else]
-    <li ><a href="${url}&curpage=${item}">${item}</a></li>
+    <li ><a href="${url}&pageNumber=${item}">${item}</a></li>
     [/#if]
     [/#list]
-    [#if curpage lt  pagination.endNo]
-    <li><a href="${url}&curpage=${pagination.nextPage}">下一页</a></li>
+    [#if pagination.pageNumber lt  pagination.endNo]
+    <li><a href="${url}&pageNumber=${pagination.pageNumber+1}">下一页</a></li>
     [/#if]
 </ul>
 [/#if]
+[/#macro]
+
+[#macro userinfo user]
 [/#macro]

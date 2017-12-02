@@ -38,38 +38,43 @@
 										[@ad /]
 									</div>
 								</div>
-
-								<button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-								<button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-								<span class="pull-right text-muted">127 likes - 3 comments</span>
+								[@shiro.authenticated]
+								<button id="like" type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i>点赞</button>
+								[/@shiro.authenticated]
+								<span class="pull-right text-muted">${article.likes!"0"}喜欢 - ${article.comments!"0"}个评论</span>
 							</div>
 							<!-- /.box-body -->
 							<div class="box-footer box-comments">
-
+								[#if pageData?? && pageData.content??]
+                                 [#list pageData.content as item]
 								<div class="box-comment">
 									<!-- User image -->
-									<img class="img-circle img-sm" src="${siteurl}dist/img/user3-128x128.jpg" alt="User Image">
+									<img class="img-circle img-sm" src="${siteurl}${(item.user.avatar)!'dist/img/avatar04.png'}" alt="User Image">
 
 									<div class="comment-text">
 									  <span class="username">
-										Maria Gonzales
-										<span class="text-muted pull-right">8:03 PM Today</span>
+										${(item.user.name)!""}
+										<span class="text-muted pull-right">${item.addDate!""}</span>
 									  </span><!-- /.username -->
-										It is a long established fact that a reader will be distracted
-										by the readable content of a page when looking at its layout.
+										${item.contents!""}
 									</div>
 									<!-- /.comment-text -->
 								</div>
+								[/#list]
+								[/#if]
 								<!-- /.box-comment -->
 							</div>
 							<!-- /.box-footer -->
 							[@shiro.authenticated]
 							<div class="box-footer">
-								<form action="#" method="post">
-									<img class="img-responsive img-circle img-sm" src="${siteurl}dist/img/user4-128x128.jpg" alt="Alt Text">
-									<!-- .img-push is used to add margin to elements next to floating images -->
-									<div class="img-push">
-										<input class="form-control input-sm" placeholder="Press enter to post comment" type="text">
+
+								<form action="${siteurl}article/comment.htm" method="post">
+									<input  type="hidden" name="article.id" value="${article.id}"/>
+									<div class="input-group">
+										<input required="required" name="contents" placeholder="Type Message ..." class="form-control" type="text">
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-primary btn-flat">评论</button>
+										</span>
 									</div>
 								</form>
 							</div>
@@ -155,5 +160,17 @@
 <!-- ./wrapper -->
 
 [@scripts /]
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#like").click(function () {
+		    var params={};
+		    params.id=${article.id};
+			$.post("${siteurl}article/like.htm",params,function (backdata) {
+               alert(backdata.msg);
+            });
+        });
+    });
+</script>
 </body>
 </html>

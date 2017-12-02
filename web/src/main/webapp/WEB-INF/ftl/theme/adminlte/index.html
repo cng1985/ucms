@@ -34,9 +34,9 @@
                 <!-- Morris chart - Sales -->
                 <div class="chart tab-pane active" id="revenue-chart" style="position: relative; ">
                   <ul class="products-list product-list-in-box" style="padding-left: 20px;">
-                    [#list 1..10 as item]
+                    [#list likes as item]
                     <li class="item">
-                      <a href="#">开源分布式关系型数据库 PingCAP 完成 B 轮融资</a>
+                      <a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a>
                     </li>
                     [/#list]
                   </ul>
@@ -83,9 +83,7 @@
                 <!-- /.attachment-block -->
 
                 <!-- Social sharing buttons -->
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                <span class="pull-right text-muted">45 likes - 2 comments</span>
+                <span class="pull-right text-muted">${item.likes!"0"}点赞 -${item.comments!"0"}评论</span>
               </div>
               <!-- /.box-body -->
             </div>
