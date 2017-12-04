@@ -41,6 +41,15 @@ public class BbsController extends BaseController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
 
+        Pageable likePageable=new Pageable();
+        likePageable.getOrders().add(Order.desc("views"));
+        likePageable.setPageSize(8);
+        model.addAttribute("likes",postService.page(likePageable).getContent());
+        Pageable newPageable=new Pageable();
+        newPageable.getOrders().add(Order.desc("id"));
+        newPageable.setPageSize(8);
+        model.addAttribute("news",postService.page(newPageable).getContent());
+
         return getView("bbs/index");
     }
 
