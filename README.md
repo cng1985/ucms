@@ -53,5 +53,5 @@ http://www.yichisancun.com
 
 股票：账号stock密码123456
 
-![网站首页](http://7xrn5v.com1.z0.glb.clouddn.com/1f70b77ab169a848b87b5de845737e4f "在这里输入图片标题")
+![网站首页](http://store.quhaodian.com/yichisancun.jpg "网站首页")
 
