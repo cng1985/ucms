@@ -268,22 +268,24 @@
 
 
 
-[#macro pager pagination curpage url]
-[#if pagination?? ]
+[#macro pager pageData  url]
+[#if pageData?? ]
 
 <ul class="pagination">
-    [#if pagination.pageNumber gt 1]
-    <li><a href="${url}&pageNumber=${pagination.pageNumber-1}">上一页</a></li>
+    [#if pageData.pageNumber gt 1]
+        <li><a href="${url}&pageNumber=${pageData.pageNumber-1}">上一页</a></li>
     [/#if]
-    [#list pagination.firstNo..pagination.endNo as item]
-    [#if pagination.pageNumber==item]
-    <li class="active"><a href="${url}">${item}</a></li>
-    [#else]
-    <li ><a href="${url}&pageNumber=${item}">${item}</a></li>
+    [#if pageData.totalPages gt 1]
+        [#list pageData.firstNo..pageData.endNo as item]
+            [#if pageData.pageNumber==item]
+                <li class="active"><a href="${url}">${item}</a></li>
+            [#else]
+                <li ><a href="${url}&pageNumber=${item}">${item}</a></li>
+            [/#if]
+        [/#list]
     [/#if]
-    [/#list]
-    [#if pagination.pageNumber lt  pagination.endNo]
-    <li><a href="${url}&pageNumber=${pagination.pageNumber+1}">下一页</a></li>
+    [#if pageData.pageNumber lt  pageData.endNo]
+        <li><a href="${url}&pageNumber=${pageData.pageNumber+1}">下一页</a></li>
     [/#if]
 </ul>
 [/#if]
