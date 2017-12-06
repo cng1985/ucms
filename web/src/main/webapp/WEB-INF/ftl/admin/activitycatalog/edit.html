@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>管理</title>
+	<title>分类管理</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
@@ -28,19 +28,21 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
-	<div class="wrapper">
+<div class="wrapper">
 
-		<header class="main-header">
-			<!-- Header Navbar: style can be found in header.less -->
-			[#include "/admin/common/nav.html"]
-		</header>
+	<header class="main-header">
+		<!-- Header Navbar: style can be found in header.less -->
+		[#include "/admin/common/nav.html"]
+	</header>
 
 	<!-- =============================================== -->
 
 	<!-- Left side column. contains the sidebar -->
-		<aside class="main-sidebar">
+	<aside class="main-sidebar">
 		<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
+			<!-- Sidebar user panel -->
+			<!-- Sidebar user panel -->
 			[@user_panel /]
 			<!-- search form -->
 			[@sidebar_form /]
@@ -49,10 +51,10 @@
 			<ul class="sidebar-menu">
 				<li class="header">主面板</li>
 				[@menustag id=1]
-					[#list list as item]
-						[@menu item "1,21,24"]
-						[/@menu]
-					[/#list]
+				[#list list as item]
+				[@menu item "1,20,22"]
+				[/@menu]
+				[/#list]
 				[/@menustag]
 			</ul>
 		</section>
@@ -62,83 +64,52 @@
 	<!-- =============================================== -->
 
 	<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
+	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				信息列表
-				<small>管理你的数据</small>
+				分类管理
+				<small>管理你的分类</small>
 			</h1>
 		</section>
 		<!-- Main content -->
 		<section class="content">
+
 			<!-- Default box -->
-			<form id="listForm" action="${siteurl}admin/userinfo/view_list.htm" method="post">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class=" box box-body">
-							<div class="col-xs-12 ">
-								<a class="btn btn-primary" href="${siteurl}admin/userinfo/view_add.htm">
-									<i class="fa  fa-plus"></i> 添加
-								</a>
-							</div>
-							<div class="col-xs-12 box-body" style="padding-left: 0;">
-								<div class="col-xs-3">
-									<input name="name" maxlength="20" class="form-control" placeholder="名称搜索..." type="text">
-								</div>
-								<div class="col-xs-1">
-									<button type="submit" name="search"  class="btn btn-success"><i class="fa fa-search"></i> 搜索</button>
-								</div>
-							</div>
-						</div>
+			<div class="col-xs-12">
+				<div class="box box-default box-solid">
+					<div class="box-header with-border">
+						<h3 class="box-title">更新分类</h3>
 					</div>
-					<div class="col-xs-12">
-						<div class="box box-solid">
-							<div class="box-body table-responsive no-padding">
-								<table class="table table-bordered table-hover dataTable">
-									<thead>
-									<tr role="row">
-										<td class="col-xs-2">用户名</td>
-										<td class="col-xs-1 text-center">姓名</td>
-										<td class="col-xs-5 text-center">url</td>
-										<td class="col-xs-2 text-center">更新时间</td>
-										<td class="col-xs-2 text-center">操作</td>
-									</tr>
-									</thead>
-									<tbody>
-									[#list list as item]
-									<tr id="trr${item.id}">
-										<td>${item.username!""}</td>
-										<td class="text-center">${item.name!""}</td>
-										<td class="">${item.path!""}</td>
-										<td class="text-center">${item.lastDate?string('yyyy-MM-dd HH:mm:ss')}</td>
-										<td class="text-center">
-											<div style="display: inline-block;">
-												[@shiro.hasPermission name="userinfo:update"]
-												<a  class="menubutton btn btn-sm btn-success"
-													href="${siteurl}admin/userinfo/view_edit.htm?id=${item.id}&pageNumber=${page.pageNumber!'1'}">
-													<i class="fa fa-edit">更新</i>
-												</a>
-												[/@shiro.hasPermission]
-												[@shiro.hasPermission name="userinfo:delete"]
-												<a  class="menubutton btn btn-sm btn-danger"  onclick="return confirm('删除后无法恢复,确定要删除吗')"
-													href="${siteurl}admin/userinfo/model_delete.htm?id=${item.id}">
-													<i class="fa fa-trash">删除</i>
-												</a>
-												[/@shiro.hasPermission]
-											</div>
-										</td>
-									</tr>
-									[/#list]
-									</tbody>
-								</table>
+					<!-- /.box-header -->
+					<!-- form start -->
+					<form class="form-horizontal" action="${siteurl}admin/activitycatalog/model_update.htm" method="post">
+						<input type="hidden" name="id" value="${model.id}">
+						<input type="hidden" name="pageNumber" value="${pageNumber!'1'}">
+						<div class="box-body">
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">分类名称</label>
+								<div class="col-sm-10">
+									<input class="form-control" id="name" maxlength="20" name="name" placeholder="分类名称" value="${model.name!''}"   type="text">
+								</div>
 							</div>
-							[@pager page=page   /]
+							<div class="form-group">
+								<label for="code" class="col-sm-2 control-label">分类编码</label>
+								<div class="col-sm-10">
+									<input class="form-control" id="code" maxlength="50" name="code" placeholder="分类编码" value="${model.code!''}"   type="text">
+								</div>
+							</div>
 						</div>
-				    </div>
-			    </div>
-			</form>
+						<!-- /.box-body -->
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary pull-right">更新</button>
+						</div>
+						<!-- /.box-footer -->
+					</form>
+				</div>
+			</div>
 			<!-- /.box -->
+
 		</section>
 		<!-- /.content -->
 	</div>
@@ -152,7 +123,7 @@
 	<!-- /.control-sidebar -->
 	<!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->
-		<div class="control-sidebar-bg"></div>
+	<div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -168,7 +139,5 @@
 <script src="${siteurl}dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="${siteurl}dist/js/demo.js"></script>
-<script src="${siteurl}dist/js/list.js"></script>
-
 </body>
 </html>
