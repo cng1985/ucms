@@ -1,56 +1,75 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-[#include "/theme/default/common/nav.html" /]
-[#include "/theme/default/common/head.html" /]
-[#include "/theme/default/common/footer.html" /]
-[#include "/theme/default/common/page.html" /]
-
+<html>
 <head>
-[@head "${activity.name!''}" /]
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>${model.name!''}</title>
+	[#include "/theme/adminlte/common/sites.html" /]
+	[@header /]
 </head>
-<body>
-	<div class="fakeloader"></div>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
 
-    [@nav  4 /]
-	<!-- /.navbar -->
-
-	<div class="container">
-
-		<div class="row">
-
-			<div class="col-xs-12 col-sm-9">
-					
-					<h1>${activity.name!""}</h1>
-					<div>${activity.note!""}</div>
-			
-			</div>
-			<!--/.col-xs-12.col-sm-9-->
-
-			<div class="col-xs-6 col-sm-3" id="sidebar">
-				<div class="list-group">
-				     [#if catalogs?? && activity.catalog??]
-				    [#list catalogs as item  ]
-				    [#if item.id =activity.catalog.id]
-					<a href="${siteurl}activity/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a> 
-					[#else]
-					<a href="${siteurl}activity/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a> 
-					[/#if]
-					
-					[/#list]
-					[/#if]
+	<header class="main-header">
+		[@nav  4 /]
+	</header>
+	<!-- Full Width Column -->
+	<div class="content-wrapper">
+		<div class="container">
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<section class="col-lg-8">
+						<div class="box box-widget">
+							<div class="box-header with-border">
+								<div class="user-block">
+									<img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="头像">
+									<span class="username"><a href="#">${model.name!""}</a></span>
+									<span class="description">${(model.lastDate?string("yyyy年MM月dd日"))!""}</span>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<div class="pad">
+									<div>${model.contents!""}</div>
+									<div>
+									</div>
+								</div>
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</section>
+					<section class="col-lg-4">
+						[#if model.user??]
+						[@userinfo user=model.user /]
+						[/#if]
+					</section>
 				</div>
-			</div>
-			<!--/.sidebar-offcanvas-->
+
+			</section>
+			<!-- /.content -->
 		</div>
-		<!--/row-->
-
-		<hr>
-
-		[@footer /]
-
+		<!-- /.container -->
 	</div>
-	<!--/.container-->
+	<!-- /.content-wrapper -->
 
+	[@footer /]
+</div>
+<!-- ./wrapper -->
 
+[@scripts /]
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#like").click(function () {
+            var params={};
+            params.id=${model.id};
+            $.post("${siteurl}model/like.htm",params,function (backdata) {
+                alert(backdata.msg);
+            });
+        });
+    });
+</script>
 </body>
 </html>

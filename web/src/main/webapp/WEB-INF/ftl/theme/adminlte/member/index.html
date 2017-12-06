@@ -24,21 +24,35 @@
 			<div class="row" style="margin-top: 30px;">
 
 				<div class="col-xs-3 col-sm-3" id="sidebar">
-					<div class="list-group">
-						<a href="#" class="list-group-item active">个人资料</a>
-						<a href="#"
-						   class="list-group-item">密码</a>
-						<a href="#" class="list-group-item">朋友</a>
-						<a href="#"
-						   class="list-group-item">我的股票</a><a href="#"
-															  class="list-group-item">隐私设置</a>
+					<div class="box box-solid">
+						<div class="box-header with-border">
+							<h3 class="box-title">个人资料</h3>
+						</div>
+						<div class="box-body no-padding">
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="${siteurl}member/index.htm">
+									<i class="fa fa-circle-o text-blue"></i> 个人资料</a>
+								</li>
+								<li><a href="${siteurl}member/index.htm">
+									<i class="fa fa-circle-o text-blue"></i> 密码</a>
+								</li>
+								<li><a href="${siteurl}member/index.htm">
+									<i class="fa fa-circle-o text-blue"></i> 朋友</a>
+								</li>
+								<li><a href="${siteurl}member/index.htm">
+									<i class="fa fa-circle-o text-blue"></i> 隐私设置</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 				<div class="col-xs-9 col-sm-9 border">
-					<h1>个人资料</h1>
-					<hr/>
-
-					<form action="${siteurl}member/updateuser.htm" method="post">
+					<div class="box box-solid">
+						<div class="box-header with-border">
+							<h3 class="box-title">个人资料</h3>
+						</div>
+						<div class="box-body ">
+							<form action="${siteurl}member/updateuser.htm" method="post">
 						<input type="hidden" name="avatar" value="${user.avatar!''}"  id="uploaderthumbpath">
 						<div class="form-group">
 							<label for="avatar">个人头像</label>
@@ -86,6 +100,8 @@
 							提交
 						</button>
 					</form>
+						</div>
+					</div>
 					<!--/row-->
 				</div>
 			</div>

@@ -292,4 +292,63 @@
 [/#macro]
 
 [#macro userinfo user]
+<div class="box box-primary">
+    <div class="box-body box-profile">
+        <img class="profile-user-img img-responsive img-circle" src="${user.avatar!'dist/img/user1-128x128.jpg'}" alt="头像">
+
+        <h3 class="profile-username text-center">${(user.name)!""}</h3>
+
+        <p class="text-muted text-center">${(user.job)!""}</p>
+
+        <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+                <b>粉丝</b> <a class="pull-right">${(user.followers)!"0"}</a>
+            </li>
+            <li class="list-group-item">
+                <b>关注</b> <a class="pull-right">${(user.followers)!"0"}</a>
+            </li>
+            <li class="list-group-item">
+                <b>好友</b> <a class="pull-right">${(user.friends)!"0"}</a>
+            </li>
+        </ul>
+
+        <a href="#" class="btn btn-primary btn-block"><b>关注我</b></a>
+    </div>
+    <!-- /.box-body -->
+</div>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">关于我</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+        <p class="text-muted">
+            B.S. in Computer Science from the University of Tennessee at Knoxville
+        </p>
+
+        <hr>
+
+        <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+        <p class="text-muted">Malibu, California</p>
+
+        <hr>
+        [#if user.labels?? ]
+        <strong><i class="fa fa-pencil margin-r-5"></i> 我的标签</strong>
+
+        <p>
+            [#list  user.labels as item]
+            <span class="label label-info" style="margin-right: 3px;">${item.name!""}</span>
+            [/#list]
+        </p>
+        <hr>
+        [/#if]
+        <strong><i class="fa fa-file-text-o margin-r-5"></i> 个人介绍</strong>
+
+        <p>${user.note!""}</p>
+    </div>
+    <!-- /.box-body -->
+</div>
 [/#macro]
