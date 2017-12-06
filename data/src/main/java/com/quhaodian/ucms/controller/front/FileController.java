@@ -25,51 +25,44 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Controller - 文件处理
- * 
- * 
- * 
  */
 @Controller("fileController")
 @RequestMapping("files")
 public class FileController extends BaseController {
 
-	@Resource(name = "storageServiceImpl")
-	private StorageService fileService;
+    @Resource(name = "storageServiceImpl")
+    private StorageService fileService;
 
 
-
-	/**
-	 * 上传
-	 */
-	@RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
-	public void upload(FileInfo.FileType fileType, MultipartFile file, HttpServletResponse response) {
-		Map<String, Object> data = new HashMap<String, Object>();
-		if (!fileService.isValid(fileType, file)) {
-			data.put("message", "");
-		} else {
-			String url = fileService.upload(fileType, file, false);
-			if (url == null) {
-				data.put("message", "");
-			} else {
-				data.put("message", "");
-				data.put("url", url);
-			}
-		}
-		try {
-			response.setContentType("text/html; charset=UTF-8");
-			JsonUtils.writeValue(response.getWriter(), data);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    /**
+     * 上传
+     */
+    @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+    public void upload(FileInfo.FileType fileType, MultipartFile file, HttpServletResponse response) {
+        Map<String, Object> data = new HashMap<String, Object>();
+        String url = fileService.upload(fileType, file, false);
+        if (url == null) {
+            data.put("message", "");
+        } else {
+            data.put("message", "");
+            data.put("url", url);
+        }
+        try {
+            response.setContentType("text/html; charset=UTF-8");
+            JsonUtils.writeValue(response.getWriter(), data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
-	/**
-	 * 浏览
-	 */
-	@RequestMapping(value = "/browser", method = RequestMethod.GET)
-	public @ResponseBody List<FileInfo> browser(String path, FileInfo.FileType fileType, FileInfo.OrderType orderType) {
-		return fileService.browser(path, fileType, orderType);
-	}
+    /**
+     * 浏览
+     */
+    @RequestMapping(value = "/browser", method = RequestMethod.GET)
+    public @ResponseBody
+    List<FileInfo> browser(String path, FileInfo.FileType fileType, FileInfo.OrderType orderType) {
+        return fileService.browser(path, fileType, orderType);
+    }
 
 }

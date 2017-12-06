@@ -5,6 +5,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>个人资料</title>
 	[#include "/theme/adminlte/common/sites.html" /]
+
+	[@scripts /]
+
+	[#include "/theme/adminlte/common/imagesimple.html" /]
+
 	[@header /]
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
@@ -60,7 +65,7 @@
 								<div style="max-width: 100px;" id="avatar" class="uploader-list">
 									[#if user.avatar??]
 									<div class="file-item thumbnail upload-state-done" id="WU_FILE_0">
-										<img src="${user.avatar!''}"><div class="info"></div>
+										<img id="uploaderavatar" src="${user.avatar!''}"><div class="info"></div>
 									</div>
 									[/#if]
 								</div>
@@ -122,7 +127,9 @@
 </div>
 <!-- ./wrapper -->
 
-[@scripts /]
+
+[@imagesimple "uploaderthumb" "fileListuploaderthumb" "uploaderthumbpath"][/@imagesimple]
+
 </body>
 </html>
 

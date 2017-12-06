@@ -1,0 +1,3 @@
+        Auth auth = Auth.create("U5VKtUFe6bCJ642tnFu4--fP2DSydhNxJ13Dc74O", "Exi35KBoHRKw6ensQMJBECKnRTEIEsu4aXvMJDA2");
+    String domain = "iwan";
+    final String url = "http://image.yichisancun.com/";

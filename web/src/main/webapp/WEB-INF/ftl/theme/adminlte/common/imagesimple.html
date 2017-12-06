@@ -95,6 +95,9 @@ ${imageid}obj.on('fileQueued', function(file) {
 
 			// 通过return false来告诉组件，此文件上传有错。
 			$("#${imagepath}").val(response.url);
+        	$("#uploaderavatar").attr("src",response.url);
+
+
 			//alert(response.url);
 	});
 });

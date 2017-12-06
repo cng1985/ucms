@@ -47,6 +47,9 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
 	public Member update(Member bean) {
 		Updater<Member> updater = new Updater<Member>(bean);
+		updater.exclude("attributes");
+		updater.exclude("roles");
+		updater.exclude("labels");
 		return dao.updateByUpdater(updater);
 	}
 
