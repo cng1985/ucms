@@ -1,6 +1,7 @@
 package com.quhaodian.ucms.data.entity;
 
 import com.quhaodian.data.entity.AbstractEntity;
+import com.quhaodian.user.data.entity.AbstractUser;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,18 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_info")
-public class Member extends AbstractEntity {
+public class Member extends AbstractUser {
 
 
-    /**
-     * 昵称
-     */
-    private String name;
-
-    /**
-     * 头像
-     */
-    private String avatar;
 
     /**
      *电子邮箱
@@ -48,21 +40,6 @@ public class Member extends AbstractEntity {
      */
     private String note;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
 
     public String getQq() {
         return qq;
