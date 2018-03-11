@@ -1,149 +1,178 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>一尺三寸</title>
-  [#include "/theme/adminlte/common/sites.html" /]
-  [@header /]
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>一尺三寸</title>
+    [#include "/theme/adminlte/common/sites.html" /]
+    [@header /]
 
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
 
-  <header class="main-header">
-    [@nav  1 /]
-  </header>
-  <!-- Full Width Column -->
-  <div class="content-wrapper">
-    <div class="container">
-      <!-- Main content -->
-      <section class="content">
-        <div class="row">
-          <!-- Left col -->
-          <section class="col-lg-7">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="nav-tabs-custom" >
-              <!-- Tabs within a box -->
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#revenue-chart" data-toggle="tab">综合资讯</a></li>
-                <li><a href="#sales-chart" data-toggle="tab">软件更新资讯</a></li>
-              </ul>
-              <div class="tab-content no-padding">
-                <!-- Morris chart - Sales -->
-                <div class="tab-pane active" id="revenue-chart" style="position: relative; ">
-                  <ul class="products-list product-list-in-box" style="padding-left: 20px;">
-                    [#list likes as item]
-                    <li class="item">
-                      <a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a>
-                    </li>
-                    [/#list]
-                  </ul>
+    <header class="main-header">
+        [@nav 1 /]
+    </header>
+    <!-- Full Width Column -->
+    <div class="content-wrapper">
+        <div class="container">
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-7">
+                        <!-- Custom tabs (Charts with tabs)-->
+                        <div class="nav-tabs-custom">
+                            <!-- Tabs within a box -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#revenue-chart" data-toggle="tab">综合资讯</a></li>
+                                <li><a href="#sales-chart" data-toggle="tab">软件更新资讯</a></li>
+                            </ul>
+                            <div class="tab-content no-padding">
+                                <!-- Morris chart - Sales -->
+                                <div class="tab-pane active" id="revenue-chart" style="position: relative; ">
+                                    <ul class="products-list product-list-in-box" style="padding-left: 20px;">
+                                        [#list likes as item]
+                                        <li class="item">
+                                            <a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a>
+                                        </li>
+                                        [/#list]
+                                    </ul>
+                                </div>
+                                <div class="chart tab-pane" id="sales-chart" style="position: relative; ">
+                                    <ul class="products-list product-list-in-box" style="padding-left: 20px;">
+                                        [#list views as item]
+                                        <li class="item">
+                                            <a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a>
+                                        </li>
+                                        [/#list]
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.nav-tabs-custom -->
+                        [#if articles??]
+                        [#list articles as item]
+                        <div class="box box-widget">
+                            <div class="box-header with-border">
+                                <div class="user-block">
+                                    <a href="${siteurl}space/${(item.user.id)!'0'}.htm">
+                                        [#if item.user??]
+                                        <img class="img-circle"
+                                             src="[@image src=item.user.avatar def='dist/img/user1-128x128.jpg' /]"
+                                             alt="头像">
+                                        [/#if]
+                                    </a>
+                                    <span class="username"><a href="${siteurl}space/${(item.user.id)!'0'}.htm">${(item.user.name)!""}</a></span>
+                                    <span class="description">${item.lastDate!""}</span>
+                                </div>
+                                <!-- /.user-block -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <!-- Attachment -->
+                                <div class="attachment-block clearfix">
+                                    [#if item.img?? && item.img?length>2]
+                                    <img class="attachment-img" src="[@image src=item.img def='dist/img/user1-128x128.jpg' /]"
+                                         alt="图片">
+                                    [/#if]
+
+                                    <div class="attachment-pushed">
+                                        <h4 class="attachment-heading"><a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a>
+                                        </h4>
+
+                                        <div class="attachment-text">
+                                            ${item.introduction!""}
+                                        </div>
+                                        <!-- /.attachment-text -->
+                                    </div>
+                                    <!-- /.attachment-pushed -->
+                                </div>
+                                <!-- /.attachment-block -->
+
+                                <!-- Social sharing buttons -->
+                                <span class="pull-right text-muted">${item.likes!"0"}点赞 -${item.comments!"0"}评论</span>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        [/#list]
+                        [/#if]
+
+                    </section>
+                    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    <section class="col-lg-5 connectedSortable ui-sortable">
+
+                        <div class="box box-widget widget-user">
+                            <!-- Add the bg color to the header using any of the bg-* classes -->
+                            <script src='//gitee.com/cng1985/iwan/widget_preview'></script>
+
+                            <style>
+                                .pro_name a {
+                                    color: #4183c4;
+                                }
+
+                                .osc_git_title {
+                                    background-color: #fff;
+                                }
+
+                                .osc_git_box {
+                                    background-color: #fff;
+                                }
+
+                                .osc_git_box {
+                                    border-color: #E3E9ED;
+                                }
+
+                                .osc_git_info {
+                                    color: #666;
+                                }
+
+                                .osc_git_main a {
+                                    color: #9B9B9B;
+                                }
+                            </style>
+                        </div>
+
+                        <div class="box box-widget">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">最新用户</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding">
+                                <ul class="users-list clearfix">
+                                    [@newuser size=12]
+                                    [#list list as item]
+                                    <li>
+                                        <a href="${siteurl}space/${item.id}.htm"><img
+                                                style="width:100px;height:91.25px;"
+                                                src="${item.avatar!'dist/img/user1-128x128.jpg'}" alt="头像"></a>
+                                        <a class="users-list-name" href="${siteurl}space/${item.id}.htm">${item.name!'代码人'}</a>
+                                    </li>
+                                    [/#list]
+                                    [/@newuser]
+                                </ul>
+                                <!-- /.users-list -->
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer text-center">
+                                <a href="javascript:void(0)" class="uppercase">查看更多用户</a>
+                            </div>
+                            <!-- /.box-footer -->
+                        </div>
+                    </section>
+                    <!-- right col -->
                 </div>
-                <div class="chart tab-pane" id="sales-chart" style="position: relative; ">
-                  <ul class="products-list product-list-in-box" style="padding-left: 20px;">
-                    [#list 1..10 as item]
-                    <li class="item">
-                      <a href="#">开源事件：法院认定 GPL 为“具备强制执行力的合同”</a>
-                    </li>
-                    [/#list]
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- /.nav-tabs-custom -->
-            [#if articles??]
-            [#list articles as item]
-            <div class="box box-widget">
-              <div class="box-header with-border">
-                <div class="user-block">
-                  <a href="${siteurl}space/${(item.user.id)!'0'}.htm"> <img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="User Image"></a>
-                  <span class="username"><a href="${siteurl}space/${(item.user.id)!'0'}.htm">${(item.user.name)!""}</a></span>
-                  <span class="description">${item.lastDate!""}</span>
-                </div>
-                <!-- /.user-block -->
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body">
-                <!-- Attachment -->
-                <div class="attachment-block clearfix">
-                  <img class="attachment-img" src="${siteurl}dist/img/photo1.png" alt="Attachment Image">
-
-                  <div class="attachment-pushed">
-                    <h4 class="attachment-heading"><a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a></h4>
-
-                    <div class="attachment-text">
-                      ${item.introduction!""}
-                    </div>
-                    <!-- /.attachment-text -->
-                  </div>
-                  <!-- /.attachment-pushed -->
-                </div>
-                <!-- /.attachment-block -->
-
-                <!-- Social sharing buttons -->
-                <span class="pull-right text-muted">${item.likes!"0"}点赞 -${item.comments!"0"}评论</span>
-              </div>
-              <!-- /.box-body -->
-            </div>
-            [/#list]
-            [/#if]
-
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable ui-sortable">
-
-            <div class="box box-widget widget-user">
-              <!-- Add the bg color to the header using any of the bg-* classes -->
-              <script src='//gitee.com/cng1985/iwan/widget_preview'></script>
-
-              <style>
-                .pro_name a{color: #4183c4;}
-                .osc_git_title{background-color: #fff;}
-                .osc_git_box{background-color: #fff;}
-                .osc_git_box{border-color: #E3E9ED;}
-                .osc_git_info{color: #666;}
-                .osc_git_main a{color: #9B9B9B;}
-              </style>
-            </div>
-
-            <div class="box box-widget">
-              <div class="box-header with-border">
-                <h3 class="box-title">最新用户</h3>
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body no-padding">
-                <ul class="users-list clearfix">
-                  [@newuser size=12]
-                  [#list list as item]
-                  <li>
-                    <a  href="${siteurl}space/${item.id}.htm"><img style="width:100px;height:91.25px;" src="${item.avatar!'dist/img/user1-128x128.jpg'}" alt="头像"></a>
-                    <a class="users-list-name" href="${siteurl}space/${item.id}.htm">${item.name!'代码人'}</a>
-                  </li>
-                  [/#list]
-                  [/@newuser]
-                </ul>
-                <!-- /.users-list -->
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer text-center">
-                <a href="javascript:void(0)" class="uppercase">查看更多用户</a>
-              </div>
-              <!-- /.box-footer -->
-            </div>
-          </section>
-          <!-- right col -->
+            </section>
+            <!-- /.content -->
         </div>
-      </section>
-      <!-- /.content -->
+        <!-- /.container -->
     </div>
-    <!-- /.container -->
-  </div>
-  <!-- /.content-wrapper -->
+    <!-- /.content-wrapper -->
 
-  [@footer /]
+    [@footer /]
 </div>
 <!-- ./wrapper -->
 

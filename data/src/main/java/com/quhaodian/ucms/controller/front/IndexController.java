@@ -37,6 +37,10 @@ public class IndexController extends BaseController {
         Pageable pagerlike=new Pageable();
         pagerlike.getOrders().add(Order.desc("likes"));
         model.addAttribute("likes", articleService.page(pagerlike).getContent());
+
+        Pageable pagerviews=new Pageable();
+        pagerviews.getOrders().add(Order.desc("views"));
+        model.addAttribute("views", articleService.page(pagerviews).getContent());
         model.addAttribute("articles", articleService.page(pager).getContent());
         List<ArticleCatalog> catalogs = articleCatalogService.list(0, 1000, ListUtils.list(Filter.eq("parent.id", 1)), null);
         model.addAttribute("catalogs", catalogs);

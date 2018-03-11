@@ -4,7 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.sql.DataSource;
 
-import org.skife.jdbi.v2.DBI;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.codahale.metrics.ConsoleReporter;
@@ -19,7 +18,6 @@ public class GetStarted {
 	public static void main(String args[]) {
 		startReport();
 
-		while (true) {
 			pendingJobs.inc();
 			Meter requests = metrics.meter("requests");
 			requests.mark();
@@ -27,8 +25,7 @@ public class GetStarted {
 			
 			final Histogram resultCounts =metrics.histogram("xx");
 			resultCounts.update(pendingJobs.getCount());
-		}
-		
+
 	}
     private static Counter pendingJobs = metrics.counter("dd");
 	static void startReport() {
@@ -41,7 +38,7 @@ public class GetStarted {
 		ds.setUsername("root");
 		ds.setPassword("root");
 		DataSource dataSource = ds;
-		final DBI dbi = new DBI(dataSource);
+	//	final DBI dbi = new DBI(dataSource);
 //		dbi.setTimingCollector(new InstrumentedTimingCollector(metrics));
 //		dataSource = MetricsSql.forRegistry(metrics)
 //                .wrap("mysql", dataSource);

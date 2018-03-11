@@ -52,6 +52,10 @@
     <bean id="newUserDirective" class="com.quhaodian.user.freemaker.NewUserDirective"></bean>
     <bean id="linkDirective" class="com.quhaodian.site.freemaker.LinkDirective"></bean>
     <bean id="linkTypeDirective" class="com.quhaodian.site.freemaker.LinkTypeDirective"></bean>
+    <bean id="imageDirective" class="com.quhaodian.ucms.freemaker.ImageDirective">
+        <property name="domain" value="#{servletContext.contextPath}/"></property>
+    </bean>
+
     <!-- freemarker的配置 -->
     <bean id="freemarkerConfigurer"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
@@ -86,6 +90,7 @@
                 <entry key="simpleforum" value-ref="simpleForumDirective"/>
                 <entry key="link" value-ref="linkDirective"/>
                 <entry key="linkType" value-ref="linkTypeDirective"/>
+                <entry key="image" value-ref="imageDirective"/>
             </map>
         </property>
     </bean>

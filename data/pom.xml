@@ -23,32 +23,32 @@
         <dependency>
             <artifactId>bbs</artifactId>
             <groupId>com.quhaodian</groupId>
-            <version>1.6.3</version>
+            <version>1.8.1</version>
         </dependency>
         <dependency>
             <groupId>com.quhaodian</groupId>
             <artifactId>activity</artifactId>
-            <version>1.6.0</version>
+            <version>1.8.1</version>
         </dependency>
         <dependency>
             <groupId>com.quhaodian</groupId>
             <artifactId>album</artifactId>
-            <version>1.6.0</version>
+            <version>1.8.1</version>
         </dependency>
         <dependency>
             <groupId>com.quhaodian</groupId>
             <artifactId>article</artifactId>
-            <version>1.6.1</version>
+            <version>1.8.1</version>
         </dependency>
         <dependency>
             <groupId>com.quhaodian</groupId>
             <artifactId>question</artifactId>
-            <version>1.6.0</version>
+            <version>1.8.1</version>
         </dependency>
         <dependency>
             <groupId>com.quhaodian</groupId>
             <artifactId>security</artifactId>
-            <version>1.6.0</version>
+            <version>1.8.1</version>
         </dependency>
         <dependency>
             <groupId>org.jodd</groupId>
@@ -158,19 +158,13 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.6.0</version>
+            <version>0.9.0</version>
         </dependency>
 
-        <!-- http://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-core -->
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-core</artifactId>
             <version>3.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jdbi</groupId>
-            <artifactId>jdbi</artifactId>
-            <version>2.73</version>
         </dependency>
 
         <dependency>
