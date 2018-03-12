@@ -35,6 +35,9 @@
                 <ref bean="jacksonMessageConverter"/>    <!-- 注册JSON Converter -->
             </list>
         </property>
+        <property name="webBindingInitializer">
+            <bean class="com.quhaodian.web.binding.BindingInitializer"/>
+        </property>
     </bean>
     <bean id="jacksonMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
