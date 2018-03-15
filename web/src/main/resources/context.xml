@@ -12,10 +12,36 @@
             http://www.springframework.org/schema/cache/spring-cache.xsd
             ">
 
+    <bean id="conversionService"
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.quhaodian.web.converter.DateConverter"/>
+            </set>
+        </property>
+    </bean>
 
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="false"/>
+        <property name="favorParameter" value="false"/>
+        <property name="ignoreAcceptHeader" value="false"/>
+        <property name="mediaTypes">
+            <value>
+                atom=application/atom+xml
+                html=text/html
+                json=application/json
+                *=*/*
+            </value>
+        </property>
+    </bean>
+
+
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"
+                           ignore-default-model-on-redirect="true" conversion-service="conversionService"
+    >
+    </mvc:annotation-driven>
     <!--COOKIE登录 -->
     <context:component-scan base-package="com.quhaodian.ucms.controller"/>
-    <context:component-scan base-package="com.quhaodian.ucms"/>
 
     <bean name="webconfig" class="com.quhaodian.web.data.common.InitConfig" init-method="initWebConfig" scope="singleton" lazy-init="false"></bean>
 
@@ -24,23 +50,6 @@
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
           p:defaultEncoding="utf-8" p:maxUploadSize="100000000"/>
 
-    <bean
-            class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
-    </bean>
-
-    <bean
-            class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <ref bean="jacksonMessageConverter"/>    <!-- 注册JSON Converter -->
-            </list>
-        </property>
-        <property name="webBindingInitializer">
-            <bean class="com.quhaodian.web.binding.BindingInitializer"/>
-        </property>
-    </bean>
-    <bean id="jacksonMessageConverter"
-          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 
 
     <bean id="shiro" class="com.jagregory.shiro.freemarker.ShiroTags"></bean>
@@ -136,8 +145,6 @@
         </property>
     </bean>
 
-    <mvc:annotation-driven
-            ignore-default-model-on-redirect="true"></mvc:annotation-driven>
     <mvc:interceptors>
         <ref bean="openSessionInViewInterceptor"/>
     </mvc:interceptors>

@@ -18,36 +18,36 @@
         <dependency>
             <groupId>com.quhaodian.discover</groupId>
             <artifactId>discover-website</artifactId>
-            <version>1.8.7</version>
+            <version>1.8.8</version>
         </dependency>
         <dependency>
-            <artifactId>bbs</artifactId>
-            <groupId>com.quhaodian</groupId>
+            <artifactId>discover-bbs</artifactId>
+            <groupId>com.quhaodian.discover</groupId>
             <version>1.8.1</version>
         </dependency>
         <dependency>
-            <groupId>com.quhaodian</groupId>
-            <artifactId>activity</artifactId>
+            <groupId>com.quhaodian.discover</groupId>
+            <artifactId>discover-activity</artifactId>
             <version>1.8.1</version>
         </dependency>
         <dependency>
-            <groupId>com.quhaodian</groupId>
-            <artifactId>album</artifactId>
+            <groupId>com.quhaodian.discover</groupId>
+            <artifactId>discover-album</artifactId>
             <version>1.8.1</version>
         </dependency>
         <dependency>
-            <groupId>com.quhaodian</groupId>
-            <artifactId>article</artifactId>
+            <groupId>com.quhaodian.discover</groupId>
+            <artifactId>discover-article</artifactId>
             <version>1.8.1</version>
         </dependency>
         <dependency>
-            <groupId>com.quhaodian</groupId>
-            <artifactId>question</artifactId>
+            <groupId>com.quhaodian.discover</groupId>
+            <artifactId>discover-question</artifactId>
             <version>1.8.1</version>
         </dependency>
         <dependency>
-            <groupId>com.quhaodian</groupId>
-            <artifactId>security</artifactId>
+            <groupId>com.quhaodian.discover</groupId>
+            <artifactId>discover-security</artifactId>
             <version>1.8.1</version>
         </dependency>
         <dependency>
