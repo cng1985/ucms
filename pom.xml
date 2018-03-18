@@ -23,7 +23,7 @@
 	</modules>
 
 	<build>
-		<finalName>iwan</finalName>
+		<finalName>ucms</finalName>
 		<plugins>
 			<!-- Maven Jetty Plugin -->
 
