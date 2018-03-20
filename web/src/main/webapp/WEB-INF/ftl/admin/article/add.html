@@ -188,7 +188,12 @@
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
     $('input[type="checkbox"]').bootstrapSwitch();
-    var ue = UE.getEditor('contents');
+    var ue = UE.getEditor('contents',{
+        toolbars: [
+            ['fullscreen', 'source','drafts',  'paragraph', 'fontfamily', 'fontsize',  'insertorderedlist', 'insertunorderedlist', 'simpleupload','insertimage', 'emotion', 'bold','insertcode','preview']
+        ],
+            autoHeightEnabled: true,
+            autoFloatEnabled: false})
     ue.ready(function() {
         ue.setHeight(400);
     });
