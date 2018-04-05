@@ -4,11 +4,10 @@
         xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.quhaodian</groupId>
-        <artifactId>ucms</artifactId>
+        <groupId>com.quhaodian.ucms</groupId>
+        <artifactId>ucms-root</artifactId>
         <version>1.0.1</version>
     </parent>
-    <groupId>com.quhaodian.ucms</groupId>
     <artifactId>data</artifactId>
     <url>http://maven.apache.org</url>
     <properties>
@@ -18,7 +17,7 @@
         <dependency>
             <groupId>com.quhaodian.discover</groupId>
             <artifactId>discover-website</artifactId>
-            <version>1.8.9</version>
+            <version>1.8.14</version>
         </dependency>
         <dependency>
             <artifactId>discover-bbs</artifactId>
