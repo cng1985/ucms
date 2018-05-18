@@ -1,62 +1,154 @@
 package com.quhaodian.ucms.service.stock.api.impl;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.quhaodian.ucms.service.factory.JsonFactory;
 import com.quhaodian.ucms.service.stock.api.StockApi;
+import com.quhaodian.ucms.service.stock.domain.Stock;
 import com.quhaodian.ucms.service.stock.domain.StockDetailBack;
 import com.quhaodian.ucms.service.stock.domain.StockListBack;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-
+import com.quhaodian.ucms.service.stock.domain.StockTimePrice;
+import java.util.ArrayList;
+import java.util.List;
 import jodd.http.HttpRequest;
+import jodd.http.HttpResponse;
 import jodd.util.StringUtil;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class StockListApiImpl implements StockApi {
-
-	public StockListBack findStcokList(int page, int rows) {
-		// TODO Auto-generated method stub
-		String url = "http://apis.baidu.com/tehir/stockassistant/stocklist";
-		HttpRequest request = HttpRequest.get(url);
-		request.header("apikey", "93dc6d5e4999b89fd5dcaa6e8b52ead8");
-		request.query("page", page);
-		request.query("rows", rows);
-
-		String body = request.send().body();
-		body = StringUtil.convertCharset(body, "ISO-8859-1", "UTF-8");
-		JsonFactory jf = new JsonFactory();
-		Gson son = jf.gson();
-		StockListBack result = son.fromJson(body, StockListBack.class);
-
-		return result;
-	}
-
-	public StockDetailBack findByCode(String code) {
-		String url = "http://apis.baidu.com/apistore/stockservice/stock";
-		HttpRequest request = HttpRequest.get(url);
-		request.header("apikey", "93dc6d5e4999b89fd5dcaa6e8b52ead8");
-		if (code.startsWith("6")) {
-			request.query("stockid", "sh" + code);
-		} else if (code.startsWith("3")) {
-			request.query("stockid", "sz" + code);
-		} else if (code.startsWith("0")) {
-			request.query("stockid", "sz" + code);
-		}
-		request.query("list", "其它");
-
-		String body = request.send().body();
-		body = StringUtil.convertCharset(body, "ISO-8859-1", "UTF-8");
-		JsonParser parser = new JsonParser();
-		JsonElement e = parser.parse(body);
-		body = e.getAsJsonObject().get("retData").getAsJsonObject().get("stockinfo").getAsJsonArray().get(0).toString();
-		
-		System.out.println(body);
-		
-		
-		JsonFactory jf = new JsonFactory();
-		Gson son = jf.gson();
-		StockDetailBack result = son.fromJson(body, StockDetailBack.class);
-
-		return result;
-	}
-
+  
+  public StockListBack findStcokList(int page, int rows) {
+    // TODO Auto-generated method stub
+    String url = "http://apis.baidu.com/tehir/stockassistant/stocklist";
+    HttpRequest request = HttpRequest.get(url);
+    request.header("apikey", "93dc6d5e4999b89fd5dcaa6e8b52ead8");
+    request.query("page", page);
+    request.query("rows", rows);
+    
+    String body = request.send().body();
+    body = StringUtil.convertCharset(body, "ISO-8859-1", "UTF-8");
+    JsonFactory jf = new JsonFactory();
+    Gson son = jf.gson();
+    StockListBack result = son.fromJson(body, StockListBack.class);
+    
+    return result;
+  }
+  
+  public StockDetailBack findByCode(String code) {
+    String url = "http://apis.baidu.com/apistore/stockservice/stock";
+    HttpRequest request = HttpRequest.get(url);
+    request.header("apikey", "93dc6d5e4999b89fd5dcaa6e8b52ead8");
+    if (code.startsWith("6")) {
+      request.query("stockid", "sh" + code);
+    } else if (code.startsWith("3")) {
+      request.query("stockid", "sz" + code);
+    } else if (code.startsWith("0")) {
+      request.query("stockid", "sz" + code);
+    }
+    request.query("list", "其它");
+    
+    String body = request.send().body();
+    body = StringUtil.convertCharset(body, "ISO-8859-1", "UTF-8");
+    JsonParser parser = new JsonParser();
+    JsonElement e = parser.parse(body);
+    body = e.getAsJsonObject().get("retData").getAsJsonObject().get("stockinfo").getAsJsonArray().get(0).toString();
+    
+    System.out.println(body);
+    
+    
+    JsonFactory jf = new JsonFactory();
+    Gson son = jf.gson();
+    StockDetailBack result = son.fromJson(body, StockDetailBack.class);
+    
+    return result;
+  }
+  
+  public static void main(String[] args) {
+    //http://img1.money.126.net/data/hs/time/4days/1300135.json
+    //http://img1.money.126.net/data/hs/time/today/1300135.json
+    String url = "http://quote.eastmoney.com/stock_list.html";
+    HttpRequest request = HttpRequest.get(url);
+    HttpResponse response = request.send();
+    List<Stock> stocks = new ArrayList<>();
+    if (response.statusCode() == 200) {
+      response.charset("gbk");
+      String body = response.bodyText();
+      Elements es = Jsoup.parse(body).select(".quotebody li");
+      for (Element e : es) {
+        String te = e.text();
+        String name = te.substring(0, te.indexOf("("));
+        String code = te.substring(te.indexOf("(") + 1, te.indexOf(")"));
+        Stock stock = new Stock();
+        stock.setName(name);
+        stock.setSymbol(code);
+        
+        if (stock.getSymbol().startsWith("6")) {
+          stocks.add(stock);
+        } else if (stock.getSymbol().startsWith("0")) {
+          stocks.add(stock);
+        } else if (stock.getSymbol().startsWith("3")) {
+          stocks.add(stock);
+        } else {
+          System.out.println("igone:" + stock.getName() + "-" + stock.getSymbol());
+        }
+      }
+    }
+    System.out.println(stocks.size());
+    for (Stock stock : stocks) {
+      String code = "";
+      if (stock.getSymbol().startsWith("6")) {
+        stock("0" + stock.getSymbol());
+      } else if (stock.getSymbol().startsWith("0")) {
+        stock("1" + stock.getSymbol());
+      } else if (stock.getSymbol().startsWith("3")) {
+        stock("1" + stock.getSymbol());
+      }
+    }
+    
+  }
+  
+  private static void stock(String code) {
+    String url = "http://img1.money.126.net/data/hs/time/today/" + code + ".json";
+    HttpRequest request = HttpRequest.get(url);
+    HttpResponse response = request.send();
+    if (response.statusCode() == 200) {
+      response.charset("utf-8");
+      String body = response.bodyText();
+      JsonParser parser = new JsonParser();
+      JsonElement root = parser.parse(body);
+      JsonObject object = root.getAsJsonObject();
+      Stock stock = new Stock();
+      stock.setName(object.get("name").getAsString());
+      stock.setSymbol(object.get("symbol").getAsString());
+      stock.setDate(object.get("date").getAsString());
+      stock.setLastVolume(object.get("lastVolume").getAsInt());
+      stock.setYestClose(object.get("yestclose").getAsDouble());
+      
+      JsonArray array = object.getAsJsonArray("data");
+      List<StockTimePrice> prices = new ArrayList<StockTimePrice>();
+      for (JsonElement element : array) {
+        String time = element.getAsJsonArray().get(0).getAsString();
+        double price = element.getAsJsonArray().get(1).getAsDouble();
+        double avg = element.getAsJsonArray().get(2).getAsDouble();
+        int size = element.getAsJsonArray().get(3).getAsInt();
+        StockTimePrice stockTimePrice = new StockTimePrice();
+        stockTimePrice.setTime(time);
+        stockTimePrice.setPrice(price);
+        stockTimePrice.setAvg(avg);
+        stockTimePrice.setSize(size);
+        System.out.println(stockTimePrice);
+        prices.add(stockTimePrice);
+      }
+      int optional = prices.stream().mapToInt(item -> item.getSize()).reduce(0, Integer::sum);
+      System.out.println(stock);
+      System.out.println(optional);
+      System.out.println(prices.size());
+    }
+  }
+  
 }

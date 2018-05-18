@@ -36,7 +36,7 @@ public class NoteServiceImpl implements NoteService {
 	public Note save(Note bean) {
 		String sequence = Note.class.getSimpleName().toLowerCase();
 		Long version = versionDao.next(sequence);
-		bean.setVersionnum(version);
+		bean.setVersionNum(version);
 		bean.setState(1);
 		dao.save(bean);
 		return bean;
@@ -46,7 +46,7 @@ public class NoteServiceImpl implements NoteService {
 	public Note update(Note bean) {
 		String sequence = Note.class.getSimpleName().toLowerCase();
 		Long version = versionDao.next(sequence);
-		bean.setVersionnum(version);
+		bean.setVersionNum(version);
 		bean.setState(2);
 		Updater<Note> updater = new Updater<Note>(bean);
 		bean = dao.updateByUpdater(updater);
@@ -59,7 +59,7 @@ public class NoteServiceImpl implements NoteService {
 		Note bean = dao.findById(id);
 		String sequence = Note.class.getSimpleName().toLowerCase();
 		Long version = versionDao.next(sequence);
-		bean.setVersionnum(version);
+		bean.setVersionNum(version);
 		bean.setState(3);
 
 		return bean;
