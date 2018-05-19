@@ -11,6 +11,9 @@ public interface StockDayDao extends CriteriaDao<StockDay, Long> {
 
 	public StockDay findById(Long id);
 
+	public StockDay findByDay(Long stock,String day);
+
+
 	public StockDay findByCode(String code,String date);
 
 	public StockDay save(StockDay bean);

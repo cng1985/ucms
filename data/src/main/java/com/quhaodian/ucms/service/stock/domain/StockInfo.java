@@ -1,8 +1,12 @@
 package com.quhaodian.ucms.service.stock.domain;
 
-import java.io.Serializable;
+import com.quhaodian.ucms.data.entity.Stock;
+import com.quhaodian.ucms.data.entity.StockDayTime;
 
-public class Stock implements Serializable {
+import java.io.Serializable;
+import java.util.List;
+
+public class StockInfo implements Serializable {
   
   /**
    * 股票代码
@@ -13,15 +17,17 @@ public class Stock implements Serializable {
    */
   private String name;
   
-  private double yestClose;
+  private float yestClose;
   
   private int lastVolume;
   
   private String date;
+
+  private List<StockTimePrice> prices;
   
   @Override
   public String toString() {
-    return "Stock{" +
+    return "StockInfo{" +
         "symbol='" + symbol + '\'' +
         ", name='" + name + '\'' +
         ", yestClose=" + yestClose +
@@ -46,11 +52,11 @@ public class Stock implements Serializable {
     this.name = name;
   }
   
-  public double getYestClose() {
+  public float getYestClose() {
     return yestClose;
   }
   
-  public void setYestClose(double yestClose) {
+  public void setYestClose(float yestClose) {
     this.yestClose = yestClose;
   }
   
@@ -68,5 +74,13 @@ public class Stock implements Serializable {
   
   public void setDate(String date) {
     this.date = date;
+  }
+
+  public List<StockTimePrice> getPrices() {
+    return prices;
+  }
+
+  public void setPrices(List<StockTimePrice> prices) {
+    this.prices = prices;
   }
 }

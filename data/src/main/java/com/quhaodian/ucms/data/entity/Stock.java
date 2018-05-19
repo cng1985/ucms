@@ -3,10 +3,14 @@ package com.quhaodian.ucms.data.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.quhaodian.data.annotations.ColType;
+import com.quhaodian.data.annotations.FormAnnotation;
+import com.quhaodian.data.annotations.FormFieldAnnotation;
 import com.quhaodian.data.entity.AbstractEntity;
 
 /**
@@ -15,9 +19,12 @@ import com.quhaodian.data.entity.AbstractEntity;
  * "fixedassets": 固定资产 "reserved": 公积金 "reservedpershare":每股公积金 "eps": 每股收益
  * "bvps": 每股净资 "pb": 市净率 "timetomarket": 上市日期
  */
+
+@FormAnnotation(title = "股票", add = "添加股票", list = "股票", update = "更新股票")
 @Entity
 @Table(name = "stock")
 public class Stock extends AbstractEntity {
+
 
 	@ManyToOne
 	private StockCatalog catalog;
@@ -25,6 +32,7 @@ public class Stock extends AbstractEntity {
 	/**
 	 * 地区
 	 */
+	@FormFieldAnnotation(title = "地区", sortNum = "5", grid = true, col = ColType.col_1)
 	private String area;
 
 	/**
@@ -32,26 +40,32 @@ public class Stock extends AbstractEntity {
 	 */
 	private float bvps;
 
+	@FormFieldAnnotation(title = "当前价格", sortNum = "3", grid = true, col = ColType.col_1)
 	private BigDecimal price;// 27.34, //当前价格
 	/**
 	 * 代码
 	 */
+	@Column(length = 8,unique = true)
+	@FormFieldAnnotation(title = "代码", sortNum = "2", grid = true, col = ColType.col_2)
 	private String code;
 	
 	/**
 	 * 每股收益
 	 */
+	@FormFieldAnnotation(title = "每股收益", sortNum = "5", grid = true, col = ColType.col_1)
 	private float eps;
 
 
 	/**
 	 * 固定资产
 	 */
+	@FormFieldAnnotation(title = "固定资产", sortNum = "5", grid = true, col = ColType.col_1)
 	private float fixedassets;
 
 	/**
 	 * 所属行业
 	 */
+	@FormFieldAnnotation(title = "所属行业", sortNum = "6", grid = true, col = ColType.col_1)
 	private String industry;
 
 	/**
@@ -62,21 +76,25 @@ public class Stock extends AbstractEntity {
 	/**
 	 * 名称
 	 */
+	@FormFieldAnnotation(title = "名称", sortNum = "1", grid = true, col = ColType.col_1)
 	private String name;
 
 	/**
 	 * 流通股本
 	 */
+	@FormFieldAnnotation(title = "流通股本", sortNum = "21", grid = true, col = ColType.col_1)
 	private float outstanding;
 
 	/**
 	 * 市净率
 	 */
+	@FormFieldAnnotation(title = "市净率", sortNum = "11", grid = true, col = ColType.col_1)
 	private float pb;
 
 	/**
 	 * 市盈率
 	 */
+	@FormFieldAnnotation(title = "市盈率", sortNum = "2", grid = true, col = ColType.col_1)
 	private float pe;
 
 	private String pinyin;
@@ -86,6 +104,7 @@ public class Stock extends AbstractEntity {
 	/**
 	 * 公积金
 	 */
+	@FormFieldAnnotation(title = "公积金", sortNum = "3", grid = true, col = ColType.col_1)
 	private float reserved;
 
 	/**
@@ -282,7 +301,7 @@ public class Stock extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "Stock [code=" + code + ", name=" + name + ", industry=" + industry + ", area=" + area + ", pe=" + pe
+		return "StockInfo [code=" + code + ", name=" + name + ", industry=" + industry + ", area=" + area + ", pe=" + pe
 				+ ", outstanding=" + outstanding + ", totals=" + totals + ", totalassets=" + totalassets
 				+ ", liquidassets=" + liquidassets + ", fixedassets=" + fixedassets + ", reserved=" + reserved
 				+ ", reservedpershare=" + reservedpershare + ", eps=" + eps + ", bvps=" + bvps + ", pb=" + pb

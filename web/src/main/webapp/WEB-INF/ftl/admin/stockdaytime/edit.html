@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>添加股票</title>
+	<title>更新股票</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
@@ -36,6 +36,7 @@
 	<script src="${siteurl}plugins/fastclick/fastclick.js"></script>
 	<!-- AdminLTE App -->
 	<script src="${siteurl}dist/js/app.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -54,6 +55,7 @@
 		<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
 			<!-- Sidebar user panel -->
+			<!-- Sidebar user panel -->
 			[@user_panel /]
 			<!-- search form -->
 			[@sidebar_form /]
@@ -63,7 +65,7 @@
 				<li class="header">主面板</li>
 				[@menustag id=1]
 				[#list list as item]
-				[@menu item "1,32,33"]
+				[@menu item "1,32,34"]
 				[/@menu]
 				[/#list]
 				[/@menustag]
@@ -80,7 +82,7 @@
 		<section class="content-header">
 			<h1>
 				股票管理
-				<small>添加股票</small>
+				<small>更新股票</small>
 			</h1>
 		</section>
 		<!-- Main content -->
@@ -94,79 +96,14 @@
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
-					<form class="form-horizontal" action="${siteurl}admin/stock/model_save.htm" method="post">
+					<form class="form-horizontal" action="${siteurl}admin/stockdaytime/model_update.htm" method="post">
+						<input type="hidden" name="id" value="${model.id}">
+						<input type="hidden" name="pageNumber" value="${pageNumber!'1'}">
 						<div class="box-body">
-							<div class="form-group">
-								<label for="area" class="col-sm-2 control-label">地区</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="area" name="area" placeholder="地区" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="price" class="col-sm-2 control-label">当前价格</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="price" name="price" placeholder="当前价格" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="code" class="col-sm-2 control-label">代码</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="code" name="code" placeholder="代码" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="eps" class="col-sm-2 control-label">每股收益</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="eps" name="eps" placeholder="每股收益" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="fixedassets" class="col-sm-2 control-label">固定资产</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="fixedassets" name="fixedassets" placeholder="固定资产" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="industry" class="col-sm-2 control-label">所属行业</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="industry" name="industry" placeholder="所属行业" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="name" class="col-sm-2 control-label">名称</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="name" name="name" placeholder="名称" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="outstanding" class="col-sm-2 control-label">流通股本</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="outstanding" name="outstanding" placeholder="流通股本" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="pb" class="col-sm-2 control-label">市净率</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="pb" name="pb" placeholder="市净率" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="pe" class="col-sm-2 control-label">市盈率</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="pe" name="pe" placeholder="市盈率" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="reserved" class="col-sm-2 control-label">公积金</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="reserved" name="reserved" placeholder="公积金" type="text">
-								</div>
-							</div>
 						</div>
 						<!-- /.box-body -->
 						<div class="box-footer">
-							<a href="${siteurl}admin/stock/view_list.htm" class="btn btn-default">取消</a>
-							<button type="submit" class="btn btn-primary pull-right">保存</button>
+							<button type="submit" class="btn btn-primary pull-right">更新</button>
 						</div>
 						<!-- /.box-footer -->
 					</form>

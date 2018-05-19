@@ -4,9 +4,9 @@ public class StockTimePrice {
   
   private String time;
   
-  private double price;
+  private float price;
   
-  private double avg;
+  private float avg;
   
   private int size;
   
@@ -28,19 +28,19 @@ public class StockTimePrice {
     this.time = time;
   }
   
-  public double getPrice() {
+  public float getPrice() {
     return price;
   }
   
-  public void setPrice(double price) {
+  public void setPrice(float price) {
     this.price = price;
   }
   
-  public double getAvg() {
+  public float getAvg() {
     return avg;
   }
   
-  public void setAvg(double avg) {
+  public void setAvg(float avg) {
     this.avg = avg;
   }
   

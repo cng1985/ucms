@@ -1,6 +1,8 @@
 package com.quhaodian.ucms.data.dao.impl;
 
+import com.quhaodian.data.page.Filter;
 import com.quhaodian.ucms.data.entity.StockDay;
+import com.quhaodian.ucms.data.entity.StockDayTime;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ import com.quhaodian.data.core.Finder;
 import com.quhaodian.data.core.Pagination;
 import com.quhaodian.ucms.data.dao.StockDayDao;
 import com.quhaodian.ucms.data.entity.StockDay;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class StockDayDaoImpl extends CriteriaDaoImpl<StockDay, Long> implements StockDayDao {
@@ -23,6 +28,19 @@ public class StockDayDaoImpl extends CriteriaDaoImpl<StockDay, Long> implements 
 	public StockDay findById(Long id) {
 		StockDay entity = get(id);
 		return entity;
+	}
+
+	@Override
+	public StockDay findByDay(Long stock, String day) {
+		List<Filter> filters = new ArrayList<>();
+		filters.add(Filter.eq("stock.id", stock));
+		filters.add(Filter.eq("day", day));
+
+		List<StockDay> dayTimes = list(0, 2, filters, null);
+		if (dayTimes != null && dayTimes.size() > 0) {
+			return dayTimes.get(0);
+		}
+		return null;
 	}
 
 	public StockDay save(StockDay bean) {

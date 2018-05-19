@@ -10,25 +10,28 @@ import java.util.List;
 
 public interface StockService {
 
-	public Stock findById(Long id);
+  Stock findById(Long id);
 
-	public Stock findByCode(String code);
+  Stock findByCode(String code);
 
-	public int updates();
+  int updates();
 
-	public Stock save(Stock bean);
+  void sync();
 
-	public Stock update(Stock bean);
+  Stock save(Stock bean);
 
-	public Stock deleteById(Long id);
+  Stock update(Stock bean);
 
-	public Stock[] deleteByIds(Long[] ids);
+  Stock deleteById(Long id);
+
+  Stock[] deleteByIds(Long[] ids);
 
 
-	public Page<Stock> findPage(Pageable pageable);
+  Page<Stock> findPage(Pageable pageable);
 
-	public long count(Filter... filters);
+  long count(Filter... filters);
 
-	public List<Stock> findList(Integer first, Integer count, List<Filter> filters, List<Order> orders);
+  List<Stock> findList(Integer first, Integer count, List<Filter> filters, List<Order> orders);
 
+  Stock time(Long id);
 }

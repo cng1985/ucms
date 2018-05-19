@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.quhaodian.ucms.service.factory.JsonFactory;
 import com.quhaodian.ucms.service.stock.api.StockApi;
-import com.quhaodian.ucms.service.stock.domain.Stock;
+import com.quhaodian.ucms.service.stock.domain.StockInfo;
 import com.quhaodian.ucms.service.stock.domain.StockDetailBack;
 import com.quhaodian.ucms.service.stock.domain.StockListBack;
 import com.quhaodian.ucms.service.stock.domain.StockTimePrice;
@@ -67,14 +67,14 @@ public class StockListApiImpl implements StockApi {
     
     return result;
   }
-  
-  public static void main(String[] args) {
-    //http://img1.money.126.net/data/hs/time/4days/1300135.json
-    //http://img1.money.126.net/data/hs/time/today/1300135.json
+
+  @Override
+  public List<StockInfo> stocks() {
+
+    List<StockInfo> result=new ArrayList<>();
     String url = "http://quote.eastmoney.com/stock_list.html";
     HttpRequest request = HttpRequest.get(url);
     HttpResponse response = request.send();
-    List<Stock> stocks = new ArrayList<>();
     if (response.statusCode() == 200) {
       response.charset("gbk");
       String body = response.bodyText();
@@ -83,38 +83,53 @@ public class StockListApiImpl implements StockApi {
         String te = e.text();
         String name = te.substring(0, te.indexOf("("));
         String code = te.substring(te.indexOf("(") + 1, te.indexOf(")"));
-        Stock stock = new Stock();
+        StockInfo stock = new StockInfo();
         stock.setName(name);
         stock.setSymbol(code);
-        
+
         if (stock.getSymbol().startsWith("6")) {
-          stocks.add(stock);
+          result.add(stock);
         } else if (stock.getSymbol().startsWith("0")) {
-          stocks.add(stock);
+          result.add(stock);
         } else if (stock.getSymbol().startsWith("3")) {
-          stocks.add(stock);
+          result.add(stock);
         } else {
           System.out.println("igone:" + stock.getName() + "-" + stock.getSymbol());
         }
       }
     }
-    System.out.println(stocks.size());
-    for (Stock stock : stocks) {
-      String code = "";
-      if (stock.getSymbol().startsWith("6")) {
-        stock("0" + stock.getSymbol());
-      } else if (stock.getSymbol().startsWith("0")) {
-        stock("1" + stock.getSymbol());
-      } else if (stock.getSymbol().startsWith("3")) {
-        stock("1" + stock.getSymbol());
-      }
-    }
+    return result;
+  }
+
+  public static void main(String[] args) {
+    //http://img1.money.126.net/data/hs/time/4days/1300135.json
+    //http://img1.money.126.net/data/hs/time/today/1300135.json
+
+    stock("2300746");
+//    for (StockInfo stock : stocks) {
+//      String code = "";
+//      if (stock.getSymbol().startsWith("6")) {
+//        stock("0" + stock.getSymbol());
+//      } else if (stock.getSymbol().startsWith("0")) {
+//        stock("1" + stock.getSymbol());
+//      } else if (stock.getSymbol().startsWith("3")) {
+//        stock("1" + stock.getSymbol());
+//      }
+//    }
     
   }
-  
-  private static void stock(String code) {
+
+  private static void stockss() {
+    StockListApiImpl api=new StockListApiImpl();
+    List<StockInfo> stocks = api.stocks();
+
+    System.out.println(stocks.size());
+  }
+  public static StockInfo time(String code){
+    StockInfo result=null;
     String url = "http://img1.money.126.net/data/hs/time/today/" + code + ".json";
     HttpRequest request = HttpRequest.get(url);
+    request.header("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0");
     HttpResponse response = request.send();
     if (response.statusCode() == 200) {
       response.charset("utf-8");
@@ -122,33 +137,39 @@ public class StockListApiImpl implements StockApi {
       JsonParser parser = new JsonParser();
       JsonElement root = parser.parse(body);
       JsonObject object = root.getAsJsonObject();
-      Stock stock = new Stock();
-      stock.setName(object.get("name").getAsString());
-      stock.setSymbol(object.get("symbol").getAsString());
-      stock.setDate(object.get("date").getAsString());
-      stock.setLastVolume(object.get("lastVolume").getAsInt());
-      stock.setYestClose(object.get("yestclose").getAsDouble());
-      
+      result = new StockInfo();
+      result.setName(object.get("name").getAsString());
+      result.setSymbol(object.get("symbol").getAsString());
+      result.setDate(object.get("date").getAsString());
+      result.setLastVolume(object.get("lastVolume").getAsInt());
+      result.setYestClose(object.get("yestclose").getAsFloat());
+
       JsonArray array = object.getAsJsonArray("data");
       List<StockTimePrice> prices = new ArrayList<StockTimePrice>();
       for (JsonElement element : array) {
         String time = element.getAsJsonArray().get(0).getAsString();
-        double price = element.getAsJsonArray().get(1).getAsDouble();
-        double avg = element.getAsJsonArray().get(2).getAsDouble();
+        float price = element.getAsJsonArray().get(1).getAsFloat();
+        float avg = element.getAsJsonArray().get(2).getAsFloat();
         int size = element.getAsJsonArray().get(3).getAsInt();
         StockTimePrice stockTimePrice = new StockTimePrice();
         stockTimePrice.setTime(time);
         stockTimePrice.setPrice(price);
         stockTimePrice.setAvg(avg);
         stockTimePrice.setSize(size);
-        System.out.println(stockTimePrice);
         prices.add(stockTimePrice);
       }
-      int optional = prices.stream().mapToInt(item -> item.getSize()).reduce(0, Integer::sum);
-      System.out.println(stock);
-      System.out.println(optional);
-      System.out.println(prices.size());
+      result.setPrices(prices);
+
     }
+    return  result;
+  }
+  private static void stock(String code) {
+    StockInfo stock=  time(code);
+    List<StockTimePrice> prices=stock.getPrices();
+    int optional = prices.stream().mapToInt(item -> item.getSize()).reduce(0, Integer::sum);
+    System.out.println(stock);
+    System.out.println(optional);
+    System.out.println(prices.size());
   }
   
 }

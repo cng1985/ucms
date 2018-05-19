@@ -50,7 +50,7 @@
 				<li class="header">主面板</li>
 				[@menustag id=1]
 					[#list list as item]
-						[@menu item "1,32,33"]
+						[@menu item "1,32,34"]
 						[/@menu]
 					[/#list]
 				[/@menustag]
@@ -76,14 +76,11 @@
 
 				<div class="row">
 					<div class="col-xs-12">
-						<form id="searchForm" action="${siteurl}admin/stock/view_list.htm" method="post">
+						<form id="searchForm" action="${siteurl}admin/stockdaytime/view_list.htm" method="post">
 							<div class=" box box-body">
 							<div class="col-xs-2 ">
-								<a class="btn btn-primary" href="${siteurl}admin/stock/view_add.htm">
+								<a class="btn btn-primary" href="${siteurl}admin/stockdaytime/view_add.htm">
 									<i class="fa  fa-plus"></i> 添加
-								</a>
-								<a class="btn btn-primary" href="${siteurl}admin/stock/sync.htm">
-									<i class="fa  "></i> 同步
 								</a>
 							</div>
 							<div class="col-xs-10 " style="padding-left: 0;">
@@ -99,44 +96,34 @@
 						</form>
 					</div>
 					<div class="col-xs-12">
-						<form id="listForm" action="${siteurl}admin/stock/view_list.htm" method="post">
+						<form id="listForm" action="${siteurl}admin/stockdaytime/view_list.htm" method="post">
 							<input type="hidden" name="name" value="${(so.name)!''}" >
 							<div class="box box-solid">
 							<div class="box-body table-responsive no-padding">
 								<table class="table table-bordered table-hover dataTable">
 									<thead>
-									<tr>
-										<td class="col-xs-2">股票代码</td>
-										<td class="col-xs-2">股票名称</td>
-										<td class="col-xs-2">所属行业</td>
-										<td class="col-xs-1">当前价格</td>
-										<td class="col-xs-1">市净率</td>
-										<td class="col-xs-1">市盈率</td>
-										<td class="col-xs-1 text-center">地区</td>
+									<tr role="row">
 										<td class="col-xs-2 text-center">操作</td>
 									</tr>
 									</thead>
 									<tbody>
 									[#list list as item]
-									<tr id="trr${item.id!''}">
-										<td><a href="${siteurl}admin/stock/time.htm?id=${item.id!''}">${item.code!""}</a></td>
-										<td>${item.name!""}</td>
-										<td>${item.industry!""}</td>
-										<td>${item.price!""}</td>
-										<td>${item.pb!""}</td>
-										<td>${item.pe!""}</td>
-										<td class="text-left">${item.area!""}</td>
+									<tr id="trr${item.id}">
 
 										<td class="text-center">
 											<div style="display: inline-block;">
-
-												<a  class="btn btn-xs btn-info"
-													href="${siteurl}admin/stock/view_edit.htm?id=${item.id!''}">
-													<i class="icon-trash bigger-120">更新</i>
-												</a> <a class="btn btn-xs btn-danger" onclick="return confirm('删除后无法恢复,确定要删除吗')"
-														href="${siteurl}admin/stock/model_delete.htm?id=${item.id!''}&pageNumber=${page.pageNumber}">
-												<i class="icon-trash bigger-120">删除</i>
-											</a>
+												[@shiro.hasPermission name="stockdaytime:update"]
+												<a  class="menubutton btn btn-sm btn-success"
+													href="${siteurl}admin/stockdaytime/view_edit.htm?id=${item.id}&pageNumber=${page.pageNumber!'1'}">
+													<i class="fa fa-edit">更新</i>
+												</a>
+												[/@shiro.hasPermission]
+												[@shiro.hasPermission name="stockdaytime:delete"]
+												<a  class="menubutton btn btn-sm btn-danger"  onclick="return confirm('删除后无法恢复,确定要删除吗')"
+													href="${siteurl}admin/stockdaytime/model_delete.htm?id=${item.id}&pageNumber=${page.pageNumber!'1'}">
+													<i class="fa fa-trash">删除</i>
+												</a>
+												[/@shiro.hasPermission]
 											</div>
 										</td>
 									</tr>
