@@ -62,7 +62,7 @@
                                         [#if item.user??]
                                         <img class="img-circle"
                                              src="[@image src=item.user.avatar def='dist/img/user1-128x128.jpg' /]"
-                                             alt="头像">
+                                             >
                                         [/#if]
                                     </a>
                                     <span class="username"><a href="${siteurl}space/${(item.user.id)!'0'}.htm">${(item.user.name)!""}</a></span>
@@ -73,10 +73,9 @@
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <!-- Attachment -->
-                                <div class="attachment-block clearfix">
+                                <div class=" clearfix">
                                     [#if item.img?? && item.img?length>2]
-                                    <img class="attachment-img" src="[@image src=item.img def='dist/img/user1-128x128.jpg' /]"
-                                         alt="图片">
+                                    <img class="attachment-img" src="[@image src=item.img def='dist/img/user1-128x128.jpg' /]">
                                     [/#if]
 
                                     <div class="attachment-pushed">
@@ -148,7 +147,7 @@
                                     <li>
                                         <a href="${siteurl}space/${item.id}.htm"><img
                                                 style="width:100px;height:91.25px;"
-                                                src="${item.avatar!'dist/img/user1-128x128.jpg'}" alt="头像"></a>
+                                                src="${item.avatar!'dist/img/user1-128x128.jpg'}" ></a>
                                         <a class="users-list-name" href="${siteurl}space/${item.id}.htm">${item.name!'代码人'}</a>
                                     </li>
                                     [/#list]

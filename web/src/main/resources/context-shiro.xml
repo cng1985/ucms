@@ -44,7 +44,6 @@
 				/login.htm = authc
 				/admin/** =user,adminroles[admin]
 				/home/** = user
-				/rest/**=authcBasic,perms["remote:invoke"]
 			</value>
 		</property>
 	</bean>
