@@ -142,6 +142,8 @@ public class StockServiceImpl implements StockService {
       dayss.setDay(info.getDate());
       dayss.setYestPrice(info.getYestClose());
       dayDao.save(dayss);
+    }else {
+      return entity;
     }
     int optional = prices.stream().mapToInt(item -> item.getSize()).reduce(0, Integer::sum);
     dayss.setVolume(optional);
@@ -173,7 +175,12 @@ public class StockServiceImpl implements StockService {
 
     return entity;
   }
-
+  
+  @Override
+  public void compute() {
+  
+  }
+  
   @Autowired
   StockCatalogDao catalogDao;
 

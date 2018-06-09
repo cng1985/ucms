@@ -103,13 +103,32 @@
 								<table class="table table-bordered table-hover dataTable">
 									<thead>
 									<tr role="row">
+										<td class="col-xs-2 text-center">股票</td>
+										<td class="col-xs-2 text-center">日期</td>
+										<td class="col-xs-2 text-center">时间</td>
+										<td class="col-xs-2 text-center">价格</td>
+										<td class="col-xs-2 text-center">成交量</td>
 										<td class="col-xs-2 text-center">操作</td>
 									</tr>
 									</thead>
 									<tbody>
 									[#list list as item]
 									<tr id="trr${item.id}">
-
+										<td class="text-center">
+											${(item.stock.name)!""}
+										</td>
+										<td class="text-center">
+											${(item.day.day)!""}
+										</td>
+										<td class="text-center">
+											${(item.time)!""}
+										</td>
+										<td class="text-center">
+											${(item.price)!""}
+										</td>
+										<td class="text-center">
+											${(item.size)!""}
+										</td>
 										<td class="text-center">
 											<div style="display: inline-block;">
 												[@shiro.hasPermission name="stockdaytime:update"]

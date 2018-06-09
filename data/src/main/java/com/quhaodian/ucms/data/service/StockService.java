@@ -34,4 +34,7 @@ public interface StockService {
   List<Stock> findList(Integer first, Integer count, List<Filter> filters, List<Order> orders);
 
   Stock time(Long id);
+  
+  void compute();
+  
 }
