@@ -21,7 +21,7 @@ public class RssController {
     ArticleService articleService;
 
 
-    @RequestMapping(value = "/rssfeed", method = RequestMethod.GET)
+    @RequestMapping(value = "/rss", method = RequestMethod.GET)
     public ModelAndView getFeedInRss() {
 
         List<Article> items = new ArrayList<Article>();

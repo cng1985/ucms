@@ -112,6 +112,7 @@ public class StockAction {
       @Override
       public void run() {
         ExecutorService cachedThreadPool = Executors.newFixedThreadPool(35);
+        
         manager.compute();
         List<Stock> stocks = manager.findList(0, 5000, null, null);
         if (stocks != null) {
