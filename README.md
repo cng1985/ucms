@@ -43,7 +43,7 @@
 如果您的网站使用了 ucms, 请在网站页面页脚处保留 ucms相关版权信息链接
 
 ### 网站地址
-http://www.yichisancun.com
+http://106.12.13.174:8080/ucms/
 
 测试账号
 
@@ -53,5 +53,5 @@ http://www.yichisancun.com
 
 股票：账号stock密码123456
 
-![网站首页](http://store.quhaodian.com/yichisancun.jpg "网站首页")
+![网站首页](http://onlvi543s.bkt.clouddn.com/yichisancun.jpg "网站首页")
 
