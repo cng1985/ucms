@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>一尺三寸</title>
+    <title>好学儿</title>
     [#include "/theme/adminlte/common/sites.html" /]
     [@header /]
 
@@ -36,7 +36,7 @@
                                     <ul class="products-list product-list-in-box" style="padding-left: 20px;">
                                         [#list likes as item]
                                         <li class="item">
-                                            <a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a>
+                                            <a href="${httpsurl}article/view/${item.id}.htm">${item.title!""}</a>
                                         </li>
                                         [/#list]
                                     </ul>
@@ -45,7 +45,7 @@
                                     <ul class="products-list product-list-in-box" style="padding-left: 20px;">
                                         [#list views as item]
                                         <li class="item">
-                                            <a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a>
+                                            <a href="${httpsurl}article/view/${item.id}.htm">${item.title!""}</a>
                                         </li>
                                         [/#list]
                                     </ul>
@@ -58,14 +58,14 @@
                         <div class="box box-widget">
                             <div class="box-header with-border">
                                 <div class="user-block">
-                                    <a href="${siteurl}space/${(item.user.id)!'0'}.htm">
+                                    <a href="${httpsurl}space/${(item.user.id)!'0'}.htm">
                                         [#if item.user??]
                                         <img class="img-circle"
                                              src="[@image src=item.user.avatar def='dist/img/user1-128x128.jpg' /]"
                                              >
                                         [/#if]
                                     </a>
-                                    <span class="username"><a href="${siteurl}space/${(item.user.id)!'0'}.htm">${(item.user.name)!""}</a></span>
+                                    <span class="username"><a href="${httpsurl}space/${(item.user.id)!'0'}.htm">${(item.user.name)!""}</a></span>
                                     <span class="description">${item.lastDate!""}</span>
                                 </div>
                                 <!-- /.user-block -->
@@ -79,7 +79,7 @@
                                     [/#if]
 
                                     <div class="attachment-pushed">
-                                        <h4 class="attachment-heading"><a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a>
+                                        <h4 class="attachment-heading"><a href="${httpsurl}article/view/${item.id}.htm">${item.title!""}</a>
                                         </h4>
 
                                         <div class="attachment-text">
@@ -145,10 +145,10 @@
                                     [@newuser size=12]
                                     [#list list as item]
                                     <li>
-                                        <a href="${siteurl}space/${item.id}.htm"><img
+                                        <a href="${httpsurl}space/${item.id}.htm"><img
                                                 style="width:100px;height:91.25px;"
                                                 src="${item.avatar!'dist/img/user1-128x128.jpg'}" ></a>
-                                        <a class="users-list-name" href="${siteurl}space/${item.id}.htm">${item.name!'代码人'}</a>
+                                        <a class="users-list-name" href="${httpsurl}space/${item.id}.htm">${item.name!'代码人'}</a>
                                     </li>
                                     [/#list]
                                     [/@newuser]

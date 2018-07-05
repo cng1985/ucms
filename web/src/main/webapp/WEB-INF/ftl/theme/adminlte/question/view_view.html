@@ -46,7 +46,7 @@
 						<div class="comments" >
 							<div class="comments-header">
 								[@shiro.authenticated]
-								<form action="${siteurl}user/updateuser.htm" method="post">
+								<form action="${httpsurl}user/updateuser.htm" method="post">
 
 									<div class="form-group">
 										<label>个性签名</label>
@@ -87,9 +87,9 @@
 							[#if catalogs?? && question.catalog??]
 							[#list catalogs as item  ]
 							[#if item.id =question.catalog.id]
-							<a href="${siteurl}question/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a>
+							<a href="${httpsurl}question/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a>
 							[#else]
-							<a href="${siteurl}question/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a>
+							<a href="${httpsurl}question/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a>
 							[/#if]
 
 							[/#list]
@@ -168,7 +168,7 @@
 <script>
     var pageno=2;
     $(document).ready(function() {
-        $.get("${siteurl}answer/page.htm?questionid=${question.id}", function(data) {
+        $.get("${httpsurl}answer/page.htm?questionid=${question.id}", function(data) {
             if (data.code == 0) {
                 var template = $.templates("#theTmpl");
                 var htmlOutput = template.render(data.list);
@@ -186,7 +186,7 @@
 
 
             data.qid = ${question.id};
-            $.post("${siteurl}answer/answer.htm", data, function(item) {
+            $.post("${httpsurl}answer/answer.htm", data, function(item) {
                 //alert(item)
                 if (item.id > 0) {
                     var template = $.templates("#theTmpl");
@@ -205,7 +205,7 @@
             var windowHeight=$(this).height();//window窗口的高度
             var documentHeight=$(document).height();//文档对象的高度
             if((scrollTop+windowHeight)>=documentHeight-120){
-                $.get("${siteurl}answer/page.htm?questionid=${question.id}&pageno="+pageno, function(data) {
+                $.get("${httpsurl}answer/page.htm?questionid=${question.id}&pageno="+pageno, function(data) {
                     if (data.code == 0&& data.totalPage<=pageno) {
                         var template = $.templates("#theTmpl");
                         var htmlOutput = template.render(data.list);

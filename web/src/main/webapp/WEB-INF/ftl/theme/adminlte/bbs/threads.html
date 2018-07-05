@@ -21,7 +21,7 @@
             <section class="content">
                 <div class="row">
                     <section class="col-lg-3">
-                        <a href="${siteurl}bbs/writePost.htm?forum=${id!'1'}" class="btn btn-primary btn-block margin-bottom">发帖</a>
+                        <a href="${httpsurl}bbs/writePost.htm?forum=${id!'1'}" class="btn btn-primary btn-block margin-bottom">发帖</a>
                         <div class="box box-solid">
                             <div class="box-header with-border">
                                 <h3 class="box-title">所有模块</h3>
@@ -48,8 +48,8 @@
                                         [#list list as item]
                                         <tr>
                                             <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                                            <td class="mailbox-name"><a href="${siteurl}space/${item.user.id}.htm">${(item.user.name)!""}</a></td>
-                                            <td class="mailbox-subject" style="min-width: 500px;"><a href="${siteurl}bbs/post/${item.id}.htm">${item.name!""}</a>
+                                            <td class="mailbox-name"><a href="${httpsurl}space/${item.user.id}.htm">${(item.user.name)!""}</a></td>
+                                            <td class="mailbox-subject" style="min-width: 500px;"><a href="${httpsurl}bbs/post/${item.id}.htm">${item.name!""}</a>
                                             </td>
                                             <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">${item.addDate!""}</td>

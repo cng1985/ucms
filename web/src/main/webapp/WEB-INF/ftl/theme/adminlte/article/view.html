@@ -24,7 +24,7 @@
 						<div class="box box-widget">
 							<div class="box-header with-border">
 								<div class="user-block">
-									<img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="头像">
+									<img class="img-circle" src="${httpsurl}dist/img/user1-128x128.jpg" alt="头像">
 									<span class="username"><a href="#">${article.title!""}</a></span>
 									<span class="description">${(article.lastDate?string("yyyy年MM月dd日"))!""}</span>
 								</div>
@@ -68,7 +68,7 @@
 							[@shiro.authenticated]
 							<div class="box-footer">
 
-								<form action="${siteurl}article/comment.htm" method="post">
+								<form action="${httpsurl}article/comment.htm" method="post">
 									<input  type="hidden" name="article.id" value="${article.id}"/>
 									<div class="input-group">
 										<input required="required" name="contents" placeholder="Type Message ..." class="form-control" type="text">
@@ -107,7 +107,7 @@
 		$("#like").click(function () {
 		    var params={};
 		    params.id=${article.id};
-			$.post("${siteurl}article/like.htm",params,function (backdata) {
+			$.post("${httpsurl}article/like.htm",params,function (backdata) {
                alert(backdata.msg);
             });
         });

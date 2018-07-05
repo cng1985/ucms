@@ -1,7 +1,7 @@
-<link rel="stylesheet" type="text/css" href="${siteurl}assets/plugs/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="${httpsurl}assets/plugs/webuploader/webuploader.css">
 <script type="text/javascript"
-	src="${siteurl}assets/plugs/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="${siteurl}assets/js/jsrender.min.js"></script>
+	src="${httpsurl}assets/plugs/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="${httpsurl}assets/js/jsrender.min.js"></script>
 [#macro imagesimple imageid  imagelist imagepath]
 
 <script type="text/javascript">
@@ -12,10 +12,10 @@ var ${imageid}obj = WebUploader.create({
 	auto : true,
 
 	// swf文件路径
-	swf : '${siteurl}assets/plugs/webuploader/Uploader.swf',
+	swf : '${httpsurl}assets/plugs/webuploader/Uploader.swf',
 
 	// 文件接收服务端。
-	server : '${siteurl}files/upload.htm',
+	server : '${httpsurl}files/upload.htm',
 
 	// 选择文件的按钮。可选。
 	// 内部根据当前运行是创建，可能是input元素，也可能是flash.

@@ -34,7 +34,7 @@
 								<ul class="nav nav-pills nav-stacked">
 									[#if catalogs??]
 									[#list catalogs as item  ]
-									<li><a href="${siteurl}activity/catalog.htm?id=${item.id}"><i class="fa fa-circle-o text-blue"></i> ${item.name!""}(${item.nums!"0"})</a></li>
+									<li><a href="${httpsurl}activity/catalog.htm?id=${item.id}"><i class="fa fa-circle-o text-blue"></i> ${item.name!""}(${item.nums!"0"})</a></li>
 									[/#list]
 									[/#if]
 								</ul>
@@ -48,8 +48,8 @@
 						<div class="box box-widget">
 							<div class="box-header with-border">
 								<div class="user-block">
-									<img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="User Image">
-									<span class="username"><a href="${siteurl}activity/view/${item.id}.htm">${item.name!""}</a></span>
+									<img class="img-circle" src="${httpsurl}dist/img/user1-128x128.jpg" alt="User Image">
+									<span class="username"><a href="${httpsurl}activity/view/${item.id}.htm">${item.name!""}</a></span>
 									<span class="description">${item.lastDate!""}</span>
 								</div>
 								<!-- /.user-block -->
@@ -59,7 +59,7 @@
 						[/#list]
 						[/#if]
 						<div class="box-footer">
-							[@pager pageData=pageData  url=siteurl+"activity/index.htm?time=1" /]
+							[@pager pageData=pageData  url=httpsurl+"activity/index.htm?time=1" /]
 						</div>
 					</section>
 				</div>

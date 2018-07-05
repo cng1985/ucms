@@ -5,8 +5,8 @@
 [#include "/theme/default/common/footer.html" /]
 <head>
 [@head "照片" /]
-  <link rel="stylesheet" href="${siteurl}assets/plugs/wow/animate.css">
- <script src="${siteurl}assets/plugs/wow/wow.js"></script>
+  <link rel="stylesheet" href="${httpsurl}assets/plugs/wow/animate.css">
+ <script src="${httpsurl}assets/plugs/wow/wow.js"></script>
 </head>
 [#include "/theme/default/common/page.html" /]
 
@@ -34,7 +34,7 @@
 					</div>
 				[/#list]
 				<div class="col-xs-12 text-center">
-				[@pager page curpage "${siteurl}photo/index.htm?x=1" /]
+				[@pager page curpage "${httpsurl}photo/index.htm?x=1" /]
 				</div>
 				</div>
 				<hr>
@@ -47,7 +47,7 @@
 				<div class="list-group">
 				    [#list catalogs]
 				    [#items as item]
-					<a href="${siteurl}photo/catalog.htm?id=${item.id}" class="list-group-item">${item.name!""}</a> 
+					<a href="${httpsurl}photo/catalog.htm?id=${item.id}" class="list-group-item">${item.name!""}</a>
 					[/#items]
 					[#else]
 					[/#list]

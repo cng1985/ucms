@@ -24,7 +24,7 @@
 						<div class="box box-widget">
 							<div class="box-header with-border">
 								<div class="user-block">
-									<img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="头像">
+									<img class="img-circle" src="${httpsurl}dist/img/user1-128x128.jpg" alt="头像">
 									<span class="username"><a href="#">${model.name!""}</a></span>
 									<span class="description">${(model.lastDate?string("yyyy年MM月dd日"))!""}</span>
 								</div>
@@ -65,7 +65,7 @@
         $("#like").click(function () {
             var params={};
             params.id=${model.id};
-            $.post("${siteurl}model/like.htm",params,function (backdata) {
+            $.post("${httpsurl}model/like.htm",params,function (backdata) {
                 alert(backdata.msg);
             });
         });

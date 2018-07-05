@@ -30,9 +30,9 @@
 							[#if catalogs??]
 							[#list catalogs as item  ]
 									[#if item.id =id]
-								<li class="active"><a href="${siteurl}article/catalog.htm?id=${item.id}"><i class="fa fa-circle-o text-blue"></i> ${item.name!""}(${item.nums!"0"})</a></li>
+								<li class="active"><a href="${httpsurl}article/catalog.htm?id=${item.id}"><i class="fa fa-circle-o text-blue"></i> ${item.name!""}(${item.nums!"0"})</a></li>
 									[#else]
-								<li><a href="${siteurl}article/catalog.htm?id=${item.id}"><i class="fa fa-circle-o text-blue"></i> ${item.name!""}(${item.nums!"0"})</a></li>
+								<li><a href="${httpsurl}article/catalog.htm?id=${item.id}"><i class="fa fa-circle-o text-blue"></i> ${item.name!""}(${item.nums!"0"})</a></li>
 									[/#if]
 							[/#list]
 							[/#if]
@@ -46,8 +46,8 @@
 						<div class="box box-widget">
 							<div class="box-header with-border">
 								<div class="user-block">
-									<img class="img-circle" src="${siteurl}dist/img/user1-128x128.jpg" alt="User Image">
-									<span class="username"><a href="${siteurl}article/view/${item.id}.htm">${item.title!""}</a></span>
+									<img class="img-circle" src="${httpsurl}dist/img/user1-128x128.jpg" alt="User Image">
+									<span class="username"><a href="${httpsurl}article/view/${item.id}.htm">${item.title!""}</a></span>
 									<span class="description">${item.lastDate!""}</span>
 								</div>
 								<!-- /.user-block -->
@@ -57,7 +57,7 @@
 						[/#list]
 						[/#if]
 						<div class="box-footer">
-							[@pager  pageData=pageData url=siteurl+"article/catalog.htm?id="+id /]
+							[@pager  pageData=pageData url=httpsurl+"article/catalog.htm?id="+id /]
 						</div>
 					</section>
 				</div>

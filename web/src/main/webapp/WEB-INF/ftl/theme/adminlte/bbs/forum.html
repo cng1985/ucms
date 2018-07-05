@@ -29,7 +29,7 @@
                                 <ul class="nav nav-pills nav-stacked">
                                     [@forum id=1 size=20]
                                     [#list list as item]
-                                    <li [#if model==item.id]class="active"[/#if]><a href="${siteurl}bbs/forum/${item.id}.htm"><i class="fa  fa-comment-o"></i> ${item.name!""}</a></li>
+                                    <li [#if model==item.id]class="active"[/#if]><a href="${httpsurl}bbs/forum/${item.id}.htm"><i class="fa  fa-comment-o"></i> ${item.name!""}</a></li>
                                     [/#list]
                                     [/@forum]
                                 </ul>
@@ -51,7 +51,7 @@
                                     <span class="info-box-icon"><i class="fa fa-comment"></i></span>
 
                                     <div class="info-box-content" >
-                                        <h3><a href="${siteurl}bbs/threads/${item.id}.htm" style="color: white">${item.name}</a></h3>
+                                        <h3><a href="${httpsurl}bbs/threads/${item.id}.htm" style="color: white">${item.name}</a></h3>
                                         </span>
 
                                     </div>

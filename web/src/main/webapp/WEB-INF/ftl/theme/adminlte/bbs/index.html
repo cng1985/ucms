@@ -172,7 +172,7 @@
                                                     <ul class="products-list product-list-in-box" style="padding-left: 20px;">
                                                         [#list likes as item]
                                                         <li class="item">
-                                                            <a href="${siteurl}bbs/post/${item.id}.htm">${item.name!""}</a>
+                                                            <a href="${httpsurl}bbs/post/${item.id}.htm">${item.name!""}</a>
                                                         </li>
                                                         [/#list]
                                                     </ul>
@@ -181,7 +181,7 @@
                                                     <ul class="products-list product-list-in-box" style="padding-left: 20px;">
                                                         [#list news as item]
                                                         <li class="item">
-                                                            <a href="${siteurl}bbs/post/${item.id}.htm">${item.name!""}</a>
+                                                            <a href="${httpsurl}bbs/post/${item.id}.htm">${item.name!""}</a>
                                                         </li>
                                                         [/#list]
                                                     </ul>
@@ -202,14 +202,14 @@
                                     <div class="col-md-6">
                                         <div class="media">
                                             <div class="media-left">
-                                                <a href="${siteurl}bbs/forum/${item.id}.htm" title="${item.name!''}" target="_self">
+                                                <a href="${httpsurl}bbs/forum/${item.id}.htm" title="${item.name!''}" target="_self">
                                                     <img class="media-object"
-                                                         src="${siteurl}dist/img/talk.png"
+                                                         src="${httpsurl}dist/img/talk.png"
                                                          alt="综合交流">
                                                 </a>
                                             </div>
                                             <div class="media-body">
-                                                <h4 class="media-heading"><a href="${siteurl}bbs/forum/${item.id}.htm" title="${item.name!''}"
+                                                <h4 class="media-heading"><a href="${httpsurl}bbs/forum/${item.id}.htm" title="${item.name!''}"
                                                                              target="_self">${item.name!""}</a></h4>
                                                 <p class="media-summary">${item.summary!""}</p>
                                                 <p class="media-info"><span>主题：114901</span><span>帖子：115266</span></p>

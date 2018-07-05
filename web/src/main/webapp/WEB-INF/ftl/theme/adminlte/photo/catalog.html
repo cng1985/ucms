@@ -33,7 +33,7 @@
 				    [/#list]
 				    
 				    <div class="col-xs-12  text-center">
-				   [@pager page curpage "${siteurl}photo/catalog.htm?id=${id}" /]
+				   [@pager page curpage "${httpsurl}photo/catalog.htm?id=${id}" /]
 				   </div>
 				</div>
 				<hr>
@@ -46,9 +46,9 @@
 				     [#if catalogs??]
 				    [#list catalogs as item  ]
 				    [#if item.id =id]
-					<a href="${siteurl}photo/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a> 
+					<a href="${httpsurl}photo/catalog.htm?id=${item.id}" class="list-group-item active">${item.name!""} (${item.nums!"0"})</a>
 					[#else]
-					<a href="${siteurl}photo/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a> 
+					<a href="${httpsurl}photo/catalog.htm?id=${item.id}" class="list-group-item ">${item.name!""} (${item.nums!"0"})</a>
 					[/#if]
 					
 					[/#list]
