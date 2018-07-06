@@ -110,17 +110,17 @@ public class LoginController extends BaseController {
     final OAuth20Service weibo;
 
     public LoginController() {
-        github = new ServiceBuilder().apiKey("66e9bc9545ab3bcec49b")
-                .apiSecret("a273f21ef3088dc4487dc90474c26c62d3a7b35f")
-                .callback("http://www.yichisancun.com/githublogin.htm").scope("user,public_repo")
+        github = new ServiceBuilder().apiKey("0998d17bd1c5b93f6e41")
+                .apiSecret("c14b32ab46eb45e4db950cc47982e4a7f314e202")
+                .callback("https://www.haoxuer.com/githublogin.htm").scope("user,public_repo")
                 .build(GitHubApi.instance());
 
-        oschina = new ServiceBuilder().apiKey("CTJlkYcnBaZCsi4GGgUk").apiSecret("TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF")
-                .callback("http://www.yichisancun.com/oschinalogin.htm").responseType("code")
+        oschina = new ServiceBuilder().apiKey("csoxhW9NpxfrPMH67W2t").apiSecret("NlUD9WP1XPHLIqt5dBEWptv4N5gdInDM")
+                .callback("https://www.haoxuer.com/oschinalogin.htm").responseType("code")
                 .build(OschinaApi.instance());
 
-        weibo = new ServiceBuilder().apiKey("2320531559").apiSecret("bc4440c86d5be467f954b8e221ef6553")
-                .callback("http://www.yichisancun.com/weibologin.htm").build(SinaWeiboApi20.instance());
+        weibo = new ServiceBuilder().apiKey("2749867679").apiSecret("51f6d015c40a58f4da538626b89d1e1b")
+                .callback("https://www.haoxuer.com/weibologin.htm").build(SinaWeiboApi20.instance());
     }
 
     /**
@@ -221,10 +221,10 @@ public class LoginController extends BaseController {
     public String oschinalogin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
         initurls(model);
         try {
-            String redirect_uri = "http://www.yichisancun.com/oschinalogin.htm";
+            String redirect_uri = "https://www.haoxuer.com/oschinalogin.htm";
             String grant_type = "authorization_code";
-            String client_secret = "TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF";
-            String client_id = "CTJlkYcnBaZCsi4GGgUk";
+            String client_secret = "NlUD9WP1XPHLIqt5dBEWptv4N5gdInDM";
+            String client_id = "csoxhW9NpxfrPMH67W2t";
             OsChinaHander hander = new OsChinaHander();
             hander.setKey(client_id);
             hander.setSecret(client_secret);
