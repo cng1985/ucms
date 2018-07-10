@@ -7,15 +7,13 @@
 |
 +---------------------------------------------------------------------------
  */
+
 package com.quhaodian.ucms.controller.front;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.quhaodian.discover.useroauth.plugs.service.OauthSiteService;
+import com.quhaodian.shiro.filter.UsernamePasswordCaptchaToken;
 import com.quhaodian.shiro.realm.UserInfoToken;
+import com.quhaodian.shiro.utils.UserUtil;
 import com.quhaodian.user.data.entity.UserAccount;
 import com.quhaodian.user.data.entity.UserInfo;
 import com.quhaodian.user.data.entity.UserOauthToken;
@@ -25,35 +23,19 @@ import com.quhaodian.user.data.service.UserOauthTokenService;
 import com.quhaodian.user.data.vo.UserAccountVo;
 import com.quhaodian.user.enums.AccountType;
 import com.quhaodian.user.oauth.domain.OauthResponse;
-import com.quhaodian.user.oauth.domain.TokenResponse;
 import com.quhaodian.user.oauth.domain.UserQQ;
-import com.quhaodian.user.oauth.impl.GitHubHander;
-import com.quhaodian.user.oauth.impl.OsChinaHander;
-import com.quhaodian.user.oauth.impl.WeiBoHander;
 import com.quhaodian.web.controller.front.BaseController;
-import org.apache.commons.lang3.StringUtils;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.quhaodian.shiro.filter.UsernamePasswordCaptchaToken;
-import com.quhaodian.shiro.utils.UserUtil;
-import com.github.scribejava.apis.GitHubApi;
-import com.github.scribejava.apis.SinaWeiboApi20;
-import com.github.scribejava.core.builder.ServiceBuilder;
-import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.github.scribejava.core.oauth.OAuth20Service;
-import com.scribejava.apis.OschinaApi;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -63,264 +45,195 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 public class LoginController extends BaseController {
-
-    /**
-     * 退出登录
-     *
-     * @return
-     */
-    @RequestMapping("/signout")
-    public String signout() {
-        SecurityUtils.getSubject().logout();
-        return "redirect:/login.htm";
+  
+  @Autowired
+  OauthSiteService oauthSiteService;
+  
+  /**
+   * 退出登录
+   *
+   * @return
+   */
+  @RequestMapping("/signout")
+  public String signout() {
+    SecurityUtils.getSubject().logout();
+    return "redirect:/login.htm";
+  }
+  
+  @Autowired
+  UserInfoService userInfoService;
+  
+  @Autowired
+  UserAccountService accountService;
+  
+  @Autowired
+  UserOauthTokenService tokenService;
+  
+  
+  @RequestMapping(value = "/register", method = RequestMethod.POST)
+  public String register(String email, String username, String password, HttpServletRequest request,
+                         HttpServletResponse response, Model model) {
+    
+    UserAccount account = new UserAccount();
+    account.setAccountType(AccountType.Account);
+    account.setUsername(username);
+    account.setPassword(password);
+    UserAccountVo state = accountService.reg(account);
+    if (state.getCode() == 0) {
+      model.addAttribute("msg", "注册成功");
+      return "redirect:/login.htm";
+    } else {
+      model.addAttribute("msg", "注册失败");
+      return getView("register");
+      
     }
-
-    @Autowired
-    UserInfoService userInfoService;
-
-    @Autowired
-    UserAccountService accountService;
-
-    @Autowired
-    UserOauthTokenService tokenService;
-
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(String email, String username, String password, HttpServletRequest request,
-                           HttpServletResponse response, Model model) {
-
-        UserAccount account = new UserAccount();
-        account.setAccountType(AccountType.Account);
-        account.setUsername(username);
-        account.setPassword(password);
-        UserAccountVo state = accountService.reg(account);
-        if (state.getCode() == 0) {
-            model.addAttribute("msg", "注册成功");
-            return "redirect:/login.htm";
-        } else {
-            model.addAttribute("msg", "注册失败");
-            return getView("register");
-
+    
+  }
+  
+  /**
+   * 跳转登录页
+   *
+   * @return
+   */
+  @RequestMapping(value = "/login", method = RequestMethod.GET)
+  public String view(Model model) {
+    
+    Subject subject = SecurityUtils.getSubject();
+    if (subject.isAuthenticated()) {
+      return "redirect:" + "/index.htm";
+    } else {
+      initurls(model);
+      return getView(Views.LOGIN);
+    }
+  }
+  
+  @RequestMapping(value = "qqlogin")
+  public String qqlogin(HttpServletRequest request, HttpServletResponse response, Model model) {
+    return getView("qqlogin");
+  }
+  
+  @RequestMapping(value = "plugs/{plug}")
+  public String oauthlogin(String code, @PathVariable String plug, HttpServletRequest request, HttpServletResponse response, Model model) {
+    initurls(model);
+    if (StringUtils.isEmpty(code)){
+      return getView(Views.LOGIN);
+    }
+    OauthResponse oauthResponse = oauthSiteService.handle(plug, code);
+    if (oauthResponse==null){
+      return getView(Views.LOGIN);
+    }
+    UserOauthToken userOauthToken = tokenService.login(oauthResponse);
+    UserInfo user = userOauthToken.getUser();
+    String result = login(user);
+    if (result != null) {
+      return result;
+    } else {
+      return getView(Views.LOGIN);
+    }
+    
+  }
+  
+  private String login(UserInfo user) {
+    if (user != null) {
+      Subject subject = SecurityUtils.getSubject();
+      if (!subject.isAuthenticated()) {
+        UserInfoToken token = new UserInfoToken(user.getId());
+        token.setRememberMe(true);
+        try {
+          subject.login(token);
+        } catch (Exception ex) {
+          ex.printStackTrace();
         }
-
-    }
-
-    final OAuth20Service github;
-    final OAuth20Service oschina;
-    final OAuth20Service weibo;
-
-    public LoginController() {
-        github = new ServiceBuilder().apiKey("0998d17bd1c5b93f6e41")
-                .apiSecret("c14b32ab46eb45e4db950cc47982e4a7f314e202")
-                .callback("https://www.haoxuer.com/githublogin.htm").scope("user,public_repo")
-                .build(GitHubApi.instance());
-
-        oschina = new ServiceBuilder().apiKey("csoxhW9NpxfrPMH67W2t").apiSecret("NlUD9WP1XPHLIqt5dBEWptv4N5gdInDM")
-                .callback("https://www.haoxuer.com/oschinalogin.htm").responseType("code")
-                .build(OschinaApi.instance());
-
-        weibo = new ServiceBuilder().apiKey("2749867679").apiSecret("51f6d015c40a58f4da538626b89d1e1b")
-                .callback("https://www.haoxuer.com/weibologin.htm").build(SinaWeiboApi20.instance());
-    }
-
-    /**
-     * 跳转登录页
-     *
-     * @return
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String view(Model model) {
-
-        Subject subject = SecurityUtils.getSubject();
         if (subject.isAuthenticated()) {
+          return "redirect:" + "/index.htm";
+        } else {
+          return getView("login");
+        }
+      }
+    }
+    return null;
+  }
+  
+  private void initurls(Model model) {
+    model.addAttribute("oauths", oauthSiteService.list());
+  }
+  
+  @Autowired
+  UserInfoService userService;
+  
+  @RequestMapping(value = "qqlogin2")
+  public String qqlogin2(String access_token, String openid, HttpServletRequest request, HttpServletResponse response,
+                         Model model) {
+    try {
+      
+      //UserQQ qq = qqService.login(access_token, openid, "101303927");
+      UserQQ qq = null;
+      if (qq != null) {
+        Subject subject = SecurityUtils.getSubject();
+        if (!subject.isAuthenticated()) {
+          UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
+          token.setUsername(openid);
+          token.setPassword("123456".toCharArray());
+          try {
+            subject.login(token);
+          } catch (Exception ex) {
+            ex.printStackTrace();
+          }
+          if (subject.isAuthenticated()) {
             return "redirect:" + "/index.htm";
-        } else {
-            initurls(model);
-            return getView(Views.LOGIN);
+          } else {
+            return "login";
+          }
         }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
-
-    @RequestMapping(value = "qqlogin")
-    public String qqlogin(HttpServletRequest request, HttpServletResponse response, Model model) {
-        return getView("qqlogin");
+    
+    return getView("qqlogin");
+  }
+  
+  /**
+   * 跳转登录页
+   *
+   * @return
+   */
+  @RequestMapping(value = "/register", method = RequestMethod.GET)
+  public String register() {
+    return getView("register");
+  }
+  
+  /**
+   * 跳转登录页
+   *
+   * @return
+   */
+  @RequestMapping(value = "/loginok", method = RequestMethod.GET)
+  public String loginok() {
+    
+    UserInfo user = UserUtil.getCurrentUser();
+    
+    if (SecurityUtils.getSubject().isAuthenticated()) {
+      if (SecurityUtils.getSubject().hasRole("管理员")) {
+        return "/admin/home";
+      } else {
+        return "redirect:/member/index.htm";
+      }
+    } else {
+      return getView("login");
     }
-
-    @RequestMapping(value = "weibologin")
-    public String weibologin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
-        initurls(model);
-        OAuth2AccessToken tokenx;
-        try {
-            tokenx = weibo.getAccessToken(code);
-
-            WeiBoHander hander = new WeiBoHander();
-            OauthResponse oauthResponse = hander.login(tokenx.getAccessToken(), null);
-            UserOauthToken userOauthToken = tokenService.login(oauthResponse);
-            UserInfo user = userOauthToken.getUser();
-            String result = login(user);
-            if (result != null) return result;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        return getView(Views.LOGIN);
-
-    }
-
-    private String login(UserInfo user) {
-        if (user != null) {
-            Subject subject = SecurityUtils.getSubject();
-            if (!subject.isAuthenticated()) {
-                UserInfoToken token = new UserInfoToken(user.getId());
-                token.setRememberMe(true);
-                try {
-                    subject.login(token);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                if (subject.isAuthenticated()) {
-                    return "redirect:" + "/index.htm";
-                } else {
-                    return getView("login");
-                }
-            }
-        }
-        return null;
-    }
-
-    private void initurls(Model model) {
-        model.addAttribute("githuburl", github.getAuthorizationUrl());
-        model.addAttribute("oschinaurl", oschina.getAuthorizationUrl());
-        model.addAttribute("weibourl", weibo.getAuthorizationUrl());
-    }
-
-    @RequestMapping(value = "githublogin")
-    public String githublogin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
-        initurls(model);
-        try {
-            OAuth2AccessToken tokenx = github.getAccessToken(code);
-            if (tokenx != null) {
-                GitHubHander hubHander = new GitHubHander();
-                OauthResponse oauthResponse = hubHander.login(tokenx.getAccessToken(), null);
-                UserOauthToken userOauthToken = tokenService.login(oauthResponse);
-                UserInfo user = userOauthToken.getUser();
-                String result = login(user);
-                if (result != null) return result;
-            }
-        } catch (Exception e) {
-        }
-        // token.get
-
-        return getView(Views.LOGIN);
-    }
-
-    @RequestMapping(value = "oschinalogin")
-    public String oschinalogin(String code, HttpServletRequest request, HttpServletResponse response, Model model) {
-        initurls(model);
-        try {
-            String redirect_uri = "https://www.haoxuer.com/oschinalogin.htm";
-            String grant_type = "authorization_code";
-            String client_secret = "NlUD9WP1XPHLIqt5dBEWptv4N5gdInDM";
-            String client_id = "csoxhW9NpxfrPMH67W2t";
-            OsChinaHander hander = new OsChinaHander();
-            hander.setKey(client_id);
-            hander.setSecret(client_secret);
-            hander.setRedirect_uri(redirect_uri);
-            TokenResponse tokenResponse = hander.getToken(code);
-            OauthResponse oauthResponse = hander.login(tokenResponse.getAccessToken(), null);
-            UserOauthToken userOauthToken = tokenService.login(oauthResponse);
-            UserInfo user = userOauthToken.getUser();
-            String result = login(user);
-            if (result != null) {
-                return result;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return getView(Views.LOGIN);
-    }
-
-
-    @Autowired
-    UserInfoService userService;
-
-    @RequestMapping(value = "qqlogin2")
-    public String qqlogin2(String access_token, String openid, HttpServletRequest request, HttpServletResponse response,
-                           Model model) {
-        try {
-
-            //UserQQ qq = qqService.login(access_token, openid, "101303927");
-            UserQQ qq = null;
-            if (qq != null) {
-                Subject subject = SecurityUtils.getSubject();
-                if (!subject.isAuthenticated()) {
-                    UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
-                    token.setUsername(openid);
-                    token.setPassword("123456".toCharArray());
-                    try {
-                        subject.login(token);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                    if (subject.isAuthenticated()) {
-                        return "redirect:" + "/index.htm";
-                    } else {
-                        return "login";
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return getView("qqlogin");
-    }
-
-    /**
-     * 跳转登录页
-     *
-     * @return
-     */
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register() {
-        return getView("register");
-    }
-
-    /**
-     * 跳转登录页
-     *
-     * @return
-     */
-    @RequestMapping(value = "/loginok", method = RequestMethod.GET)
-    public String loginok() {
-
-        UserInfo user = UserUtil.getCurrentUser();
-
-        if (SecurityUtils.getSubject().isAuthenticated()) {
-            if (SecurityUtils.getSubject().hasRole("管理员")) {
-                return "/admin/home";
-            } else {
-                return "redirect:/member/index.htm";
-            }
-        } else {
-            return getView("login");
-        }
-
-    }
-
-    /**
-     * 提交登录
-     *
-     * @return
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(RedirectAttributes attributes) {
-        attributes.addFlashAttribute("msg", "密码错误");
-        return "redirect:login.htm";
-    }
-
+    
+  }
+  
+  /**
+   * 提交登录
+   *
+   * @return
+   */
+  @RequestMapping(value = "/login", method = RequestMethod.POST)
+  public String login(RedirectAttributes attributes) {
+    attributes.addFlashAttribute("msg", "密码错误");
+    return "redirect:login.htm";
+  }
+  
 }

@@ -1,5 +1,6 @@
 package org.iwan_data;
 
+import com.quhaodian.discover.useroauth.scribejava.apis.OschinaApi;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
@@ -9,7 +10,6 @@ import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import com.github.scribejava.core.utils.OAuthEncoder;
-import com.scribejava.apis.OschinaApi;
 import com.young.http.HttpConnection;
 
 import junit.framework.Test;
@@ -51,7 +51,7 @@ public class AppTest extends TestCase {
 	}
 
 	private static void weibo() throws IOException {
-		final OAuth20Service service = new ServiceBuilder().apiKey("2320531559")
+		final OAuth20Service service = new ServiceBuilder("2320531559")
 				.apiSecret("bc4440c86d5be467f954b8e221ef6553").callback("http://www.yichisancun.com/weibologin.htm")
 				.build(SinaWeiboApi20.instance());
 		System.out.println(service.getAuthorizationUrl());
@@ -84,12 +84,12 @@ public class AppTest extends TestCase {
 
 	private static void x() throws IOException {
 		System.out.println(OAuthEncoder.encode("Q7kSBl"));
-		final OAuth20Service service = new ServiceBuilder().apiKey("66e9bc9545ab3bcec49b")
+		final OAuth20Service service = new ServiceBuilder("66e9bc9545ab3bcec49b")
 				.apiSecret("a273f21ef3088dc4487dc90474c26c62d3a7b35f")
 				.callback("http://www.yichisancun.com/githublogin.htm").scope("user,public_repo")
 				.build(GitHubApi.instance());
 		System.out.println(service.getAuthorizationUrl());
-		final OAuth20Service service2 = new ServiceBuilder().apiKey("CTJlkYcnBaZCsi4GGgUk")
+		final OAuth20Service service2 = new ServiceBuilder("CTJlkYcnBaZCsi4GGgUk")
 				.apiSecret("TlKrmPCKImAKEzk1ORZtdwooJKDIgXrF").callback("http://www.yichisancun.com/oschinalogin.htm")
 				.responseType("code").build(OschinaApi.instance());
 		System.out.println(service2.getAuthorizationUrl());

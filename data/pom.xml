@@ -142,12 +142,10 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.scribejava</groupId>
-            <artifactId>scribejava-apis</artifactId>
-            <version>4.1.1</version>
+            <groupId>com.quhaodian.discover</groupId>
+            <artifactId>discover_user_oauth</artifactId>
+            <version>1.8.1</version>
         </dependency>
-
-
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
