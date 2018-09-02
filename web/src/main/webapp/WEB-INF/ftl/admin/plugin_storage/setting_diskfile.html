@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>管理</title>
+    <title>磁盘存储配置</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -50,7 +50,7 @@
                 <li class="header">主面板</li>
                 [@menustag id=1]
                 [#list list as item]
-                [@menu item "1,29,31"]
+                [@menu item "1,15,17"]
                 [/@menu]
                 [/#list]
                 [/@menustag]
@@ -70,35 +70,31 @@
             <!-- /.box -->
             <div class="box box-default box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">ftp配置</h3>
+                    <h3 class="box-title">磁盘存储配置</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="${siteurl}admin/storage_plugin/qiniu/update.htm" method="post">
+                <form class="form-horizontal" action="${siteurl}admin/plugin_storage/diskfile/update.htm" method="post">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="accessKey" class="col-sm-2 control-label">accessKey</label>
+                            <label for="disk" class="col-sm-2 control-label">磁盘路径</label>
                             <div class="col-sm-10">
 
-                                <input  required="required"  class="form-control" maxlength="100" id="accessKey" name="accessKey" value="${pluginConfig.attributes['accessKey']!''}" placeholder="accessKey" type="text">
+                                <input class="form-control" maxlength="100" id="disk" name="disk" value="${pluginConfig.attributes['disk']!''}" placeholder="磁盘路径" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="secretKey" class="col-sm-2 control-label">secretKey</label>
+                            <label for="url" class="col-sm-2 control-label">访问域名</label>
                             <div class="col-sm-10">
-                                <input required="required" class="form-control" maxlength="100" id="secretKey" name="secretKey" value="${pluginConfig.attributes['secretKey']!''}" placeholder="secretKey" type="text">
+
+                                <input class="form-control" maxlength="100" id="url" name="url" value="${pluginConfig.attributes['url']!''}" placeholder="访问域名" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="url" class="col-sm-2 control-label">url</label>
+                            <label for="urlPrefix" class="col-sm-2 control-label">网址前缀</label>
                             <div class="col-sm-10">
-                                <input required="required" class="form-control" maxlength="100" id="url" name="url" value="${pluginConfig.attributes['url']!''}" placeholder="url" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="domain" class="col-sm-2 control-label">domain</label>
-                            <div class="col-sm-10">
-                                <input required="required" class="form-control" maxlength="100" id="domain" name="domain" value="${pluginConfig.attributes['domain']!''}" placeholder="domain" type="text">
+
+                                <input class="form-control" maxlength="100" id="urlPrefix" name="urlPrefix" value="${pluginConfig.attributes['urlPrefix']!''}" placeholder="网址前缀" type="text">
                             </div>
                         </div>
                         <div class="form-group">
@@ -111,6 +107,7 @@
                         <div class="form-group">
                             <label for="enabled" class="col-sm-2 control-label">是否启用</label>
                             <div class="col-sm-10">
+
                                 <input type="checkbox" id="enabled" name="enabled"  [#if pluginConfig.isEnabled] checked[/#if] />
                             </div>
                         </div>

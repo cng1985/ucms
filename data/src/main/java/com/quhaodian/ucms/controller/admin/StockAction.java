@@ -104,30 +104,7 @@ public class StockAction {
     return view;
   }
   
-  @RequiresPermissions("stock")
-  @RequestMapping("/admin/stock/comp")
-  public String comp(Stock bean, ModelMap model) {
-    String view = REDIRECT_LIST_HTML;
-    new Thread(new Runnable() {
-      @Override
-      public void run() {
-        ExecutorService cachedThreadPool = Executors.newFixedThreadPool(35);
-        
-        manager.compute();
-        List<Stock> stocks = manager.findList(0, 5000, null, null);
-        if (stocks != null) {
-          for (Stock stock : stocks) {
-            Runnable thread = new StockTimeSyncThread(manager, stock.getId());
-            cachedThreadPool.execute(thread);
-          }
-        }
-      }
-    }).start();
-    
-    
-    return view;
-  }
-  
+
   @RequiresPermissions("stock")
   @RequestMapping("/admin/stock/time")
   public String time(Long id, ModelMap model) {
