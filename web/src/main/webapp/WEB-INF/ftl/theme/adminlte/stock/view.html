@@ -1,75 +1,60 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-	[#include "/theme/default/common/nav.html" /]
-	[#include "/theme/default/common/head.html" /]
-	[#include "/theme/default/common/footer.html" /]
-	[#include "/theme/default/common/page.html" /]
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>${stock.name!''}</title>
+	[#include "/theme/adminlte/common/sites.html" /]
+	[@header /]
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
 
-	<head>
-		[@head "${stock.name!''}" /]
-		<style type="text/css">
-			body {
-				padding-top: 70px;
-			}
-
-			footer {
-				padding: 30px 0;
-			}
-		</style>
-	</head>
-
-	<body>
-		<div class="fakeloader"></div>
-
-		[@nav  6 /]
-		<!-- /.navbar -->
-
+	<header class="main-header">
+		[@nav  1 /]
+	</header>
+	<!-- Full Width Column -->
+	<div class="content-wrapper">
 		<div class="container">
 
 			<div class="row">
+				<div class="col-xs-12 col-sm-12" style="margin-top: 20px;">
+				<div class="box box-solid">
+					<!-- /.box-header -->
+					<div class="box-body clearfix">
+						<div class="row">
+							[#if detail??]
+							<div class="col-xs-3">
+								开盘价格:${detail.openningPrice!""}元
+							</div>
+							<div class="col-xs-3">
+								昨天收盘:${detail.closingPrice!""}元
+							</div>
+							<div class="col-xs-3">
+								最高价格:${detail.hPrice!""}元
+							</div>
+							<div class="col-xs-3">
+								最低价格:${detail.lPrice!""}元
+							</div>
+							[/#if]
+							<div class="col-xs-3">
+								代码:${stock.code!""}
+							</div>
+							<div class="col-xs-3">
+								行业:${stock.industry!""}
+							</div>
+							<div class="col-xs-3">
+								市盈率:${stock.pe!""}
+							</div>
+							<div class="col-xs-3">
+								市净率:${stock.pb!""}
+							</div>
 
-				<div class="col-xs-12 col-sm-12">
-					<p class="pull-right visible-xs">
-						<button type="button" class="btn btn-primary btn-xs"
-						data-toggle="offcanvas">
-							Toggle nav
-						</button>
-					</p>
-					<div class="jumbotron">
-						<h1>${stock.name!''}</h1>
-						[#if detail??]
-						<h3>${detail.currentPrice!''}元</h3>
-						[/#if]
+						</div>
 					</div>
+					<!-- /.box-body -->
 				</div>
-				<div class="row">
-					[#if detail??]
-					<div class="col-xs-3">
-						开盘价格:${detail.openningPrice!""}元
-					</div>
-					<div class="col-xs-3">
-						昨天收盘:${detail.closingPrice!""}元
-					</div>
-					<div class="col-xs-3">
-						最高价格:${detail.hPrice!""}元
-					</div>
-					<div class="col-xs-3">
-						最低价格:${detail.lPrice!""}元
-					</div>
-					[/#if]
-					<div class="col-xs-3">
-						代码:${stock.code!""}
-					</div>
-					<div class="col-xs-3">
-						行业:${stock.industry!""}
-					</div>
-					<div class="col-xs-3">
-						市盈率:${stock.pe!""}
-					</div>
-					<div class="col-xs-3">
-						市净率:${stock.pb!""}
-					</div>
-
 				</div>
 
 				<div class="col-xs-12 col-sm-12">
@@ -86,7 +71,7 @@
 
 				</div>
 				<div class="col-xs-12 col-sm-12">
-					<div>
+					<div class="nav-tabs-custom">
 
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
@@ -131,12 +116,17 @@
 			</div>
 			<!--/row-->
 
-			<hr>
-
-			[@footer /]
-
 		</div>
-		<!--/.container-->
 
-	</body>
+		<!-- /.container -->
+	</div>
+	<!-- /.content-wrapper -->
+
+	[@footer /]
+</div>
+<!-- ./wrapper -->
+
+[@scripts /]
+</body>
 </html>
+
