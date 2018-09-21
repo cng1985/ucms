@@ -77,7 +77,7 @@
                 </li>
             </ul>
             <form class="navbar-form navbar-left" action="http://zhannei.baidu.com/cse/search" role="search">
-                <input name="s" value="18160112213975272761" type="hidden">
+                <input name="s" value="4524866063025472840" type="hidden">
                 <input name="entry" value="1" type="hidden">
                 <div class="form-group">
                     <input type="text" name="q" class="form-control" id="navbar-search-input" placeholder="搜索">
@@ -97,7 +97,7 @@
         [/@shiro.guest]
         <!-- /.navbar-collapse -->
         <!-- Navbar Right Menu -->
-        [@shiro.authenticated]
+        [@shiro.user]
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
@@ -105,7 +105,7 @@
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success">4</span>
+                        <span class="label label-success">${(user.id)!""}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">You have 4 messages</li>
@@ -141,17 +141,17 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="${user.avatar!''}" class="user-image" alt="">
+                        <img src="${(user.avatar)!''}" class="user-image" alt="">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">${user.name!""}</span>
+                        <span class="hidden-xs">${(user.name)!""}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="${httpsurl}dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="${(user.avatar)!''}" class="img-circle" alt="User Image">
 
                             <p>
-                                代码人 - 软件工程师
+                                <shiro.principal />代码人 - 软件工程师
                                 <small>2017年6月13日</small>
                             </p>
                         </li>
@@ -183,7 +183,7 @@
                 </li>
             </ul>
         </div>
-        [/@shiro.authenticated]
+        [/@shiro.user]
         <!-- /.navbar-custom-menu -->
     </div>
     <!-- /.container-fluid -->
