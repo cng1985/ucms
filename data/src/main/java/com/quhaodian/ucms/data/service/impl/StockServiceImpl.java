@@ -98,7 +98,7 @@ public class StockServiceImpl implements StockService {
 
   @Transactional(readOnly = true)
   public Page<Stock> findPage(Pageable pageable) {
-    return dao.findPage(pageable);
+    return dao.page(pageable);
   }
 
   @Transactional(readOnly = true)
@@ -234,7 +234,7 @@ public class StockServiceImpl implements StockService {
   @Transactional(readOnly = true)
   public Stock findByCode(String code) {
     Finder finder = Finder.create();
-    finder.append("from StockInfo s where s.code =:code");
+    finder.append("from Stock s where s.code =:code");
     finder.setParam("code", code);
     List<Stock> ss = dao.find(finder);
 

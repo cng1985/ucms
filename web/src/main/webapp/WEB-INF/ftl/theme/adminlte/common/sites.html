@@ -43,29 +43,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                <li [#if index==1] class="active" [/#if]>
-                <a href="${httpsurl}index.htm">首页 <span class="sr-only">(current)</span></a>
+                <li [#if index==1] class="active" [/#if]> <a href="${httpsurl}index.htm">首页 <span class="sr-only">(current)</span></a>
                 </li>
-                <li [#if index==2] class="active" [/#if]>
-                <a href="${httpsurl}article/index.htm">文章</a>
+                <li [#if index==2] class="active" [/#if]> <a href="${httpsurl}article/index.htm">文章</a>
                 </li>
-                <li [#if index==5] class="active" [/#if]>
-                <a href="${httpsurl}bbs/index.htm">论坛</a>
+                <li [#if index==5] class="active" [/#if]> <a href="${httpsurl}bbs/index.htm">论坛</a>
                 </li>
-                <li [#if index==3] class="active" [/#if]>
-                <a href="${httpsurl}question/type/new.htm">问答</a>
+                <li [#if index==3] class="active" [/#if]> <a href="${httpsurl}question/type/new.htm">问答</a>
                 </li>
-                <li [#if index==4] class="active" [/#if]>
-                <a href="${httpsurl}activity/index.htm">活动</a>
+                <li [#if index==4] class="active" [/#if]> <a href="${httpsurl}activity/index.htm">活动</a>
                 </li>
                 [@shiro.authenticated]
-                <li [#if index==7] class="active" [/#if]>
-                <a href="${httpsurl}member/index.htm">个人主页</a>
+                <li [#if index==7] class="active" [/#if]> <a href="${httpsurl}member/index.htm">个人主页</a>
                 </li>
                 [/@shiro.authenticated]
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">其他 <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
+                            <li><a href="${siteurl}stock/index.htm">股票</a></li>
                         <li><a href="#">论坛</a></li>
                         <li><a href="#">开放平台</a></li>
                         <li><a href="#">群组</a></li>
@@ -88,10 +83,10 @@
         [@shiro.guest]
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="${httpsurl}login.htm">登陆</a>
+                <a href="${siteurl}login.htm">登陆</a>
             </li>
             <li>
-                <a href="${httpsurl}register.htm">注册</a>
+                <a href="${siteurl}register.htm">注册</a>
             </li>
         </ul>
         [/@shiro.guest]
@@ -112,7 +107,8 @@
                         <li>
                             <!-- inner menu: contains the messages -->
                             <ul class="menu">
-                                <li><!-- start message -->
+                                <li>
+                                    <!-- start message -->
                                     <a href="#">
                                         <div class="pull-left">
                                             <!-- User Image -->
@@ -193,8 +189,9 @@
 [#macro footer]
 <footer class="main-footer">
     <div class="container">
-        <div >
-            <strong>Copyright &copy; 1985-${.now?string("yyyy")} <a href="https://www.haoxuer.com/">ada.young</a></strong> 版权所有
+        <div>
+            <strong>Copyright &copy; 1985-${.now?string("yyyy")} <a href="https://www.haoxuer.com/">ada.young</a></strong>
+            版权所有
         </div>
         <div>
             陕ICP备18011547号-1
@@ -203,20 +200,24 @@
         <div class="row bring-up">
             <div class="col-sm-3">
                 <ul class="list-unstyled">
-                    <li><h4>友情链接</h4></li>
+                    <li>
+                        <h4>友情链接</h4>
+                    </li>
 
-                    [@link  id=2 size=20]
+                    [@link id=2 size=20]
                     [#if list??]
-                        [#list list as item]
-                            <li><a href="${item.url!''}" target="_blank">${item.name!''}</a></li>
-                        [/#list]
+                    [#list list as item]
+                    <li><a href="${item.url!''}" target="_blank">${item.name!''}</a></li>
+                    [/#list]
                     [/#if]
                     [/@link]
                 </ul>
             </div><!-- /.col -->
             <div class="col-sm-3">
                 <ul class="list-unstyled">
-                    <li><h4>第三方库</h4></li>
+                    <li>
+                        <h4>第三方库</h4>
+                    </li>
                     <li><a href="https://github.com/seiyria/bootstrap-slider/">Bootstrap Slider</a></li>
                     <li><a href="http://ionden.com/a/plugins/ion.rangeSlider/en.html" target="_blank">Ion Slider</a></li>
                     <li><a href="http://bootstrap-datepicker.readthedocs.org/" target="_blank">Date Picker</a></li>
@@ -229,14 +230,19 @@
             </div><!-- /.col -->
             <div class="col-sm-3">
                 <ul class="list-unstyled">
-                    <li><h4>Editors</h4></li>
-                    <li><a href="https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg/" target="_blank">Bootstrap WYSIHTML5</a></li>
+                    <li>
+                        <h4>Editors</h4>
+                    </li>
+                    <li><a href="https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg/" target="_blank">Bootstrap
+                            WYSIHTML5</a></li>
                     <li><a href="http://ckeditor.com/" target="_blank">CK Editor</a></li>
                 </ul>
             </div><!-- /. col -->
             <div class="col-sm-3">
                 <ul class="list-unstyled">
-                    <li><h4>其他</h4></li>
+                    <li>
+                        <h4>其他</h4>
+                    </li>
                     <li><a href="https://datatables.net/examples/styling/bootstrap.html" target="_blank">DataTables</a></li>
                     <li><a href="http://fullcalendar.io/" target="_blank">Full Calendar</a></li>
                     <li><a href="http://jqueryui.com/" target="_blank">jQuery UI</a></li>
@@ -253,7 +259,7 @@
 
 <script>
     var _hmt = _hmt || [];
-    (function() {
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?5e2e20a7ef88cc2a6787faf846c3c44e";
         var s = document.getElementsByTagName("script")[0];
@@ -278,24 +284,24 @@
 
 
 
-[#macro pager pageData  url]
+[#macro pager pageData url]
 [#if pageData?? ]
 
 <ul class="pagination">
     [#if pageData.pageNumber gt 1]
-        <li><a href="${url}&pageNumber=${pageData.pageNumber-1}">上一页</a></li>
+    <li><a href="${url}&pageNumber=${pageData.pageNumber-1}">上一页</a></li>
     [/#if]
     [#if pageData.totalPages gt 1]
-        [#list pageData.firstNo..pageData.endNo as item]
-            [#if pageData.pageNumber==item]
-                <li class="active"><a href="${url}">${item}</a></li>
-            [#else]
-                <li ><a href="${url}&pageNumber=${item}">${item}</a></li>
-            [/#if]
-        [/#list]
+    [#list pageData.firstNo..pageData.endNo as item]
+    [#if pageData.pageNumber==item]
+    <li class="active"><a href="${url}">${item}</a></li>
+    [#else]
+    <li><a href="${url}&pageNumber=${item}">${item}</a></li>
     [/#if]
-    [#if pageData.pageNumber lt  pageData.endNo]
-        <li><a href="${url}&pageNumber=${pageData.pageNumber+1}">下一页</a></li>
+    [/#list]
+    [/#if]
+    [#if pageData.pageNumber lt pageData.endNo]
+    <li><a href="${url}&pageNumber=${pageData.pageNumber+1}">下一页</a></li>
     [/#if]
 </ul>
 [/#if]
@@ -349,7 +355,7 @@
         <strong><i class="fa fa-pencil margin-r-5"></i> 我的标签</strong>
 
         <p>
-            [#list  user.labels as item]
+            [#list user.labels as item]
             <span class="label label-info" style="margin-right: 3px;">${item.name!""}</span>
             [/#list]
         </p>

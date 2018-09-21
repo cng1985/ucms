@@ -15,45 +15,60 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.quhaodian.discover</groupId>
+            <groupId>com.haoxuer.discover</groupId>
             <artifactId>discover-website</artifactId>
-            <version>1.8.29</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <artifactId>discover-bbs</artifactId>
-            <groupId>com.quhaodian.discover</groupId>
-            <version>1.8.1</version>
+            <groupId>com.haoxuer.discover</groupId>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
-            <groupId>com.quhaodian.discover</groupId>
+            <groupId>com.haoxuer.discover</groupId>
             <artifactId>discover-activity</artifactId>
-            <version>1.8.1</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
-            <groupId>com.quhaodian.discover</groupId>
+            <groupId>com.haoxuer.discover</groupId>
             <artifactId>discover-album</artifactId>
-            <version>1.8.1</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
-            <groupId>com.quhaodian.discover</groupId>
+            <groupId>com.haoxuer.discover</groupId>
             <artifactId>discover-article</artifactId>
-            <version>1.8.1</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
-            <groupId>com.quhaodian.discover</groupId>
+            <groupId>com.haoxuer.discover</groupId>
             <artifactId>discover-question</artifactId>
-            <version>1.8.1</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
-            <groupId>com.quhaodian.discover</groupId>
-            <artifactId>discover-security</artifactId>
-            <version>1.8.1</version>
+            <groupId>com.haoxuer.discover</groupId>
+            <artifactId>discover-user-oauth</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.haoxuer.discover</groupId>
+            <artifactId>discover-common-security</artifactId>
+            <version>1.0.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.freemarker</groupId>
                     <artifactId>freemarker</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.haoxuer.discover</groupId>
+            <artifactId>discover-quartz</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.haoxuer.discover</groupId>
+            <artifactId>discover-area</artifactId>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>com.quhaodian.ucms</groupId>
@@ -141,11 +156,7 @@
             <version>1.5.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.quhaodian.discover</groupId>
-            <artifactId>discover_user_oauth</artifactId>
-            <version>1.8.1</version>
-        </dependency>
+
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -187,7 +198,7 @@
         </dependency>
         <dependency>
             <groupId>com.quhaodian.jsonrpc</groupId>
-            <version>1.01</version>
+            <version>1.02</version>
             <artifactId>core</artifactId>
         </dependency>
     </dependencies>
