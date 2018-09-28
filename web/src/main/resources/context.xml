@@ -43,7 +43,7 @@
     <!--COOKIE登录 -->
     <context:component-scan base-package="com.quhaodian.ucms.controller"/>
 
-    <bean name="webconfig" class="com.quhaodian.web.data.common.InitConfig" init-method="initWebConfig" scope="singleton" lazy-init="false"></bean>
+    <bean name="webconfig" class="com.quhaodian.web.data.common.InitConfig" init-method="initWebConfig" scope="singleton" lazy-init="false" />
 
 
     <bean id="multipartResolver"
@@ -52,20 +52,22 @@
 
 
 
-    <bean id="shiro" class="com.jagregory.shiro.freemarker.ShiroTags"></bean>
-    <bean id="menuOpenDirective" class="com.quhaodian.user.freemaker.MenuOpenDirective"></bean>
-    <bean id="menusDirective" class="com.quhaodian.user.freemaker.MenusDirective"></bean>
-    <bean id="menuChildsDirective" class="com.quhaodian.user.freemaker.MenuChildsDirective"></bean>
+    <bean id="shiro" class="com.jagregory.shiro.freemarker.ShiroTags"/>
+    <bean id="menuOpenDirective" class="com.quhaodian.user.freemaker.MenuOpenDirective"/>
+    <bean id="menusDirective" class="com.quhaodian.user.freemaker.MenusDirective"/>
+    <bean id="menuChildsDirective" class="com.quhaodian.user.freemaker.MenuChildsDirective"/>
 
-    <bean id="articleDirective" class="com.quhaodian.article.freemarker.ArticleDirective"></bean>
-    <bean id="forumDirective" class="com.quhaodian.bbs.freemaker.ForumDirective"></bean>
-    <bean id="simpleForumDirective" class="com.quhaodian.bbs.freemaker.SimpleForumDirective"></bean>
+    <bean id="articleDirective" class="com.quhaodian.article.freemarker.ArticleDirective"/>
+    <bean id="forumDirective" class="com.quhaodian.bbs.freemaker.ForumDirective"/>
+    <bean id="forumPostListDirective" class="com.quhaodian.bbs.freemaker.ForumPostListDirective"/>
 
-    <bean id="newUserDirective" class="com.quhaodian.user.freemaker.NewUserDirective"></bean>
-    <bean id="linkDirective" class="com.quhaodian.site.freemaker.LinkDirective"></bean>
-    <bean id="linkTypeDirective" class="com.quhaodian.site.freemaker.LinkTypeDirective"></bean>
+    <bean id="simpleForumDirective" class="com.quhaodian.bbs.freemaker.SimpleForumDirective"/>
+
+    <bean id="newUserDirective" class="com.quhaodian.user.freemaker.NewUserDirective"/>
+    <bean id="linkDirective" class="com.quhaodian.site.freemaker.LinkDirective"/>
+    <bean id="linkTypeDirective" class="com.quhaodian.site.freemaker.LinkTypeDirective"/>
     <bean id="imageDirective" class="com.quhaodian.ucms.freemaker.ImageDirective">
-        <property name="domain" value="#{servletContext.contextPath}/"></property>
+        <property name="domain" value="#{servletContext.contextPath}/"/>
     </bean>
 
     <!-- freemarker的配置 -->
@@ -100,6 +102,7 @@
                 <entry key="httpsurl" value="#{servletContext.contextPath}/"/>
                 <entry key="sitename" value="好学儿"/>
                 <entry key="forum" value-ref="forumDirective"/>
+                <entry key="forumposts" value-ref="forumPostListDirective"/>
                 <entry key="newuser" value-ref="newUserDirective"/>
                 <entry key="simpleforum" value-ref="simpleForumDirective"/>
                 <entry key="link" value-ref="linkDirective"/>

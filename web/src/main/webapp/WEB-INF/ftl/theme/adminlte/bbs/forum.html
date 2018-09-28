@@ -1913,12 +1913,14 @@
                             <span class="forum-post-title-text">精华帖</span>
                         </div>
                         <div class="forum-post-list">
-                            [#list 1..5 as item]
+                            [@forumposts forum=model.id catalog="new"  size=5]
+                            [#if list??]
+                            [#list list as item]
                             <div class="forum-post-item">
 
 
-                                <a href="/forum/user/center/3926992" class="avatar-a-export">
-                                    <img src="https://himg.bdimg.com/sys/portrait/item/57de0fa65fa6c8c8gd1d257ded1d2.jpg" class="forum-avatar" alt="">
+                                <a href="${httpsurl}space/${(item.user.id)!'0'}.htm" class="avatar-a-export">
+                                    <img src="[@image src=item.user.avatar def='dist/img/user1-128x128.jpg' /]" class="forum-avatar" alt="">
 
                                     <div class="uc-lmg uc-lmg-v1"></div>
                                 </a>
@@ -1926,28 +1928,30 @@
 
                                 <div class="forum-post-item-desc">
                                     <div class="forum-post-item-title">
-                                        <a class="forum-post-item-text forum-link" href="/forum/topic/show/292922">
-                                            <span class="title-text">小度大调查第九期丨欢迎为小度游戏出谋划策</span>
+                                        <a class="forum-post-item-text forum-link" href="${siteurl}bbs/post/${item.id}.htm">
+                                            <span class="title-text">${item.name}</span>
                                             <span class="forum-post-icon-group">
-                            <i class="forum-post-essence">精</i>
-                            <i class="forum-post-official">官</i>
-                        </span>
+                                            <i class="forum-post-essence">精</i>
+                                            <i class="forum-post-official">官</i>
+                                        </span>
                                         </a>
                                     </div>
                                     <div class="forum-post-item-info">
-                                        <a href="/forum/topic/list/140" class="forum-link forum-post-category">[小度智能音箱]</a>
-                                        <a href="/forum/user/center/3926992" class="forum-link forum-post-user">小度_度盈盈</a>
+                                        <a href="${siteurl}bbs/threads/${item.id}.htm0" class="forum-link forum-post-category">[智能]</a>
+                                        <a href="${siteurl}bbs/threads/${item.id}.htm" class="forum-link forum-post-user">盈盈</a>
                                         <span class="forum-post-dot">·</span>
-                                        <a href="/forum/user/center/3481347" class="forum-link forum-post-reply">月夜092</a>
+                                        <a href="${httpsurl}space/${(item.user.id)!'0'}.htm" class="forum-link forum-post-reply">${(item.user.name)!'代码人'}</a>
                                         <span class="forum-post-text">回复于27分钟前</span>
                                     </div>
                                 </div>
                                 <div class="forum-post-count">
                                     <span class="forum-post-triangle"></span>
-                                    <span class="forum-post-show-count">16</span>
+                                    <span class="forum-post-show-count">${item.views!"0"}</span>
                                 </div>
                             </div>
                             [/#list]
+                            [/#if]
+                            [/@forumposts]
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6 forum-post-zone">
@@ -1956,41 +1960,45 @@
                             <span class="forum-post-title-text">热门帖</span>
                         </div>
                         <div class="forum-post-list">
-                            [#list 1..5 as item]
+                            [@forumposts forum=model.id catalog="hot" size=5]
+                            [#if list??]
+                            [#list list as item]
                             <div class="forum-post-item">
 
 
-                                <a href="/forum/user/center/1923210" class="avatar-a-export">
-                                    <img src="https://himg.bdimg.com/sys/portrait/item/e3657368656e6a69616e797ag3d02e3653d02.jpg" class="forum-avatar" alt="">
+                                <a href="${httpsurl}space/${(item.user.id)!'0'}.htm" class="avatar-a-export">
+                                    <img src="[@image src=item.user.avatar def='dist/img/user1-128x128.jpg' /]" class="forum-avatar" alt="">
 
-                                    <div class="uc-lmg uc-lmg-v2"></div>
+                                    <div class="uc-lmg uc-lmg-v1"></div>
                                 </a>
 
 
                                 <div class="forum-post-item-desc">
                                     <div class="forum-post-item-title">
-                                        <a class="forum-post-item-text forum-link" href="/forum/topic/show/292851">
-                                            <span class="title-text">小度八点半丨为你全面解惑小度音箱</span>
+                                        <a class="forum-post-item-text forum-link" href="${siteurl}bbs/post/${item.id}.htm">
+                                            <span class="title-text">${item.name}</span>
                                             <span class="forum-post-icon-group">
-                            <i class="forum-post-essence">精</i>
-
-                        </span>
+                                            <i class="forum-post-essence">精</i>
+                                            <i class="forum-post-official">官</i>
+                                        </span>
                                         </a>
                                     </div>
                                     <div class="forum-post-item-info">
-                                        <a href="/forum/topic/list/140" class="forum-link forum-post-category">[小度智能音箱]</a>
-                                        <a href="/forum/user/center/1923210" class="forum-link forum-post-user">shenjianyz</a>
+                                        <a href="${siteurl}bbs/threads/${item.id}.htm0" class="forum-link forum-post-category">[智能]</a>
+                                        <a href="${siteurl}bbs/threads/${item.id}.htm" class="forum-link forum-post-user">盈盈</a>
                                         <span class="forum-post-dot">·</span>
-                                        <a href="/forum/user/center/4399249" class="forum-link forum-post-reply">dskljafh</a>
-                                        <span class="forum-post-text">回复于11小时前</span>
+                                        <a href="${httpsurl}space/${(item.user.id)!'0'}.htm" class="forum-link forum-post-reply">${(item.user.name)!'代码人'}</a>
+                                        <span class="forum-post-text">回复于27分钟前</span>
                                     </div>
                                 </div>
                                 <div class="forum-post-count">
                                     <span class="forum-post-triangle"></span>
-                                    <span class="forum-post-show-count">477</span>
+                                    <span class="forum-post-show-count">${item.views!"0"}</span>
                                 </div>
                             </div>
                             [/#list]
+                            [/#if]
+                            [/@forumposts]
                         </div>
                     </div>
                 </div>
