@@ -96,8 +96,8 @@
                 <entry key="menuchilds" value-ref="menuChildsDirective"/>
                 <entry key="article" value-ref="articleDirective"/>
                 <entry key="siteurl" value="#{servletContext.contextPath}/"/>
-                <entry key="cdnurl" value="https://www.haoxuer.com/"/>
-                <entry key="httpsurl" value="https://www.haoxuer.com/"/>
+                <entry key="cdnurl" value="#{servletContext.contextPath}/"/>
+                <entry key="httpsurl" value="#{servletContext.contextPath}/"/>
                 <entry key="sitename" value="好学儿"/>
                 <entry key="forum" value-ref="forumDirective"/>
                 <entry key="newuser" value-ref="newUserDirective"/>

@@ -55,7 +55,7 @@ public class BbsController extends BaseController {
 
     @RequestMapping(value = "/forum/{id}", method = RequestMethod.GET)
     public String forum(Model model, @PathVariable("id") Integer id) {
-        model.addAttribute("model", id);
+        model.addAttribute("model", forumService.findById(id));
         return getView("bbs/forum");
     }
 
