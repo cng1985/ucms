@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.quhaodian.common.utils.DirectiveUtils;
+import com.haoxuer.discover.common.utils.DirectiveUtils;
 import com.quhaodian.ucms.data.service.FriendLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.quhaodian.data.page.Order.Direction;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
+import com.haoxuer.discover.data.page.Order.Direction;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
 import com.quhaodian.ucms.data.entity.FriendLink;
 import com.quhaodian.ucms.data.service.FriendLinkService;
 

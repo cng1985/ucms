@@ -1,7 +1,7 @@
 package com.quhaodian.ucms.data.entity;
 
-import com.quhaodian.data.annotations.FormAnnotation;
-import com.quhaodian.data.entity.LongEntity;
+import com.haoxuer.discover.data.annotations.FormAnnotation;
+import com.haoxuer.discover.data.entity.LongEntity;
 
 import javax.persistence.*;
 

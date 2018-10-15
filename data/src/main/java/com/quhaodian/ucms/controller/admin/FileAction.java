@@ -6,8 +6,8 @@
 
 package com.quhaodian.ucms.controller.admin;
 
-import com.quhaodian.plug.data.service.StorageService;
-import com.quhaodian.plug.data.vo.FileInfo;
+import com.haoxuer.discover.plug.data.service.StorageService;
+import com.haoxuer.discover.plug.data.vo.FileInfo;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;

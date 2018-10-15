@@ -1,10 +1,10 @@
 package com.quhaodian.ucms.controller.front;
 
-import com.quhaodian.discover.rest.base.ResponseObject;
+import com.haoxuer.discover.rest.base.ResponseObject;
 import com.quhaodian.ucms.data.entity.Stock;
 import com.quhaodian.ucms.data.service.StockService;
 import com.quhaodian.ucms.threads.StockTimeSyncThread;
-import com.quhaodian.web.controller.front.BaseController;
+import com.haoxuer.discover.web.controller.front.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

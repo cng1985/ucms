@@ -1,10 +1,10 @@
 package com.quhaodian.ucms.apps;
 
-import com.quhaodian.article.data.entity.Article;
-import com.quhaodian.article.data.entity.ArticleCatalog;
-import com.quhaodian.article.data.service.ArticleService;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
+import com.haoxuer.discover.article.data.entity.Article;
+import com.haoxuer.discover.article.data.entity.ArticleCatalog;
+import com.haoxuer.discover.article.data.service.ArticleService;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
 
 import java.util.List;
 

@@ -5,7 +5,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.quhaodian.data.entity.CatalogEntity;
+import com.haoxuer.discover.data.entity.CatalogEntity;
 
 /**
  * 股票分类

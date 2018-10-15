@@ -10,21 +10,21 @@
 
 package com.quhaodian.ucms.controller.front;
 
-import com.quhaodian.discover.useroauth.plugs.service.OauthSiteService;
-import com.quhaodian.shiro.filter.UsernamePasswordCaptchaToken;
-import com.quhaodian.shiro.realm.UserInfoToken;
-import com.quhaodian.shiro.utils.UserUtil;
-import com.quhaodian.user.data.entity.UserAccount;
-import com.quhaodian.user.data.entity.UserInfo;
-import com.quhaodian.user.data.entity.UserOauthToken;
-import com.quhaodian.user.data.service.UserAccountService;
-import com.quhaodian.user.data.service.UserInfoService;
-import com.quhaodian.user.data.service.UserOauthTokenService;
-import com.quhaodian.user.data.vo.UserAccountVo;
-import com.quhaodian.user.enums.AccountType;
-import com.quhaodian.user.oauth.domain.OauthResponse;
-import com.quhaodian.user.oauth.domain.UserQQ;
-import com.quhaodian.web.controller.front.BaseController;
+import com.haoxuer.discover.user.shiro.filter.UsernamePasswordCaptchaToken;
+import com.haoxuer.discover.user.shiro.realm.UserInfoToken;
+import com.haoxuer.discover.user.shiro.utils.UserUtil;
+import com.haoxuer.discover.useroauth.plugs.service.OauthSiteService;
+import com.haoxuer.discover.user.data.entity.UserAccount;
+import com.haoxuer.discover.user.data.entity.UserInfo;
+import com.haoxuer.discover.user.data.entity.UserOauthToken;
+import com.haoxuer.discover.user.data.service.UserAccountService;
+import com.haoxuer.discover.user.data.service.UserInfoService;
+import com.haoxuer.discover.user.data.service.UserOauthTokenService;
+import com.haoxuer.discover.user.data.vo.UserAccountVo;
+import com.haoxuer.discover.user.enums.AccountType;
+import com.haoxuer.discover.user.oauth.domain.OauthResponse;
+import com.haoxuer.discover.user.oauth.domain.UserQQ;
+import com.haoxuer.discover.web.controller.front.BaseController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.shiro.SecurityUtils;
@@ -45,7 +45,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 public class LoginController extends BaseController {
-  
+
   @Autowired
   OauthSiteService oauthSiteService;
   

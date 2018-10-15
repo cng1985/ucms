@@ -1,7 +1,7 @@
 package com.quhaodian.ucms.apps;
 
-import com.quhaodian.user.data.entity.UserInfo;
-import com.quhaodian.user.data.service.UserInfoService;
+import com.haoxuer.discover.user.data.entity.UserInfo;
+import com.haoxuer.discover.user.data.service.UserInfoService;
 import org.springframework.dao.DataIntegrityViolationException;
 
 

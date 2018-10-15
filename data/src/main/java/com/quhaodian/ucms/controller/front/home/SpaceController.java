@@ -2,7 +2,7 @@ package com.quhaodian.ucms.controller.front.home;
 
 import com.quhaodian.ucms.data.entity.Member;
 import com.quhaodian.ucms.data.service.MemberService;
-import com.quhaodian.web.controller.front.BaseController;
+import com.haoxuer.discover.web.controller.front.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;

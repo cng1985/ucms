@@ -1,9 +1,9 @@
 package com.quhaodian.ucms.data.dao;
 
 
-import  com.quhaodian.data.core.CriteriaDao;
-import  com.quhaodian.data.core.Updater;
-import com.quhaodian.data.core.Pagination;
+import  com.haoxuer.discover.data.core.CriteriaDao;
+import  com.haoxuer.discover.data.core.Updater;
+import com.haoxuer.discover.data.core.Pagination;
 import com.quhaodian.ucms.data.entity.Note;
 
 public interface NoteDao extends CriteriaDao<Note,Long>{

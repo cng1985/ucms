@@ -1,7 +1,7 @@
 package com.quhaodian.ucms.data.entity;
 
-import com.quhaodian.data.entity.AbstractEntity;
-import com.quhaodian.user.data.entity.AbstractUser;
+import com.haoxuer.discover.data.entity.AbstractEntity;
+import com.haoxuer.discover.user.data.entity.AbstractUser;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

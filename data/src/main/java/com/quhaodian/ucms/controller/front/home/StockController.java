@@ -1,11 +1,11 @@
 package com.quhaodian.ucms.controller.front.home;
 
-import com.quhaodian.article.data.entity.Article;
-import com.quhaodian.data.page.Order;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
+import com.haoxuer.discover.article.data.entity.Article;
+import com.haoxuer.discover.data.page.Order;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
 import com.quhaodian.ucms.controller.Constants;
-import com.quhaodian.web.controller.front.BaseController;
+import com.haoxuer.discover.web.controller.front.BaseController;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

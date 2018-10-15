@@ -1,8 +1,8 @@
 package com.quhaodian.ucms.controller.front.home;
 
-import com.quhaodian.user.data.entity.UserInfo;
-import com.quhaodian.user.data.service.UserInfoService;
-import com.quhaodian.web.controller.front.BaseController;
+import com.haoxuer.discover.user.data.entity.UserInfo;
+import com.haoxuer.discover.user.data.service.UserInfoService;
+import com.haoxuer.discover.web.controller.front.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

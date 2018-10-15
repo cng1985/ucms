@@ -1,8 +1,8 @@
 package com.quhaodian.ucms.controller.admin;
 
-import com.quhaodian.article.data.service.ArticleCatalogService;
-import com.quhaodian.article.data.service.ArticleService;
-import com.quhaodian.data.page.Pageable;
+import com.haoxuer.discover.article.data.service.ArticleCatalogService;
+import com.haoxuer.discover.article.data.service.ArticleService;
+import com.haoxuer.discover.data.page.Pageable;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;

@@ -65,7 +65,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <listener>
-        <listener-class>com.quhaodian.quartz.web.InitListener</listener-class>
+        <listener-class>com.haoxuer.discover.quartz.web.InitListener</listener-class>
     </listener>
 
 

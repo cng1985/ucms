@@ -6,8 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.quhaodian.data.entity.VersionEntity;
-import com.quhaodian.user.data.entity.UserInfo;
+import com.haoxuer.discover.data.entity.VersionEntity;
+import com.haoxuer.discover.user.data.entity.UserInfo;
 
 /**
  * 用户笔记

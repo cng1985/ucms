@@ -14,10 +14,10 @@
 	<context:component-scan base-package="com.quhaodian.admin" />
 	<context:component-scan base-package="com.quhaodian.album" />
 	<context:component-scan base-package="com.quhaodian.area" />
-	<context:component-scan base-package="com.quhaodian.article" />
+	<context:component-scan base-package="com.haoxuer.discover.article" />
 	<context:component-scan base-package="com.quhaodian.feed" />
 	<context:component-scan base-package="com.quhaodian.question" />
-	<context:component-scan base-package="com.quhaodian.user" />
+	<context:component-scan base-package="com.haoxuer.discover.user" />
 	<context:component-scan base-package="com.quhaodian.plugin" />
 	<context:component-scan base-package="com.quhaodian.activity" />
 
@@ -34,7 +34,7 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="treeInterceptor" class="com.quhaodian.common.hibernate.TreeIntercptor" />
+	<bean id="treeInterceptor" class="com.haoxuer.discover.common.hibernate.TreeIntercptor" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -59,8 +59,8 @@
 		<property name="packagesToScan">
 			<list>
 				<value>com.quhaodian.admin</value>
-				<value>com.quhaodian.user</value>
-				<value>com.quhaodian.article</value>
+				<value>com.haoxuer.discover.user</value>
+				<value>com.haoxuer.discover.article</value>
 				<value>com.quhaodian.album</value>
 				<value>com.quhaodian.question</value>
 				<value>com.quhaodian.ucms.data.entity</value>

@@ -1,13 +1,13 @@
 package com.quhaodian.ucms.controller.front;
 
-import com.quhaodian.article.data.entity.ArticleCatalog;
-import com.quhaodian.article.data.service.ArticleCatalogService;
-import com.quhaodian.article.data.service.ArticleService;
-import com.quhaodian.data.page.Filter;
-import com.quhaodian.data.page.Order;
-import com.quhaodian.data.page.Pageable;
-import com.quhaodian.user.utils.ListUtils;
-import com.quhaodian.web.controller.front.BaseController;
+import com.haoxuer.discover.article.data.entity.ArticleCatalog;
+import com.haoxuer.discover.article.data.service.ArticleCatalogService;
+import com.haoxuer.discover.article.data.service.ArticleService;
+import com.haoxuer.discover.data.page.Filter;
+import com.haoxuer.discover.data.page.Order;
+import com.haoxuer.discover.data.page.Pageable;
+import com.haoxuer.discover.user.utils.ListUtils;
+import com.haoxuer.discover.web.controller.front.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

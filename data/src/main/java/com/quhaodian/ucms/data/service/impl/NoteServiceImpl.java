@@ -2,17 +2,17 @@ package com.quhaodian.ucms.data.service.impl;
 
 import java.util.List;
 
-import com.quhaodian.site.data.dao.SystemVersionDao;
+import com.haoxuer.discover.site.data.dao.SystemVersionDao;
 import com.quhaodian.ucms.data.dao.NoteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.quhaodian.data.core.Updater;
-import com.quhaodian.data.page.Filter;
-import com.quhaodian.data.page.Order;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
+import com.haoxuer.discover.data.core.Updater;
+import com.haoxuer.discover.data.page.Filter;
+import com.haoxuer.discover.data.page.Order;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
 import com.quhaodian.ucms.data.dao.NoteDao;
 import com.quhaodian.ucms.data.entity.Note;
 import com.quhaodian.ucms.data.service.NoteService;

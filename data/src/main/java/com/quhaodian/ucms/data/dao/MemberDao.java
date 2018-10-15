@@ -1,8 +1,8 @@
 package com.quhaodian.ucms.data.dao;
 
 
-import  com.quhaodian.data.core.CriteriaDao;
-import  com.quhaodian.data.core.Updater;
+import  com.haoxuer.discover.data.core.CriteriaDao;
+import  com.haoxuer.discover.data.core.Updater;
 import com.quhaodian.ucms.data.entity.Member;
 
 /**

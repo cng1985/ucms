@@ -1,8 +1,8 @@
 package com.quhaodian.ucms.rest.resources;
 
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
-import com.quhaodian.discover.rest.base.RequestTokenPageObject;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
+import com.haoxuer.discover.rest.base.RequestTokenPageObject;
 import com.quhaodian.ucms.data.dao.MemberDao;
 import com.quhaodian.ucms.data.entity.Member;
 import com.quhaodian.ucms.rest.api.MemberApi;
@@ -10,7 +10,7 @@ import com.quhaodian.ucms.rest.conver.MemberSimpleConver;
 import com.quhaodian.ucms.rest.conver.PageableConver;
 import com.quhaodian.ucms.rest.domain.page.MemberPage;
 import com.quhaodian.ucms.rest.domain.request.PageRequest;
-import com.quhaodian.user.utils.ConverResourceUtils;
+import com.haoxuer.discover.user.utils.ConverResourceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

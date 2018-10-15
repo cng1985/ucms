@@ -1,6 +1,6 @@
 package com.quhaodian.ucms.freemaker;
 
-import com.quhaodian.common.utils.DirectiveUtils;
+import com.haoxuer.discover.common.utils.DirectiveUtils;
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateDirectiveModel;

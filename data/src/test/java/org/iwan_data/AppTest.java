@@ -1,6 +1,6 @@
 package org.iwan_data;
 
-import com.quhaodian.discover.useroauth.scribejava.apis.OschinaApi;
+import com.haoxuer.discover.useroauth.scribejava.apis.OschinaApi;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 

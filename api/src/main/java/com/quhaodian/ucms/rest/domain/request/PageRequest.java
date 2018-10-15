@@ -1,6 +1,6 @@
 package com.quhaodian.ucms.rest.domain.request;
 
-import com.quhaodian.discover.rest.base.RequestUserTokenPageObject;
+import com.haoxuer.discover.rest.base.RequestUserTokenPageObject;
 
 public class PageRequest extends RequestUserTokenPageObject {
   

@@ -5,8 +5,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.quhaodian.data.core.CriteriaDaoImpl;
-import com.quhaodian.data.core.Pagination;
+import com.haoxuer.discover.data.core.CriteriaDaoImpl;
+import com.haoxuer.discover.data.core.Pagination;
 import com.quhaodian.ucms.data.dao.StockLikeDao;
 import com.quhaodian.ucms.data.entity.StockLike;
 

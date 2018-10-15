@@ -1,6 +1,6 @@
 package com.quhaodian.ucms.controller.front.home;
 
-import com.quhaodian.web.controller.front.BaseController;
+import com.haoxuer.discover.web.controller.front.BaseController;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.stereotype.Controller;

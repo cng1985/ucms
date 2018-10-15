@@ -1,9 +1,9 @@
 package com.quhaodian.ucms.controller.admin;
 
-import com.quhaodian.data.page.Order;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
-import com.quhaodian.data.utils.FilterUtils;
+import com.haoxuer.discover.data.page.Order;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
+import com.haoxuer.discover.data.utils.FilterUtils;
 import com.quhaodian.ucms.data.entity.Stock;
 import com.quhaodian.ucms.data.service.StockService;
 import com.quhaodian.ucms.data.so.StockSo;

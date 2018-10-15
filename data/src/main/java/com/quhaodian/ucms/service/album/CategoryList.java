@@ -1,6 +1,6 @@
 package com.quhaodian.ucms.service.album;
 
-import com.quhaodian.album.data.entity.Category;
+import com.haoxuer.discover.album.data.entity.Category;
 
 import java.util.List;
 

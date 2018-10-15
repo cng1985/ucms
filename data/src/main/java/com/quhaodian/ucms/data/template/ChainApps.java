@@ -1,18 +1,9 @@
 package com.quhaodian.ucms.data.template;
 
-import com.quhaodian.activity.data.entity.Activity;
-import com.quhaodian.activity.data.entity.ActivityCatalog;
-import com.quhaodian.article.data.entity.SensitiveCategory;
-import com.quhaodian.bbs.data.entity.Forum;
-import com.quhaodian.bbs.data.entity.ForumPost;
-import com.quhaodian.data.entity.CatalogEntity;
-import com.quhaodian.imake.ChainMake;
-import com.quhaodian.imake.template.hibernate.TemplateHibernateDir;
-import com.quhaodian.imake.templates.adminlte.TemplateAdminLTE;
-import com.quhaodian.imake.templates.simple.TemplateSimpleDir;
-import com.quhaodian.question.data.entity.Question;
-import com.quhaodian.question.data.entity.QuestionCatalog;
-import com.quhaodian.user.data.entity.UserLabel;
+import com.haoxuer.discover.user.data.entity.UserLabel;
+import com.haoxuer.imake.ChainMake;
+import com.haoxuer.imake.template.hibernate.TemplateHibernateDir;
+import com.haoxuer.imake.templates.adminlte.TemplateAdminLTE;
 
 import java.io.File;
 

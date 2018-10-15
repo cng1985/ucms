@@ -3,10 +3,10 @@ package com.quhaodian.ucms.controller.front;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.quhaodian.article.data.entity.Article;
-import com.quhaodian.article.data.service.ArticleService;
-import com.quhaodian.data.page.Order;
-import com.quhaodian.data.page.Pageable;
+import com.haoxuer.discover.article.data.entity.Article;
+import com.haoxuer.discover.article.data.service.ArticleService;
+import com.haoxuer.discover.data.page.Order;
+import com.haoxuer.discover.data.page.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

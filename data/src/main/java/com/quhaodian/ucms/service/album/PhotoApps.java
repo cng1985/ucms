@@ -1,7 +1,7 @@
 package com.quhaodian.ucms.service.album;
 
-import com.quhaodian.album.data.entity.Category;
-import com.quhaodian.album.data.service.CategoryService;
+import com.haoxuer.discover.album.data.entity.Category;
+import com.haoxuer.discover.album.data.service.CategoryService;
 import com.google.gson.Gson;
 import jodd.http.HttpRequest;
 

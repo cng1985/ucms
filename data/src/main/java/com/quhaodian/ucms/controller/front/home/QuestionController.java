@@ -1,15 +1,15 @@
 package com.quhaodian.ucms.controller.front.home;
 
-import com.quhaodian.data.page.Filter;
-import com.quhaodian.data.page.Order;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
-import com.quhaodian.question.data.entity.Question;
-import com.quhaodian.question.data.entity.QuestionCatalog;
-import com.quhaodian.question.data.service.QuestionCatalogService;
-import com.quhaodian.question.data.service.QuestionService;
-import com.quhaodian.user.utils.ListUtils;
-import com.quhaodian.web.controller.front.BaseController;
+import com.haoxuer.discover.data.page.Filter;
+import com.haoxuer.discover.data.page.Order;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
+import com.haoxuer.discover.question.data.entity.Question;
+import com.haoxuer.discover.question.data.entity.QuestionCatalog;
+import com.haoxuer.discover.question.data.service.QuestionCatalogService;
+import com.haoxuer.discover.question.data.service.QuestionService;
+import com.haoxuer.discover.user.utils.ListUtils;
+import com.haoxuer.discover.web.controller.front.BaseController;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.quhaodian.shiro.utils.UserUtil;
+import com.haoxuer.discover.user.shiro.utils.UserUtil;
 
 import java.util.List;
 

@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.quhaodian.article.data.entity.Article;
+import com.haoxuer.discover.article.data.entity.Article;
 import org.springframework.web.servlet.view.feed.AbstractRssFeedView;
 
 import com.rometools.rome.feed.rss.Channel;

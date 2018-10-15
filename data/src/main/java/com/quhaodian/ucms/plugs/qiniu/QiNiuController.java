@@ -5,9 +5,9 @@
  */
 package com.quhaodian.ucms.plugs.qiniu;
 
-import com.quhaodian.plug.Message;
-import com.quhaodian.plug.data.entity.PluginConfig;
-import com.quhaodian.plug.data.service.PluginConfigService;
+import com.haoxuer.discover.plug.Message;
+import com.haoxuer.discover.plug.data.entity.PluginConfig;
+import com.haoxuer.discover.plug.data.service.PluginConfigService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,11 +1,11 @@
 package com.quhaodian.ucms.controller.front.home;
 
-import com.quhaodian.album.data.entity.Photo;
-import com.quhaodian.album.data.service.CategoryService;
-import com.quhaodian.album.data.service.PhotoService;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
-import com.quhaodian.web.controller.front.BaseController;
+import com.haoxuer.discover.album.data.entity.Photo;
+import com.haoxuer.discover.album.data.service.CategoryService;
+import com.haoxuer.discover.album.data.service.PhotoService;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
+import com.haoxuer.discover.web.controller.front.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,11 +1,10 @@
 package com.quhaodian.ucms.controller.front.user;
 
+import com.haoxuer.discover.user.shiro.utils.UserUtil;
 import com.quhaodian.ucms.data.entity.Member;
 import com.quhaodian.ucms.data.service.MemberService;
-import com.quhaodian.shiro.utils.UserUtil;
-import com.quhaodian.user.data.entity.UserInfo;
-import com.quhaodian.web.controller.front.BaseController;
-import com.quhaodian.ucms.data.entity.Member;
+import com.haoxuer.discover.user.data.entity.UserInfo;
+import com.haoxuer.discover.web.controller.front.BaseController;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,7 @@ public class MemberController extends BaseController {
 	@RequiresUser
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model) {
-		UserInfo user=UserUtil.getCurrentUser();
+		UserInfo user= UserUtil.getCurrentUser();
 		model.addAttribute("user", memberService.findById(user.getId()));
 		return getView("member/index");
 	}

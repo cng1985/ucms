@@ -11,20 +11,7 @@
     http://www.springframework.org/schema/cache/spring-cache.xsd"
 	default-lazy-init="true">
 	<context:annotation-config />
-	<context:component-scan base-package="com.quhaodian.album" />
-	<context:component-scan base-package="com.quhaodian.article" />
-	<context:component-scan base-package="com.quhaodian.question" />
-	<context:component-scan base-package="com.quhaodian.user" />
-	<context:component-scan base-package="com.quhaodian.plug" />
-	<context:component-scan base-package="com.quhaodian.activity" />
-	<context:component-scan base-package="com.quhaodian.site" />
-	<context:component-scan base-package="com.quhaodian.bbs" />
-	<context:component-scan base-package="com.quhaodian.web" />
-	<context:component-scan base-package="com.quhaodian.discover.useroauth" />
-	<context:component-scan base-package="com.quhaodian.area" />
-	<context:component-scan base-package="com.quhaodian.quartz" />
-	<context:component-scan base-package="com.haoxuer.discover.team" />
-
+	<context:component-scan base-package="com.haoxuer.discover" />
 
 	<!-- 对包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 需要更改 -->
 	<context:component-scan base-package="com.quhaodian.ucms" />
@@ -34,11 +21,10 @@
 			<list>
 				<value>classpath:jdbc.properties</value>
 				<value>classpath:site.properties</value>
-
 			</list>
 		</property>
 	</bean>
-	<bean id="treeInterceptor" class="com.quhaodian.common.hibernate.TreeIntercptor" />
+	<bean id="treeInterceptor" class="com.haoxuer.discover.common.hibernate.TreeIntercptor" />
 
 	<bean id="dataSourcex"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -86,18 +72,18 @@
 		</property>
 		<property name="packagesToScan">
 			<list>
-				<value>com.quhaodian.user.data.entity</value>
-				<value>com.quhaodian.article.data.entity</value>
-				<value>com.quhaodian.album.data.entity</value>
-				<value>com.quhaodian.question.data.entity</value>
+				<value>com.haoxuer.discover.user.data.entity</value>
+				<value>com.haoxuer.discover.article.data.entity</value>
+				<value>com.haoxuer.discover.album.data.entity</value>
+				<value>com.haoxuer.discover.question.data.entity</value>
 				<value>com.quhaodian.ucms.data.entity</value>
-				<value>com.quhaodian.plug.data.entity</value>
-				<value>com.quhaodian.activity.data.entity</value>
-				<value>com.quhaodian.site.data.entity</value>
-				<value>com.quhaodian.bbs.data.entity</value>
-				<value>com.quhaodian.web.data.entity</value>
-				<value>com.quhaodian.area.data.entity</value>
-				<value>com.quhaodian.quartz.data.entity</value>
+				<value>com.haoxuer.discover.plug.data.entity</value>
+				<value>com.haoxuer.discover.activity.data.entity</value>
+				<value>com.haoxuer.discover.site.data.entity</value>
+				<value>com.haoxuer.discover.bbs.data.entity</value>
+				<value>com.haoxuer.discover.web.data.entity</value>
+				<value>com.haoxuer.discover.area.data.entity</value>
+				<value>com.haoxuer.discover.quartz.data.entity</value>
 				<value>com.haoxuer.discover.team</value>
 			</list>
 		</property>

@@ -1,7 +1,7 @@
 package com.quhaodian.ucms.service.album;
 
-import com.quhaodian.album.data.entity.PhotoFeed;
-import com.quhaodian.album.data.service.PhotoFeedService;
+import com.haoxuer.discover.album.data.entity.PhotoFeed;
+import com.haoxuer.discover.album.data.service.PhotoFeedService;
 import com.quhaodian.ucms.apps.ObjectFactory;
 
 public class PhotoFeedApps {

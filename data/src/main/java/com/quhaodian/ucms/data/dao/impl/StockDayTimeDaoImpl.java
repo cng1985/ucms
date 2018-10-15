@@ -1,11 +1,11 @@
 package com.quhaodian.ucms.data.dao.impl;
 
-import com.quhaodian.data.page.Filter;
+import com.haoxuer.discover.data.page.Filter;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.quhaodian.data.core.CriteriaDaoImpl;
+import com.haoxuer.discover.data.core.CriteriaDaoImpl;
 import com.quhaodian.ucms.data.dao.StockDayTimeDao;
 import com.quhaodian.ucms.data.entity.StockDayTime;
 

@@ -1,6 +1,6 @@
 package com.quhaodian.ucms.data.vo;
 
-import com.quhaodian.discover.rest.base.ResponseObject;
+import com.haoxuer.discover.rest.base.ResponseObject;
 
 /**
  * Created by cng19 on 2017/9/3.

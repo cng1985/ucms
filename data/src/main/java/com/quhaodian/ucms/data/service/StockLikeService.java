@@ -1,9 +1,9 @@
 package com.quhaodian.ucms.data.service;
 
-import com.quhaodian.data.page.Filter;
-import com.quhaodian.data.page.Order;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
+import com.haoxuer.discover.data.page.Filter;
+import com.haoxuer.discover.data.page.Order;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
 import com.quhaodian.ucms.data.entity.StockLike;
 
 import java.util.List;

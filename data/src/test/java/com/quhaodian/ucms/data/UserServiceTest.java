@@ -1,6 +1,6 @@
 package com.quhaodian.ucms.data;
 
-import com.quhaodian.user.data.service.UserInfoService;
+import com.haoxuer.discover.user.data.service.UserInfoService;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.verification.VerificationMode;

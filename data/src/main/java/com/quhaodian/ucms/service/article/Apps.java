@@ -1,8 +1,8 @@
 package com.quhaodian.ucms.service.article;
 
-import com.quhaodian.article.data.entity.Article;
-import com.quhaodian.article.data.entity.ArticleCatalog;
-import com.quhaodian.article.data.service.ArticleService;
+import com.haoxuer.discover.article.data.entity.Article;
+import com.haoxuer.discover.article.data.entity.ArticleCatalog;
+import com.haoxuer.discover.article.data.service.ArticleService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

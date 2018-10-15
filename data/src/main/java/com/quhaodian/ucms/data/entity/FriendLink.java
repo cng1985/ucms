@@ -3,7 +3,7 @@ package com.quhaodian.ucms.data.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.quhaodian.data.entity.SortEntity;
+import com.haoxuer.discover.data.entity.SortEntity;
 
 /**
  * 友情链接

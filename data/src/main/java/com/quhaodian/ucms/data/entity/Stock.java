@@ -8,10 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.quhaodian.data.annotations.ColType;
-import com.quhaodian.data.annotations.FormAnnotation;
-import com.quhaodian.data.annotations.FormFieldAnnotation;
-import com.quhaodian.data.entity.AbstractEntity;
+import com.haoxuer.discover.data.annotations.ColType;
+import com.haoxuer.discover.data.annotations.FormAnnotation;
+import com.haoxuer.discover.data.annotations.FormFieldAnnotation;
+import com.haoxuer.discover.data.entity.AbstractEntity;
 
 /**
  * "code": 代码 "name": 名称 "industry": 所属行业 "area": 地区 "pe": 市盈率 "outstanding":

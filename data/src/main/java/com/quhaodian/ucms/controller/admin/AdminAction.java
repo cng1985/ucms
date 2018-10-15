@@ -2,9 +2,9 @@ package com.quhaodian.ucms.controller.admin;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.quhaodian.user.data.entity.UserInfo;
-import com.quhaodian.user.data.service.UserInfoService;
-import com.quhaodian.user.data.service.UserRoleService;
+import com.haoxuer.discover.user.data.entity.UserInfo;
+import com.haoxuer.discover.user.data.service.UserInfoService;
+import com.haoxuer.discover.user.data.service.UserRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.quhaodian.data.page.Filter;
-import com.quhaodian.data.page.Order;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
+import com.haoxuer.discover.data.page.Filter;
+import com.haoxuer.discover.data.page.Order;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
 
 @Controller
 public class AdminAction {

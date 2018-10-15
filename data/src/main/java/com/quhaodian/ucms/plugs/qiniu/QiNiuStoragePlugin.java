@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import com.quhaodian.plug.api.StoragePlugin;
-import com.quhaodian.plug.data.entity.PluginConfig;
-import com.quhaodian.plug.data.vo.FileInfo;
+import com.haoxuer.discover.plug.api.StoragePlugin;
+import com.haoxuer.discover.plug.data.entity.PluginConfig;
+import com.haoxuer.discover.plug.data.vo.FileInfo;
 import com.young.security.md5.MD5Utils;
 import org.springframework.stereotype.Component;
 

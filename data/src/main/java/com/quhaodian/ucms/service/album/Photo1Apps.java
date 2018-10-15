@@ -1,13 +1,13 @@
 package com.quhaodian.ucms.service.album;
 
-import com.quhaodian.album.data.entity.Category;
-import com.quhaodian.album.data.entity.Photo;
-import com.quhaodian.album.data.entity.Tag;
-import com.quhaodian.album.data.service.CategoryService;
-import com.quhaodian.album.data.service.PhotoService;
-import com.quhaodian.album.data.service.TagService;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
+import com.haoxuer.discover.album.data.entity.Category;
+import com.haoxuer.discover.album.data.entity.Photo;
+import com.haoxuer.discover.album.data.entity.Tag;
+import com.haoxuer.discover.album.data.service.CategoryService;
+import com.haoxuer.discover.album.data.service.PhotoService;
+import com.haoxuer.discover.album.data.service.TagService;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
 import com.google.gson.Gson;
 import jodd.http.HttpRequest;
 

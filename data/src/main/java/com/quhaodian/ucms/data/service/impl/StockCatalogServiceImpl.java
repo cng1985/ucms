@@ -4,17 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.quhaodian.data.core.Finder;
-import com.quhaodian.data.core.Pagination;
-import com.quhaodian.data.core.Updater;
+import com.haoxuer.discover.data.core.Finder;
+import com.haoxuer.discover.data.core.Pagination;
+import com.haoxuer.discover.data.core.Updater;
 import com.quhaodian.ucms.data.dao.StockCatalogDao;
 import com.quhaodian.ucms.data.entity.StockCatalog;
 import com.quhaodian.ucms.data.service.StockCatalogService;
 
-import com.quhaodian.data.page.Filter;
-import com.quhaodian.data.page.Order;
-import com.quhaodian.data.page.Page;
-import com.quhaodian.data.page.Pageable;
+import com.haoxuer.discover.data.page.Filter;
+import com.haoxuer.discover.data.page.Order;
+import com.haoxuer.discover.data.page.Page;
+import com.haoxuer.discover.data.page.Pageable;
 import java.util.List;
 
 

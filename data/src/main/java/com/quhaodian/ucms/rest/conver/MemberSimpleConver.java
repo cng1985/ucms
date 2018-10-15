@@ -1,6 +1,6 @@
 package com.quhaodian.ucms.rest.conver;
 
-import com.quhaodian.data.rest.core.Conver;
+import com.haoxuer.discover.data.rest.core.Conver;
 import com.quhaodian.ucms.data.entity.Member;
 import com.quhaodian.ucms.rest.domain.simple.MemberSimple;
 

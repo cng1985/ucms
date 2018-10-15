@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.quhaodian.data.entity.AbstractEntity;
+import com.haoxuer.discover.data.entity.AbstractEntity;
 
 /**
  * 股票记录

@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.quhaodian.data.entity.AbstractEntity;
-import com.quhaodian.data.entity.LongEntity;
+import com.haoxuer.discover.data.entity.AbstractEntity;
+import com.haoxuer.discover.data.entity.LongEntity;
 
 /**
  * 股票每天多次记录

@@ -1,7 +1,7 @@
 package com.quhaodian.ucms.data;
 
-import com.quhaodian.article.data.entity.SensitiveWord;
-import com.quhaodian.article.data.service.SensitiveWordService;
+import com.haoxuer.discover.article.data.entity.SensitiveWord;
+import com.haoxuer.discover.article.data.service.SensitiveWordService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

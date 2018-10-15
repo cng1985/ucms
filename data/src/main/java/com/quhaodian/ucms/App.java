@@ -1,9 +1,8 @@
 package com.quhaodian.ucms;
 
-import com.quhaodian.imake.ChainMake;
-import com.quhaodian.imake.template.hibernate.TemplateHibernateDir;
-import com.quhaodian.imake.templates.adminlte.TemplateAdminLTE;
-import com.quhaodian.notice.data.entity.UserNotificationMember;
+import com.haoxuer.imake.ChainMake;
+import com.haoxuer.imake.template.hibernate.TemplateHibernateDir;
+import com.haoxuer.imake.templates.adminlte.TemplateAdminLTE;
 import com.quhaodian.ucms.controller.admin.Controllers;
 import com.quhaodian.ucms.data.entity.Stock;
 import com.quhaodian.ucms.data.entity.StockDayTime;

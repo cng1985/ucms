@@ -1,8 +1,8 @@
 package com.quhaodian.ucms.apps;
 
 
-import com.quhaodian.article.data.entity.ArticleCatalog;
-import com.quhaodian.article.data.service.ArticleCatalogService;
+import com.haoxuer.discover.article.data.entity.ArticleCatalog;
+import com.haoxuer.discover.article.data.service.ArticleCatalogService;
 
 public class ArticleCatalogApps {
 

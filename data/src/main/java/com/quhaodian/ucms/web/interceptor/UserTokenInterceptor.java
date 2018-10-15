@@ -2,7 +2,7 @@ package com.quhaodian.ucms.web.interceptor;
 
 import com.quhaodian.ucms.exception.NoUserTokenException;
 import com.quhaodian.ucms.exception.UnAuthorizationException;
-import com.quhaodian.user.utils.UserUtils;
+import com.haoxuer.discover.user.utils.UserUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
