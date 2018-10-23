@@ -21,9 +21,9 @@ public class CustomRssViewer extends AbstractRssFeedView {
 	protected void buildFeedMetadata(Map<String, Object> model, Channel feed,
 									 HttpServletRequest request) {
 
-		feed.setTitle("一尺三寸");
-		feed.setDescription("一尺三寸一个提供大家交流的地方，全部代码开源。我为人人，人人为我！塑造一种开源骑士精神！");
-		feed.setLink("http://www.yichisancun.com");
+		feed.setTitle("好学儿");
+		feed.setDescription("好学儿,一个给你学习的地方!");
+		feed.setLink("https://www.haoxuer.com");
 
 		super.buildFeedMetadata(model, feed, request);
 	}
@@ -47,7 +47,7 @@ public class CustomRssViewer extends AbstractRssFeedView {
 			item.setContent(content);
 
 			item.setTitle(tempContent.getTitle());
-			item.setLink("http://www.yichisancun.com/article/view/"+tempContent.getId()+".htm");
+			item.setLink("https://www.haoxuer.com/article/view/"+tempContent.getId()+".htm");
 			item.setPubDate(tempContent.getAddDate());
 
 			items.add(item);
