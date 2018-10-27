@@ -11,7 +11,9 @@ import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,50 +21,67 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalController extends AbstractJsonpResponseBodyAdvice {
 
-    @ResponseBody
-    @ExceptionHandler(NoDataException.class)
-    public ResponseObject exp(HttpServletRequest request, Exception ex) {
-        ResponseObject result = new ResponseObject();
-        result.setMsg("app的id不存在!");
-        result.setCode(-1);
-        return result;
+  @ResponseBody
+  @ExceptionHandler(NoDataException.class)
+  public ResponseObject exp(HttpServletRequest request, Exception ex) {
+    ResponseObject result = new ResponseObject();
+    result.setMsg("app的id不存在!");
+    result.setCode(-1);
+    return result;
+  }
+
+  @ResponseBody
+  @ExceptionHandler(NoUserTokenException.class)
+  public ResponseObject noUserToken(HttpServletRequest request, Exception ex) {
+    ResponseObject result = new ResponseObject();
+    result.setMsg("用户token不存在!");
+    result.setCode(-2);
+    return result;
+  }
+
+
+  @ResponseBody
+  @ExceptionHandler(UnAuthorizationException.class)
+  public ResponseObject unAuthorization(HttpServletRequest request, Exception ex) {
+    ResponseObject result = new ResponseObject();
+    result.setMsg("用户token失效!");
+    result.setCode(-3);
+    return result;
+  }
+
+  @ResponseBody
+  @ExceptionHandler(UserUtils.TokenInvalidException.class)
+  public ResponseObject tokenInvalidException(HttpServletRequest request, Exception ex) {
+    ResponseObject result = new ResponseObject();
+    result.setMsg("用户token异常!");
+    result.setCode(-4);
+    return result;
+  }
+
+  public static boolean isAjaxRequest(HttpServletRequest request) {
+    String requestedWith = request.getHeader("x-requested-with");
+    if (requestedWith != null && requestedWith.equalsIgnoreCase("XMLHttpRequest")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @ExceptionHandler(AuthorizationException.class)
+  public ModelAndView unauthenticatedException(HttpServletRequest request, Exception ex) {
+    if (isAjaxRequest(request)) {
+      ModelAndView mav = new ModelAndView(new MappingJackson2JsonView());
+      mav.addObject("code", -5);
+      mav.addObject("msg", "没有登陆");
+      return mav;
+    } else {
+      ModelAndView mav = new ModelAndView("/theme/" + InitConfig.getWebConfig().getTheme() + "/" + "login");
+      return mav;
     }
 
-    @ResponseBody
-    @ExceptionHandler(NoUserTokenException.class)
-    public ResponseObject noUserToken(HttpServletRequest request, Exception ex) {
-        ResponseObject result = new ResponseObject();
-        result.setMsg("用户token不存在!");
-        result.setCode(-2);
-        return result;
-    }
+  }
 
-
-    @ResponseBody
-    @ExceptionHandler(UnAuthorizationException.class)
-    public ResponseObject unAuthorization(HttpServletRequest request, Exception ex) {
-        ResponseObject result = new ResponseObject();
-        result.setMsg("用户token失效!");
-        result.setCode(-3);
-        return result;
-    }
-
-    @ResponseBody
-    @ExceptionHandler(UserUtils.TokenInvalidException.class)
-    public ResponseObject tokenInvalidException(HttpServletRequest request, Exception ex) {
-        ResponseObject result = new ResponseObject();
-        result.setMsg("用户token异常!");
-        result.setCode(-4);
-        return result;
-    }
-
-    @ExceptionHandler(AuthorizationException.class)
-    public String unauthenticatedException() {
-        return "/theme/" + InitConfig.getWebConfig().getTheme() + "/" + "login";
-
-    }
-
-    public GlobalController() {
-        super("callback");
-    }
+  public GlobalController() {
+    super("callback");
+  }
 }
