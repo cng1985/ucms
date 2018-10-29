@@ -82,6 +82,16 @@
         </dependency>
         <dependency>
             <groupId>com.haoxuer.discover</groupId>
+            <artifactId>discover-common-generate</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.haoxuer.discover</groupId>
+            <artifactId>discover-qrcode-view</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.haoxuer.discover</groupId>
             <artifactId>discover-rss-view</artifactId>
             <version>2.0.1</version>
         </dependency>
