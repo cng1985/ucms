@@ -54,7 +54,7 @@
                 <li [#if index==4] class="active" [/#if]> <a href="${httpsurl}activity/index.htm">活动</a>
                 </li>
                 [@shiro.authenticated]
-                <li [#if index==7] class="active" [/#if]> <a href="${httpsurl}member/index.htm">个人主页</a>
+                <li [#if index==7] class="active" [/#if]> <a href="${httpsurl}space/${(user.id)!'-1'}.htm">个人主页</a>
                 </li>
                 [/@shiro.authenticated]
                 <li class="dropdown">

@@ -3,11 +3,14 @@ package com.quhaodian.ucms.controller.front;
 
 import com.haoxuer.discover.rest.base.ResponseObject;
 import com.haoxuer.discover.user.utils.UserUtils;
+import com.haoxuer.discover.web.data.common.InitConfig;
+import com.quhaodian.ucms.data.entity.ExceptionLog;
+import com.quhaodian.ucms.data.service.ExceptionLogService;
 import com.quhaodian.ucms.exception.NoDataException;
 import com.quhaodian.ucms.exception.NoUserTokenException;
 import com.quhaodian.ucms.exception.UnAuthorizationException;
-import com.haoxuer.discover.web.data.common.InitConfig;
 import org.apache.shiro.authz.AuthorizationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,11 +18,39 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Map;
+import java.util.Set;
 
 
 @ControllerAdvice
 public class GlobalController extends AbstractJsonpResponseBodyAdvice {
+
+
+
+  @Autowired
+  ExceptionLogService logService;
+
+  @ResponseBody
+  @ExceptionHandler(ServletException.class)
+  public ModelAndView expx(HttpServletRequest request, Exception ex) {
+    return handleException(request, ex);
+  }
+  @ResponseBody
+  @ExceptionHandler(IllegalArgumentException.class)
+  public ModelAndView illegalArgument(HttpServletRequest request, Exception ex) {
+    return handleException(request, ex);
+  }
+
+  @ResponseBody
+  @ExceptionHandler(NullPointerException.class)
+  public ModelAndView nullEx(HttpServletRequest request, Exception ex) {
+    return handleException(request, ex);
+
+  }
 
   @ResponseBody
   @ExceptionHandler(NoDataException.class)
@@ -27,6 +58,7 @@ public class GlobalController extends AbstractJsonpResponseBodyAdvice {
     ResponseObject result = new ResponseObject();
     result.setMsg("app的id不存在!");
     result.setCode(-1);
+    savaLog(ex, request);
     return result;
   }
 
@@ -36,6 +68,7 @@ public class GlobalController extends AbstractJsonpResponseBodyAdvice {
     ResponseObject result = new ResponseObject();
     result.setMsg("用户token不存在!");
     result.setCode(-2);
+    savaLog(ex, request);
     return result;
   }
 
@@ -46,6 +79,7 @@ public class GlobalController extends AbstractJsonpResponseBodyAdvice {
     ResponseObject result = new ResponseObject();
     result.setMsg("用户token失效!");
     result.setCode(-3);
+    savaLog(ex, request);
     return result;
   }
 
@@ -55,6 +89,7 @@ public class GlobalController extends AbstractJsonpResponseBodyAdvice {
     ResponseObject result = new ResponseObject();
     result.setMsg("用户token异常!");
     result.setCode(-4);
+    savaLog(ex, request);
     return result;
   }
 
@@ -69,6 +104,12 @@ public class GlobalController extends AbstractJsonpResponseBodyAdvice {
 
   @ExceptionHandler(AuthorizationException.class)
   public ModelAndView unauthenticatedException(HttpServletRequest request, Exception ex) {
+    return handleException(request, ex);
+
+  }
+
+  private ModelAndView handleException(HttpServletRequest request, Exception ex) {
+    savaLog(ex, request);
     if (isAjaxRequest(request)) {
       ModelAndView mav = new ModelAndView(new MappingJackson2JsonView());
       mav.addObject("code", -5);
@@ -78,9 +119,45 @@ public class GlobalController extends AbstractJsonpResponseBodyAdvice {
       ModelAndView mav = new ModelAndView("/theme/" + InitConfig.getWebConfig().getTheme() + "/" + "login");
       return mav;
     }
-
   }
 
+  private void savaLog(Exception ex, HttpServletRequest request) {
+    ExceptionLog bean = new ExceptionLog();
+    bean.setName(ex.getClass().getSimpleName());
+    bean.setNote(getExceptionAllInfo(ex));
+    bean.setUrl(request.getRequestURL().toString());
+    StringBuffer buffer = new StringBuffer();
+    Map map = request.getParameterMap();
+    Set set = map.keySet();
+    if (set != null) {
+      for (Object o : set) {
+        buffer.append(o + "=");
+        buffer.append(request.getParameter(o + "") + "\n");
+      }
+    }
+    bean.setParams(buffer.toString());
+    logService.save(bean);
+  }
+
+  public static String getExceptionAllInfo(Exception ex) {
+    ByteArrayOutputStream out = null;
+    PrintStream pout = null;
+    String ret = "";
+    try {
+      out = new ByteArrayOutputStream();
+      pout = new PrintStream(out);
+      ex.printStackTrace(pout);
+      ret = new String(out.toByteArray());
+      out.close();
+    } catch (Exception e) {
+      return ex.getMessage();
+    } finally {
+      if (pout != null) {
+        pout.close();
+      }
+    }
+    return ret;
+  }
   public GlobalController() {
     super("callback");
   }

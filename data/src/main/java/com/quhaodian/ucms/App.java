@@ -4,6 +4,7 @@ import com.haoxuer.imake.ChainMake;
 import com.haoxuer.imake.template.hibernate.TemplateHibernateDir;
 import com.haoxuer.imake.templates.adminlte.TemplateAdminLTE;
 import com.quhaodian.ucms.controller.admin.Controllers;
+import com.quhaodian.ucms.data.entity.ExceptionLog;
 import com.quhaodian.ucms.data.entity.Stock;
 import com.quhaodian.ucms.data.entity.StockDayTime;
 
@@ -24,13 +25,13 @@ public class App {
     make.setView(view);
 
     List<Class<?>> cs = new ArrayList<Class<?>>();
-    cs.add(StockDayTime.class);
+    cs.add(ExceptionLog.class);
 
     make.setMenus("1,32,34");
     make.setDao(true);
     make.setService(true);
-    make.setView(true);
-    make.setAction(true);
+    make.setView(false);
+    make.setAction(false);
     make.makes(cs);
   }
 

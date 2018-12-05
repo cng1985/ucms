@@ -84,7 +84,8 @@
 				<value>com.haoxuer.discover.web.data.entity</value>
 				<value>com.haoxuer.discover.area.data.entity</value>
 				<value>com.haoxuer.discover.quartz.data.entity</value>
-				<value>com.haoxuer.discover.team</value>
+				<value>com.haoxuer.discover.team.data.entity</value>
+				<value>com.haoxuer.discover.userfriend.data.entity</value>
 			</list>
 		</property>
 		<property name="entityInterceptor" ref="treeInterceptor">

@@ -49,6 +49,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>iwan_web</finalName>
+		<finalName>web</finalName>
 	</build>
 </project>
