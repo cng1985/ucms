@@ -4,35 +4,48 @@ import com.haoxuer.discover.data.page.Filter;
 import com.haoxuer.discover.data.page.Order;
 import com.haoxuer.discover.data.page.Page;
 import com.haoxuer.discover.data.page.Pageable;
+import com.haoxuer.discover.rest.base.ResponseObject;
+import com.haoxuer.discover.user.data.entity.UserAccount;
+import com.haoxuer.discover.user.data.vo.UserAccountVo;
 import com.quhaodian.ucms.data.entity.Member;
-import com.quhaodian.ucms.data.entity.Member;
+import com.quhaodian.ucms.data.request.MemberUpdateRequest;
 
 import java.util.List;
 
-/**
-* Created by imake on 2017年06月17日12:50:59.
-*/
+
 public interface MemberService {
-
-	public Member findById(Long id);
-
-	public Member save(Member bean);
-
-	public Member update(Member bean);
-
-	public Member deleteById(Long id);
-	
-	public Member[] deleteByIds(Long[] ids);
-	
-	public Page<Member> findPage(Pageable pageable);
-	
-	public Page<Member> page(Pageable pageable);
-	
-	public Page<Member> page(Pageable pageable, Object search);
-
-	public long count(Filter... filters);
-
-
-	public List<Member> findList(Integer first, Integer count, List<Filter> filters, List<Order> orders);
-	
+  
+  Member findById(Long id);
+  
+  Member save(Member bean);
+  
+  /**
+   * 更新个人信息
+   *
+   * @param request
+   * @return
+   */
+  ResponseObject update(MemberUpdateRequest request);
+  
+  
+  UserAccountVo reg(UserAccount account, Member member);
+  
+  
+  Member update(Member bean);
+  
+  Member deleteById(Long id);
+  
+  Member[] deleteByIds(Long[] ids);
+  
+  Page<Member> findPage(Pageable pageable);
+  
+  Page<Member> page(Pageable pageable);
+  
+  Page<Member> page(Pageable pageable, Object search);
+  
+  long count(Filter... filters);
+  
+  
+  List<Member> findList(Integer first, Integer count, List<Filter> filters, List<Order> orders);
+  
 }

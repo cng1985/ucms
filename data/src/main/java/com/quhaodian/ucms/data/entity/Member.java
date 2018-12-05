@@ -40,6 +40,40 @@ public class Member extends AbstractUser {
      */
     private String note;
 
+    /**
+     * 个人介绍
+     */
+    private String introduce;
+
+    @Column(length = 20)
+    private String job;
+
+    @Column(length = 30)
+    private String companyName;
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
     public String getQq() {
         return qq;
