@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>添加</title>
+	<title>用户管理</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
@@ -25,18 +25,6 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	[#include "/admin/common/commons.html"]
-
-	<!-- jQuery 2.2.3 -->
-	<script src="${siteurl}plugins/jQuery/jquery-2.2.3.min.js"></script>
-	<!-- Bootstrap 3.3.6 -->
-	<script src="${siteurl}bootstrap/js/bootstrap.min.js"></script>
-	<!-- SlimScroll -->
-	<script src="${siteurl}plugins/slimScroll/jquery.slimscroll.min.js"></script>
-	<!-- FastClick -->
-	<script src="${siteurl}plugins/fastclick/fastclick.js"></script>
-	<!-- AdminLTE App -->
-	<script src="${siteurl}dist/js/adminlte.min.js"></script>
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -79,75 +67,69 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				管理
-				<small>添加</small>
+				用户管理
+				<small>管理你的用户</small>
 			</h1>
 		</section>
 		<!-- Main content -->
 		<section class="content">
 
 			<!-- Default box -->
-			<div class="">
+			<div class="col-xs-12">
 				<div class="box box-default box-solid">
 					<div class="box-header with-border">
-						<h3 class="box-title">添加</h3>
+						<h3 class="box-title">更新</h3>
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
-					<form class="form-horizontal" action="${siteurl}admin/stockday/model_save.htm" method="post">
 						<div class="box-body">
-							<div class="form-group">
-								<label for="day" class="col-sm-2 control-label">日期</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="day" name="day" placeholder="日期" type="text">
+								<div class="form-group">
+									<label for="day" class="col-sm-2 control-label">日期</label>
+									<div class="col-sm-10">
+										<input readonly="readonly" value="${model.day!''}" class="form-control" id="day" type="text">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="stock" class="col-sm-2 control-label">股票</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="stock" name="stock" placeholder="股票" type="text">
+								<div class="form-group">
+									<label for="stock" class="col-sm-2 control-label">股票</label>
+									<div class="col-sm-10">
+										<input readonly="readonly" value="${model.stock!''}" class="form-control" id="stock" type="text">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="hprice" class="col-sm-2 control-label">最高价</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="hprice" name="hprice" placeholder="最高价" type="text">
+								<div class="form-group">
+									<label for="hprice" class="col-sm-2 control-label">最高价</label>
+									<div class="col-sm-10">
+										<input readonly="readonly" value="${model.hprice!''}" class="form-control" id="hprice" type="text">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="lprive" class="col-sm-2 control-label">最低价</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="lprive" name="lprive" placeholder="最低价" type="text">
+								<div class="form-group">
+									<label for="lprive" class="col-sm-2 control-label">最低价</label>
+									<div class="col-sm-10">
+										<input readonly="readonly" value="${model.lprive!''}" class="form-control" id="lprive" type="text">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="price" class="col-sm-2 control-label">收盘价</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="price" name="price" placeholder="收盘价" type="text">
+								<div class="form-group">
+									<label for="price" class="col-sm-2 control-label">收盘价</label>
+									<div class="col-sm-10">
+										<input readonly="readonly" value="${model.price!''}" class="form-control" id="price" type="text">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="yestPrice" class="col-sm-2 control-label">昨日价</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="yestPrice" name="yestPrice" placeholder="昨日价" type="text">
+								<div class="form-group">
+									<label for="yestPrice" class="col-sm-2 control-label">昨日价</label>
+									<div class="col-sm-10">
+										<input readonly="readonly" value="${model.yestPrice!''}" class="form-control" id="yestPrice" type="text">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="volume" class="col-sm-2 control-label">成交量</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="volume" name="volume" placeholder="成交量" type="text">
+								<div class="form-group">
+									<label for="volume" class="col-sm-2 control-label">成交量</label>
+									<div class="col-sm-10">
+										<input readonly="readonly" value="${model.volume!''}" class="form-control" id="volume" type="text">
+									</div>
 								</div>
-							</div>
 						</div>
 						<!-- /.box-body -->
-						<div class="box-footer">
-							<a href="${siteurl}admin/stockday/view_list.htm" class="btn btn-default">取消</a>
-							<button type="submit" class="btn btn-primary pull-right">保存</button>
-						</div>
-						<!-- /.box-footer -->
-					</form>
 				</div>
 			</div>
+
 			<!-- /.box -->
 
 		</section>
@@ -167,10 +149,17 @@
 </div>
 <!-- ./wrapper -->
 
-<script type="text/javascript">
-    $(document).ready(function () {
-
-    });
-</script>
+<!-- jQuery 2.2.3 -->
+<script src="${siteurl}plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="${siteurl}bootstrap/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="${siteurl}plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="${siteurl}plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="${siteurl}dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="${siteurl}dist/js/demo.js"></script>
 </body>
 </html>

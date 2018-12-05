@@ -1,33 +1,32 @@
 package com.quhaodian.ucms.data.service;
 
+import com.quhaodian.ucms.data.entity.StockDay;
 import com.haoxuer.discover.data.page.Filter;
 import com.haoxuer.discover.data.page.Order;
 import com.haoxuer.discover.data.page.Page;
 import com.haoxuer.discover.data.page.Pageable;
-import com.quhaodian.ucms.data.entity.StockDay;
-import com.quhaodian.ucms.data.entity.StockDay;
-
 import java.util.List;
 
-
+/**
+* Created by imake on 2018年12月05日17:51:09.
+*/
 public interface StockDayService {
 
-	public StockDay findById(Long id);
+	StockDay findById(Long id);
 
-	public StockDay save(StockDay bean);
+	StockDay save(StockDay bean);
 
-	public StockDay update(StockDay bean);
+	StockDay update(StockDay bean);
 
-	public StockDay deleteById(Long id);
+	StockDay deleteById(Long id);
 	
-	public StockDay[] deleteByIds(Long[] ids);
+	StockDay[] deleteByIds(Long[] ids);
 	
-
+	Page<StockDay> page(Pageable pageable);
 	
-	public Page<StockDay> findPage(Pageable pageable);
+	Page<StockDay> page(Pageable pageable, Object search);
 
-	public long count(Filter... filters);
 
-	public List<StockDay> findList(Integer first, Integer count, List<Filter> filters, List<Order> orders);
-	
+	List<StockDay> list(int first, Integer size, List<Filter> filters, List<Order> orders);
+
 }

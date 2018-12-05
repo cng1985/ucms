@@ -1,13 +1,9 @@
 package com.quhaodian.ucms.data.service.impl;
 
-import com.quhaodian.ucms.data.entity.StockDay;
-import com.quhaodian.ucms.data.service.StockDayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.haoxuer.discover.data.core.Finder;
-import com.haoxuer.discover.data.core.Pagination;
 import com.haoxuer.discover.data.core.Updater;
 import com.quhaodian.ucms.data.dao.StockDayDao;
 import com.quhaodian.ucms.data.entity.StockDay;
@@ -18,38 +14,55 @@ import com.haoxuer.discover.data.page.Order;
 import com.haoxuer.discover.data.page.Page;
 import com.haoxuer.discover.data.page.Pageable;
 import java.util.List;
+import java.util.LinkedList;
+import java.util.ArrayList;
+import com.haoxuer.discover.data.utils.FilterUtils;
+import org.springframework.context.annotation.Scope;
 
 
+/**
+* Created by imake on 2018年12月05日17:51:09.
+*/
+
+
+@Scope("prototype")
 @Service
 @Transactional
 public class StockDayServiceImpl implements StockDayService {
-	
 
+	private StockDayDao dao;
+
+
+	@Override
 	@Transactional(readOnly = true)
 	public StockDay findById(Long id) {
-		StockDay entity = dao.findById(id);
-		return entity;
+		return dao.findById(id);
 	}
 
+
+	@Override
     @Transactional
 	public StockDay save(StockDay bean) {
 		dao.save(bean);
 		return bean;
 	}
 
+	@Override
     @Transactional
 	public StockDay update(StockDay bean) {
 		Updater<StockDay> updater = new Updater<StockDay>(bean);
-		bean = dao.updateByUpdater(updater);
-		return bean;
+		return dao.updateByUpdater(updater);
 	}
 
+	@Override
     @Transactional
 	public StockDay deleteById(Long id) {
-		StockDay bean = dao.deleteById(id);
+		StockDay bean = dao.findById(id);
+        dao.deleteById(id);
 		return bean;
 	}
 
+	@Override
     @Transactional	
 	public StockDay[] deleteByIds(Long[] ids) {
 		StockDay[] beans = new StockDay[ids.length];
@@ -59,31 +72,28 @@ public class StockDayServiceImpl implements StockDayService {
 		return beans;
 	}
 
-	private StockDayDao dao;
 
 	@Autowired
 	public void setDao(StockDayDao dao) {
 		this.dao = dao;
 	}
-	
 
-	
-	@Transactional(readOnly = true)
-	public Page<StockDay> findPage(Pageable pageable){
-	     return dao.findPage(pageable);
+	@Override
+    public Page<StockDay> page(Pageable pageable){
+         return dao.page(pageable);
+    }
+
+
+    @Override
+	public Page<StockDay> page(Pageable pageable, Object search) {
+		List<Filter> filters=	FilterUtils.getFilters(search);
+		if (filters!=null) {
+			pageable.getFilters().addAll(filters);
+		}
+		return dao.page(pageable);
 	}
 
-	@Transactional(readOnly = true)
-	public long count(Filter... filters){
-	     
-	     return dao.count(filters);
-	     
-	}
-
-	@Transactional(readOnly = true)
-	public List<StockDay> findList(Integer first, Integer count, List<Filter> filters, List<Order> orders){
-	
-		     return dao.findList(first,count,filters,orders);
-	
-	}
+    @Override
+    public List<StockDay> list(int first, Integer size, List<Filter> filters, List<Order> orders) {
+        return dao.list(first,size,filters,orders);}
 }

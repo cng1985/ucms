@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.haoxuer.discover.data.annotations.ColType;
+import com.haoxuer.discover.data.annotations.FormFieldAnnotation;
 import com.haoxuer.discover.data.entity.AbstractEntity;
 import com.haoxuer.discover.data.entity.LongEntity;
 
@@ -20,24 +22,30 @@ import com.haoxuer.discover.data.entity.LongEntity;
 @Table(name = "stock_day")
 public class StockDay extends LongEntity {
 
+	@FormFieldAnnotation(title = "日期", sortNum = "1", grid = true, col = ColType.col_2)
 	@Column(length = 10)
 	private String day;
 
+	@FormFieldAnnotation(title = "股票", sortNum = "2", grid = true, col = ColType.col_2)
 	@ManyToOne
 	private Stock stock;
 
-
+	@FormFieldAnnotation(title = "收盘价", sortNum = "5", grid = true, col = ColType.col_1)
 	private float price;
 
+	@FormFieldAnnotation(title = "最高价", sortNum = "3", grid = true, col = ColType.col_1)
 	private float hprice;
 
+	@FormFieldAnnotation(title = "最低价", sortNum = "4", grid = true, col = ColType.col_1)
 	private float lprive;
 
+	@FormFieldAnnotation(title = "昨日价", sortNum = "6", grid = true, col = ColType.col_1)
 	private float yestPrice;
 
 	/**
 	 * 成交量
 	 */
+	@FormFieldAnnotation(title = "成交量", sortNum = "7", grid = true, col = ColType.col_2)
 	private int volume;
 
 	public String getDay() {

@@ -1,24 +1,23 @@
 package com.quhaodian.ucms.data.dao;
 
 import com.haoxuer.discover.data.core.CriteriaDao;
-import com.haoxuer.discover.data.core.Updater;
 import com.haoxuer.discover.data.core.Pagination;
-import com.quhaodian.ucms.data.entity.StockDay;
+import com.haoxuer.discover.data.core.Updater;
 import com.quhaodian.ucms.data.entity.StockDay;
 
 public interface StockDayDao extends CriteriaDao<StockDay, Long> {
-	public Pagination getPage(int pageNo, int pageSize);
+  Pagination getPage(int pageNo, int pageSize);
 
-	public StockDay findById(Long id);
+  StockDay findById(Long id);
 
-	public StockDay findByDay(Long stock,String day);
+  StockDay findByDay(Long stock, String day);
 
 
-	public StockDay findByCode(String code,String date);
+  StockDay findByCode(String code, String date);
 
-	public StockDay save(StockDay bean);
+  StockDay save(StockDay bean);
 
-	public StockDay updateByUpdater(Updater<StockDay> updater);
+  StockDay updateByUpdater(Updater<StockDay> updater);
 
-	public StockDay deleteById(Long id);
+  StockDay deleteById(Long id);
 }
