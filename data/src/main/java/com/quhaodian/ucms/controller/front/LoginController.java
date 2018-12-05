@@ -10,23 +10,19 @@
 
 package com.quhaodian.ucms.controller.front;
 
-import com.haoxuer.discover.user.shiro.filter.UsernamePasswordCaptchaToken;
-import com.haoxuer.discover.user.shiro.realm.UserInfoToken;
-import com.haoxuer.discover.user.shiro.utils.UserUtil;
-import com.haoxuer.discover.useroauth.plugs.service.OauthSiteService;
-import com.haoxuer.discover.user.data.entity.UserAccount;
 import com.haoxuer.discover.user.data.entity.UserInfo;
 import com.haoxuer.discover.user.data.entity.UserOauthToken;
+import com.haoxuer.discover.user.data.enums.BindType;
+import com.haoxuer.discover.user.data.request.UserRegisterRequest;
+import com.haoxuer.discover.user.data.response.UserBasicResponse;
 import com.haoxuer.discover.user.data.service.UserAccountService;
 import com.haoxuer.discover.user.data.service.UserInfoService;
 import com.haoxuer.discover.user.data.service.UserOauthTokenService;
-import com.haoxuer.discover.user.data.vo.UserAccountVo;
-import com.haoxuer.discover.user.enums.AccountType;
 import com.haoxuer.discover.user.oauth.domain.OauthResponse;
-import com.haoxuer.discover.user.oauth.domain.UserQQ;
+import com.haoxuer.discover.user.shiro.realm.UserInfoToken;
+import com.haoxuer.discover.user.shiro.utils.UserUtil;
+import com.haoxuer.discover.useroauth.plugs.service.OauthSiteService;
 import com.haoxuer.discover.web.controller.front.BaseController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +33,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 登录页
@@ -71,21 +70,20 @@ public class LoginController extends BaseController {
   
   
   @RequestMapping(value = "/register", method = RequestMethod.POST)
-  public String register(String email, String username, String password, HttpServletRequest request,
-                         HttpServletResponse response, Model model) {
-    
-    UserAccount account = new UserAccount();
-    account.setAccountType(AccountType.Account);
-    account.setUsername(username);
-    account.setPassword(password);
-    UserAccountVo state = accountService.reg(account);
-    if (state.getCode() == 0) {
-      model.addAttribute("msg", "注册成功");
+  public String register(String name, String username, String password,
+                         Model model,RedirectAttributes attributes) {
+
+    UserRegisterRequest request=new UserRegisterRequest();
+    request.setBindType(BindType.account);
+    request.setNo(username);
+    request.setPassword(password);
+    UserBasicResponse userx = userInfoService.register(request);
+    if (userx.getCode() == 0) {
+      attributes.addAttribute("msg", "注册成功");
       return "redirect:/login.htm";
     } else {
-      model.addAttribute("msg", "注册失败");
+      model.addAttribute("msg", userx.getMsg());
       return getView("register");
-      
     }
     
   }
@@ -107,11 +105,7 @@ public class LoginController extends BaseController {
     }
   }
   
-  @RequestMapping(value = "qqlogin")
-  public String qqlogin(HttpServletRequest request, HttpServletResponse response, Model model) {
-    return getView("qqlogin");
-  }
-  
+
   @RequestMapping(value = "plugs/{plug}")
   public String oauthlogin(String code, @PathVariable String plug, HttpServletRequest request, HttpServletResponse response, Model model) {
     initurls(model);
@@ -161,38 +155,7 @@ public class LoginController extends BaseController {
   @Autowired
   UserInfoService userService;
   
-  @RequestMapping(value = "qqlogin2")
-  public String qqlogin2(String access_token, String openid, HttpServletRequest request, HttpServletResponse response,
-                         Model model) {
-    try {
-      
-      //UserQQ qq = qqService.login(access_token, openid, "101303927");
-      UserQQ qq = null;
-      if (qq != null) {
-        Subject subject = SecurityUtils.getSubject();
-        if (!subject.isAuthenticated()) {
-          UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken();
-          token.setUsername(openid);
-          token.setPassword("123456".toCharArray());
-          try {
-            subject.login(token);
-          } catch (Exception ex) {
-            ex.printStackTrace();
-          }
-          if (subject.isAuthenticated()) {
-            return "redirect:" + "/index.htm";
-          } else {
-            return "login";
-          }
-        }
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    
-    return getView("qqlogin");
-  }
-  
+
   /**
    * 跳转登录页
    *

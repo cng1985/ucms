@@ -9,13 +9,15 @@
 
 	<bean id="userRealm" class="com.haoxuer.discover.user.shiro.realm.AccountRealm"/>
 	<bean id="userInfoRealm" class="com.haoxuer.discover.user.shiro.realm.UserInfoRealm" />
+	<bean id="securityRealm" class="com.haoxuer.discover.user.shiro.realm.SecurityRealm"/>
 
 	<!-- Shiro的主要业务层对象基于web的应用程序 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realms">
 			<list>
-				<ref bean="userRealm"></ref>
-				<ref bean="userInfoRealm"></ref>
+				<ref bean="userRealm"/>
+				<ref bean="userInfoRealm"/>
+				<ref bean="securityRealm"/>
 			</list>
 		</property>
 		<property name="cacheManager" ref="shiroEhcacheManager" />
