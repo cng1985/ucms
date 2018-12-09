@@ -11,11 +11,13 @@ import com.quhaodian.ucms.exception.NoUserTokenException;
 import com.quhaodian.ucms.exception.UnAuthorizationException;
 import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import javax.servlet.ServletException;
@@ -34,18 +36,19 @@ public class GlobalController extends AbstractJsonpResponseBodyAdvice {
   @Autowired
   ExceptionLogService logService;
 
-  @ResponseBody
   @ExceptionHandler(ServletException.class)
   public ModelAndView expx(HttpServletRequest request, Exception ex) {
     return handleException(request, ex);
   }
-  @ResponseBody
+  @ExceptionHandler(DataIntegrityViolationException.class)
+  public ModelAndView dataIntegrityViolationException(HttpServletRequest request, Exception ex) {
+    return handleException(request, ex);
+  }
   @ExceptionHandler(IllegalArgumentException.class)
   public ModelAndView illegalArgument(HttpServletRequest request, Exception ex) {
     return handleException(request, ex);
   }
 
-  @ResponseBody
   @ExceptionHandler(NullPointerException.class)
   public ModelAndView nullEx(HttpServletRequest request, Exception ex) {
     return handleException(request, ex);
@@ -116,7 +119,8 @@ public class GlobalController extends AbstractJsonpResponseBodyAdvice {
       mav.addObject("msg", "没有登陆");
       return mav;
     } else {
-      ModelAndView mav = new ModelAndView("/theme/" + InitConfig.getWebConfig().getTheme() + "/" + "login");
+      RedirectView redirectView=new RedirectView("/index.htm",true);
+      ModelAndView mav = new ModelAndView(redirectView);
       return mav;
     }
   }

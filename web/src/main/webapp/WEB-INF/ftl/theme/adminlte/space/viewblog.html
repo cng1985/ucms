@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${(model.name)!""}的空间</title>
+    [#include "/theme/adminlte/common/sites.html" /]
+    [#include "/theme/adminlte/space/common.html" /]
+
+    [@header /]
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+    <header class="main-header">
+        [@nav  7 /]
+    </header>
+    <!-- Full Width Column -->
+    <div class="content-wrapper">
+        <div class="container">
+            <!-- Main content -->
+            <section class="content">
+                <div class="box box-default box-solid">
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" action="${siteurl}space/updateblog.htm" method="post">
+                       <input type="hidden" name="id" value="${model.id!''}">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input required="required" value="${model.title!''}" class="form-control" maxlength="50" id="title" name="title" placeholder="标题" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <!-- 加载编辑器的容器 -->
+                                    <script id="contents" name="contents" type="text/plain">
+                                        ${model.contents!''}
+                                    </script>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <a href="${siteurl}admin/article/view_list.htm" class="btn btn-default">取消</a>
+                            <button type="submit" class="btn btn-primary pull-right">保存</button>
+                        </div>
+                        <!-- /.box-footer -->
+                    </form>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    [@footer /]
+</div>
+<!-- ./wrapper -->
+
+[@scripts /]
+
+<script type="text/javascript" src="${siteurl}plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="${siteurl}plugins/ueditor/ueditor.all.min.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('contents',{
+        toolbars: [
+            ['fullscreen', 'source','drafts',  'paragraph', 'fontfamily', 'fontsize',  'insertorderedlist', 'insertunorderedlist', 'simpleupload','insertimage', 'emotion', 'bold','insertcode','preview']
+        ],
+        autoHeightEnabled: true,
+        autoFloatEnabled: false})
+    ue.ready(function() {
+        ue.setHeight(400);
+    });
+</script>
+</body>
+</html>

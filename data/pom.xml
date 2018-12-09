@@ -59,7 +59,11 @@
             <artifactId>discover-user-friend</artifactId>
             <version>2.0.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.haoxuer.discover</groupId>
+            <artifactId>discover-user-notice</artifactId>
+            <version>2.0.3</version>
+        </dependency>
         <dependency>
             <groupId>com.haoxuer.discover</groupId>
             <artifactId>discover-common-security</artifactId>

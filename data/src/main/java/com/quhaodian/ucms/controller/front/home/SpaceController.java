@@ -18,6 +18,7 @@ import com.quhaodian.ucms.controller.Constants;
 import com.quhaodian.ucms.data.entity.Member;
 import com.quhaodian.ucms.data.service.MemberService;
 import com.haoxuer.discover.web.controller.front.BaseController;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -158,5 +159,58 @@ public class SpaceController extends BaseController {
       return getView("space/myquestion");
     }
 
+  }
+
+  @RequiresUser
+  @RequestMapping(value = "/writeblog", method = RequestMethod.GET)
+  public String writeBlog() {
+    return getView("space/writeblog");
+  }
+
+  @RequiresUser
+  @RequestMapping(value = "/viewblog", method = RequestMethod.GET)
+  public String viewBlog(Long id,Model model) {
+    Article article = articleService.findById(id);
+    if (article == null||article.getUser()==null) {
+      return redirect("/article/view/"+id+".htm");
+    }
+    if (!article.getUser().equals(UserUtil.getCurrentUser())) {
+      return redirect("/article/view/"+id+".htm");
+    }
+    model.addAttribute(Constants.MODEL,article);
+    return getView("space/viewblog");
+  }
+  @RequiresUser
+  @RequestMapping(value = "/updateblog")
+  public String updateBlog(Article bean) {
+    Article article = articleService.findById(bean.getId());
+    if (article == null||article.getUser()==null) {
+      return redirect("/article/view/"+bean.getId()+".htm");
+    }
+    if (!article.getUser().equals(UserUtil.getCurrentUser())) {
+      return redirect("/article/view/"+bean.getId()+".htm");
+    }
+    articleService.update(bean);
+    return redirect("/space/myarticle/"+UserUtil.getCurrentUser().getId()+".htm");
+  }
+  @RequiresUser
+  @RequestMapping(value = "/deleteblog")
+  public String deleteBlog(Long id) {
+    Article article = articleService.findById(id);
+    if (article == null||article.getUser()==null) {
+      return redirect("/article/view/"+article.getId()+".htm");
+    }
+    if (!article.getUser().equals(UserUtil.getCurrentUser())) {
+      return redirect("/article/view/"+article.getId()+".htm");
+    }
+    articleService.deleteById(article.getId());
+    return redirect("/space/myarticle/"+UserUtil.getCurrentUser().getId()+".htm");
+  }
+  @RequiresUser
+  @RequestMapping(value = "/postblog")
+  public String postBlog(Article article) {
+    article.setUser(UserUtil.getCurrentUser());
+    articleService.save(article);
+    return redirect("/space/" + UserUtil.getCurrentUser().getId() + ".htm");
   }
 }

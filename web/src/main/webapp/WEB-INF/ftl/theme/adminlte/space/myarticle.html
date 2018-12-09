@@ -43,6 +43,15 @@
                                                 <span class="username"><a href="${httpsurl}article/view/${item.id}.htm">${item.title!""}</a></span>
                                                 <span class="description">${item.lastDate!""}</span>
                                             </div>
+                                            [@shiro.authenticated]
+                                            [#if (item.user.id)?? &&item.user.id=user.id]
+                                            <p>
+                                                <a class="btn btn-default pull-right" href="${httpsurl}space/viewblog.htm?id=${item.id}" role="button">编辑文章</a>
+                                                <a class="btn btn-default pull-right" href="${httpsurl}space/deleteblog.htm?id=${item.id}" role="button" style="margin-right: 12px;">删除文章</a>
+
+                                            </p>
+                                            [/#if]
+                                            [/@shiro.authenticated]
                                             <!-- /.user-block -->
                                         </div>
                                         <!-- /.box-header -->

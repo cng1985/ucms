@@ -1,5 +1,6 @@
 package com.quhaodian.ucms.rest.resources;
 
+import com.haoxuer.discover.data.page.Filter;
 import com.haoxuer.discover.data.page.Page;
 import com.haoxuer.discover.data.page.Pageable;
 import com.haoxuer.discover.rest.base.RequestTokenPageObject;
@@ -9,6 +10,7 @@ import com.quhaodian.ucms.rest.api.MemberApi;
 import com.quhaodian.ucms.rest.conver.MemberSimpleConver;
 import com.quhaodian.ucms.rest.conver.PageableConver;
 import com.quhaodian.ucms.rest.domain.page.MemberPage;
+import com.quhaodian.ucms.rest.domain.request.MemberNameRequest;
 import com.quhaodian.ucms.rest.domain.request.PageRequest;
 import com.haoxuer.discover.user.utils.ConverResourceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,19 @@ public class MemberResource implements MemberApi {
   public MemberPage page(PageRequest request) {
     MemberPage result = new MemberPage();
     Pageable pageable = new PageableConver().conver(request);
+    Page<Member> page = memberDao.page(pageable);
+    ConverResourceUtils.coverPage(result, page, new MemberSimpleConver());
+    return result;
+  }
+
+  @Override
+  public MemberPage name(MemberNameRequest request) {
+    MemberPage result = new MemberPage();
+    if (request.getName() == null) {
+      request.setName("");
+    }
+    Pageable pageable = new PageableConver().conver(request);
+    pageable.getFilters().add(Filter.like("name", request.getName()));
     Page<Member> page = memberDao.page(pageable);
     ConverResourceUtils.coverPage(result, page, new MemberSimpleConver());
     return result;

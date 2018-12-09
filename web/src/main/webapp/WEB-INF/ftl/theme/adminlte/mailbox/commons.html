@@ -1,0 +1,59 @@
+[#macro mailboxleft index]
+<div class="col-md-3">
+    <a href="compose.htm" class="btn btn-primary btn-block margin-bottom">写信</a>
+
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Folders</h3>
+
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
+                <li  [#if index==1] class="active" [/#if] >
+                    <a href="${siteurl}mailbox/mailbox.htm"><i class="fa fa-inbox"></i> 收件箱
+                    <span class="label label-primary pull-right">12</span></a>
+                </li>
+                <li  [#if index==2] class="active" [/#if]>
+                <a href="${siteurl}mailbox/sendlist.htm"><i class="fa fa-envelope-o"></i> 已发送</a>
+                </li>
+                <li  [#if index==3] class="active" [/#if]>
+                <a href="#"><i class="fa fa-file-text-o"></i> 草稿箱</a>
+                </li>
+                <li  [#if index==4] class="active" [/#if]>
+                <a href="#"><i class="fa fa-filter"></i> 垃圾箱 <span class="label label-warning pull-right">65</span>
+                </a>
+                </li>
+                <li  [#if index==5] class="active" [/#if]>
+                <a href="#"><i class="fa fa-trash-o"></i> 回收站
+                </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /. box -->
+    <div class="box box-solid hidden">
+        <div class="box-header with-border">
+            <h3 class="box-title">Labels</h3>
+
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
+            </ul>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>
+[/#macro]

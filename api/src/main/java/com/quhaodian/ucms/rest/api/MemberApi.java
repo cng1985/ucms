@@ -2,6 +2,7 @@ package com.quhaodian.ucms.rest.api;
 
 import com.quhaodian.jsonrpc.annotation.RestFul;
 import com.quhaodian.ucms.rest.domain.page.MemberPage;
+import com.quhaodian.ucms.rest.domain.request.MemberNameRequest;
 import com.quhaodian.ucms.rest.domain.request.PageRequest;
 
 /**
@@ -17,4 +18,7 @@ public interface MemberApi {
    * @return
    */
   MemberPage page(PageRequest request);
+
+  MemberPage name(MemberNameRequest request);
+
 }
