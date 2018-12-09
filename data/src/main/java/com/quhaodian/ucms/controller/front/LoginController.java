@@ -47,7 +47,7 @@ public class LoginController extends BaseController {
 
   @Autowired
   OauthSiteService oauthSiteService;
-  
+
   /**
    * 退出登录
    *
@@ -58,22 +58,22 @@ public class LoginController extends BaseController {
     SecurityUtils.getSubject().logout();
     return "redirect:/login.htm";
   }
-  
+
   @Autowired
   UserInfoService userInfoService;
-  
+
   @Autowired
   UserAccountService accountService;
-  
+
   @Autowired
   UserOauthTokenService tokenService;
-  
-  
+
+
   @RequestMapping(value = "/register", method = RequestMethod.POST)
   public String register(String name, String username, String password,
-                         Model model,RedirectAttributes attributes) {
+                         Model model, RedirectAttributes attributes) {
 
-    UserRegisterRequest request=new UserRegisterRequest();
+    UserRegisterRequest request = new UserRegisterRequest();
     request.setBindType(BindType.account);
     request.setNo(username);
     request.setPassword(password);
@@ -85,9 +85,9 @@ public class LoginController extends BaseController {
       model.addAttribute("msg", userx.getMsg());
       return getView("register");
     }
-    
+
   }
-  
+
   /**
    * 跳转登录页
    *
@@ -95,7 +95,7 @@ public class LoginController extends BaseController {
    */
   @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String view(Model model) {
-    
+
     Subject subject = SecurityUtils.getSubject();
     if (subject.isAuthenticated()) {
       return "redirect:" + "/index.htm";
@@ -104,16 +104,17 @@ public class LoginController extends BaseController {
       return getView(Views.LOGIN);
     }
   }
-  
+
+
 
   @RequestMapping(value = "plugs/{plug}")
   public String oauthlogin(String code, @PathVariable String plug, HttpServletRequest request, HttpServletResponse response, Model model) {
     initurls(model);
-    if (StringUtils.isEmpty(code)){
+    if (StringUtils.isEmpty(code)) {
       return getView(Views.LOGIN);
     }
     OauthResponse oauthResponse = oauthSiteService.handle(plug, code);
-    if (oauthResponse==null){
+    if (oauthResponse == null) {
       return getView(Views.LOGIN);
     }
     UserOauthToken userOauthToken = tokenService.login(oauthResponse);
@@ -124,9 +125,9 @@ public class LoginController extends BaseController {
     } else {
       return getView(Views.LOGIN);
     }
-    
+
   }
-  
+
   private String login(UserInfo user) {
     if (user != null) {
       Subject subject = SecurityUtils.getSubject();
@@ -147,14 +148,14 @@ public class LoginController extends BaseController {
     }
     return null;
   }
-  
+
   private void initurls(Model model) {
     model.addAttribute("oauths", oauthSiteService.list());
   }
-  
+
   @Autowired
   UserInfoService userService;
-  
+
 
   /**
    * 跳转登录页
@@ -165,7 +166,7 @@ public class LoginController extends BaseController {
   public String register() {
     return getView("register");
   }
-  
+
   /**
    * 跳转登录页
    *
@@ -173,9 +174,9 @@ public class LoginController extends BaseController {
    */
   @RequestMapping(value = "/loginok", method = RequestMethod.GET)
   public String loginok() {
-    
+
     UserInfo user = UserUtil.getCurrentUser();
-    
+
     if (SecurityUtils.getSubject().isAuthenticated()) {
       if (SecurityUtils.getSubject().hasRole("管理员")) {
         return "/admin/home";
@@ -185,9 +186,9 @@ public class LoginController extends BaseController {
     } else {
       return getView("login");
     }
-    
+
   }
-  
+
   /**
    * 提交登录
    *
@@ -198,5 +199,5 @@ public class LoginController extends BaseController {
     attributes.addFlashAttribute("msg", "密码错误");
     return "redirect:login.htm";
   }
-  
+
 }

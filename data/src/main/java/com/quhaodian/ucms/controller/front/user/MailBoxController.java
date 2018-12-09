@@ -15,6 +15,7 @@ import com.haoxuer.discover.notice.data.so.UserNotificationMemberSo;
 import com.haoxuer.discover.user.shiro.utils.UserUtil;
 import com.haoxuer.discover.web.controller.front.BaseController;
 import com.quhaodian.ucms.controller.Constants;
+import com.quhaodian.ucms.utils.CheckUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class MailBoxController extends BaseController {
     if (notificationMember.getUser() == null) {
       return redirect("/mailbox/mailbox.htm");
     }
-    if (!notificationMember.getUser().equals(UserUtil.getCurrentUser())) {
+    if (CheckUtil.unCheck(notificationMember.getUser())) {
       return redirect("/mailbox/mailbox.htm");
     }
     model.addAttribute(Constants.MODEL, notificationMember);
@@ -59,7 +60,7 @@ public class MailBoxController extends BaseController {
     if (notificationMember.getAuthor() == null) {
       return redirect("/mailbox/sendlist.htm");
     }
-    if (!notificationMember.getAuthor().equals(UserUtil.getCurrentUser())) {
+    if (CheckUtil.unCheck(notificationMember.getAuthor())) {
       return redirect("/mailbox/sendlist.htm");
     }
     model.addAttribute(Constants.MODEL, notificationMember);
@@ -72,7 +73,7 @@ public class MailBoxController extends BaseController {
     if (notificationMember.getUser() == null) {
       return redirect("/mailbox/mailbox.htm");
     }
-    if (!notificationMember.getUser().equals(UserUtil.getCurrentUser())) {
+    if (CheckUtil.unCheck(notificationMember.getUser())) {
       return redirect("/mailbox/mailbox.htm");
     }
     manager.deleteById(id);
@@ -85,7 +86,7 @@ public class MailBoxController extends BaseController {
     if (notificationMember.getAuthor() == null) {
       return redirect("/mailbox/sendlist.htm");
     }
-    if (!notificationMember.getAuthor().equals(UserUtil.getCurrentUser())) {
+    if (CheckUtil.unCheck(notificationMember.getAuthor())) {
       return redirect("/mailbox/sendlist.htm");
     }
     userNotificationService.deleteById(id);
@@ -103,7 +104,6 @@ public class MailBoxController extends BaseController {
     }
     userNotificationService.updateNoticesByNum(UserUtil.getCurrentShiroUser().getId());
     pageable.getFilters().addAll(FilterUtils.getFilters(so));
-    pageable.getFilters().add(Filter.eq("state", StoreState.normal));
     pageable.getFilters().add(Filter.eq("user.id", UserUtil.getCurrentShiroUser().getId()));
     Page<UserNotificationMember> pagination = manager.page(pageable);
     model.addAttribute("list", pagination.getContent());
@@ -123,6 +123,7 @@ public class MailBoxController extends BaseController {
       pageable.getOrders().add(Order.desc("id"));
     }
     pageable.getFilters().addAll(FilterUtils.getFilters(so));
+    pageable.getFilters().add(Filter.eq("storeState",StoreState.normal));
     pageable.getFilters().add(Filter.eq("author.id", UserUtil.getCurrentShiroUser().getId()));
     Page<UserNotification> pagination = userNotificationService.page(pageable);
     model.addAttribute("list", pagination.getContent());

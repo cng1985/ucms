@@ -18,7 +18,10 @@ import com.quhaodian.ucms.controller.Constants;
 import com.quhaodian.ucms.data.entity.Member;
 import com.quhaodian.ucms.data.service.MemberService;
 import com.haoxuer.discover.web.controller.front.BaseController;
+import com.quhaodian.ucms.utils.CheckUtil;
 import org.apache.shiro.authz.annotation.RequiresUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -35,6 +38,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "space")
 public class SpaceController extends BaseController {
+
+  private Logger logger= LoggerFactory.getLogger(SpaceController.class);
 
   @Autowired
   MemberService service;
@@ -116,7 +121,7 @@ public class SpaceController extends BaseController {
       return redirect("/index.htm");
     } else {
       haveFollow(id, model);
-      pager.getFilters().add(Filter.ge("user.id", id));
+      pager.getFilters().add(Filter.eq("user.id", id));
       pager.getOrders().add(Order.desc("id"));
       Page<ForumPost> page = postService.page(pager);
       model.addAttribute(Constants.PAGE_DATA, page);
@@ -133,7 +138,7 @@ public class SpaceController extends BaseController {
       return redirect("/index.htm");
     } else {
       haveFollow(id, model);
-      pager.getFilters().add(Filter.ge("user.id", id));
+      pager.getFilters().add(Filter.eq("user.id", id));
       pager.getOrders().add(Order.desc("id"));
       Page<Article> page = articleService.page(pager);
       model.addAttribute(Constants.PAGE_DATA, page);
@@ -174,7 +179,8 @@ public class SpaceController extends BaseController {
     if (article == null||article.getUser()==null) {
       return redirect("/article/view/"+id+".htm");
     }
-    if (!article.getUser().equals(UserUtil.getCurrentUser())) {
+    if (CheckUtil.unCheck(article.getUser())) {
+      logger.info("非法操作!");
       return redirect("/article/view/"+id+".htm");
     }
     model.addAttribute(Constants.MODEL,article);
@@ -187,7 +193,7 @@ public class SpaceController extends BaseController {
     if (article == null||article.getUser()==null) {
       return redirect("/article/view/"+bean.getId()+".htm");
     }
-    if (!article.getUser().equals(UserUtil.getCurrentUser())) {
+    if (CheckUtil.unCheck(article.getUser())) {
       return redirect("/article/view/"+bean.getId()+".htm");
     }
     articleService.update(bean);
@@ -200,7 +206,7 @@ public class SpaceController extends BaseController {
     if (article == null||article.getUser()==null) {
       return redirect("/article/view/"+article.getId()+".htm");
     }
-    if (!article.getUser().equals(UserUtil.getCurrentUser())) {
+    if (CheckUtil.unCheck(article.getUser())) {
       return redirect("/article/view/"+article.getId()+".htm");
     }
     articleService.deleteById(article.getId());
