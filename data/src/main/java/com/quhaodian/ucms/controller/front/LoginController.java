@@ -15,6 +15,7 @@ import com.haoxuer.discover.user.data.entity.UserOauthToken;
 import com.haoxuer.discover.user.data.enums.BindType;
 import com.haoxuer.discover.user.data.request.UserRegisterRequest;
 import com.haoxuer.discover.user.data.response.UserBasicResponse;
+import com.haoxuer.discover.user.data.response.UserLoginAuthResponse;
 import com.haoxuer.discover.user.data.service.UserAccountService;
 import com.haoxuer.discover.user.data.service.UserInfoService;
 import com.haoxuer.discover.user.data.service.UserOauthTokenService;
@@ -106,25 +107,45 @@ public class LoginController extends BaseController {
   }
 
 
-
   @RequestMapping(value = "plugs/{plug}")
-  public String oauthlogin(String code, @PathVariable String plug, HttpServletRequest request, HttpServletResponse response, Model model) {
+  public String oauthLogin(String code, @PathVariable String plug, HttpServletRequest request, HttpServletResponse response, Model model) {
+    String  result="/login.htm";
     initurls(model);
     if (StringUtils.isEmpty(code)) {
-      return getView(Views.LOGIN);
+      return redirect(result);
     }
     OauthResponse oauthResponse = oauthSiteService.handle(plug, code);
     if (oauthResponse == null) {
-      return getView(Views.LOGIN);
+      return redirect(result);
     }
-    UserOauthToken userOauthToken = tokenService.login(oauthResponse);
-    UserInfo user = userOauthToken.getUser();
-    String result = login(user);
-    if (result != null) {
-      return result;
-    } else {
-      return getView(Views.LOGIN);
+    UserLoginAuthResponse userOauthToken = tokenService.loginAuth(oauthResponse);
+    if (userOauthToken.getCode() == 0) {
+      if (SecurityUtils.getSubject().isAuthenticated()) {
+        //已经登陆过绑定第三方信息,如果第三方登陆没有绑定用户，绑定当前用户
+        if (userOauthToken.getUser() == null) {
+          tokenService.bind(userOauthToken.getId(), UserUtil.getCurrentUser().getId());
+          redirect("/index.htm");
+        }
+
+      } else {
+        if (userOauthToken.getUser() != null) {
+          //已经绑定过用户信息
+          UserInfo user = UserInfo.fromId(userOauthToken.getUser());
+          return login(user);
+        } else {
+          //第一次第三方登陆
+          UserInfo user = new UserInfo();
+          user.setAvatar(oauthResponse.getAvatar());
+          user.setName(oauthResponse.getName());
+          userService.save(user);
+          tokenService.bind(userOauthToken.getId(), user.getId());
+          return login(user);
+        }
+      }
+
+
     }
+    return redirect(result);
 
   }
 
@@ -146,7 +167,7 @@ public class LoginController extends BaseController {
         }
       }
     }
-    return null;
+    return getView("login");
   }
 
   private void initurls(Model model) {

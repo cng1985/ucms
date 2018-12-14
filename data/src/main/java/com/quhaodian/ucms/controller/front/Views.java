@@ -19,6 +19,9 @@ package com.quhaodian.ucms.controller.front;
 public interface Views {
 	String REDIRECT_HOME = "redirect:/home";
 
+	String REDIRECT_LOGIN = "redirect:/login.htm";
+
+
 	String LOGIN = "login";
 	String REG = "/reg";
 	String REG_RESULT = "/reg_result";
