@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>个人资料</title>
 	[#include "/theme/adminlte/common/sites.html" /]
+	[#include "/theme/adminlte/account/settings/common.html" /]
 
 	[@scripts /]
 
@@ -29,27 +30,7 @@
 			<div class="row" style="margin-top: 30px;">
 
 				<div class="col-xs-3 col-sm-3" id="sidebar">
-					<div class="box box-solid">
-						<div class="box-header with-border">
-							<h3 class="box-title">个人设置</h3>
-						</div>
-						<div class="box-body no-padding">
-							<ul class="nav nav-pills nav-stacked">
-								<li class="active"><a href="${httpsurl}member/index.htm">
-									<i class="fa  fa-gear text-blue"></i> 基本设置</a>
-								</li>
-								<li><a href="${httpsurl}member/index.htm">
-									<i class="fa  fa-user-secret text-blue"></i> 安全设置</a>
-								</li>
-								<li><a href="${httpsurl}member/index.htm">
-									<i class="fa  fa-users text-blue"></i> 账号绑定</a>
-								</li>
-								<li><a href="${httpsurl}member/index.htm">
-									<i class="fa fa-envelope text-blue"></i> 新消息通知</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+					[@settingnav 1 /]
 				</div>
 				<div class="col-xs-9 col-sm-9 border">
 					<div class="box box-solid">
@@ -57,7 +38,7 @@
 							<h3 class="box-title">个人资料</h3>
 						</div>
 						<div class="box-body ">
-							<form action="${httpsurl}member/updateuser.htm" method="post">
+							<form action="${httpsurl}account/settings/updateuser.htm" method="post">
 						<input type="hidden" name="avatar" value="${user.avatar!''}"  id="uploaderthumbpath">
 						<div class="form-group">
 							<label for="avatar">个人头像</label>
@@ -113,8 +94,6 @@
 			<!--/row-->
 
 			<hr>
-			[@footer /]
-
 		</div>
 
 		<!-- /.container -->

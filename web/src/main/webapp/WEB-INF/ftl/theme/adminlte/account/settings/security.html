@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>安全设置</title>
+	[#include "/theme/adminlte/common/sites.html" /]
+	[#include "/theme/adminlte/account/settings/common.html" /]
+
+	[@scripts /]
+
+	[#include "/theme/adminlte/common/imagesimple.html" /]
+
+	[@header /]
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+
+<div class="fakeloader"></div>
+
+<div class="wrapper">
+
+	<header class="main-header">
+		[@nav  7 /]
+	</header>
+	<!-- Full Width Column -->
+	<div class="content-wrapper">
+		<div class="container">
+
+			<div class="row" style="margin-top: 30px;">
+
+				<div class="col-xs-3 col-sm-3" id="sidebar">
+					[@settingnav 2 /]
+				</div>
+				<div class="col-xs-9 col-sm-9 border">
+					<div class="box box-solid">
+						<div class="box-header with-border">
+							<h3 class="box-title">安全设置</h3>
+						</div>
+						<div class="box-body ">
+
+						</div>
+					</div>
+					<!--/row-->
+				</div>
+			</div>
+			<!--/row-->
+
+			<hr>
+
+		</div>
+
+		<!-- /.container -->
+	</div>
+
+
+	<!-- /.content-wrapper -->
+
+	[@footer /]
+</div>
+<!-- ./wrapper -->
+
+
+[@imagesimple "uploaderthumb" "fileListuploaderthumb" "uploaderthumbpath"][/@imagesimple]
+
+</body>
+</html>
+
