@@ -136,7 +136,7 @@ public class MailBoxController extends BaseController {
   @RequestMapping(value = "/sendmail")
   public String sendMail(ModelMap model, UserNotification notification, Long user) {
     notification.setStoreState(StoreState.normal);
-    notification.setAuthor(UserUtil.getCurrentUser());
+    notification.setAuthor(UserUtil.getUser());
     userNotificationService.send(user, notification);
     return redirect("/mailbox/sendlist.htm");
   }

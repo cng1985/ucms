@@ -89,7 +89,7 @@ public class BbsController extends BaseController {
     @RequiresUser
     @RequestMapping(value = "/postAdd")
     public String postAdd(ForumPost post, String note) {
-        post.setUser(UserUtil.getCurrentUser());
+        post.setUser(UserUtil.getUser());
         postService.save(post);
 
         ForumPostText postText = new ForumPostText();
