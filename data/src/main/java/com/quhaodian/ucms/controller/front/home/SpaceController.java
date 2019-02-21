@@ -215,7 +215,7 @@ public class SpaceController extends BaseController {
   @RequiresUser
   @RequestMapping(value = "/postblog")
   public String postBlog(Article article) {
-    article.setUser(UserUtil.getCurrentUser());
+    article.setUser(UserUtil.getUser());
     articleService.save(article);
     return redirect("/space/" + UserUtil.getCurrentUser().getId() + ".htm");
   }

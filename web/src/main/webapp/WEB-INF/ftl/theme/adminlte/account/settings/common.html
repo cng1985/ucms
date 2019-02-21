@@ -1,0 +1,23 @@
+[#macro settingnav index ]
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title">个人设置</h3>
+    </div>
+    <div class="box-body no-padding">
+        <ul class="nav nav-pills nav-stacked">
+            <li [#if index==1] class="active" [/#if]>
+                <a href="${httpsurl}account/settings/base.htm"><i class="fa  fa-gear "></i> 基本设置</a>
+            </li>
+            <li [#if index==2] class="active" [/#if]>
+                <a href="${httpsurl}account/settings/security.htm"><i class="fa  fa-user-secret "></i> 安全设置</a>
+            </li>
+            <li [#if index==3] class="active" [/#if]>
+                <a href="${httpsurl}account/settings/binding.htm"><i class="fa  fa-users"></i> 账号绑定</a>
+            </li>
+            <li [#if index==4] class="active" [/#if]>
+                <a href="${httpsurl}account/settings/notification.htm"> <i class="fa fa-envelope "></i> 新消息通知</a>
+            </li>
+        </ul>
+    </div>
+</div>
+[/#macro]

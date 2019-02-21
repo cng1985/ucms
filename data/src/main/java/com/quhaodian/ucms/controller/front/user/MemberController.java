@@ -48,16 +48,4 @@ public class MemberController extends BaseController {
   }
 
 
-  @RequiresUser
-  @RequestMapping(value = "/updateuser")
-  public String updateuser(Model model, Member member) {
-    if (member != null) {
-      member.setId(UserUtil.getCurrentUser().getId());
-      memberService.update(member);
-      UserInfo user = UserUtil.getCurrentUser();
-      user.setAvatar(member.getAvatar());
-      user.setName(member.getName());
-    }
-    return "redirect:/member/index.htm";
-  }
 }

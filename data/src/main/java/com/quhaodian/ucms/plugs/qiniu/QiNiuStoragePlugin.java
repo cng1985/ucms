@@ -37,24 +37,10 @@ public class QiNiuStoragePlugin extends StoragePlugin {
         return "quhaodian";
     }
 
-    @Override
-    public String getSiteUrl() {
-        return "http://www.quhaodian.com";
-    }
 
     @Override
-    public String getInstallUrl() {
-        return "admin/storage_plugin/qiniu/install.htm";
-    }
-
-    @Override
-    public String getUninstallUrl() {
-        return "admin/storage_plugin/qiniu/uninstall.htm";
-    }
-
-    @Override
-    public String getSettingUrl() {
-        return "admin/storage_plugin/qiniu/setting.htm";
+    public String viewName() {
+        return "qiniu";
     }
 
 

@@ -3,7 +3,6 @@ package com.quhaodian.ucms.controller.front;
 
 import com.haoxuer.discover.rest.base.ResponseObject;
 import com.haoxuer.discover.user.utils.UserUtils;
-import com.haoxuer.discover.web.data.common.InitConfig;
 import com.quhaodian.ucms.data.entity.ExceptionLog;
 import com.quhaodian.ucms.data.service.ExceptionLogService;
 import com.quhaodian.ucms.exception.NoDataException;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
@@ -29,7 +27,7 @@ import java.util.Set;
 
 
 @ControllerAdvice
-public class GlobalController extends AbstractJsonpResponseBodyAdvice {
+public class GlobalController   {
 
 
 
@@ -163,6 +161,6 @@ public class GlobalController extends AbstractJsonpResponseBodyAdvice {
     return ret;
   }
   public GlobalController() {
-    super("callback");
+    //super("callback");
   }
 }

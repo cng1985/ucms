@@ -142,7 +142,7 @@ public class QuestionController extends BaseController {
     @RequiresUser
     @RequestMapping(value = "/model_add")
     public String model_add(Model model, Question question) {
-        question.setUser(UserUtil.getCurrentUser());
+        question.setUser(UserUtil.getUser());
         question.setState(0);
         question.setViews(0);
         questionService.save(question);

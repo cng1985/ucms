@@ -74,7 +74,7 @@ public class ArticleController extends BaseController {
         if (bean.getArticle() == null || StringUtils.isEmpty(bean.getContents())) {
             return redirect("/article/view/" + bean.getArticle().getId() + ".htm");
         }
-        bean.setUser(UserUtil.getCurrentUser());
+        bean.setUser(UserUtil.getUser());
         articleService.comment(bean);
 
         return redirect("/article/view/" + bean.getArticle().getId() + ".htm");

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>个人资料</title>
+	[#include "/theme/adminlte/common/sites.html" /]
+	[#include "/theme/adminlte/account/settings/common.html" /]
+
+	[@scripts /]
+
+	[#include "/theme/adminlte/common/imagesimple.html" /]
+
+	[@header /]
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+
+<body class="hold-transition skin-blue layout-top-nav">
+
+	<div class="fakeloader"></div>
+
+	<div class="wrapper">
+
+		<header class="main-header">
+			[@nav 7 /]
+		</header>
+		<!-- Full Width Column -->
+		<div class="content-wrapper">
+			<div class="container">
+
+				<div class="row" style="margin-top: 30px;">
+
+					<div class="col-xs-3 col-sm-3" id="sidebar">
+						[@settingnav 1 /]
+					</div>
+					<div class="col-xs-9 col-sm-9 border">
+						<div class="box box-solid">
+							<div class="box-header with-border">
+								<h3 class="box-title">个人资料</h3>
+							</div>
+							<div class="box-body ">
+								<form action="${httpsurl}account/settings/updateuser.htm" method="post">
+									<input type="hidden" name="avatar" value="${user.avatar!''}" id="uploaderthumbpath">
+									<div class="form-group">
+										<label for="avatar">个人头像</label>
+										<div>
+											<div style="max-width: 100px;" id="avatar" class="uploader-list">
+												[#if user.avatar??]
+												<div class="file-item thumbnail upload-state-done" id="WU_FILE_0">
+													<img id="uploaderavatar" src="${user.avatar!''}">
+													<div class="info"></div>
+												</div>
+												[/#if]
+											</div>
+											<div id="uploaderthumb">
+												选择图片
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>昵称</label>
+										<input type="text" name="name" value="${user.name!''}" class="form-control" placeholder="给自己起一个好听的名字吧">
+									</div>
+									<div class="form-group">
+										<label>电子邮箱(email)</label>
+										<input type="email" name="email" value="${user.email!''}" class="form-control" placeholder="你的电子邮箱，比如xx@qq.com">
+									</div>
+									<div class="form-group">
+										<label>腾讯QQ</label>
+										<input type="text" name="qq" value="${user.qq!''}" class="form-control" placeholder="你的qq号码">
+									</div>
+									<div class="form-group">
+										<label>个性签名</label>
+										<textarea class="form-control" name="note" rows="3">${user.note!''}</textarea>
+									</div>
+									<div class="form-group">
+										<label>性別</label>
+										<div>
+											<label class="radio-inline">
+												<input type="radio" [#if user?? && user.sex?? && user.sex="男" ] checked="checked" [/#if] name="sex" id="inlineRadio1"
+												       value="男">
+												男 </label>
+											<label class="radio-inline">
+												<input type="radio" [#if user?? && user.sex?? && user.sex="女" ] checked="checked" [/#if] name="sex" id="inlineRadio2"
+												       value="女">
+												女 </label>
+										</div>
+									</div>
+									<button type="submit" class="btn btn-default">
+										提交
+									</button>
+								</form>
+							</div>
+						</div>
+						<!--/row-->
+					</div>
+				</div>
+				<!--/row-->
+
+				<hr>
+			</div>
+
+			<!-- /.container -->
+		</div>
+
+
+		<!-- /.content-wrapper -->
+
+		[@footer /]
+	</div>
+	<!-- ./wrapper -->
+
+
+	[@imagesimple "uploaderthumb" "fileListuploaderthumb" "uploaderthumbpath"][/@imagesimple]
+
+</body>
+
+</html>

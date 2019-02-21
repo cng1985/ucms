@@ -99,19 +99,17 @@
 								<table class="table table-bordered table-hover dataTable">
 									<thead>
 									<tr role="row">
-										<td class="col-xs-2">用户名</td>
-										<td class="col-xs-1 text-center">姓名</td>
-										<td class="col-xs-5 text-center">url</td>
-										<td class="col-xs-2 text-center">更新时间</td>
+										<td class="col-xs-7">帖子标题</td>
+										<td class="col-xs-1 text-center">作者</td>
+										<td class="col-xs-2 text-center">发布时间</td>
 										<td class="col-xs-2 text-center">操作</td>
 									</tr>
 									</thead>
 									<tbody>
 									[#list list as item]
 									<tr id="trr${item.id}">
-										<td>${item.username!""}</td>
-										<td class="text-center">${item.name!""}</td>
-										<td class="">${item.path!""}</td>
+										<td>${item.name!""}</td>
+										<td class="text-center">${(item.user.name)!""}</td>
 										<td class="text-center">${(item.lastDate?string('yyyy-MM-dd HH:mm:ss'))!''}</td>
 										<td class="text-center">
 											<div style="display: inline-block;">
