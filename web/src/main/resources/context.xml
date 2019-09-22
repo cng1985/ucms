@@ -41,7 +41,7 @@
     >
     </mvc:annotation-driven>
     <!--COOKIE登录 -->
-    <context:component-scan base-package="com.quhaodian.ucms.controller"/>
+    <context:component-scan base-package="com.haoxuer.ucms.controller"/>
 
     <bean name="webconfig" class="com.haoxuer.discover.web.data.common.InitConfig" init-method="initWebConfig" scope="singleton" lazy-init="false" />
 

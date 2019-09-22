@@ -14,7 +14,7 @@
 	<context:component-scan base-package="com.haoxuer.discover" />
 
 	<!-- 对包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 需要更改 -->
-	<context:component-scan base-package="com.quhaodian.ucms" />
+	<context:component-scan base-package="com.haoxuer.ucms" />
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
@@ -88,7 +88,7 @@
 				<value>com.haoxuer.discover.notice.data.entity</value>
 				<value>com.haoxuer.discover.config.data.entity</value>
 				<value>com.haoxuer.discover.weibo.data.entity</value>
-				<value>com.quhaodian.ucms.data.entity</value>
+				<value>com.haoxuer.ucms.data.entity</value>
 			</list>
 		</property>
 		<property name="entityInterceptor" ref="treeInterceptor">
