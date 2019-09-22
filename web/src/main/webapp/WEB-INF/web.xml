@@ -23,7 +23,7 @@
     </filter>
     <filter>
         <filter-name>cors</filter-name>
-        <filter-class>com.quhaodian.ucms.filter.SimpleCORSFilter</filter-class>
+        <filter-class>com.haoxuer.ucms.filter.SimpleCORSFilter</filter-class>
     </filter>
 
 

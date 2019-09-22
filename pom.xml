@@ -20,6 +20,8 @@
 		<module>api</module>
 		<module>data</module>
 		<module>web</module>
+		<module>commons</module>
+		<module>services</module>
 	</modules>
 
 	<build>
