@@ -16,9 +16,14 @@ import javax.persistence.Table;
 public class Member extends AbstractUser {
 
 
+    public static Member fromId(Long id) {
+        Member result = new Member();
+        result.setId(id);
+        return result;
+    }
 
     /**
-     *电子邮箱
+     * 电子邮箱
      */
     private String email;
 

@@ -1,8 +1,8 @@
 package com.haoxuer.ucms.service.question;
 
-import com.haoxuer.discover.question.data.entity.Question;
-import com.haoxuer.discover.question.data.entity.QuestionCatalog;
-import com.haoxuer.discover.question.data.service.QuestionService;
+import com.haoxuer.ucms.questions.data.entity.Question;
+import com.haoxuer.ucms.questions.data.entity.QuestionCatalog;
+import com.haoxuer.ucms.questions.data.service.QuestionService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

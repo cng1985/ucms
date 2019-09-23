@@ -75,7 +75,6 @@
 				<value>com.haoxuer.discover.user.data.entity</value>
 				<value>com.haoxuer.discover.article.data.entity</value>
 				<value>com.haoxuer.discover.album.data.entity</value>
-				<value>com.haoxuer.discover.question.data.entity</value>
 				<value>com.haoxuer.discover.plug.data.entity</value>
 				<value>com.haoxuer.discover.activity.data.entity</value>
 				<value>com.haoxuer.discover.site.data.entity</value>
@@ -89,6 +88,9 @@
 				<value>com.haoxuer.discover.config.data.entity</value>
 				<value>com.haoxuer.discover.weibo.data.entity</value>
 				<value>com.haoxuer.ucms.data.entity</value>
+				<value>com.haoxuer.ucms.questions.data.entity</value>
+				<value>com.haoxuer.ucms.member.data.entity</value>
+
 			</list>
 		</property>
 		<property name="entityInterceptor" ref="treeInterceptor">

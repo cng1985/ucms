@@ -1,5 +1,11 @@
 package com.haoxuer.ucms.member.data.service.impl;
 
+import com.haoxuer.discover.rest.base.ResponseObject;
+import com.haoxuer.discover.user.data.dao.UserAccountDao;
+import com.haoxuer.discover.user.data.entity.UserAccount;
+import com.haoxuer.discover.user.data.vo.UserAccountVo;
+import com.haoxuer.ucms.member.data.request.MemberUpdateRequest;
+import jodd.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +24,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import com.haoxuer.discover.data.utils.FilterUtils;
 import org.springframework.context.annotation.Scope;
+import org.springframework.util.StringUtils;
 
 
 /**
@@ -32,6 +39,8 @@ public class MemberServiceImpl implements MemberService {
 
 	private MemberDao dao;
 
+	@Autowired
+	private UserAccountDao accountDao;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -96,4 +105,54 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<Member> list(int first, Integer size, List<Filter> filters, List<Order> orders) {
         return dao.list(first,size,filters,orders);}
+
+
+	@Override
+	public ResponseObject update(MemberUpdateRequest request) {
+		ResponseObject result = new ResponseObject();
+		Member member = dao.findById(request.getId());
+		if (member == null) {
+			result.setMsg("该用户不存在!");
+			result.setCode(-101);
+			return result;
+		}
+		if (StringUtil.isNotEmpty(request.getAvatar())) {
+			member.setAvatar(request.getAvatar());
+		}
+		if (StringUtil.isNotEmpty(request.getSex())) {
+			member.setSex(request.getSex());
+		}
+		if (StringUtil.isNotEmpty(request.getName())) {
+			member.setName(request.getName());
+		}
+		if (StringUtil.isNotEmpty(request.getPhone())) {
+			member.setPhone(request.getPhone());
+		}
+		if (StringUtil.isNotEmpty(request.getJob())) {
+			member.setJob(request.getJob());
+		}
+		if (StringUtil.isNotEmpty(request.getCompanyName())) {
+			member.setCompanyName(request.getCompanyName());
+		}
+		if (StringUtil.isNotEmpty(request.getIntroduce())) {
+			member.setIntroduce(request.getIntroduce());
+		}
+		if (StringUtil.isNotEmpty(request.getEmail())) {
+			member.setEmail(request.getEmail());
+		}
+		return result;
+	}
+
+	@Override
+	public UserAccountVo reg(UserAccount account, Member member) {
+		Member temp = null;
+		UserAccountVo vo = accountDao.reg(account);
+		if (vo.getCode() == 0) {
+			temp = dao.findById(vo.getUser());
+			if (temp != null) {
+				temp.setName(member.getName());
+			}
+		}
+		return vo;
+	}
 }

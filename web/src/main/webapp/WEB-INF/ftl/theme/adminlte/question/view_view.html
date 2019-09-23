@@ -50,7 +50,7 @@
 
 									<div class="form-group">
 										<label>个性签名</label>
-										<textarea required="required" maxlength="2000"  class="form-control"
+										<textarea required="required" maxlength="1000"  class="form-control"
 												  id="contents" name="introduction" rows="3">${user.introduction!''}</textarea>
 
 
@@ -145,13 +145,13 @@
 			<div class="col-sm-11">
 				<div class="row">
 				    <div class="col-sm-12">
-					{{:contents}}
+					{{:note}}
 					</div>
 				</div>
                 <div class="row user">
 				    <div class="col-sm-12">
-					<span title="2016-03-22T13:11:29+0000" class="value-title">3月 22</span>
-					<span>	用户: admin (260 分) </span>
+					<span title="2016-03-22T13:11:29+0000" class="value-title">{{:date}}</span>
+					<span>	用户: {{:member.name}} (260 分) </span>
 					</div>
 				</div>
                   <div class="row others">
@@ -168,7 +168,7 @@
 <script>
     var pageno=2;
     $(document).ready(function() {
-        $.get("${httpsurl}answer/page.htm?questionid=${question.id}", function(data) {
+        $.get("${httpsurl}question/answer/page.htm?id=${question.id}", function(data) {
             if (data.code == 0) {
                 var template = $.templates("#theTmpl");
                 var htmlOutput = template.render(data.list);
@@ -178,23 +178,22 @@
 
         $("#button").click(function() {
             var data = {};
-            data.comment = $("#contents").val();
-            if(data.comment==""){
+            data.note = $("#contents").val();
+            if(data.note==""){
                 return;
             }
 
 
-
-            data.qid = ${question.id};
-            $.post("${httpsurl}answer/answer.htm", data, function(item) {
+            data.question = ${question.id};
+            $.post("${httpsurl}question/answer/answer.htm", data, function(item) {
                 //alert(item)
-                if (item.id > 0) {
+                if (item.code == 0) {
                     var template = $.templates("#theTmpl");
                     var htmlOutput = template.render(item);
                     $("#questions").prepend(htmlOutput);
                     $("#contents").val("");
                 } else {
-                    console.log("评论失败");
+                    console.log(item.msg);
                 }
 
             });
@@ -205,7 +204,7 @@
             var windowHeight=$(this).height();//window窗口的高度
             var documentHeight=$(document).height();//文档对象的高度
             if((scrollTop+windowHeight)>=documentHeight-120){
-                $.get("${httpsurl}answer/page.htm?questionid=${question.id}&pageno="+pageno, function(data) {
+                $.get("${httpsurl}question/answer/page.htm?id=${question.id}&no="+pageno, function(data) {
                     if (data.code == 0&& data.totalPage<=pageno) {
                         var template = $.templates("#theTmpl");
                         var htmlOutput = template.render(data.list);
