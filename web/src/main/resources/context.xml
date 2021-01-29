@@ -100,7 +100,7 @@
                 <entry key="siteurl" value="#{servletContext.contextPath}/"/>
                 <entry key="cdnurl" value="#{servletContext.contextPath}/"/>
                 <entry key="httpsurl" value="#{servletContext.contextPath}/"/>
-                <entry key="sitename" value="好学儿"/>
+                <entry key="siteName" value="例子网"/>
                 <entry key="forum" value-ref="forumDirective"/>
                 <entry key="forumposts" value-ref="forumPostListDirective"/>
                 <entry key="newuser" value-ref="newUserDirective"/>
