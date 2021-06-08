@@ -35,6 +35,7 @@ public class App
         cs.add(QuestionWord.class);
 
 
+
         make.setDao(true);
         make.setService(true);
         make.setView(false);

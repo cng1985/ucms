@@ -108,6 +108,8 @@
                 <entry key="link" value-ref="linkDirective"/>
                 <entry key="linkType" value-ref="linkTypeDirective"/>
                 <entry key="image" value-ref="imageDirective"/>
+                <entry key="userTag" value-ref="userDirective"/>
+                <entry key="userGuestTag" value-ref="userGuestDirective"/>
             </map>
         </property>
     </bean>
